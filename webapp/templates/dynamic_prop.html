@@ -469,64 +469,80 @@ function getXml() {
   xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState === XMLHttpRequest.DONE && xmlhttp.status === 200) {
       // formatXml(arr[cnt], xhr.responseText);
-      const json_response = JSON.parse(this.responseText);
-      console.log(JSON.parse(this.responseText).name);
-        switch(json_response.name){
-            case 'prototype_layerWGS84':
-                original_data_prototype_layerWGS84 = json_response;
-                data_prototype_layerWGS84 = json_response;
-                break;
-            case 'aspern_blocks_attr4':
-                data= json_response;
-                data_aspern_blocks_attr = json_response;
-                original_data_aspern_blocks_attr = json_response;
-                break;
-            case 'aspern_realUseBlocks':
-                data_aspern_realUseBlocks = json_response;
-                original_data_aspern_realUseBlocks = json_response;
-                break;
-            case 'aspern_bkmBlocks':
-                data_aspern_bkmBlocks = json_response;
-                original_data_aspern_bkmBlocks = json_response;
-                break;
-            case 'aspern_landuse':
-                data_aspern_landuse = json_response;
-                original_data_aspern_landuse = json_response;
-                break;
-            case 'aspern_roads':
-                data_aspern_roads = json_response;
-                original_data_aspern_roads = json_response;
-                break;
-            case 'aspern_publiclines':
-                data_aspern_publiclines = json_response;
-                original_data_aspern_publiclines = json_response;
-                break;
-            case 'aspern_trees_blocks':
-                data_aspern_trees_blocks = json_response;
-                original_data_aspern_trees_blocks = json_response;
-                break;
-            case 'aspern_publicstops':
-                data_aspern_publicstops = json_response;
-                original_data_aspern_publicstops = json_response;
-                break;
-            case 'shops':
-                data_shops = json_response;
-                original_data_shops = json_response;
-                break;
+        //console.log('response: ', this.responseText);
+        try {
+            const json_response = JSON.parse(this.responseText);
+          console.log(JSON.parse(this.responseText).name);
+            switch(json_response.name){
+                case 'prototype_layerWGS84':
+                    original_data_prototype_layerWGS84 = json_response;
+                    data_prototype_layerWGS84 = json_response;
+                    load_layer_prototype_layerWGS84()
+                    break;
+                case 'aspern_blocks_attr4':
+                    data= json_response;
+                    data_aspern_blocks_attr = json_response;
+                    original_data_aspern_blocks_attr = json_response;
+                    load_layer_aspern_blocks_attr()
+                    break;
+                case 'aspern_realUseBlocks':
+                    data_aspern_realUseBlocks = json_response;
+                    original_data_aspern_realUseBlocks = json_response;
+                    load_layer_aspern_realUseBlocks()
+                    break;
+                case 'aspern_bkmBlocks':
+                    data_aspern_bkmBlocks = json_response;
+                    original_data_aspern_bkmBlocks = json_response;
+                    load_layer_aspern_bkmBlocks()
+                    break;
+                case 'aspern_landuse':
+                    data_aspern_landuse = json_response;
+                    original_data_aspern_landuse = json_response;
+                    load_layer_aspern_landuse()
+                    break;
+                case 'aspern_roads':
+                    data_aspern_roads = json_response;
+                    original_data_aspern_roads = json_response;
+                    load_layer_aspern_roads()
+                    break;
+                case 'aspern_publiclines':
+                    data_aspern_publiclines = json_response;
+                    original_data_aspern_publiclines = json_response;
+                    load_layer_aspern_publiclines()
+                    break;
+                case 'aspern_trees_blocks':
+                    data_aspern_trees_blocks = json_response;
+                    original_data_aspern_trees_blocks = json_response;
+                    load_layer_aspern_trees_blocks()
+                    break;
+                case 'aspern_publicstops':
+                    data_aspern_publicstops = json_response;
+                    original_data_aspern_publicstops = json_response;
+                    load_layer_aspern_publicstops()
+                    break;
+                case 'shops':
+                    data_shops = json_response;
+                    original_data_shops = json_response;
+                    load_layer_shops()
+                    break;
+            }
         }
+        catch (error) {
+            console.log('Error parsing JSON:', error, data);
+        }
+
       cnt++;
       if (cnt < file_path.length) getXml(); // call again
     }
   };
   xmlhttp.send();
 }
-getXml(); // start it
+// getXml(); // start it
 
 
 // navigation
 var nav = new mapboxgl.NavigationControl();
 map.addControl(nav, 'bottom-left')
-
 
 
 // functions for loading the different layers
@@ -908,17 +924,23 @@ function load_layer_shops(){
 
 
   map.on('load', ()=>{
+      // console.log('shops data: ', data_shops);
+      // console.log('bkm data: ', data_aspern_bkmBlocks);
 
-    load_layer_prototype_layerWGS84();
-    load_layer_aspern_blocks_attr();
-    load_layer_aspern_realUseBlocks();
-    load_layer_aspern_bkmBlocks();
-    load_layer_aspern_landuse();
-    load_layer_aspern_roads();
-    load_layer_aspern_publiclines();
-    load_layer_aspern_trees_blocks();
-    load_layer_aspern_publicstops();
-    load_layer_shops();
+      getXml(); // start it
+
+
+
+    // load_layer_prototype_layerWGS84();
+    // load_layer_aspern_blocks_attr();
+    // load_layer_aspern_realUseBlocks();
+    // load_layer_aspern_bkmBlocks();
+    // load_layer_aspern_landuse();
+    // load_layer_aspern_roads();
+    // load_layer_aspern_publiclines();
+    // load_layer_aspern_trees_blocks();
+    // load_layer_aspern_publicstops();
+    // load_layer_shops();
 
 
     canvas_layers = document.getElementsByClassName('offcanvas-start');

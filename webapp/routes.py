@@ -86,4 +86,3 @@ def post_calculated_data(data):
 
 
 
-    # return {'username': 'felicity', "timestamp": "15-04-2022 19:56", "assets": "1,22,3,4,5,11"}
