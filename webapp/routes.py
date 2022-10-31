@@ -6,6 +6,8 @@ from requests import put, get, post, delete
 @app.route("/", methods=['GET'])
 def home():
     return render_template('dynamic_prop.html')
+    # return render_template('updated_plots.html')
+
 
 @app.route("/data/prototype_layerWGS84.geojson", methods=['GET'])
 def data1():
