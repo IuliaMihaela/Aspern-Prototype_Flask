@@ -70,20 +70,17 @@ def data10():
 
 @app.route('/flask/<data>', methods=['POST'])
 def post_calculated_data(data):
-    # r= post('http://localhost:8000/py',
-    #      json={'username': 'felicity', "timestamp": "15-04-2022 19:56", "assets": "1,22,3,4,5,11"})
-    # print(r.content.decode())
-    # return "Flask server..."
-
-    # steps:
-    # you get the data
-    # pass data to the function that perform calculations
-    # send back the new data
-
+    #steps:
+    # get data from map,
+    # call function for index calculation with the data,
+    # (store the changes and the indices in a file ?),
+    # return the result from the function
     data = json.loads(data)
     print(data)
     print('request', type((request.data).decode()))
+    return data
     return request.data
+
 
 
 
