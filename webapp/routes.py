@@ -5,7 +5,8 @@ from requests import put, get, post, delete
 
 @app.route("/", methods=['GET'])
 def home():
-    return render_template('dynamic_prop.html')
+    return render_template('prop_canvas.html')
+    # return render_template('dynamic_prop.html')
     # return render_template('updated_plots.html')
 
 
@@ -78,7 +79,7 @@ def post_calculated_data(data):
     data = json.loads(data)
     print(data)
     print('request', type((request.data).decode()))
-    return data
+    # return data
     return request.data
 
 

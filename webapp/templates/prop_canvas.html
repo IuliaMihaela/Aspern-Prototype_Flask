@@ -906,9 +906,10 @@ function load_layer_shops(){
 }
 
 async function sendData(check_id){
-    const query = await fetch('/py?data='+JSON.stringify(f), { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
+    const query = await fetch('/flask/'+JSON.stringify(f), { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
     const data = await query.json();
     console.log(data);
+    data_from_python = data;
 }
 
   map.on('style.load', () => {
@@ -1298,9 +1299,10 @@ async function sendData(check_id){
                             // sendData();
 
                         //    async function sendData(){
-                        //         const query = await fetch('/py?data='+JSON.stringify(f), { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
+                        //         const query = await fetch('/flask/'+JSON.stringify(f), { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
                         //         const data = await query.json();
                         //         console.log(data);
+                        //         data_from_python = data;
                         //     }
                             // sendData();
 
