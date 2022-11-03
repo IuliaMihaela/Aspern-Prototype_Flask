@@ -396,35 +396,32 @@ body {
 
 <!-- BOTTOM CANVAS  -->
 <div class="split left bottom split right offcanvas offcanvas-bottom show" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-        <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Graphs</h5>
-        </div>
-        <div class="offcanvas-body">
+    <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Graphs</h5>
+    </div>
+    <div class="offcanvas-body">
 
-            <div id="graph1"></div>
-            <div id="graph2"></div>
+        <div id="graph1"></div>
+        <div id="graph2"></div>
 
-        </div>
+    </div>
 </div>
 
 
 
 <script>
 
-// MAP ~~~~~
-
-  mapboxgl.accessToken = 'pk.eyJ1IjoiaXVsaWFtaWhhZWxhIiwiYSI6ImNsNmdiMTEwZTBwYmczb3ByMGY2YnhwcGEifQ.iwOH4cy-z0B3Q8a41_yfSQ';
-  const map = new mapboxgl.Map({
-      container: 'map', // container ID
-      // style: 'mapbox://styles/iuliamihaela/cl8n4v3m9009f14qii4lt2gtg',
-      style: 'mapbox://styles/mapbox/light-v10',
-      center: [16.507,48.225], // starting position [lng, lat]
-      zoom: 13.66, // starting zoom
-     });
+mapboxgl.accessToken = 'pk.eyJ1IjoiaXVsaWFtaWhhZWxhIiwiYSI6ImNsNmdiMTEwZTBwYmczb3ByMGY2YnhwcGEifQ.iwOH4cy-z0B3Q8a41_yfSQ';
+const map = new mapboxgl.Map({
+  container: 'map', // container ID
+  style: 'mapbox://styles/mapbox/light-v10',
+  center: [16.507,48.225], // starting position [lng, lat]
+  zoom: 13.66, // starting zoom
+ });
 
 
 
-// open geojson files that are going to get updated
+// define the dictionaries that are going to store the geojson data that is going to get updated
 var data = '';
 data_prototype_layerWGS84 = '';
 data_aspern_blocks_attr=''
@@ -436,7 +433,7 @@ data_aspern_publiclines = '';
 data_aspern_trees_blocks = '';
 data_aspern_publicstops = '';
 data_shops = '';
-//open the files that are gonna stay intact
+// define the dictionaries that are going to store the geojson data that is going to stay intact
 original_data_prototype_layerWGS84 = '';
 original_data_aspern_blocks_attr=''
 original_data_aspern_realUseBlocks = '';
@@ -457,11 +454,9 @@ function getXml() {
   xmlhttp.open(method, file_path[cnt], true);
   xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState === XMLHttpRequest.DONE && xmlhttp.status === 200) {
-      // formatXml(arr[cnt], xhr.responseText);
-        //console.log('response: ', this.responseText);
         try {
             const json_response = JSON.parse(this.responseText);
-          console.log(JSON.parse(this.responseText).name);
+            console.log(JSON.parse(this.responseText).name);
             switch(json_response.name){
                 case 'prototype_layerWGS84':
                     original_data_prototype_layerWGS84 = json_response;
@@ -519,7 +514,6 @@ function getXml() {
         catch (error) {
             console.log('Error parsing JSON:', error, data);
         }
-
       cnt++;
       if (cnt < file_path.length) getXml(); // call again
     }
@@ -537,7 +531,6 @@ map.addControl(nav, 'bottom-left')
 
 // functions for loading the different layers
 function load_layer_prototype_layerWGS84(){
-    // console.log('in funct 1: ', data_prototype_layerWGS84);
       map.addLayer(
       {
         'id': 'layer_prototype_layerWGS84',
@@ -547,11 +540,10 @@ function load_layer_prototype_layerWGS84(){
             data: data_prototype_layerWGS84
             },
         'paint': {
-        // 'line-color': '#6e599f',
-        // 'line-opacity': 0.75
+
         'fill-color': [
-                'match', // Use the 'match' expression: https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-match
-                ['get', 'LAYER'], // Use the result 'STORE_TYPE' property
+                'match',
+                ['get', 'LAYER'],
                 'Grünfläche',
                 '#60c36c',
                 'sealed',
@@ -609,11 +601,9 @@ function load_layer_aspern_realUseBlocks(){
             data: data_aspern_realUseBlocks
             },
         'paint': {
-        // 'line-color': '#6e599f',
-        // 'line-opacity': 0.75
         'fill-color': [
-                'match', // Use the 'match' expression: https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-match
-                ['get', 'class'], // Use the result 'STORE_TYPE' property
+                'match',
+                ['get', 'class'],
                 'green',
                 '#60c36c',
                 'sealed',
@@ -634,7 +624,6 @@ function load_layer_aspern_realUseBlocks(){
 }
 
 function load_layer_aspern_bkmBlocks(){
-    // map.setPitch(45);
     map.addLayer(
     {
         'id': 'layer_aspern_bkmBlocks',
@@ -642,7 +631,6 @@ function load_layer_aspern_bkmBlocks(){
             type: 'geojson',
             data: data_aspern_bkmBlocks
             },
-        // 'filter': ['==', 'extrude', 'true'],
         'type': 'fill-extrusion',
         'paint': {
         'fill-extrusion-color': '#aaa',
@@ -733,10 +721,8 @@ function load_layer_aspern_roads(){
         'paint': {
 
             'line-color': [
-                // 'interpolate',
-                // ['linear'],
-                'match', // Use the 'match' expression: https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-match
-                ['get', 'EDGECATEGORY'], // Use the result 'STORE_TYPE' property
+                'match',
+                ['get', 'EDGECATEGORY'],
                 'G',
                 '#FFFF66',
                 'L',
@@ -768,7 +754,6 @@ function load_layer_aspern_roads(){
 }
 
 function load_layer_aspern_publiclines(){
-    // console.log('in funct: ', data_aspern_publiclines);
     map.addLayer(
       {
         'id': 'layer_aspern_publiclines',
@@ -905,6 +890,8 @@ function load_layer_shops(){
       });
 }
 
+var data_from_python;
+// sending the data for index calculations and receiving the index data
 async function sendData(check_id){
     const query = await fetch('/flask/'+JSON.stringify(f), { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
     const data = await query.json();
@@ -919,16 +906,20 @@ async function sendData(check_id){
 
 
   map.on('load', ()=>{
-    getXml()
+    getXml() // load the local geojson files
 
+      //get the canvas that displays the layers options
     canvas_layers = document.getElementsByClassName('offcanvas-start');
+    // when you click on the button
     document.getElementById('btn-open-layers').onclick = (function(){
         console.log(canvas_layers);
-        canvas_layers[0].className = 'show '+ canvas_layers[0].className;
-
+        // it shows the canvas with the layers
+        canvas_layers[0].className = 'show '+ canvas_layers[0].className; // it adds the class 'show' to the canvas element
     });
+    //when you click on the x button on the canvas with the layers
     document.getElementById('btn-close-layers').onclick = (function(){
-        canvas_layers[0].className = canvas_layers[0].className.substring(4,canvas_layers[0].className.length);
+        // the canvas is hidden
+        canvas_layers[0].className = canvas_layers[0].className.substring(4,canvas_layers[0].className.length);// it removes the class 'show' to the canvas element
     });
 
 
@@ -940,33 +931,39 @@ async function sendData(check_id){
             // console.log(this);
             // console.log(e);
 
-            // every time you click on a layer, the properties from the previous feature clicked disappear
+            // every time you click on a layer, the properties from the previous clicked feature disappear
             var content = document.getElementById('property-body');
             content.innerHTML = ''; // delete previous content
+            // only when you click on a layer the button for sending the data to py script appears
             document.getElementById('index_calc').style.display = "none";
 
 
-            const clickedLayer = 'layer_'+layer_input.id;
-            // const check_id = (layer_input == 'aspern_blocks_attr') ? layer_input.id+'4' : layer_input.id;
+            // store the html input element id that displays each layer
+            // with this id we create the different variables or functions for each layer
             const check_id = layer_input.id;
-            // console.log('data: ',eval('data_'+check_id));
             console.log('check id: ', check_id)
+            // store the clicked layer name
+            const clickedLayer = 'layer_'+check_id;
 
-
+            // if we unclick a layer
             if(!(layer_input.checked)){
+                // we hide the layer
                 map.setLayoutProperty(
                     clickedLayer,
                     'visibility',
                     'none'
                 );
+                // if we unlick the 3d building we set a pitch normal
                 if(clickedLayer == 'layer_aspern_bkmBlocks'){
                     map.setPitch(0);
                 }
+                // if the layer has any plots shown, we delete them
                 delete_graph();
             }
-            // click a layer
+            //if we click a layer
             else
             {
+                // if we show the 3d building we set a pitch to the map
                 if(clickedLayer == 'layer_aspern_bkmBlocks'){
                     // loadIconsLayer();
                     map.setPitch(45);
@@ -981,7 +978,7 @@ async function sendData(check_id){
                 delete_graph();
                 // load the graphs
                 try{
-                    eval('graph_'+check_id)(eval('data_'+check_id)); //+'()'
+                    eval('graph_'+check_id)(eval('data_'+check_id));
                 }
                 catch(err){
                     console.log('no graph function')
@@ -989,93 +986,75 @@ async function sendData(check_id){
             }
 
 
-
-
-
             map.on('mousemove', clickedLayer, (e) => {
                 map.getCanvas().style.cursor = 'pointer';
-                });
+            });
             map.on('mouseleave', clickedLayer, (e) => {
-            map.getCanvas().style.cursor = '';
+                map.getCanvas().style.cursor = '';
             });
 
-
+            // when we click on the map on the layer checked
             map.on('click', clickedLayer, (e)=>{
                 // show the button for calculating indices
                 document.getElementById('index_calc').style.display = "block";
 
+                // store the feature we clicked on
                 const clicked_feature = e.features[0];
                 console.log('feature clicked: ', clicked_feature)
-                // console.log(e.features[0]);
-                //const id = e.features[0].properties.FMZK_ID;
-                const f_class = e.features[0].properties.class;
-                // console.log(data.features);
 
-
-                var dict_id =''; // the id in the dict
+                // having a variable which stores the id of the layer
                 var id_property = '';
-                var clicked_feature_id ='';
+                // store the id (its value) opf the clicked feature
+                var value_clicked_feature_id ='';
                 console.log('data: ', eval('data_'+check_id));
+                // assign values for the id name and its value depending on the layer clicked
                 switch(clickedLayer){
                     case 'layer_prototype_layerWGS84':
-                        //dict_id = eval('data_'+check_id).properties.BLK;
                         id_property = 'BLK';
-                        clicked_feature_id = clicked_feature.properties.BLK;
+                        value_clicked_feature_id = clicked_feature.properties.BLK;
                         break;
                     case 'layer_aspern_blocks_attr':
-                        //dict_id = eval('data_'+check_id).properties.id;
                         id_property= 'id';
-                        clicked_feature_id = clicked_feature.properties.id;
+                        value_clicked_feature_id = clicked_feature.properties.id;
                         break;
                     case 'layer_aspern_realUseBlocks':
-                        //dict_id = eval('data_'+check_id).properties.blockID;
                         id_property = 'blockID';
-                        clicked_feature_id = clicked_feature.properties.blockID;
+                        value_clicked_feature_id = clicked_feature.properties.blockID;
                         break;
                     case 'layer_aspern_bkmBlocks':
-                        // console.log('data: ', val('data_'+check_id));
-                        //dict_id = eval('data_'+check_id).properties.blockID;
                         id_property= 'FMZK_ID';
-                        clicked_feature_id = clicked_feature.properties.FMZK_ID;
+                        value_clicked_feature_id = clicked_feature.properties.FMZK_ID;
                         break;
                     case 'layer_aspern_landuse':
                         id_property= 'OBJECTID';
-                        clicked_feature_id = clicked_feature.properties.OBJECTID;
+                        value_clicked_feature_id = clicked_feature.properties.OBJECTID;
                         break;
                     case 'layer_aspern_roads':
-                        //dict_id = eval('data_'+check_id).properties.OBJECTID;
                         id_property= 'OBJECTID';
-                        clicked_feature_id = clicked_feature.properties.OBJECTID;
+                        value_clicked_feature_id = clicked_feature.properties.OBJECTID;
                         break;
                     case 'layer_aspern_publiclines':
-                        //dict_id = eval('data_'+check_id).properties.OBJECTID;
                         id_property= 'OBJECTID';
-                        clicked_feature_id = clicked_feature.properties.OBJECTID;
+                        value_clicked_feature_id = clicked_feature.properties.OBJECTID;
                         break;
                     case 'layer_aspern_trees_blocks':
-                        //dict_id = eval('data_'+check_id).properties.BAUM_ID;
                         id_property= 'BAUM_ID';
-                        clicked_feature_id = clicked_feature.properties.BAUM_ID;
+                        value_clicked_feature_id = clicked_feature.properties.BAUM_ID;
                         break;
                     case 'layer_aspern_publicstops':
-                        //dict_id = eval('data_'+check_id).properties.OBJECTID;
                         id_property= 'OBJECTID';
-                        clicked_feature_id = clicked_feature.properties.OBJECTID;
+                        value_clicked_feature_id = clicked_feature.properties.OBJECTID;
                         break;
                     case 'layer_shops':
-                        //dict_id = eval('data_'+check_id).properties.osm_id;
                         id_property= 'osm_id';
-                        clicked_feature_id = clicked_feature.properties.osm_id;
+                        value_clicked_feature_id = clicked_feature.properties.osm_id;
                         break;
                 }
-                console.log('cf id: ', clicked_feature_id);
+                console.log('clicked feature id: ', value_clicked_feature_id);
 
-                // const clicked_feature_id = e.features[0].properties[id_property];
-
-
-                const properties = clicked_feature.properties;
-                const properties_keys = Object.keys(properties);
-                const properties_values = Object.values(properties);
+                const properties = clicked_feature.properties; // store the feature's properties
+                const properties_keys = Object.keys(properties); // store the properties keys of the feature
+                const properties_values = Object.values(properties); // store the properties values of the feature
                 console.log('prop keys: ', properties_keys);
                 console.log('prop values: ', properties_values);
                 console.log('prop len: ',properties_values.length);
@@ -1090,7 +1069,6 @@ async function sendData(check_id){
                 //     li.innerHTML = '<b>'+properties_keys[i]+'</b>: '+properties_values[i];
                 //     popup_ul.appendChild(li);
                 // }
-
                 // var popup = new mapboxgl.Popup()
                 //   .setLngLat(e.lngLat)
                 //   .setDOMContent(popup_ul)
@@ -1099,26 +1077,7 @@ async function sendData(check_id){
 
                 console.log();
                 // for prop canvas
-                function create_static_prop_canvas(){
-                    content = document.getElementById('property-body');
-                    content.innerHTML = ''; // delete previous content
-                    const ul = document.createElement('ul');
-                    ul.className = "list-group list-group-flush"
-                    ul.id = 'off-canvas';
-                    // ul.style = 'overflow: visible';
-                    for (let i=0; i< properties_keys.length; i++){
-                        const li = document.createElement('li');
-                        li.id = 'p'+ i.toString();
-                        li.className = 'list-group-item';
-                        // li.style ="display: inline;";
-                        li.innerHTML = '<b>'+properties_keys[i]+'</b>: '+'<span>'+properties_values[i]+'</span>';
-                        ul.appendChild(li);
-                    }
-                    content.appendChild(ul);
-                }
-                // create_static_prop_canvas();
-
-
+                // creating the list of properties can can be changed directly
                 function create_dynamic_prop_canvas(){
                     content = document.getElementById('property-body');
                     content.innerHTML = ''; // delete previous content
@@ -1134,15 +1093,13 @@ async function sendData(check_id){
                         li.innerHTML = '<b>'+properties_keys[i]+'</b>: '+'<span>'+'<input style="width:150px" type="text"'+'value="'+properties_values[i]+'"'+ 'class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">'+'</span>';
                         ul.appendChild(li);
 
-                        // putting the range
+                        // putting the range for certain properties that have number values
                         li_prop = properties_keys[i];
-                        span_text = properties_values[i]
-                        range_property_list = ['height', 'FLAECHE', 'SHAPELENGTH','area', 'max_height', 'count_trees', 'count_trees20m', 'count_shops', 'count_stops50m', ];
+                        span_text = properties_values[i];
+                        range_property_list = ['height', 'FLAECHE', 'SHAPELENGTH','area', 'max_height', 'count_trees', 'count_trees20m', 'count_shops', 'count_stops50m' ];
+                        // if the property is one of the above and its value is not null
                         if (range_property_list.includes(li_prop) && span_text!='null'){
-                            console.log('right layer and prop')
-                            // const range_el = document.getElementById('range');
-                            // li.getElementsByTagName('span')[0].innerHTML = '<form action="#" style="width:160px; display:block"><p class="range-field"><input type="range" id="test5" min="0" max="100" /></p></form>';
-                            // li.getElementsByTagName('span')[0].innerHTML = range_el.innerHTML;
+                            // we define the range stop number
                             if (Number(span_text)<10){
                                 max_range_nr ='100'
                             }
@@ -1157,177 +1114,69 @@ async function sendData(check_id){
                             // String(Number(span_text)*3)
                         }
                     }
+                    // we append the item to the list
                     content.appendChild(ul);
                 }
                 create_dynamic_prop_canvas();
 
-
-                function toggle_display(){
-                    buttons_csc = document.getElementsByClassName('btn-outline-dark');
-                    for(btn of buttons_csc) {
-                    if (btn.style.display === "none") {
-                    //   console.log('display none: ', btn);
-                        btn.style.display = "block";
-                    } else {
-                    //   console.log('display block: ', btn)
-                        btn.style.display = "none";
-                    }
-                    }
-                }
-
-                function change_properties(){
-                    // <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
-                    change_ul = document.getElementById('off-canvas');
-                    // change_ul.style = 'overflow-x: hidden';
-                    // console.log(change_ul);
-                    lis = change_ul.childNodes;
-                    for (li of lis){
-                    // li.style ="display: inline;";
-                    var span_text = li.getElementsByTagName('span')[0].innerHTML;
-                    // console.log('span_text: ', span_text, typeof span_text);
-                    var li_prop = li.getElementsByTagName('b')[0].innerHTML;
-                    //console.log(span_text);
-                    li.getElementsByTagName('span')[0].innerHTML = '<input style="width:150px" type="text"'+'value="'+span_text+'"'+ 'class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">';
-                    // console.log(li);
-
-
-                    // putting the range
-                    // clickedLayer == 'layer_prototype_layerWGS84'&&
-                    range_property_list = ['height', 'FLAECHE', 'SHAPELENGTH','area', 'max_height', 'count_trees', 'count_trees20m', 'count_shops', 'count_stops50m', ];
-                    if (range_property_list.includes(li_prop) && span_text!='null'){
-                        console.log('right layer and prop')
-                        // const range_el = document.getElementById('range');
-                        // li.getElementsByTagName('span')[0].innerHTML = '<form action="#" style="width:160px; display:block"><p class="range-field"><input type="range" id="test5" min="0" max="100" /></p></form>';
-                        // li.getElementsByTagName('span')[0].innerHTML = range_el.innerHTML;
-                        if (Number(span_text)<10){
-                            max_range_nr ='100'
-                        }
-                        else if (Number(span_text)>1000){
-                            max_range_nr = String(Number(span_text)*3)
-                        }
-                        else{
-                            max_range_nr = String(Math.pow(Number(span_text),2));
-                        }
-
-                        li.getElementsByTagName('span')[0].innerHTML = '\n        <form action="#" style="width:170px">\n            <p class="range-field">\n                <input type="range" id="test5" min="0" max="'+max_range_nr+'"  value="'+span_text+'"><span class="thumb"><span class="value"></span></span>\n            </p>\n        </form>\n    '
-                        // String(Number(span_text)*3)
-                    }
-
-
-                    }
-                }
-
+                // function for saving the changes in the html list
                 function save_properties(){
                     change_ul = document.getElementById('off-canvas');
                     lis = change_ul.childNodes;
                     inputs = change_ul.getElementsByTagName('input');
                     for (li = 0; li<lis.length; li++){
-                    // console.log(li, ": ", inputs);
-                    // console.log(li, ': ', inputs[li].value);
-                    // console.log(lis[li].getElementsByTagName('span')[0].innerHTML);
-                    // var span_text = lis[li].getElementsByTagName('span')[0].innerHTML;
-                    // console.log(span_text);
                     lis[li].getElementsByTagName('span')[0].innerHTML = inputs[0].value;
                     }
-                    // lis[0].getElementsByTagName('span')[0].innerHTML = inputs[0].value;
-                    // lis[1].getElementsByTagName('span')[0].innerHTML = inputs[1].value;
-                    // lis[2].getElementsByTagName('span')[0].innerHTML = inputs[2].value;
-                    // lis[3].getElementsByTagName('span')[0].innerHTML = inputs[3].value;
-                    // lis[4].getElementsByTagName('span')[0].innerHTML = inputs[4].value;
-                    // lis[5].getElementsByTagName('span')[0].innerHTML = inputs[5].value;
-                    // lis[6].getElementsByTagName('span')[0].innerHTML = inputs[6].value;
-                    // lis[7].getElementsByTagName('span')[0].innerHTML = inputs[7].value;
-                    // lis[8].getElementsByTagName('span')[0].innerHTML = inputs[8].value;
                 }
 
-                var data_from_python;
+                // function for saving the changes in the dictionary
                 function save_dict_properties(){
                     console.log('save dict prop');
-                    console.log('cf id: ', clicked_feature_id);
+                    console.log('cf id: ', value_clicked_feature_id);
+                    // looping through every feature in the dict
                     for (f of eval('data_'+check_id).features){
-                        if ( f['properties'][id_property] == clicked_feature_id){
+                        // f is the clicked feature from the dictionary
+                        // we find the feature in the dictionary that has been changed (we look for the same id)
+                        if ( f['properties'][id_property] == value_clicked_feature_id){
                             console.log('save the data into the dict');
-                            // f is the clicked feature from the dictionary
                             console.log('found: ', f);
                             const dict_properties = f.properties;
                             const dict_properties_keys = Object.keys(dict_properties);
-                            const dict_properties_values = Object.values(dict_properties);
 
+                            // get the list with the properties from the canvas
+                            // the list has the changes saved ( from the save_properties() function which is called before)
                             change_ul = document.getElementById('off-canvas');
+                            // get each item from the list
                             lis = change_ul.childNodes;
                             for (li = 0; li<lis.length; li++){
                                 const dict_key = dict_properties_keys[li];
                                 f['properties'][dict_key] = lis[li].getElementsByTagName('span')[0].innerHTML;
-                                // dict_properties_values[li]= lis[li].getElementsByTagName('span')[0].innerHTML;
                             }
                             map.getSource(clickedLayer).setData(eval('data_'+check_id));
                             console.log('data after: ', f);
 
-
-                            // console.log('compare dict: ', data_aspern_blocks_attr==eval('data_'+check_id));
-                            // show changes for the graphs
-                            // delete_graph();
-                            // load the graphs
+                            // call the function that loads the graphs
                             try{
-                                eval('graph_'+check_id)(eval('data_'+check_id));  //+'()' '+eval('data_'+check_id)+'
+                                eval('graph_'+check_id)(eval('data_'+check_id));
                             }
-                            catch(err){
+                            catch(err){  // in case there is no function that shows any graph for the layer clicked
                                 console.log('no graph function')
                             }
 
 
-                            // send and receive geojson data to and from flask
-
-                            // function sendData(){
-                            //     data = eval('data_'+check_id);
-                            //     console.log('data is sending...')
-                            //     const request = new XMLHttpRequest()
-                            //     // request.open('POST', '/py?data='+JSON.stringify(data.features[1].properties));
-
-                            //     request.onreadystatechange = function(){
-                            //         //console.log(xhr.readyState);
-                            //         if(request.readyState === 4 && request.status === 200){
-                            //             response = request.responseText;
-                            //             console.log('response from py on the map:  ', response);
-                            //             data_from_python = response;
-                            //     }};
-
-                            //     request.open('POST', '/py?data='+JSON.stringify(f));
-                            //     // request.open('POST', '/py?data='+JSON.stringify(eval('data_'+check_id)));
-                            //     request.send(JSON.stringify(eval('data_'+check_id)));
-                            // }
-                            // sendData();
-
-                        //    async function sendData(){
-                        //         const query = await fetch('/flask/'+JSON.stringify(f), { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
-                        //         const data = await query.json();
-                        //         console.log(data);
-                        //         data_from_python = data;
-                        //     }
-                            // sendData();
-
-
-
-
-
+                            // send and receive geojson data to and from flask// async function sendData(){
+                           //      const query = await fetch('/flask/'+JSON.stringify(f), { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
+                           //      const data = await query.json();
+                           //      console.log(data);
+                           //      data_from_python = data;
+                           //  }
+                           //  sendData();
 
                             break;
                         }
 
                     }
                 }
-
-                function cancel_changes(){
-
-                    change_ul = document.getElementById('off-canvas');
-                    lis = change_ul.childNodes;
-                    for (li = 0; li<lis.length; li++){
-                    lis[li].getElementsByTagName('span')[0].innerHTML = properties_values[li];
-                    }
-                }
-
-                // when you click on a feature you can change directly its properties
-                //change_properties()
 
                 //dynamically save the changes
                 function dynamically_save_changes(){
@@ -1348,40 +1197,13 @@ async function sendData(check_id){
                 }
                 dynamically_save_changes();
 
-
+                // get the button that tri
                 const calc_index__button = document.getElementById('index_calc');
+                // trigger the function that send the data to the py script
                 calc_index__button.onclick = (function(){
                     console.log('calc index button clicked');
                     sendData(check_id)
                 });
-
-
-
-
-                // const change_button = document.getElementById('change');
-                // const save_button = document.getElementById('save');
-                // const cancel_button = document.getElementById('cancel');
-
-                // buttons_csc = document.getElementsByClassName('btn-outline-dark');
-
-                // change_button.onclick = (function(){
-                //     console.log('change button clicked');
-                //     toggle_display();
-                //     change_properties();
-                // });
-                // save_button.onclick = (function(){
-                //     console.log('save button clicked');
-                //     toggle_display();
-                //     save_properties();
-                //     save_dict_properties();
-                // });
-                // cancel_button.onclick = (function(){
-                //     console.log('cancel button clicked');
-                //     toggle_display();
-                //     cancel_changes();
-                // });
-
-
 
             });
         }
@@ -1390,178 +1212,129 @@ async function sendData(check_id){
 
 
 
-
-    /////////////////////////
-
-
-
-// ~~~~~ GRAPHS ~~~~~
-function delete_graph(){
-    document.getElementById('graph1').innerHTML = '';
-    document.getElementById('graph2').innerHTML = '';
-}
-
-
-// main use of aspern_blocks_attr layer
-function graph_aspern_blocks_attr(data){
-    len_greenSpace = 0;
-    len_sealedSpace = 0;
-    len_buildings = 0;
-    len_construction = 0;
-    len_water = 0;
-
-    console.log('data comparison: ', data==data_aspern_blocks_attr);
-
-    // console.log("graph data: ", data_aspern_blocks_attr);
-    for (f of data.features){
-        switch(f['properties']['main_use']){
-            case 'greenSpace':
-                len_greenSpace++;
-                break;
-            case 'sealedSpace':
-                len_sealedSpace++
-                break;
-            case 'buildings':
-                len_buildings++
-                break;
-            case 'construction':
-                len_construction++;
-                break;
-            case 'water':
-                len_water++;
-                break;
-        }
+    // ~~~~~ GRAPHS ~~~~~
+    function delete_graph(){
+        document.getElementById('graph1').innerHTML = '';
+        document.getElementById('graph2').innerHTML = '';
     }
 
-    graph1El = document.getElementById('graph1');
-    var data1 = [
-    {
-        x: ['greenSpace', 'sealedSpace', 'buildings', 'construction', 'water'],
-        y: [len_greenSpace, len_sealedSpace, len_buildings, len_construction, len_water],
-        type: 'bar'
-    }
-    ];
-    layout= {
-        height : 300,
-        width : 500,
-    }
-        Plotly.newPlot( graph1El, data1, layout);
+    function graph_aspern_blocks_attr(data){
+        len_greenSpace = 0;
+        len_sealedSpace = 0;
+        len_buildings = 0;
+        len_construction = 0;
+        len_water = 0;
 
-    graph2El = document.getElementById('graph2');
-    colors = ['#60c36c', '#856666', '#ad949e', '#808080', '#0080FF'];
-    var data2 = [
-    {
-        labels: ['greenSpace', 'sealedSpace', 'buildings', 'construction', 'water'],
-        values: [len_greenSpace, len_sealedSpace, len_buildings, len_construction, len_water],
-        type: 'pie',
-        marker: {
-        colors: colors
-    },
-    }
-    ];
-    // var layout = {
-    // height: 400,
-    // width: 500
-    // };
-        Plotly.newPlot( graph2El, data2, layout);
-}
-
-// graph_aspern_blocks_attr();
-
-
-// trees layer with species prop
-function graph_aspern_trees_blocks(data){
-
-    //bar chart ~~~~~
-    dict = {}
-    dict2 = {}
-    // keys = Object.keys(dict);
-    // values = Object.values(dict);
-    for (f of data.features){// data_aspern_trees_blocks
-
-        //bar chart
-        if (Object.keys(dict).includes(f['properties']['species'])){
-            dict[f['properties']['species']]++;
-        }
-        else{
-            dict[f['properties']['species']]=0;
+        // count how many of each there are
+        for (f of data.features){
+            switch(f['properties']['main_use']){
+                case 'greenSpace':
+                    len_greenSpace++;
+                    break;
+                case 'sealedSpace':
+                    len_sealedSpace++
+                    break;
+                case 'buildings':
+                    len_buildings++
+                    break;
+                case 'construction':
+                    len_construction++;
+                    break;
+                case 'water':
+                    len_water++;
+                    break;
+            }
         }
 
-        //time series
-        if (f['properties']['year']!=0){
-            if (Object.keys(dict2).includes(String(f['properties']['year']))){
-                dict2[f['properties']['year']]++;
+        graph1El = document.getElementById('graph1');
+        var data1 = [
+        {
+            x: ['greenSpace', 'sealedSpace', 'buildings', 'construction', 'water'],
+            y: [len_greenSpace, len_sealedSpace, len_buildings, len_construction, len_water],
+            type: 'bar'
+        }
+        ];
+        layout= {
+            height : 300,
+            width : 500,
+        };
+            Plotly.newPlot( graph1El, data1, layout);
+
+        graph2El = document.getElementById('graph2');
+        colors = ['#60c36c', '#856666', '#ad949e', '#808080', '#0080FF'];
+        var data2 = [
+        {
+            labels: ['greenSpace', 'sealedSpace', 'buildings', 'construction', 'water'],
+            values: [len_greenSpace, len_sealedSpace, len_buildings, len_construction, len_water],
+            type: 'pie',
+            marker: {
+            colors: colors
+        },
+        }
+        ];
+            Plotly.newPlot( graph2El, data2, layout);
+    }
+
+    function graph_aspern_trees_blocks(data){
+
+        //bar chart ~~~~~
+        dict = {}
+        dict2 = {}
+
+        for (f of data.features){
+
+            //bar chart
+            if (Object.keys(dict).includes(f['properties']['species'])){ // if the species is already the dictionary key
+                dict[f['properties']['species']]++; // we add one to its value ( we count the total of each species)
             }
             else{
-                dict2[f['properties']['year']]=0;
+                dict[f['properties']['species']]=1; // we initialise it with one, the first counted
+            }
+
+            //time series
+            if (f['properties']['year']!=0){  // if the year is already the dictionary key
+                if (Object.keys(dict2).includes(String(f['properties']['year']))){
+                    dict2[f['properties']['year']]++; // add one to the count
+                }
+                else{
+                    dict2[f['properties']['year']]=1; // initialise it with one
+                }
             }
         }
+
+        graph1El = document.getElementById('graph1');
+        var data1 = [
+        {
+            x: Object.keys(dict),
+            y: Object.values(dict),
+            type: 'bar',
+            marker: {
+            color: '#00994C'
+        },
+        }
+        ];
+        layout= {
+            height : 300,
+            width : 500,
+        }
+
+            Plotly.newPlot( graph1El, data1,layout);
+
+        graph2El = document.getElementById('graph2');
+        var data2 = [
+        {
+            x: Object.keys(dict2),
+            y: Object.values(dict2),
+            type: 'scatter',
+            marker: {
+            color: '#00994C'
+        },
+        }
+        ];
+            Plotly.newPlot( graph2El, data2, layout);
     }
-    // console.log('trees dict: ', dict);
-    // console.log(Object.keys(dict));
-
-    graph1El = document.getElementById('graph1');
-    var data1 = [
-    {
-        x: Object.keys(dict),
-        y: Object.values(dict),
-        type: 'bar',
-        marker: {
-        color: '#00994C'
-    },
-    }
-    ];
-    layout= {
-        height : 300,
-        width : 500,
-    }
-
-        Plotly.newPlot( graph1El, data1,layout);
-
-
-
-    // time series ~~~~
-
-    // dict2 = {}
-    // // keys = Object.keys(dict);
-    // // values = Object.values(dict);
-    // for (f of data.features){// data_aspern_trees_blocks
-    //     if (f['properties']['year']!=0){
-    //         if (Object.keys(dict2).includes(String(f['properties']['year']))){
-    //             dict2[f['properties']['year']]++;
-    //         }
-    //         else{
-    //             dict2[f['properties']['year']]=0;
-    //         }
-    //     }
-
-    // }
-    // console.log('trees dict: ', dict);
-    // console.log(Object.keys(dict));
-
-    graph2El = document.getElementById('graph2');
-    var data2 = [
-    {
-        x: Object.keys(dict2),
-        y: Object.values(dict2),
-        type: 'scatter',
-        marker: {
-        color: '#00994C'
-    },
-    }
-    ];
-        Plotly.newPlot( graph2El, data2, layout);
-}
-
-
-
-
-
-
 
 });
-
-
 
 
 
