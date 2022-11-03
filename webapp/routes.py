@@ -1,11 +1,14 @@
 from flask import render_template, url_for, redirect, request
 from webapp import app
 import json
+import geopandas
 from requests import put, get, post, delete
+from script import index_calculation
 
 @app.route("/", methods=['GET'])
 def home():
-    return render_template('prop_canvas.html')
+    return render_template('show_index.html')
+    # return render_template('prop_canvas.html')
     # return render_template('dynamic_prop.html')
     # return render_template('updated_plots.html')
 
@@ -77,10 +80,20 @@ def post_calculated_data(data):
     # (store the changes and the indices in a file ?),
     # return the result from the function
     data = json.loads(data)
-    print(data)
-    print('request', type((request.data).decode()))
+    # print(data)
+    print('request decode type', type((request.data).decode()))
     # return data
-    return request.data
+    # print('request decode : ', request.data.decode())
+    dict = json.loads((request.data).decode()) # encoding='utf8')
+    df = geopandas.GeoDataFrame.from_features(dict, crs="EPSG:4326")
+    print(type(df), df)
+
+    result = index_calculation(df)
+    print('index result: ', result)
+    return result.to_json()
+
+
+    # return request.data
 
 
 
