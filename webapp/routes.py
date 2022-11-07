@@ -13,6 +13,10 @@ def home():
     # return render_template('updated_plots.html')
 
 
+@app.route("/dropdown/", methods=['GET'])
+def dropdown():
+    return render_template('dropdown.html')
+
 @app.route("/data/prototype_layerWGS84.geojson", methods=['GET'])
 def data1():
     with open(r'webapp\data\prototype_layerWGS84.geojson', encoding='utf-8') as f:
@@ -64,14 +68,6 @@ def data10():
         return f.read()
 
 
-# @app.route('/flask', methods=['GET'])
-# def get_calculated_data():
-#     # r= post('http://localhost:8000/py',
-#     #      json={'username': 'felicity', "timestamp": "15-04-2022 19:56", "assets": "1,22,3,4,5,11"})
-#     # print(r.content.decode())
-#     # return "Flask server..."
-#     return {'username': 'felicity', "timestamp": "15-04-2022 19:56", "assets": "1,22,3,4,5,11"}
-
 @app.route('/flask/<data>', methods=['POST'])
 def post_calculated_data(data):
     #steps:
@@ -82,9 +78,7 @@ def post_calculated_data(data):
     data = json.loads(data)
     # print(data)
     print('request decode type', type((request.data).decode()))
-    # return data
-    # print('request decode : ', request.data.decode())
-    dict = json.loads((request.data).decode()) # encoding='utf8')
+    dict = json.loads((request.data).decode())
     df = geopandas.GeoDataFrame.from_features(dict, crs="EPSG:4326")
     print(type(df), df)
 
@@ -92,8 +86,6 @@ def post_calculated_data(data):
     print('index result: ', result)
     return result.to_json()
 
-
-    # return request.data
 
 
 

@@ -149,6 +149,7 @@ body {
     .offcanvas-body {
       position: absolute;
       top:90px;
+      overflow: hidden;
     }
     /* .offcanvas {
       overflow-y: auto;
@@ -284,6 +285,16 @@ body {
     }
 
 
+    /*.input-group, select {*/
+    /*    width: 50px;*/
+    /*    height: auto;*/
+    /*}*/
+
+    .form-select {
+      width: 30px !important;
+    }
+
+
 
 
 
@@ -400,6 +411,26 @@ body {
     <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Graphs</h5>
     </div>
     <div class="offcanvas-body">
+
+<!--        <div class="dropdown">-->
+<!--          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--            Dropdown button-->
+<!--          </button>-->
+<!--          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">-->
+<!--            <li><a class="dropdown-item" href="#">Action</a></li>-->
+<!--            <li><a class="dropdown-item" href="#">Another action</a></li>-->
+<!--            <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+<!--          </ul>-->
+<!--        </div>-->
+
+<!--        <form action="#">-->
+<!--          <select style="display: block;" name="cars" id="cars">-->
+<!--            <option value="volvo">Volvo</option>-->
+<!--            <option value="saab">Saab</option>-->
+<!--            <option value="opel">Opel</option>-->
+<!--            <option value="audi">Audi</option>-->
+<!--          </select>-->
+<!--        </form>-->
 
         <div id="graph1"></div>
         <div id="graph2"></div>
@@ -971,6 +1002,17 @@ async function sendData(check_id){
             // console.log(this);
             // console.log(e);
 
+            // hide the index layer
+            if( map.getLayer('layer_index')){
+               map.setLayoutProperty(
+                    'layer_index',
+                    'visibility',
+                    'none'
+                );
+            }
+
+
+
             // every time you click on a layer, the properties from the previous clicked feature disappear
             var content = document.getElementById('property-body');
             content.innerHTML = ''; // delete previous content
@@ -1153,6 +1195,29 @@ async function sendData(check_id){
                             li.getElementsByTagName('span')[0].innerHTML = '\n        <form action="#" style="width:170px">\n            <p class="range-field">\n                <input type="range" id="test5" min="0" max="'+max_range_nr+'"  value="'+span_text+'"><span class="thumb"><span class="value"></span></span>\n            </p>\n        </form>\n    '
                             // String(Number(span_text)*3)
                         }
+
+                        // putting the dropdown for landuse layer, NUTZUNG_LEVEL2 property
+                        if(properties_keys[i]== 'NUTZUNG_LEVEL2'){
+                            console.log('span text: ', span_text)
+                            li.getElementsByTagName('span')[0].innerHTML =
+                                '<form action="#" style="width:170px;">\n'+
+                                '<select name="level2" id="level2" style="display: block;  height: 40px" value="'+span_text+'">\n' +
+                                '  <option value="Erholungs- u. Freizeiteinrichtungen">Erholungs- u. Freizeiteinrichtungen</option>\n' +
+                                '  <option value="Gewässer">Gewässer</option>\n' +
+                                '  <option value="Landwirtschaft">Landwirtschaft</option>\n' +
+                                '  <option value="Naturraum">Naturraum</option>\n' +
+                                '  <option value="Geschäfts,- Kern- und Mischnutzung (Schwerpunkt betriebl. Tätigkeit)">Geschäfts,- Kern- und Mischnutzung (Schwerpunkt betriebl. Tätigkeit)</option>\n' +
+                                '  <option value="Industrie- und Gewerbenutzung">Industrie- und Gewerbenutzung</option>\n' +
+                                '  <option value="soziale Infrastruktur">soziale Infrastruktur</option>\n' +
+                                '  <option value="Technische Infrastruktur/Kunstbauten/Sondernutzung">Technische Infrastruktur/Kunstbauten/Sondernutzung</option>\n' +
+                                '  <option value="Wohn- u. Mischnutzung (Schwerpunkt Wohnen)">Wohn- u. Mischnutzung (Schwerpunkt Wohnen)</option>\n' +
+                                '  <option value="Straßenraum">Straßenraum</option>\n' +
+                                '  <option value="weitere verkehrliche Nutzungen">weitere verkehrliche Nutzungen</option>\n' +
+                                '</select>\n'+
+                                '</form>'
+
+                                li.getElementsByTagName('select')[0].value = span_text;
+                        }
                     }
                     // we append the item to the list
                     content.appendChild(ul);
@@ -1164,9 +1229,20 @@ async function sendData(check_id){
                     change_ul = document.getElementById('off-canvas');
                     lis = change_ul.childNodes;
                     inputs = change_ul.getElementsByTagName('input');
+                    select = change_ul.getElementsByTagName('select');
+                    console.log('inputs: ', inputs)
                     for (li = 0; li<lis.length; li++){
-                    lis[li].getElementsByTagName('span')[0].innerHTML = inputs[0].value;
+                        console.log('b for lvl 2: ', lis[li].getElementsByTagName('b'));
+                        if(lis[li].getElementsByTagName('b')[0].innerHTML == 'NUTZUNG_LEVEL2'){
+                            console.log('level 2 save');
+                            lis[li].getElementsByTagName('span')[0].innerHTML = select[0].value;
+                        }
+                        else{
+                            lis[li].getElementsByTagName('span')[0].innerHTML = inputs[0].value;
+
+                        }
                     }
+                    console.log('lis', lis)
                 }
 
                 // function for saving the changes in the dictionary
@@ -1225,15 +1301,30 @@ async function sendData(check_id){
                     property_inputs = property_ul.getElementsByTagName('input');
                     for(const property_input of property_inputs){
                         property_input.onchange = function(e){
-                            console.log('property chnage dynamically');
+                            console.log('property changed dynamically');
                                 save_properties();
                                 save_dict_properties();
                                 // change_properties();
                                 create_dynamic_prop_canvas();
-
+                        }
                             //solve !!!
                             // you save to click on the feature again to change the properties again
-                    }}
+                    }
+                    try{
+                        select = property_ul.getElementsByTagName('select');
+                        select[0].onchange = function(e){
+                            console.log('property changed dynamically');
+                                save_properties();
+                                save_dict_properties();
+                                // change_properties();
+                                create_dynamic_prop_canvas();
+                        }
+                    }
+                    catch(err){
+                        console.log('no select input')
+                            }
+
+
                 }
                 dynamically_save_changes();
 
