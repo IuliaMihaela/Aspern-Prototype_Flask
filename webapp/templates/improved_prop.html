@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
 <meta charset="utf-8">
 <title>Aspern prototype</title>
@@ -62,13 +62,7 @@ body {
     margin-right: 8px;
     border-radius: 50%
   }
-  /* https://codepen.io/trstnpr/pen/abomLGa -->source scroll */
-  /* .dropdown-menu {
-  height: 400px;
-  width: 400px;
-  padding: 5px;
-  overflow-y: auto;
-  } */
+
 
 
   .list-group {
@@ -90,17 +84,7 @@ body {
     margin-bottom: 0;
     width: 250px;
   }
-  /* draw box */
-  /* .calculation-box {
-      height: 75px;
-      width: 150px;
-      position: absolute;
-      left: 50px;
-      background-color: rgba(255, 255, 255, 0.9);
-      padding: 15px;
-      text-align: center;
-      top: 20px;
-  } */
+
 
   p {
       font-family: 'Open Sans';
@@ -141,7 +125,7 @@ body {
         width: 100%;
     }
     .header {
-        float:inline-start;
+        /*float: inline-start;*/
         overflow: hidden;
         /* background-color: #f1f1f1; */
         padding: 20px 10px;
@@ -151,10 +135,7 @@ body {
       top:90px;
       overflow: hidden;
     }
-    /* .offcanvas {
-      overflow-y: auto;
-      overflow-x: auto;
-    } */
+
     .btn-group-sm {
       position: absolute;
       /* left: 30px; */
@@ -164,48 +145,6 @@ body {
         width: auto;
     }
 
-    /* layers navbar  */
-    /* #menu {
-        background: #fff;
-        position: absolute;
-        z-index: 1;
-        top: 10px;
-        right: 10px;
-        border-radius: 3px;
-        width: 120px;
-        border: 1px solid rgba(0, 0, 0, 0.4);
-        font-family: 'Open Sans', sans-serif;
-    }
-
-    #menu a {
-        font-size: 13px;
-        color: #404040;
-        display: block;
-        margin: 0;
-        padding: 0;
-        padding: 10px;
-        text-decoration: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-        text-align: center;
-    }
-
-    #menu a:last-child {
-        border: none;
-    }
-
-    #menu a:hover {
-        background-color: #f8f8f8;
-        color: #404040;
-    }
-
-    #menu a.active {
-        background-color: #3887be;
-        color: #ffffff;
-    }
-
-    #menu a.active:hover {
-        background: #3074a4;
-    } */
 
     #btn-open-layers {
         position: absolute;
@@ -285,10 +224,6 @@ body {
     }
 
 
-    /*.input-group, select {*/
-    /*    width: 50px;*/
-    /*    height: auto;*/
-    /*}*/
 
     .form-select {
       width: 30px !important;
@@ -313,9 +248,9 @@ body {
 
 <!-- LAYERS CANVAS  -->
 <button id="btn-open-layers" class="btn btn-outline-secondary " type="button" >...</button>
-<div class="split left offcanvas offcanvas-start offcanvas-size-sm" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+<div class="split left offcanvas offcanvas-start offcanvas-size-sm" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling1" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Layers</h5>
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel1">Layers</h5>
     <button id="btn-close-layers" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
@@ -386,9 +321,9 @@ body {
 
 
 <!-- RIGHT CANVAS  -->
-<div class="split right offcanvas offcanvas-end show" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+<div class="split right offcanvas offcanvas-end show" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling2" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Properties</h5>
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel2">Properties</h5>
     <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
        <button style="display:none" id="index_calc" type="button" class="btn btn-outline-dark">Calculate index</button>
     </div>
@@ -415,26 +350,6 @@ body {
     <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Graphs</h5>
     </div>
     <div class="offcanvas-body">
-
-<!--        <div class="dropdown">-->
-<!--          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--            Dropdown button-->
-<!--          </button>-->
-<!--          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">-->
-<!--            <li><a class="dropdown-item" href="#">Action</a></li>-->
-<!--            <li><a class="dropdown-item" href="#">Another action</a></li>-->
-<!--            <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-<!--          </ul>-->
-<!--        </div>-->
-
-<!--        <form action="#">-->
-<!--          <select style="display: block;" name="cars" id="cars">-->
-<!--            <option value="volvo">Volvo</option>-->
-<!--            <option value="saab">Saab</option>-->
-<!--            <option value="opel">Opel</option>-->
-<!--            <option value="audi">Audi</option>-->
-<!--          </select>-->
-<!--        </form>-->
 
         <div id="graph1"></div>
         <div id="graph2"></div>
@@ -1164,29 +1079,36 @@ async function sendData(check_id){
                 //   .addTo(map);
 
 
-                console.log();
+                range_property_list = ['height', 'FLAECHE', 'SHAPELENGTH','area', 'max_height', 'count_trees', 'count_trees20m', 'count_shops', 'count_stops50m' ];
+
                 // for prop canvas
                 // creating the list of properties can can be changed directly
-                function create_dynamic_prop_canvas(){
+                function create_dynamic_prop_canvas(f= false){
+                    // if we get the changed feature from the saved dict
+                    if (f){
+                        properties = f['properties'];
+                        properties_keys = Object.keys(properties);
+                        properties_values = Object.values(properties);
+                    }
                     console.log('properties values in create dynamic func: ', properties_values)
                     content = document.getElementById('property-body');
                     content.innerHTML = ''; // delete previous content
                     const ul = document.createElement('ul');
                     ul.className = "list-group list-group-flush"
                     ul.id = 'off-canvas';
-                    // ul.style = 'overflow: visible';
+
                     for (let i=0; i< properties_keys.length; i++){
                         const li = document.createElement('li');
                         li.id = 'p'+ i.toString();
                         li.className = 'list-group-item';
                         // li.style ="display: inline;";properties_values[i]
-                        li.innerHTML = '<b>'+properties_keys[i]+'</b>: '+'<span>'+'<input style="width:150px" type="text"'+'value="'+properties_values[i]+'"'+ 'class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">'+'</span>';
+                        li.innerHTML = '<b>'+properties_keys[i]+'</b>: '+'<span></span>';
                         ul.appendChild(li);
+                        let span_el = li.getElementsByTagName('span')[0]
 
                         // putting the range for certain properties that have number values
                         li_prop = properties_keys[i];
                         span_text = properties_values[i];
-                        range_property_list = ['height', 'FLAECHE', 'SHAPELENGTH','area', 'max_height', 'count_trees', 'count_trees20m', 'count_shops', 'count_stops50m' ];
                         // if the property is one of the above and its value is not null
                         if (range_property_list.includes(li_prop) && span_text!='null'){
                             // we define the range stop number
@@ -1196,20 +1118,23 @@ async function sendData(check_id){
                             else if (Number(span_text)>1000){
                                 max_range_nr = String(Number(span_text)*3)
                             }
+                            else if (Number(span_text)>10000){
+                                max_range_nr = String(Number(span_text)*2)
+                            }
                             else{
                                 max_range_nr = String(Math.pow(Number(span_text),2));
                             }
 
                             li.getElementsByTagName('span')[0].innerHTML = '\n        <form action="#" style="width:170px">\n            <p class="range-field">\n                <input type="range" id="test5" min="0" max="'+max_range_nr+'"  value="'+span_text+'"><span class="thumb"><span class="value"></span></span>\n            </p>\n        </form>\n    '
                             // String(Number(span_text)*3)
-                        }
-
+                        }else
                         // putting the dropdown for landuse layer, NUTZUNG_LEVEL2 property
                         if(properties_keys[i]== 'NUTZUNG_LEVEL2'){
                             console.log('span text: ', span_text)
                             li.getElementsByTagName('span')[0].innerHTML =
-                                '<form action="#" style="width:170px;">\n'+
-                                '<select name="level2" id="level2" style="display: block;  height: 40px" value="'+span_text+'">\n' +
+                                '<form action="#" style="width:170px;" id="select_form">\n'+
+                                // '<input style="display: none;"type="text" >'+
+                                '<select name="level2" id="level2" style="display: block;  height: 40px">\n' +
                                 '  <option value="Erholungs- u. Freizeiteinrichtungen">Erholungs- u. Freizeiteinrichtungen</option>\n' +
                                 '  <option value="Gewässer">Gewässer</option>\n' +
                                 '  <option value="Landwirtschaft">Landwirtschaft</option>\n' +
@@ -1224,60 +1149,51 @@ async function sendData(check_id){
                                 '</select>\n'+
                                 '</form>'
 
-                                li.getElementsByTagName('select')[0].value = span_text;
+                            li.getElementsByTagName('select')[0].value = span_text;
+                            // li.getElementsByTagName('input')[0].value = span_text;
+                            // li.getElementsByTagName('span')[0].innerHTML = li.getElementsByTagName('select')[0].value;
+
+                        } else {
+                            li.getElementsByTagName('span')[0].innerHTML= '<input style="width:150px; height: 40px" type="text"'+'value="'+properties_values[i]+'"'+ 'class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">';
                         }
+                        ul.appendChild(li);
                     }
                     // we append the item to the list
                     content.appendChild(ul);
                 }
                 create_dynamic_prop_canvas();
 
-                // function for saving the changes in the html list
-                function save_properties(){
-                    change_ul = document.getElementById('off-canvas');
-                    lis = change_ul.childNodes;
-                    inputs = change_ul.getElementsByTagName('input');
-                    select = change_ul.getElementsByTagName('select');
-                    console.log('inputs: ', inputs)
-                    for (li = 0; li<lis.length; li++){
-                        console.log('b for lvl 2: ', lis[li].getElementsByTagName('b'));
-                        if(lis[li].getElementsByTagName('b')[0].innerHTML == 'NUTZUNG_LEVEL2'){
-                            console.log('level 2 save');
-                            lis[li].getElementsByTagName('span')[0].innerHTML = select[0].value;
-                        }
-                        else{
-                            lis[li].getElementsByTagName('span')[0].innerHTML = inputs[0].value;
-
-                        }
-                    }
-                    console.log('lis', lis)
-                }
-
                 // function for saving the changes in the dictionary
-                function save_dict_properties(){
-                    console.log('save dict prop');
-                    console.log('cf id: ', value_clicked_feature_id);
-                    // looping through every feature in the dict
+                function save_dict_property(li, new_value){
+                    console.log('save the data into the dict');
+
                     for (f of eval('data_'+check_id).features){
                         // f is the clicked feature from the dictionary
                         // we find the feature in the dictionary that has been changed (we look for the same id)
                         if ( f['properties'][id_property] == value_clicked_feature_id){
-                            console.log('save the data into the dict');
                             console.log('found: ', f);
                             const dict_properties = f.properties;
-                            const dict_properties_keys = Object.keys(dict_properties);
+                            // const dict_properties_keys = Object.keys(dict_properties);
 
                             // get the list with the properties from the canvas
                             // the list has the changes saved ( from the save_properties() function which is called before)
-                            change_ul = document.getElementById('off-canvas');
-                            // get each item from the list
-                            lis = change_ul.childNodes;
-                            for (li = 0; li<lis.length; li++){
-                                const dict_key = dict_properties_keys[li];
-                                f['properties'][dict_key] = lis[li].getElementsByTagName('span')[0].innerHTML;
-                            }
+                            // change_ul = document.getElementById('off-canvas');
+                            // // get each item from the list
+                            // lis = change_ul.childNodes;
+                            // for (li = 0; li<lis.length; li++){
+                            //     const dict_key = dict_properties_keys[li];
+                            //     f['properties'][dict_key] = lis[li].getElementsByTagName('span')[0].innerHTML;
+                            // }
+                            console.log('li in save dict: ', li);
+                            dict_key = li.getElementsByTagName('b')[0].innerHTML;
+                            console.log(li.getElementsByTagName('b'))
+                            console.log('dict key from li: ', dict_key);
+                            f['properties'][dict_key] =new_value;
+
+
                             map.getSource(clickedLayer).setData(eval('data_'+check_id));
                             console.log('data after: ', f);
+                            feature = f;
 
                             // call the function that loads the graphs
                             try{
@@ -1288,19 +1204,10 @@ async function sendData(check_id){
                             }
 
 
-                            // send and receive geojson data to and from flask// async function sendData(){
-                           //      const query = await fetch('/flask/'+JSON.stringify(f), { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
-                           //      const data = await query.json();
-                           //      console.log(data);
-                           //      data_from_python = data;
-                           //  }
-                           //  sendData();
-
-                            break;
+                            return feature
                         }
 
                     }
-                    return f
                 }
 
                 //dynamically save the changes
@@ -1310,10 +1217,27 @@ async function sendData(check_id){
                     property_inputs = property_ul.getElementsByTagName('input');
                     for(const property_input of property_inputs){
                         property_input.onchange = function(e){
+                            console.log('e')
                             console.log('property changed dynamically');
-                                save_properties();
-                                save_dict_properties();
-                                create_dynamic_prop_canvas();
+                            console.log('on change e: ', e.target.value);
+                            console.log('on change this: ', this);
+                            let new_value =e.target.value;
+                            let el = this;
+                            let list_el = this.parentElement.parentElement;
+                            if (this.type == 'range'){
+                                list_el = this.parentElement.parentElement.parentElement.parentElement;
+                            }
+
+
+
+                            save_dict_property(list_el, new_value);
+
+
+
+
+                                //save_properties();
+                                // const f = save_dict_properties();
+                                // create_dynamic_prop_canvas(f);
                         }
                             //solve !!!
                             // you save to click on the feature again to change the properties again and to see the changes
@@ -1321,10 +1245,18 @@ async function sendData(check_id){
                     try{
                         select = property_ul.getElementsByTagName('select');
                         select[0].onchange = function(e){
+                            console.log('e')
                             console.log('property changed dynamically');
-                                save_properties();
-                                save_dict_properties();
-                                create_dynamic_prop_canvas();
+                            console.log('on change e: ', e.target.value);
+                            console.log('on change this: ', this);
+                            let new_value =e.target.value;
+                            let el = this;
+                            let list_el = this.parentElement.parentElement.parentElement;
+
+
+
+                            // save_property(list_el, new_value);
+                            save_dict_property(list_el, new_value);
                         }
                     }
                     catch(err){
@@ -1335,7 +1267,7 @@ async function sendData(check_id){
                 }
                 dynamically_save_changes();
 
-                // get the button that tri
+                // get the button
                 const calc_index__button = document.getElementById('index_calc');
                 // trigger the function that send the data to the py script
                 calc_index__button.onclick = (function(){

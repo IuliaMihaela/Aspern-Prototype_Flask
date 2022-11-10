@@ -17,6 +17,14 @@ def home():
 def dropdown():
     return render_template('dropdown.html')
 
+@app.route("/prop/", methods=['GET'])
+def prop():
+    return render_template('show_changed_prop.html')
+
+@app.route("/prop2/", methods=['GET'])
+def prop2():
+    return render_template('improved_prop.html')
+
 @app.route("/data/prototype_layerWGS84.geojson", methods=['GET'])
 def data1():
     with open(r'webapp\data\prototype_layerWGS84.geojson', encoding='utf-8') as f:

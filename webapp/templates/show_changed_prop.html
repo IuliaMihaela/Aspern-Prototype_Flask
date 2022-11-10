@@ -1167,7 +1167,13 @@ async function sendData(check_id){
                 console.log();
                 // for prop canvas
                 // creating the list of properties can can be changed directly
-                function create_dynamic_prop_canvas(){
+                function create_dynamic_prop_canvas(f= false){
+                    // if we get the changed feature from the saved dict
+                    if (f){
+                        properties = f['properties'];
+                        properties_keys = Object.keys(properties);
+                        properties_values = Object.values(properties);
+                    }
                     console.log('properties values in create dynamic func: ', properties_values)
                     content = document.getElementById('property-body');
                     content.innerHTML = ''; // delete previous content
@@ -1180,7 +1186,7 @@ async function sendData(check_id){
                         li.id = 'p'+ i.toString();
                         li.className = 'list-group-item';
                         // li.style ="display: inline;";properties_values[i]
-                        li.innerHTML = '<b>'+properties_keys[i]+'</b>: '+'<span>'+'<input style="width:150px" type="text"'+'value="'+properties_values[i]+'"'+ 'class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">'+'</span>';
+                        li.innerHTML = '<b>'+properties_keys[i]+'</b>: '+'<span>'+'<input style="width:150px; height: 40px" type="text"'+'value="'+properties_values[i]+'"'+ 'class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">'+'</span>';
                         ul.appendChild(li);
 
                         // putting the range for certain properties that have number values
@@ -1278,6 +1284,7 @@ async function sendData(check_id){
                             }
                             map.getSource(clickedLayer).setData(eval('data_'+check_id));
                             console.log('data after: ', f);
+                            feature = f;
 
                             // call the function that loads the graphs
                             try{
@@ -1296,11 +1303,12 @@ async function sendData(check_id){
                            //  }
                            //  sendData();
 
-                            break;
+                            // break;
+                            return feature
                         }
 
                     }
-                    return f
+
                 }
 
                 //dynamically save the changes
@@ -1312,8 +1320,9 @@ async function sendData(check_id){
                         property_input.onchange = function(e){
                             console.log('property changed dynamically');
                                 save_properties();
-                                save_dict_properties();
-                                create_dynamic_prop_canvas();
+                                f= save_dict_properties();
+                                console.log('f sent: ', f)
+                                create_dynamic_prop_canvas(f);
                         }
                             //solve !!!
                             // you save to click on the feature again to change the properties again and to see the changes
@@ -1323,8 +1332,8 @@ async function sendData(check_id){
                         select[0].onchange = function(e){
                             console.log('property changed dynamically');
                                 save_properties();
-                                save_dict_properties();
-                                create_dynamic_prop_canvas();
+                                f= save_dict_properties();
+                                create_dynamic_prop_canvas(f);
                         }
                     }
                     catch(err){
