@@ -133,6 +133,7 @@ body {
       position: absolute;
       top:90px;
       overflow: hidden;
+      height: 80%;
     }
 
     .btn-group-sm {
@@ -163,7 +164,7 @@ body {
 
     .navbar-nav {
         width: 250px;
-        height: 400px;
+        height: 160px;
     }
 
     .form-check-input:checked {
@@ -283,75 +284,14 @@ body {
     /*}*/
 
 
-    .dropdown-menu {
+     /*.dropdown-menu,*/
+     .layers_ul {
         --bs-dropdown-border-color: none;
         --bs-dropdown-link-active-bg: none;
     }
 
 
     /*toggle 3d later button */
-    /*.switch {*/
-    /*  position: absolute;*/
-    /*  bottom: 30%;*/
-    /*  right: 50%;*/
-    /*  z-index: 1;*/
-    /*  !*display: inline-block;*!*/
-    /*  width: 60px;*/
-    /*  height: 34px;*/
-    /*}*/
-
-    /*.switch input {*/
-    /*  opacity: 0;*/
-    /*  width: 0;*/
-    /*  height: 0;*/
-    /*}*/
-
-    /*.slider {*/
-    /*  position: absolute;*/
-    /*  cursor: pointer;*/
-    /*  !*top: 0;*!*/
-    /*  left: 0;*/
-    /*  right: 0;*/
-    /*  bottom: 0;*/
-    /*  background-color: #ccc;*/
-    /*  -webkit-transition: .4s;*/
-    /*  transition: .4s;*/
-    /*}*/
-
-    /*.slider:before {*/
-    /*  position: absolute;*/
-    /*  content: "";*/
-    /*  height: 26px;*/
-    /*  width: 26px;*/
-    /*  left: 4px;*/
-    /*  bottom: 4px;*/
-    /*  background-color: white;*/
-    /*  -webkit-transition: .4s;*/
-    /*  transition: .4s;*/
-    /*}*/
-
-    /*input:checked + .slider {*/
-    /*  background-color: rgba(21, 161, 72, 0.99);*/
-    /*}*/
-
-    /*input:focus + .slider {*/
-    /*  box-shadow: 0 0 1px #2196F3;*/
-    /*}*/
-
-    /*input:checked + .slider:before {*/
-    /*  -webkit-transform: translateX(26px);*/
-    /*  -ms-transform: translateX(26px);*/
-    /*  transform: translateX(26px);*/
-    /*}*/
-
-    /*!* Rounded sliders *!*/
-    /*.slider.round {*/
-    /*  border-radius: 34px;*/
-    /*}*/
-
-    /*.slider.round:before {*/
-    /*  border-radius: 50%;*/
-    /*}*/
 
     .form-switch {
       position: absolute;
@@ -364,23 +304,6 @@ body {
       width: 60px;
       height: 34px;
     }
-
-
-    /*[type="checkbox"]:not(:checked), [type="checkbox"]:checked {*/
-    /*    visibility: visible;*/
-    /*}*/
-
-    /*[type="checkbox"]:not(:checked), [type="checkbox"]:checked {*/
-    /*    position: initial;*/
-    /*}*/
-
-    /*[type="checkbox"]+label:before {*/
-    /*    content: none;*/
-    /*}*/
-
-    /*[type="checkbox"]+label {*/
-    /*    padding-left:0px;*/
-    /*}*/
 
     /*show only the tick from materialize, hide the bootstrap checkbox*/
     [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
@@ -403,6 +326,41 @@ body {
     #aspern_bkmBlocks+label {
         padding-left:0px;
     }
+
+
+    /*legend */
+    #legend {
+        /* background: white;  */
+        /* width: 300px;  */
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        position: absolute;
+        /*right: 16px;*/
+        /*top:16px;*/
+        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+        color: rgba(0, 0, 0, 0.5);
+        }
+    .legend_ul ul{
+        list-style-type: none;
+        margin: 0;
+        padding: 16px;
+        width: 300px;
+    }
+    .legend_ul ul span{
+        width: 10px;
+        height: 10px;
+        display: inline-block;
+        margin-right: 8px;
+        border-radius: 50%
+    }
+    .legend_ul {
+        /* https://codepen.io/trstnpr/pen/abomLGa -->source scroll */
+        height: 200px;
+        width: 200px;
+        border: 1px  solid #eee;
+        padding: 5px;
+        overflow-y: auto;
+    }
+
 
 </style>
 </head>
@@ -430,14 +388,14 @@ body {
   </div>
   <div class="offcanvas-body">
 
-
+<!--      layers-->
       <ul class="navbar-nav ">
 <!--          justify-content-end flex-grow-1 pe-3-->
           <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="parks">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="parks">
                 Landuse
               </a>
-              <ul class="dropdown-menu" id="parks_menu">
+              <ul class="dropdown-menu layers_ul" id="parks_menu">
                   <div class="form-check dropdown-item">
                     <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr">
                     <label class="form-check-label" for="aspern_blocks_attr">
@@ -468,7 +426,7 @@ body {
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="trees">
                   Transportation
                 </a>
-                <ul class="dropdown-menu" id="trees_menu">
+                <ul class="dropdown-menu layers_ul" id="trees_menu">
                     <div class="form-check dropdown-item">
                         <input class="form-check-input" type="checkbox" value="" id="aspern_roads" >
                         <label class="form-check-label" for="aspern_roads">
@@ -487,7 +445,7 @@ body {
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="rivers">
                   PoI
                 </a>
-                <ul class="dropdown-menu" id="waters_menu">
+                <ul class="dropdown-menu layers_ul" id="waters_menu">
                     <div class="form-check dropdown-item">
                         <input class="form-check-input" type="checkbox" value="" id="shops">
                         <label class="form-check-label" for="shops">
@@ -510,70 +468,14 @@ body {
               </li>
       </ul>
 
-<!--      <div class="form-check">-->
-<!--        <input class="form-check-input" type="checkbox" value="" id="prototype_layerWGS84" >-->
-<!--        <label class="form-check-label" for="prototype_layerWGS84">-->
-<!--            prototype_layerWGS84-->
-<!--        </label>-->
-<!--      </div>-->
-<!--      <div class="form-check">-->
-<!--        <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr">-->
-<!--        <label class="form-check-label" for="aspern_blocks_attr">-->
-<!--            aspern_blocks_attr-->
-<!--        </label>-->
-<!--      </div>-->
-<!--      <div class="form-check">-->
-<!--        <input class="form-check-input" type="checkbox" value="" id="aspern_realUseBlocks" >-->
-<!--        <label class="form-check-label" for="aspern_realUseBlocks">-->
-<!--            aspern_realUseBlocks-->
-<!--        </label>-->
-<!--      </div>-->
-<!--      <div class="form-check">-->
-<!--        <input class="form-check-input" type="checkbox" value="" id="aspern_bkmBlocks">-->
-<!--        <label class="form-check-label" for="aspern_bkmBlocks">-->
-<!--            aspern_bkmBlocks (3D)-->
-<!--        </label>-->
-<!--      </div>-->
-<!--      <div class="form-check">-->
-<!--        <input class="form-check-input" type="checkbox" value="" id="aspern_landuse">-->
-<!--        <label class="form-check-label" for="aspern_landuse">-->
-<!--            aspern_landuse-->
-<!--        </label>-->
-<!--      </div>-->
-<!--      <div class="form-check">-->
-<!--        <input class="form-check-input" type="checkbox" value="" id="aspern_roads" >-->
-<!--        <label class="form-check-label" for="aspern_roads">-->
-<!--            aspern_roads-->
-<!--        </label>-->
-<!--      </div>-->
-<!--      <div class="form-check">-->
-<!--        <input class="form-check-input" type="checkbox" value="" id="aspern_publiclines">-->
-<!--        <label class="form-check-label" for="aspern_publiclines">-->
-<!--            aspern_publiclines-->
-<!--        </label>-->
-<!--      </div>-->
-<!--      <div class="form-check">-->
-<!--        <input class="form-check-input" type="checkbox" value="" id="aspern_trees_blocks">-->
-<!--        <label class="form-check-label" for="aspern_trees_blocks">-->
-<!--            aspern_trees_blocks-->
-<!--        </label>-->
-<!--      </div>-->
-<!--      <div class="form-check">-->
-<!--        <input class="form-check-input" type="checkbox" value="" id="aspern_publicstops" >-->
-<!--        <label class="form-check-label" for="aspern_publicstops">-->
-<!--            aspern_publicstops-->
-<!--        </label>-->
-<!--      </div>-->
-<!--      <div class="form-check">-->
-<!--        <input class="form-check-input" type="checkbox" value="" id="shops">-->
-<!--        <label class="form-check-label" for="shops">-->
-<!--            shops-->
-<!--        </label>-->
-<!--      </div>-->
-
-
-
-
+<!--      legend -->
+      <div class="dropdown-center" id="legend" style="display: none">
+        <button class="btn btn-secondary btn-light dropdown-toggle vertical-scrollable" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Legend
+        </button>
+        <ul class="dropdown-menu legend_ul">
+        </ul>
+    </div>
 
   </div>
 </div>
@@ -627,6 +529,62 @@ const map = new mapboxgl.Map({
   center: [16.507,48.225], // starting position [lng, lat]
   zoom: 13.66, // starting zoom
  });
+
+
+// define the html for the legend for each layer
+legend_aspern_blocks_attr='   <li><span style="background: #60c36c;"></span>greenSpace</li>\n' +
+    '            <li><span style="background: #856666;"></span>sealedSpace</li>\n' +
+    '            <li><span style="background: #ad949e;"></span>buildings</li>\n' +
+    '            <li><span style="background: #808080;"></span>construction</li>\n' +
+    '            <li><span style="background: #0080FF;"></span>water</li>\n';
+
+legend_aspern_realUseBlocks = '   <li><span style="background: #60c36c;"></span>green</li>\n' +
+    '            <li><span style="background: #856666;"></span>sealed</li>\n' +
+    '            <li><span style="background: #ad949e;"></span>buildings</li>\n' +
+    '            <li><span style="background: #808080;"></span>construction</li>\n' +
+    '            <li><span style="background: #0080FF;"></span>water</li>\n';
+legend_aspern_bkmBlocks = '';
+legend_aspern_landuse = '   <li><span style="background: #88db35;"></span>Erholungs- u. Freizeiteinrichtungen</li>\n' +
+    '            <li><span style="background: #e2d4c0;"></span>Geschäfts,- Kern- und Mischnutzung (Schwerpunkt betriebl. Tätigkeit)</li>\n' +
+    '            <li><span style="background: #60c8c5;"></span>Gewässer</li>\n' +
+    '            <li><span style="background: #de8d24;"></span>Industrie- und Gewerbenutzung</li>\n' +
+    '            <li><span style="background: #8baf76;"></span>Landwirtschaft</li>\n'+
+    '            <li><span style="background: #bce48b;"></span>Naturraum</li>\n' +
+    '            <li><span style="background: #c4bcef;"></span>soziale Infrastruktur</li>\n' +
+    '            <li><span style="background: #c2d0a1;"></span>Technische Infrastruktur/Kunstbauten/Sondernutzung</li>\n' +
+    '            <li><span style="background: #a8cfc6;"></span>weitere verkehrliche Nutzungen</li>\n' +
+    '            <li><span style="background: #d9bdc6;"></span>Wohn- u. Mischnutzung (Schwerpunkt Wohnen)</li>\n'+
+    '            <li><span style="background: #d2e0c5;"></span>Straßenraum</li>\n';
+
+legend_aspern_roads = '   <li><span style="background: #FFFF66;"></span>G</li>\n' +
+    '            <li><span style="background: #FF9933;"></span>L</li>\n'+
+    '            <li><span style="background: #FF6666;"></span>B</li>\n';
+
+legend_aspern_publiclines = '   <li><span style="background: #CC0000;"></span>13</li>\n' +
+    '            <li><span style="background: #FF8000;"></span>3</li>\n' +
+    '            <li><span style="background: #FFFF00;"></span>2</li>\n' +
+    '            <li><span style="background: #00FF00;"></span>5</li>\n' +
+    '            <li><span style="background: #00FFFF;"></span>9</li>\n'+
+    '            <li><span style="background: #0000FF;"></span>10</li>\n' +
+    '            <li><span style="background: #FF33FF;"></span>11</li>\n' +
+    '            <li><span style="background: #FF3399;"></span>4</li>\n';
+
+legend_aspern_trees_blocks = '   <li><span style="background: #99FF99;"></span>0</li>\n' +
+    '            <li><span style="background: #66FF66;"></span>1</li>\n' +
+    '            <li><span style="background: #33FF33;"></span>2</li>\n' +
+    '            <li><span style="background: #00CC00;"></span>3</li>\n' +
+    '            <li><span style="background: #00CC00;"></span>4</li>\n'+
+    '            <li><span style="background: #009900;"></span>5</li>\n';
+
+legend_aspern_publicstops = '   <li><span style="background: #CC0000;"></span>13</li>\n' +
+    '            <li><span style="background: #FF8000;"></span>3</li>\n' +
+    '            <li><span style="background: #FFFF00;"></span>2</li>\n' +
+    '            <li><span style="background: #00FF00;"></span>5</li>\n' +
+    '            <li><span style="background: #00FFFF;"></span>9</li>\n'+
+    '            <li><span style="background: #0000FF;"></span>10</li>\n' +
+    '            <li><span style="background: #FF33FF;"></span>11</li>\n' +
+    '            <li><span style="background: #FF3399;"></span>4</li>\n';
+legend_shops = '';
 
 
 
@@ -1277,6 +1235,9 @@ async function sendData(check_id){
                 // check_id = 'aspern_blocks_attr';
             }
 
+            const legend_ul = document.getElementsByClassName('legend_ul')[0];
+            const legend = document.getElementById('legend');
+
             // if we unclick a layer
             if(!(layer_input.checked)){
                 if (check_id == 'aspern_blocks_attr_realUseBlocks'){
@@ -1300,6 +1261,10 @@ async function sendData(check_id){
                 }
                 // if the layer has any plots shown, we delete them
                 delete_graph();
+
+                // remove legend
+                legend.style.display = "none";
+
             }
             //if we click a layer
             else
@@ -1332,6 +1297,11 @@ async function sendData(check_id){
                 catch(err){
                     console.log('no graph function')
                 }
+
+                // show legend
+                legend.style.display = "block";
+                legend_ul.innerHTML = eval('legend_'+check_id);
+
             }
 
 
