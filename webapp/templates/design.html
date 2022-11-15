@@ -100,10 +100,9 @@ body {
 
     .split {
         height: 70%;
-        width: 80%;
+        width: 74%;
         position: fixed;
         z-index: 1;
-        /* top: 0; */
         overflow-x: hidden;
         padding-top: 20px;
     }
@@ -354,34 +353,51 @@ body {
     /*  border-radius: 50%;*/
     /*}*/
 
-    /*.form-switch {*/
-    /*  position: absolute;*/
-    /*  bottom: 30%;*/
-    /*  right: 50%;*/
-    /*  z-index: 1;*/
-    /*  !*display: inline-block;*!*/
-    /*  width: 60px;*/
-    /*  height: 34px;*/
-    /*}*/
-
-    .switch {
+    .form-switch {
       position: absolute;
-      bottom: 30%;
-      right: 50%;
+      /*bottom: 0.5%;*/
+      /*right: 7%;*/
+      bottom: 31%;
+      right: 27%;
       z-index: 1;
       /*display: inline-block;*/
-      /*width: 60px;*/
-      /*height: 34px;*/
+      width: 60px;
+      height: 34px;
     }
 
 
+    [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        /* position: absolute; */
+        /* left: -9999px; */
+        visibility: visible;
+    }
+    [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: initial;
+    }
+
+    [type="checkbox"]+label:before {
+        content: none;
+    }
+
+    [type="checkbox"]+label {
+        padding-left:0px;
+    }
 
 </style>
 </head>
 <body>
 
 
-<div id="map"  class="split left"></div>
+<div id="map" class="split left"></div>
+
+
+<!--3d botton -->
+<div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="aspern_bkmBlocks">
+      <label class="form-check-label" for="aspern_bkmBlocks">3D</label>
+    </div>
+</div>
 
 
 <!-- LEFT CANVAS (LAYERS)-->
@@ -574,24 +590,6 @@ body {
 </div>
 
 
-<!--3d botton -->
-<!--<label class="switch">-->
-<!--  <input type="checkbox">-->
-<!--  <span class="slider round"></span>-->
-<!--</label>-->
-
-<!--<div class="form-check form-switch">-->
-<!--  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">-->
-<!--  <label class="form-check-label" for="flexSwitchCheckDefault">3D</label>-->
-<!--</div>-->
-
-  <div class="switch">
-    <label>
-      3D
-      <input type="checkbox">
-      <span class="lever"></span>
-    </label>
-  </div>
 
 <script>
 
