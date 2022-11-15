@@ -366,20 +366,41 @@ body {
     }
 
 
+    /*[type="checkbox"]:not(:checked), [type="checkbox"]:checked {*/
+    /*    visibility: visible;*/
+    /*}*/
+
+    /*[type="checkbox"]:not(:checked), [type="checkbox"]:checked {*/
+    /*    position: initial;*/
+    /*}*/
+
+    /*[type="checkbox"]+label:before {*/
+    /*    content: none;*/
+    /*}*/
+
+    /*[type="checkbox"]+label {*/
+    /*    padding-left:0px;*/
+    /*}*/
+
+    /*show only the tick from materialize, hide the bootstrap checkbox*/
     [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
-        /* position: absolute; */
-        /* left: -9999px; */
+        visibility: hidden;
+    }
+
+    /*for the 3d checkbox, hide the materialize tick */
+    #aspern_bkmBlocks:not(:checked), #aspern_bkmBlocks:checked {
         visibility: visible;
     }
-    [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+
+    #aspern_bkmBlocks:not(:checked), #aspern_bkmBlocks:checked {
         position: initial;
     }
 
-    [type="checkbox"]+label:before {
+    #aspern_bkmBlocks+label:before {
         content: none;
     }
 
-    [type="checkbox"]+label {
+    #aspern_bkmBlocks+label {
         padding-left:0px;
     }
 
@@ -391,7 +412,7 @@ body {
 <div id="map" class="split left"></div>
 
 
-<!--3d botton -->
+<!--3d button -->
 <div>
     <div class="form-check form-switch">
       <input class="form-check-input" type="checkbox" id="aspern_bkmBlocks">
@@ -1309,6 +1330,9 @@ async function sendData(check_id){
                 //   .setDOMContent(popup_ul)
                 //   .addTo(map);
 
+                const lngLat = e.lngLat;
+
+
 
                 range_property_list = ['height', 'FLAECHE', 'SHAPELENGTH','area', 'max_height', 'count_trees', 'count_trees20m', 'count_shops', 'count_stops50m' ];
 
@@ -1391,6 +1415,11 @@ async function sendData(check_id){
                     }
                     // we append the item to the list
                     content.appendChild(ul);
+
+                    // var popup = new mapboxgl.Popup()
+                    //   .setLngLat(lngLat)
+                    //   .setDOMContent(ul)
+                    //   .addTo(map);
                 }
                 create_dynamic_prop_canvas();
 
