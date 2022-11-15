@@ -456,6 +456,12 @@ body {
                         landuse
                     </label>
                   </div>
+                   <div class="form-check dropdown-item">
+                    <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr_realUseBlocks">
+                    <label class="form-check-label" for="aspern_blocks_attr_realUseBlocks">
+                        All blocks
+                    </label>
+                  </div>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -681,6 +687,7 @@ function getXml() {
                     data_aspern_bkmBlocks = json_response;
                     original_data_aspern_bkmBlocks = json_response;
                     load_layer_aspern_bkmBlocks()
+                    load_aspern_blocks_attr_realUseBlocks()
                     break;
                 case 'aspern_landuse':
                     data_aspern_landuse = json_response;
@@ -1124,6 +1131,73 @@ function load_index_layer(data_index){
       });
 }
 
+function load_aspern_blocks_attr_realUseBlocks(){
+    const zoomThreshold = 15;
+    map.addLayer(
+      {
+        'id': 'layer_aspern_blocks_attr_zoom',
+        'type': 'fill',
+        'maxzoom': zoomThreshold,
+        'source': {
+            type: 'geojson',
+            data: data_aspern_blocks_attr
+            },
+        'paint': {
+        'fill-color': [
+                'match',
+                ['get', 'main_use'],
+                'greenSpace',
+                '#60c36c',
+                'sealedSpace',
+                '#856666',
+                'buildings',
+                '#ad949e',
+                'construction',
+                '#808080',
+                'water',
+                '#0080FF',
+                '#000000' // any other store type
+              ]
+        },
+        'layout': {
+                'visibility': 'none'
+        },
+      });
+
+    map.addLayer(
+      {
+        'id': 'layer_aspern_realUseBlocks_zoom',
+        'type': 'fill',
+        'minzoom': zoomThreshold,
+        'source': {
+            type: 'geojson',
+            data: data_aspern_realUseBlocks
+            },
+        'paint': {
+        'fill-color': [
+                'match',
+                ['get', 'class'],
+                'green',
+                '#60c36c',
+                'sealed',
+                '#856666',
+                'buildings',
+                '#ad949e',
+                'construction',
+                '#808080',
+                'water',
+                '#0080FF',
+                '#000000' // any other store type
+              ]
+        },
+        'layout': {
+                'visibility': 'none'
+        },
+      });
+
+}
+
+
 var data_from_python;
 // sending the data for index calculations and receiving the index data
 async function sendData(check_id){
@@ -1151,7 +1225,7 @@ async function sendData(check_id){
   map.on('load', ()=>{
     getXml() // load the local geojson files
 
-      //get the canvas that displays the layers options
+    //get the canvas that displays the layers options
     canvas_layers = document.getElementsByClassName('offcanvas-start');
     // when you click on the button
     document.getElementById('btn-open-layers').onclick = (function(){
@@ -1174,7 +1248,7 @@ async function sendData(check_id){
             // console.log(this);
             // console.log(e);
 
-            // hide the index layer
+            // hide the index layer if it is loaded
             if( map.getLayer('layer_index')){
                map.setLayoutProperty(
                     'layer_index',
@@ -1183,7 +1257,7 @@ async function sendData(check_id){
                 );
             }
 
-            // hide the button with the index calculation
+            // hide the index calculation button
             document.getElementById('index_calc').style.display = "none";
 
             // every time you click on a layer, the properties from the previous clicked feature disappear
@@ -1196,16 +1270,30 @@ async function sendData(check_id){
             const check_id = layer_input.id;
             console.log('check id: ', check_id)
             // store the clicked layer name
-            const clickedLayer = 'layer_'+check_id;
+            var clickedLayer = 'layer_'+check_id;
+
+            if (check_id == 'aspern_blocks_attr_realUseBlocks'){
+                clickedLayer = 'layer_aspern_blocks_attr';
+                // check_id = 'aspern_blocks_attr';
+            }
 
             // if we unclick a layer
             if(!(layer_input.checked)){
-                // we hide the layer
+                if (check_id == 'aspern_blocks_attr_realUseBlocks'){
+                    map.setLayoutProperty(
+                        'layer_aspern_realUseBlocks_zoom',
+                        'visibility',
+                        'none'
+                    );
+                }
+                 // we hide the layer
                 map.setLayoutProperty(
                     clickedLayer,
                     'visibility',
                     'none'
                 );
+
+
                 // if we unlick the 3d building we set a pitch normal
                 if(clickedLayer == 'layer_aspern_bkmBlocks'){
                     map.setPitch(0);
@@ -1220,6 +1308,14 @@ async function sendData(check_id){
                 if(clickedLayer == 'layer_aspern_bkmBlocks'){
                     // loadIconsLayer();
                     map.setPitch(45);
+                }
+
+                if (check_id == 'aspern_blocks_attr_realUseBlocks'){
+                    map.setLayoutProperty(
+                        'layer_aspern_realUseBlocks_zoom',
+                        'visibility',
+                        'visible'
+                    );
                 }
 
                 map.setLayoutProperty(
@@ -1262,7 +1358,7 @@ async function sendData(check_id){
                 var id_property = '';
                 // store the id (its value) opf the clicked feature
                 var value_clicked_feature_id ='';
-                console.log('data: ', eval('data_'+check_id));
+                // console.log('data: ', eval('data_'+check_id));
                 // assign values for the id name and its value depending on the layer clicked
                 switch(clickedLayer){
                     case 'layer_prototype_layerWGS84':
@@ -1409,7 +1505,7 @@ async function sendData(check_id){
                             // li.getElementsByTagName('span')[0].innerHTML = li.getElementsByTagName('select')[0].value;
 
                         } else {
-                            li.getElementsByTagName('span')[0].innerHTML= '<input style="width:150px; height: 40px" type="text"'+'value="'+properties_values[i]+'"'+ 'class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">';
+                            li.getElementsByTagName('span')[0].innerHTML= '<input style="width:180px; height: 40px" type="text"'+'value="'+properties_values[i]+'"'+ 'class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">';
                         }
                         ul.appendChild(li);
                     }
@@ -1490,8 +1586,10 @@ async function sendData(check_id){
                             }
 
 
+                            if(check_id != 'aspern_blocks_attr_realUseBlocks'){
+                                save_dict_property(list_el, new_value);
+                            }
 
-                            save_dict_property(list_el, new_value);
 
 
 
