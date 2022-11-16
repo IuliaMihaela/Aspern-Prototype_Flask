@@ -297,7 +297,7 @@ body {
       position: absolute;
       /*bottom: 0.5%;*/
       /*right: 7%;*/
-      bottom: 31%;
+      bottom: 36.5%;
       right: 27%;
       z-index: 1;
       /*display: inline-block;*/
@@ -602,14 +602,14 @@ const legend_shops = '';
 
 
 const properties_aspern_blocks_attr = ['OSR', 'max_height', 'count_trees', 'count_trees20m', 'count_shops', 'zoning']
-const properties__aspern_realUseBlocks = ['class'];
-const properties__aspern_bkmBlocks = ['height'];
-const properties__aspern_landuse = ['use_lvl1', 'use_lvl2', 'use_lvl3'];
-const properties__aspern_roads = ['name', 'category', 'form ', 'width '];
-const properties__aspern_publiclines = ['line', 'line_type'];
-const properties__aspern_trees_blocks = ['species', 'year ', 'address', 'height'];
-const properties__aspern_publicstops = ['stop_name', 'line', 'line_type'];
-const properties__shops = ['shop'];
+const properties_aspern_realUseBlocks = ['class'];
+const properties_aspern_bkmBlocks = ['height'];
+const properties_aspern_landuse = ['use_lvl1', 'use_lvl2', 'use_lvl3'];
+const properties_aspern_roads = ['name', 'category', 'form ', 'width '];
+const properties_aspern_publiclines = ['line', 'line_type'];
+const properties_aspern_trees_blocks = ['species', 'year ', 'address', 'height'];
+const properties_aspern_publicstops = ['stop_name', 'line', 'line_type'];
+const properties_shops = ['shop'];
 
 
 // define the dictionaries that are going to store the geojson data that is going to get updated
@@ -719,6 +719,7 @@ function getXml() {
 var nav = new mapboxgl.NavigationControl();
 map.addControl(nav, 'bottom-left')
 
+map.addControl(new mapboxgl.ScaleControl(), 'bottom-right');
 
 
 // functions for loading the different layers
@@ -1159,15 +1160,15 @@ function load_aspern_blocks_attr_realUseBlocks(){
         'fill-color': [
                 'match',
                 ['get', 'class'],
-                'green',
+                'green area',
                 '#60c36c',
-                'sealed',
+                'sealed area (excluding buildings)',
                 '#856666',
                 'buildings',
                 '#ad949e',
-                'construction',
+                'construction site',
                 '#808080',
-                'water',
+                'water body',
                 '#0080FF',
                 '#000000' // any other store type
               ]
@@ -1324,7 +1325,12 @@ async function sendData(check_id){
 
                 // show legend
                 legend.style.display = "block";
-                legend_ul.innerHTML = eval('legend_'+check_id);
+                try{
+                    legend_ul.innerHTML = eval('legend_'+check_id);
+                }
+                catch(err){
+                    console.log('no graph function')
+                }
 
             }
 
@@ -1428,13 +1434,13 @@ async function sendData(check_id){
 
                 // for prop canvas
                 // creating the list of properties can can be changed directly
-                function create_dynamic_prop_canvas(f= false){
+                function create_dynamic_prop_canvas(){// f= false
                     // if we get the changed feature from the saved dict
-                    if (f){
-                        properties = f['properties'];
-                        properties_keys = Object.keys(properties);
-                        properties_values = Object.values(properties);
-                    }
+                    // if (f){
+                    //     properties = f['properties'];
+                    //     properties_keys = Object.keys(properties);
+                    //     properties_values = Object.values(properties);
+                    // }
                     console.log('properties values in create dynamic func: ', properties_values)
                     content = document.getElementById('property-body');
                     content.innerHTML = ''; // delete previous content
@@ -1443,6 +1449,18 @@ async function sendData(check_id){
                     ul.id = 'off-canvas';
 
                     for (let i=0; i< properties_keys.length; i++){
+                        // have the important properties only shown
+
+                        if(check_id == 'aspern_blocks_attr_realUseBlocks'){
+                            imp_prop = properties_aspern_blocks_attr;
+                        } else {
+                            imp_prop = eval('properties_'+check_id);
+                        }
+
+                        if (imp_prop.includes(properties_keys[i])){
+
+
+
                         const li = document.createElement('li');
                         li.id = 'p'+ i.toString();
                         li.className = 'list-group-item';
@@ -1510,6 +1528,7 @@ async function sendData(check_id){
                     //   .setLngLat(lngLat)
                     //   .setDOMContent(ul)
                     //   .addTo(map);
+                    }
                 }
                 create_dynamic_prop_canvas();
 
