@@ -141,6 +141,7 @@ body {
       /* left: 30px; */
       top:70px;
     }
+
     .form-control {
         width: auto;
     }
@@ -361,6 +362,22 @@ body {
         border: 1px  solid #eee;
         padding: 5px;
         overflow-y: auto;
+    }
+    #btn-close-layers:focus {
+        background-color: #757d82;
+        box-shadow: 0 0 0 0.25rem rgb(26 34 36 / 25%);
+    }
+
+    element.style {
+        width: 180px;
+        height: 40px;
+    }
+    input[type=text]:focus:not([readonly]){
+        border-bottom: 1px solid transparent;
+        box-shadow: 0 1px 0 0 transparent;
+    }
+    input[type=text] {
+        border-bottom: 1px solid transparent
     }
 
 
@@ -1448,86 +1465,88 @@ async function sendData(check_id){
                     ul.className = "list-group list-group-flush"
                     ul.id = 'off-canvas';
 
+                  if(check_id == 'aspern_blocks_attr_realUseBlocks'){
+                        imp_prop = properties_aspern_blocks_attr;
+                    } else {
+                        imp_prop = eval('properties_'+check_id);
+                    }
+
                     for (let i=0; i< properties_keys.length; i++){
                         // have the important properties only shown
 
-                        if(check_id == 'aspern_blocks_attr_realUseBlocks'){
-                            imp_prop = properties_aspern_blocks_attr;
-                        } else {
-                            imp_prop = eval('properties_'+check_id);
-                        }
+
 
                         if (imp_prop.includes(properties_keys[i])){
 
+                            const li = document.createElement('li');
+                            li.id = 'p'+ i.toString();
+                            li.className = 'list-group-item';
+                            // li.style ="display: inline;";properties_values[i]
+                            li.innerHTML = '<b>'+properties_keys[i]+'</b>: '+'<span></span>';
+                            ul.appendChild(li);
+                            let span_el = li.getElementsByTagName('span')[0]
 
+                            // putting the range for certain properties that have number values
+                            li_prop = properties_keys[i];
+                            span_text = properties_values[i];
+                            // if the property is one of the above and its value is not null
+                            if (range_property_list.includes(li_prop) && span_text!='null'){
+                                // we define the range stop number
+                                if (Number(span_text)<10){
+                                    max_range_nr ='100'
+                                }
+                                else if (Number(span_text)>1000){
+                                    max_range_nr = String(Number(span_text)*3)
+                                }
+                                else if (Number(span_text)>10000){
+                                    max_range_nr = String(Number(span_text)*2)
+                                }
+                                else{
+                                    max_range_nr = String(Math.pow(Number(span_text),2));
+                                }
 
-                        const li = document.createElement('li');
-                        li.id = 'p'+ i.toString();
-                        li.className = 'list-group-item';
-                        // li.style ="display: inline;";properties_values[i]
-                        li.innerHTML = '<b>'+properties_keys[i]+'</b>: '+'<span></span>';
-                        ul.appendChild(li);
-                        let span_el = li.getElementsByTagName('span')[0]
+                                li.getElementsByTagName('span')[0].innerHTML = '\n        <form action="#" style="width:170px">\n            <p class="range-field">\n                <input type="range" id="test5" min="0" max="'+max_range_nr+'"  value="'+span_text+'"><span class="thumb"><span class="value"></span></span>\n            </p>\n        </form>\n    '
+                                // String(Number(span_text)*3)
+                            }else
+                            // putting the dropdown for landuse layer, use_lvl2 property
+                            if(properties_keys[i]== 'use_lvl2'){
+                                console.log('span text: ', span_text)
+                                li.getElementsByTagName('span')[0].innerHTML =
+                                    '<form action="#" style="width:170px;" id="select_form">\n'+
+                                    // '<input style="display: none;"type="text" >'+
+                                    '<select name="level2" id="level2" style="display: block;  height: 40px">\n' +
+                                    '  <option value="recreation and leisure facilities">recreation and leisure facilities</option>\n' +
+                                    '  <option value="water">water</option>\n' +
+                                    '  <option value="agriculture">agriculture</option>\n' +
+                                    '  <option value="natural area">natural area</option>\n' +
+                                    '  <option value="business and mixed use with emphasis on business activity">business and mixed use with emphasis on business activity</option>\n' +
+                                    '  <option value="industrial and commercial uses">industrial and commercial uses</option>\n' +
+                                    '  <option value="social infrastructure">social infrastructure</option>\n' +
+                                    '  <option value="technical infrastructure/art buildings/special uses">technical infrastructure/art buildings/special uses</option>\n' +
+                                    '  <option value="residential and mixed use with emphasis on residential">residential and mixed use with emphasis on residential</option>\n' +
+                                    '  <option value="road space">road space</option>\n' +
+                                    '  <option value="other transportation uses">other transportation uses</option>\n' +
+                                    '</select>\n'+
+                                    '</form>'
 
-                        // putting the range for certain properties that have number values
-                        li_prop = properties_keys[i];
-                        span_text = properties_values[i];
-                        // if the property is one of the above and its value is not null
-                        if (range_property_list.includes(li_prop) && span_text!='null'){
-                            // we define the range stop number
-                            if (Number(span_text)<10){
-                                max_range_nr ='100'
+                                li.getElementsByTagName('select')[0].value = span_text;
+                                // li.getElementsByTagName('input')[0].value = span_text;
+                                // li.getElementsByTagName('span')[0].innerHTML = li.getElementsByTagName('select')[0].value;
+
+                            } else {
+                                li.getElementsByTagName('span')[0].innerHTML= '<input style="width:180px; height: 40px" type="text"'+'value="'+properties_values[i]+'"'+ 'class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">';
                             }
-                            else if (Number(span_text)>1000){
-                                max_range_nr = String(Number(span_text)*3)
-                            }
-                            else if (Number(span_text)>10000){
-                                max_range_nr = String(Number(span_text)*2)
-                            }
-                            else{
-                                max_range_nr = String(Math.pow(Number(span_text),2));
-                            }
-
-                            li.getElementsByTagName('span')[0].innerHTML = '\n        <form action="#" style="width:170px">\n            <p class="range-field">\n                <input type="range" id="test5" min="0" max="'+max_range_nr+'"  value="'+span_text+'"><span class="thumb"><span class="value"></span></span>\n            </p>\n        </form>\n    '
-                            // String(Number(span_text)*3)
-                        }else
-                        // putting the dropdown for landuse layer, use_lvl2 property
-                        if(properties_keys[i]== 'use_lvl2'){
-                            console.log('span text: ', span_text)
-                            li.getElementsByTagName('span')[0].innerHTML =
-                                '<form action="#" style="width:170px;" id="select_form">\n'+
-                                // '<input style="display: none;"type="text" >'+
-                                '<select name="level2" id="level2" style="display: block;  height: 40px">\n' +
-                                '  <option value="recreation and leisure facilities">recreation and leisure facilities</option>\n' +
-                                '  <option value="water">water</option>\n' +
-                                '  <option value="agriculture">agriculture</option>\n' +
-                                '  <option value="natural area">natural area</option>\n' +
-                                '  <option value="business and mixed use with emphasis on business activity">business and mixed use with emphasis on business activity</option>\n' +
-                                '  <option value="industrial and commercial uses">industrial and commercial uses</option>\n' +
-                                '  <option value="social infrastructure">social infrastructure</option>\n' +
-                                '  <option value="technical infrastructure/art buildings/special uses">technical infrastructure/art buildings/special uses</option>\n' +
-                                '  <option value="residential and mixed use with emphasis on residential">residential and mixed use with emphasis on residential</option>\n' +
-                                '  <option value="road space">road space</option>\n' +
-                                '  <option value="other transportation uses">other transportation uses</option>\n' +
-                                '</select>\n'+
-                                '</form>'
-
-                            li.getElementsByTagName('select')[0].value = span_text;
-                            // li.getElementsByTagName('input')[0].value = span_text;
-                            // li.getElementsByTagName('span')[0].innerHTML = li.getElementsByTagName('select')[0].value;
-
-                        } else {
-                            li.getElementsByTagName('span')[0].innerHTML= '<input style="width:180px; height: 40px" type="text"'+'value="'+properties_values[i]+'"'+ 'class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">';
+                            ul.appendChild(li);
                         }
-                        ul.appendChild(li);
-                    }
-                    // we append the item to the list
-                    content.appendChild(ul);
 
-                    // var popup = new mapboxgl.Popup()
-                    //   .setLngLat(lngLat)
-                    //   .setDOMContent(ul)
-                    //   .addTo(map);
+                        // we append the item to the list
+                        content.appendChild(ul);
+
+                        // var popup = new mapboxgl.Popup()
+                        //   .setLngLat(lngLat)
+                        //   .setDOMContent(ul)
+                        //   .addTo(map);
+
                     }
                 }
                 create_dynamic_prop_canvas();
