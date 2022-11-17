@@ -100,7 +100,18 @@ body {
 
     .split {
         height: 70%;
-        width: 74%;
+        /*width: 74%;*/
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+
+     .split_no_graph {
+        height: 100%;
+        /*width: 74%;*/
+        width: 100%;
         position: fixed;
         z-index: 1;
         overflow-x: hidden;
@@ -158,6 +169,17 @@ body {
         align-content:flex-start
     }
 
+      #btn-open-legend {
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        right: 10px;
+        border-radius: 3px;
+        width: 50px;
+        height: 25px;
+        align-content:flex-start
+    }
+
     /* https://stackoverflow.com/questions/73292950/change-bootstrap-offcanvas-size-via-css-bootstrap-5-2 */
     .offcanvas-size-sm {
     --bs-offcanvas-width: min(95vw, 250px) !important;
@@ -201,11 +223,18 @@ body {
     border-bottom: 2px solid #757d82;
     }
 
-
-    .index_calc {
-        width: 40px;
-        height: 10px;
+    .btn-group-sm {
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        right: 80px;
+        align-content:flex-start
     }
+
+    #index_calc {
+        height: 25px
+    }
+
     .btn-group-sm>.btn, .btn-sm {
         --bs-btn-font-size: 0.75rem;
     }
@@ -299,12 +328,21 @@ body {
       position: absolute;
       /*bottom: 0.5%;*/
       /*right: 7%;*/
-      bottom: 36%;
-      right: 26.8%;
+      /*bottom: 36%;*/
+      /*right: 26.8%;*/
+      right: 1%;
       z-index: 1;
       /*display: inline-block;*/
       width: 60px;
       height: 34px;
+    }
+
+     .button3d_bottom_graph {
+      bottom: 36%;
+    }
+
+    .button3d_bottom_no_graph {
+      bottom: 6%;
     }
 
     /*show only the tick from materialize, hide the bootstrap checkbox*/
@@ -331,45 +369,47 @@ body {
 
 
     /*legend */
-    #legend {
-        /* background: white;  */
-        /* width: 300px;  */
-        border: 1px solid rgba(0, 0, 0, 0.05);
-        position: absolute;
-        z-index: 1;
-        right: 27%;
-        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
-        color: rgba(0, 0, 0, 0.5);
-        }
-    .legend_ul ul{
-        list-style-type: none;
-        margin: 0;
-        padding: 16px;
-        width: 300px;
-    }
-    .legend_ul ul span{
-        width: 10px;
-        height: 10px;
-        display: inline-block;
-        margin-right: 8px;
-        border-radius: 50%
-    }
-    .legend_ul {
-        height: 200px;
-        width: 180px;
-        border: 1px  solid #eee;
-        padding: 5px;
-        overflow-y: auto;
-    }
+    /*#legend {*/
+    /*    !* background: white;  *!*/
+    /*    !* width: 300px;  *!*/
+    /*    border: 1px solid rgba(0, 0, 0, 0.05);*/
+    /*    position: absolute;*/
+    /*    z-index: 1;*/
+    /*    right: 27%;*/
+    /*    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);*/
+    /*    color: rgba(0, 0, 0, 0.5);*/
+    /*    }*/
+    /*.legend_ul ul{*/
+    /*    list-style-type: none;*/
+    /*    margin: 0;*/
+    /*    padding: 16px;*/
+    /*    width: 300px;*/
+    /*}*/
+    /*.legend_ul ul span{*/
+    /*    width: 10px;*/
+    /*    height: 10px;*/
+    /*    display: inline-block;*/
+    /*    margin-right: 8px;*/
+    /*    border-radius: 50%*/
+    /*}*/
+    /*.legend_ul {*/
+    /*    height: 200px;*/
+    /*    width: 180px;*/
+    /*    border: 1px  solid #eee;*/
+    /*    padding: 5px;*/
+    /*    overflow-y: auto;*/
+    /*}*/
+
     #btn-close-layers:focus {
         background-color: #757d82;
         box-shadow: 0 0 0 0.25rem rgb(26 34 36 / 25%);
     }
 
-    /*element.style {*/
-    /*    width: 180px;*/
-    /*    height: 40px;*/
-    /*}*/
+     #btn-close-legend:focus {
+        background-color: #757d82;
+        box-shadow: 0 0 0 0.25rem rgb(26 34 36 / 25%);
+    }
+
     input[type=text]:focus:not([readonly]){
         border-bottom: 1px solid transparent;
         box-shadow: 0 1px 0 0 transparent;
@@ -388,26 +428,32 @@ body {
 <body>
 
 
-<div id="map" class="split left"></div>
+<div id="map" class="split_no_graph left"></div>
 
 
 <!--3d button -->
 <div>
-    <div class="form-check form-switch">
+    <div class="form-check form-switch button3d_bottom_no_graph" >
       <input class="form-check-input" type="checkbox" id="aspern_bkmBlocks">
       <label class="form-check-label" for="aspern_bkmBlocks">3D</label>
     </div>
 </div>
 
 
-<!--legend -->
-<div class="dropdown-center" id="legend" style="display: none">
-    <button class="btn btn-secondary btn-light btn-sm dropdown-toggle vertical-scrollable" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Legend
-    </button>
-    <ul class="dropdown-menu legend_ul">
-    </ul>
+<!--send data buton-->
+<div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+    <button style="display:none" id="index_calc" type="button" class="btn btn-outline-dark">Index</button>
 </div>
+
+
+<!--legend -->
+<!--<div class="dropdown-center" id="legend" style="display: none">-->
+<!--    <button class="btn btn-secondary btn-light btn-sm dropdown-toggle vertical-scrollable" type="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--        Legend-->
+<!--    </button>-->
+<!--    <ul class="dropdown-menu legend_ul">-->
+<!--    </ul>-->
+<!--</div>-->
 
 
 <!-- LEFT CANVAS (LAYERS)-->
@@ -513,31 +559,56 @@ body {
 
 
 <!-- RIGHT CANVAS (PROPERTIES) -->
-<div class="split right offcanvas offcanvas-end show" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling2" aria-labelledby="offcanvasScrollingLabel">
+<div class="split right offcanvas offcanvas-end show" style="display: none" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling2" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasScrollingLabel2">Properties</h5>
-    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-       <button style="display:none" id="index_calc" type="button" class="btn btn-outline-dark">Calculate index</button>
-    </div>
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel2">Legend</h5>
+<!--    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">-->
+<!--       <button style="display:none" id="index_calc" type="button" class="btn btn-outline-dark">Calculate index</button>-->
+<!--    </div>-->
 
   </div>
-  <div class="offcanvas-body">
+  <div class="offcanvas-body" style="height: 80%; width: 100%">
     <div id="property-body"></div>
 
-    <!-- <div id="range" >
-        <form action="#" style="width:160px">
-            <p class="range-field">
-                <input type="range" id="test5" min="0" max="100" />
-            </p>
-        </form>
-    </div> -->
+<!--      legend-->
+<!--        <ul class=" legend_ul">-->
+<!--        </ul>-->
+
 
   </div>
 </div>
 
 
+
+<!--RIGHT CANVAS (LEGEND)-->
+<button id="btn-open-legend" class="btn btn-outline-secondary " type="button" >...</button>
+<div class="split right offcanvas offcanvas-end menu offcanvas-size-sm" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling3" aria-labelledby="offcanvasScrollingLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel3">Legend</h5>
+    <button id="btn-close-legend" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
+  <!--      send data button-->
+<!--      <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">-->
+<!--        <button style="display:none" id="index_calc" type="button" class="btn btn-outline-dark">Calculate index</button>-->
+<!--      </div>-->
+
+  </div>
+
+  <div class="offcanvas-body">
+
+      <!--   legend -->
+      <ul class="legend_ul">
+        </ul>
+
+
+  </div>
+</div>
+
+
+
+
 <!-- BOTTOM CANVAS (GRAPHS) -->
-<div class="split left bottom split right offcanvas offcanvas-bottom show" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+<div class="split left bottom split right offcanvas offcanvas-bottom" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
     <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Graphs</h5>
     </div>
@@ -1242,6 +1313,21 @@ async function sendData(check_id){
     });
 
 
+    //get the canvas that displays the legend
+    canvas_legend = document.getElementById('offcanvasScrolling3');
+    // when you click on the button
+    document.getElementById('btn-open-legend').onclick = (function(){
+        // console.log(canvas_layers);
+        // it shows the canvas with the legend
+        canvas_legend.className = 'show '+ canvas_legend.className; // it adds the class 'show' to the canvas element
+    });
+    //when you click on the x button on the canvas with the legend
+    document.getElementById('btn-close-legend').onclick = (function(){
+        // the canvas is hidden
+        canvas_legend.className = canvas_legend.className.substring(4,canvas_legend.className.length);// it removes the class 'show' to the canvas element
+    });
+
+
     ///... here comes code for switching between layers ... ///
     const layer_inputs = document.getElementsByClassName('form-check-input');
 
@@ -1266,6 +1352,20 @@ async function sendData(check_id){
             var content = document.getElementById('property-body');
             content.innerHTML = ''; // delete previous content
 
+            // get the html elements for the start, end and bottom canvases
+            const canvas_start_el = document.getElementsByClassName('offcanvas-start')[0];
+            const canvas_end_el = document.getElementsByClassName('offcanvas-end')[0];
+            const canvas_bottom_el = document.getElementsByClassName('offcanvas-bottom')[0];
+            // get the map container
+            const map_el = document.getElementById('map');
+            // get the 3d button
+            const button3d_el = document.getElementsByClassName('form-switch')[0];
+
+            // check classes for the canvases
+            // if (canvas_start_el.classList.includes(''))
+
+
+
 
             // store the html input element id that displays each layer
             // with this id we create the different variables or functions for each layer
@@ -1280,7 +1380,7 @@ async function sendData(check_id){
             }
 
             const legend_ul = document.getElementsByClassName('legend_ul')[0];
-            const legend = document.getElementById('legend');
+            // const legend = document.getElementById('legend');
 
             // if we unclick a layer
             if(!(layer_input.checked)){
@@ -1305,9 +1405,28 @@ async function sendData(check_id){
                 }
                 // if the layer has any plots shown, we delete them
                 delete_graph();
+                // check canvases and map classes
+                // if ((canvas_start_el.classList).contains('split')){
+                //     canvas_start_el.classList.replace('split', 'split_no_graph');
+                // }
+                if ((canvas_end_el.classList).contains('split')){
+                    canvas_end_el.classList.replace('split', 'split_no_graph');
+                }
+                if ((map_el.classList).contains('split')){
+                    map_el.classList.replace('split', 'split_no_graph');
+                }
+                if ((canvas_bottom_el.classList).contains('show')){
+                    canvas_bottom_el.classList.remove('show');
+                }
+                 if ((button3d_el.classList).contains('button3d_bottom_graph')){
+                    button3d_el.classList.remove('button3d_bottom_graph');
+                    button3d_el.classList.add('button3d_bottom_no_graph');
+                }
+
+
 
                 // remove legend
-                legend.style.display = "none";
+                legend_ul.style.display = "none";
 
             }
             //if we click a layer
@@ -1337,18 +1456,29 @@ async function sendData(check_id){
                 // load the graphs
                 try{
                     eval('graph_'+check_id)(eval('data_'+check_id));
+
+                    console.log('show graph');
+                    //replace their split class with the class that has the same properties, but with the height 100%
+                    // canvas_start_el.classList.replace('split_no_graph', 'split');
+                    canvas_end_el.classList.replace('split_no_graph', 'split');
+                    map_el.classList.replace('split_no_graph', 'split');
+                    // show the bottom canvas
+                    canvas_bottom_el.classList.add('show');
+                    button3d_el.classList.replace('button3d_bottom_no_graph','button3d_bottom_graph');
+
                 }
                 catch(err){
                     console.log('no graph function')
                 }
 
                 // show legend
-                legend.style.display = "block";
+                legend_ul.style.display = "block";
                 try{
                     legend_ul.innerHTML = eval('legend_'+check_id);
                 }
                 catch(err){
-                    console.log('no graph function')
+                    legend_ul.innerHTML = '';
+                    console.log('no legend var')
                 }
 
             }
@@ -1365,6 +1495,7 @@ async function sendData(check_id){
             map.on('click', clickedLayer, (e)=>{
                 // show the button for calculating indices only for the landuse layer
                 if (clickedLayer == 'layer_aspern_landuse'){
+                    console.log('landuse clicked -> data button')
                     document.getElementById('index_calc').style.display = "block";
                 }
 
@@ -1432,18 +1563,18 @@ async function sendData(check_id){
 
 
                 // for popup
-                // const popup_ul = document.createElement('ul');
-                // popup_ul.className = "list-group list-group-flush";
-                // for (let i=0; i< properties_keys.length; i++){
-                //     const li = document.createElement('li');
-                //     li.className = 'list-group-item';
-                //     li.innerHTML = '<b>'+properties_keys[i]+'</b>: '+properties_values[i];
-                //     popup_ul.appendChild(li);
-                // }
-                // const popup = new mapboxgl.Popup()
-                //   .setLngLat(e.lngLat)
-                //   .addTo(map);
-                //
+                const popup_ul = document.createElement('ul');
+                popup_ul.className = "list-group list-group-flush";
+                for (let i=0; i< properties_keys.length; i++){
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item';
+                    li.innerHTML = '<b>'+properties_keys[i]+'</b>: '+properties_values[i];
+                    popup_ul.appendChild(li);
+                }
+                const popup = new mapboxgl.Popup()
+                  .setLngLat(e.lngLat)
+                  .addTo(map);
+
                 // const lngLat = e.lngLat;
 
 
@@ -1452,13 +1583,8 @@ async function sendData(check_id){
 
                 // for prop canvas
                 // creating the list of properties can can be changed directly
-                function create_dynamic_prop_canvas(){// f= false
-                    // if we get the changed feature from the saved dict
-                    // if (f){
-                    //     properties = f['properties'];
-                    //     properties_keys = Object.keys(properties);
-                    //     properties_values = Object.values(properties);
-                    // }
+                function create_dynamic_prop_canvas(){
+
                     console.log('properties values in create dynamic func: ', properties_values)
                     content = document.getElementById('property-body');
                     content.innerHTML = ''; // delete previous content
@@ -1542,7 +1668,7 @@ async function sendData(check_id){
                             // we append the item to the list
                             content.appendChild(ul);
 
-                            // popup.setDOMContent(ul);
+                            popup.setDOMContent(ul);
                         }
 
                         // // we append the item to the list
@@ -1794,8 +1920,8 @@ async function sendData(check_id){
             y: Object.values(dict2),
             type: 'scatter',
             marker: {
-            color: '#00994C'
-        },
+              color: '#00994C'
+            },
         }
         ];
             Plotly.newPlot( graph2El, data2, layout);

@@ -29,6 +29,10 @@ def prop2():
 def design():
     return render_template('design.html')
 
+@app.route("/design2/", methods=['GET'])
+def design2():
+    return render_template('design2.html')
+
 @app.route("/data/prototype_layerWGS84.geojson", methods=['GET'])
 def data1():
     with open(r'webapp\data\prototype_layerWGS84.geojson', encoding='utf-8') as f:
