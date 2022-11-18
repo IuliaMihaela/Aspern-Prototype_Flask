@@ -84,6 +84,55 @@ def data10():
         return f.read()
 
 
+
+
+# old data ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+@app.route("/data/changes/final/aspern_blocks_attr.geojson", methods=['GET'])
+def data12():
+    with open(r'webapp\data\changes\final\aspern_blocks_attr.geojson', encoding='utf-8') as f:
+        return f.read()
+
+@app.route("/data/changes/final/aspern_realUseBlocks.geojson", methods=['GET'])
+def data13():
+    with open(r'webapp\data\changes\final\aspern_realUseBlocks.geojson', encoding='utf-8') as f:
+        return f.read()
+
+@app.route("/data/changes/final/aspern_bkmBlocks.geojson", methods=['GET'])
+def data14():
+    with open(r'webapp\data\changes\final\aspern_bkmBlocks.geojson', encoding='utf-8') as f:
+        return f.read()
+
+@app.route("/data/changes/final/aspern_landuse.geojson", methods=['GET'])
+def data15():
+    with open(r'webapp\data\changes\final\aspern_landuse.geojson', encoding='utf-8') as f:
+        return f.read()
+
+@app.route("/data/changes/final/aspern_roads.geojson", methods=['GET'])
+def data16():
+    with open(r'webapp\data\changes\final\aspern_roads.geojson', encoding='utf-8') as f:
+        return f.read()
+
+@app.route("/data/changes/final/aspern_publiclines.geojson", methods=['GET'])
+def data17():
+    with open(r'webapp\data\changes\final\aspern_publiclines.geojson', encoding='utf-8') as f:
+        return f.read()
+
+@app.route("/data/changes/final/aspern_trees_blocks.geojson", methods=['GET'])
+def data18():
+    with open(r'webapp\data\changes\final\aspern_trees_blocks.geojson', encoding='utf-8') as f:
+        return f.read()
+
+@app.route("/data/changes/final/aspern_publicstops.geojson", methods=['GET'])
+def data19():
+    with open(r'webapp\data\changes\final\aspern_publicstops.geojson', encoding='utf-8') as f:
+        return f.read()
+
+@app.route("/data/changes/final/shops.geojson", methods=['GET'])
+def data110():
+    with open(r'webapp\data\changes\final\shops.geojson', encoding='utf-8') as f:
+        return f.read()
+
+
 @app.route('/flask/<data>', methods=['POST'])
 def post_calculated_data(data):
     #steps:

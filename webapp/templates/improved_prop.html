@@ -399,7 +399,7 @@ original_data_aspern_trees_blocks = '';
 original_data_aspern_publicstops = '';
 original_data_shops = '';
 
-const file_path = ["../data/prototype_layerWGS84.geojson","../data/final/aspern_blocks_attr.geojson", "../data/final/aspern_realUseBlocks.geojson", "../data/final/aspern_bkmBlocks.geojson", "../data/final/aspern_landuse.geojson", "../data/final/aspern_roads.geojson", "../data/final/aspern_publiclines.geojson", "../data/final/aspern_trees_blocks.geojson", "../data/final/aspern_publicstops.geojson", "../data/final/shops.geojson"]
+const file_path = ["../data/prototype_layerWGS84.geojson","../data/changes/final/aspern_blocks_attr.geojson", "../data/changes/final/aspern_realUseBlocks.geojson", "../data/changes/final/aspern_bkmBlocks.geojson", "../data/changes/final/aspern_landuse.geojson", "../data/changes/final/aspern_roads.geojson", "../data/changes/final/aspern_publiclines.geojson", "../data/changes/final/aspern_trees_blocks.geojson", "../data/changes/final/aspern_publicstops.geojson", "../data/changes/final/shops.geojson"]
 
 
 //..............open all files...............//
@@ -1272,9 +1272,9 @@ async function sendData(check_id){
                 dynamically_save_changes();
 
                 // get the button
-                const calc_index__button = document.getElementById('index_calc');
+                const calc_index_button = document.getElementById('index_calc');
                 // trigger the function that send the data to the py script
-                calc_index__button.onclick = (function(){
+                calc_index_button.onclick = (function(){
                     console.log('calc index button clicked');
                     sendData(check_id)
                 });
