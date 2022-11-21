@@ -690,7 +690,7 @@ function getXml() {
                     load_layer_aspern_bkmBlocks()
                     load_aspern_blocks_attr_realUseBlocks()
                     break;
-                case 'aspern_landuse':
+                case 'aspern_landuse_cl':
                     data_aspern_landuse = json_response;
                     original_data_aspern_landuse = json_response;
                     load_layer_aspern_landuse()
@@ -1115,15 +1115,15 @@ function load_index_layer(data_index){
 
         'fill-color': [
                 'case',
-                  ['<=', ['to-number',  ['get', 'shannon']], 0.8],
+                  ['<=', ['to-number',  ['get', 'div_index']], 0.8],
                   '#e1aeb4',
-                  ['<=', ['to-number',  ['get', 'shannon']], 1],
+                  ['<=', ['to-number',  ['get', 'div_index']], 1],
                   '#d3828f',
-                  ['<=', ['to-number',  ['get', 'shannon']], 1.4],
+                  ['<=', ['to-number',  ['get', 'div_index']], 1.4],
                   '#d55f5f',
-                  ['<=', ['to-number',  ['get', 'shannon']], 1.8],
+                  ['<=', ['to-number',  ['get', 'div_index']], 1.8],
                   '#b42f2f',
-                  ['<=', ['to-number',  ['get', 'shannon']], 2.21],
+                  ['<=', ['to-number',  ['get', 'div_index']], 2.21],
                   '#8c172c',
 
                   '#000005'
@@ -1204,7 +1204,7 @@ var data_from_python;
 // sending the data for index calculations and receiving the index data
 async function sendData(check_id){
     console.log('function for sending the data')
-    const query = await fetch('/flask/'+JSON.stringify(f), { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
+    const query = await fetch('/flask/', { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
     const data = await query.json();
     console.log(data);
     data_from_python = data;

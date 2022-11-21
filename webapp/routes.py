@@ -3,7 +3,7 @@ from webapp import app
 import json
 import geopandas
 from requests import put, get, post, delete
-from script import index_calculation
+from script import index_calculation, reproject
 
 @app.route("/", methods=['GET'])
 def home():
@@ -33,6 +33,13 @@ def design():
 def design2():
     return render_template('design2.html')
 
+@app.route("/prop3/", methods=['GET'])
+def prop3():
+    return render_template('improved_prop_engl.html')
+
+
+
+########### data ###########
 @app.route("/data/prototype_layerWGS84.geojson", methods=['GET'])
 def data1():
     with open(r'webapp\data\prototype_layerWGS84.geojson', encoding='utf-8') as f:
@@ -133,26 +140,46 @@ def data110():
         return f.read()
 
 
-@app.route('/flask/<data>', methods=['POST'])
-def post_calculated_data(data):
+# @app.route('/flask/<data>', methods=['POST'])
+# def post_calculated_data(data):
+#     #steps:
+#     # get data from map,
+#     # call function for index calculation with the data,
+#     # (store the changes and the indices in a file ?),
+#     # return the result from the function
+#     data = json.loads(data)
+#     # print(data)
+#     print('flask route')
+#     print('request decode type', type((request.data).decode()))
+#     dict = json.loads((request.data).decode())
+#     df = geopandas.GeoDataFrame.from_features(dict, crs="EPSG:4326")
+#     print(type(df), df)
+#
+#     result = index_calculation(df)
+#     print('index result: ', result)
+#     return result.to_json()
+
+
+
+@app.route('/flask/', methods=['POST'])
+def post_calculated_data():
     #steps:
     # get data from map,
     # call function for index calculation with the data,
     # (store the changes and the indices in a file ?),
     # return the result from the function
-    data = json.loads(data)
-    # print(data)
+
+    print('flask route')
     print('request decode type', type((request.data).decode()))
     dict = json.loads((request.data).decode())
+
     df = geopandas.GeoDataFrame.from_features(dict, crs="EPSG:4326")
     print(type(df), df)
+
+    df = reproject(df)
 
     result = index_calculation(df)
     print('index result: ', result)
     return result.to_json()
-
-
-
-
 
 

@@ -377,16 +377,16 @@ const map = new mapboxgl.Map({
 
 // define the dictionaries that are going to store the geojson data that is going to get updated
 var data = '';
-data_prototype_layerWGS84 = '';
-data_aspern_blocks_attr=''
-data_aspern_realUseBlocks = '';
-data_aspern_bkmBlocks = '';
-data_aspern_landuse = '';
-data_aspern_roads = '';
-data_aspern_publiclines = '';
-data_aspern_trees_blocks = '';
-data_aspern_publicstops = '';
-data_shops = '';
+data_prototype_layerWGS84 = {};
+data_aspern_blocks_attr={};
+data_aspern_realUseBlocks = {};
+data_aspern_bkmBlocks = {};
+data_aspern_landuse = {};
+data_aspern_roads = {};
+data_aspern_publiclines = {};
+data_aspern_trees_blocks = {};
+data_aspern_publicstops = {};
+data_shops = {};
 // define the dictionaries that are going to store the geojson data that is going to stay intact
 original_data_prototype_layerWGS84 = '';
 original_data_aspern_blocks_attr=''
@@ -399,10 +399,7 @@ original_data_aspern_trees_blocks = '';
 original_data_aspern_publicstops = '';
 original_data_shops = '';
 
-data_aspern_landuse_cl = {};
-
-
-const file_path = ["../data/final/aspern_landuse.geojson", "../data/prototype_layerWGS84.geojson","../data/changes/final/aspern_blocks_attr.geojson", "../data/changes/final/aspern_realUseBlocks.geojson", "../data/changes/final/aspern_bkmBlocks.geojson", "../data/changes/final/aspern_landuse.geojson", "../data/changes/final/aspern_roads.geojson", "../data/changes/final/aspern_publiclines.geojson", "../data/changes/final/aspern_trees_blocks.geojson", "../data/changes/final/aspern_publicstops.geojson", "../data/changes/final/shops.geojson"]
+const file_path = ["../data/prototype_layerWGS84.geojson","../data/final/aspern_blocks_attr.geojson", "../data/final/aspern_realUseBlocks.geojson", "../data/final/aspern_bkmBlocks.geojson", "../data/final/aspern_landuse.geojson", "../data/final/aspern_roads.geojson", "../data/final/aspern_publiclines.geojson", "../data/final/aspern_trees_blocks.geojson", "../data/final/aspern_publicstops.geojson", "../data/final/shops.geojson"]
 
 
 //..............open all files...............//
@@ -415,10 +412,6 @@ function getXml() {
             const json_response = JSON.parse(this.responseText);
             console.log(JSON.parse(this.responseText).name);
             switch(json_response.name){
-                case 'aspern_landuse_cl':
-                    data_aspern_landuse_cl = json_response;
-                    console.log(data_aspern_landuse_cl);
-                    break;
                 case 'prototype_layerWGS84':
                     original_data_prototype_layerWGS84 = json_response;
                     data_prototype_layerWGS84 = json_response;
@@ -440,7 +433,8 @@ function getXml() {
                     original_data_aspern_bkmBlocks = json_response;
                     load_layer_aspern_bkmBlocks()
                     break;
-                case 'aspern_landuse':
+                case 'aspern_landuse_cl':
+                    console.log('landuse data...')
                     data_aspern_landuse = json_response;
                     original_data_aspern_landuse = json_response;
                     load_layer_aspern_landuse()
@@ -565,15 +559,15 @@ function load_layer_aspern_realUseBlocks(){
         'fill-color': [
                 'match',
                 ['get', 'class'],
-                'green',
+                'green area',
                 '#60c36c',
-                'sealed',
+                'sealed area (excluding buildings)',
                 '#856666',
                 'buildings',
                 '#ad949e',
-                'construction',
+                'construction site',
                 '#808080',
-                'water',
+                'water body',
                 '#0080FF',
                 '#000000' // any other store type
               ]
@@ -637,28 +631,28 @@ function load_layer_aspern_landuse(){
 
         'fill-color': [
                 'match',
-                ['get', 'NUTZUNG_LEVEL2'],
-                'Erholungs- u. Freizeiteinrichtungen',
+                ['get', 'use_lvl2'],
+                'recreation and leisure facilities',
                 '#88db35',
-                'Geschäfts,- Kern- und Mischnutzung (Schwerpunkt betriebl. Tätigkeit)',
+                'business and mixed use with emphasis on business activity',
                 '#e2d4c0',
-                'Gewässer',
+                'water',
                 '#60c8c5',
-                'Industrie- und Gewerbenutzung',
+                'industrial and commercial uses',
                 '#de8d24',
-                'Landwirtschaft',
+                'agriculture',
                 '#8baf76',
-                'Naturraum',
+                'natural area',
                 '#bce48b',
-                'soziale Infrastruktur',
+                'social infrastructure',
                 '#c4bcef',
-                'Technische Infrastruktur/Kunstbauten/Sondernutzung',
+                'technical infrastructure/art buildings/special uses',
                 '#c2d0a1',
-                'weitere verkehrliche Nutzungen',
+                'other transportation uses',
                 '#a8cfc6',
-                'Wohn- u. Mischnutzung (Schwerpunkt Wohnen)',
+                'residential and mixed use with emphasis on residential',
                 '#d9bdc6',
-                'Straßenraum',
+                'road space',
                 '#d2e0c5',
 
                 '#000000' // any other store type
@@ -683,7 +677,7 @@ function load_layer_aspern_roads(){
 
             'line-color': [
                 'match',
-                ['get', 'EDGECATEGORY'],
+                ['get', 'category_code'],
                 'G',
                 '#FFFF66',
                 'L',
@@ -694,15 +688,15 @@ function load_layer_aspern_roads(){
             ],
             'line-width':[
             'case',
-                  ['<=', ['to-number',  ['get', 'DEDICATEDWIDTH']], 5],
+                  ['<=', ['to-number',  ['get', 'width']], 5],
                   0.3,
-                  ['<=', ['to-number',  ['get', 'DEDICATEDWIDTH']], 10],
+                  ['<=', ['to-number',  ['get', 'width']], 10],
                   0.5,
-                  ['<=', ['to-number',  ['get', 'DEDICATEDWIDTH']], 20],
+                  ['<=', ['to-number',  ['get', 'width']], 20],
                   0.7,
-                  ['<=', ['to-number',  ['get', 'DEDICATEDWIDTH']], 30],
+                  ['<=', ['to-number',  ['get', 'width']], 30],
                   0.85,
-                  ['<=', ['to-number',  ['get', 'DEDICATEDWIDTH']], 40],
+                  ['<=', ['to-number',  ['get', 'width']], 40],
                   1,
 
                   1
@@ -727,7 +721,7 @@ function load_layer_aspern_publiclines(){
             'line-color': [
 
                 'match',
-                ['get', 'LTYP'],
+                ['get', 'line_type_code'],
                 '13',
                 '#CC0000',
                 '3',
@@ -803,7 +797,7 @@ function load_layer_aspern_publicstops(){
             'circle-color': [
 
                 'match',
-                ['to-string', ['get', 'line_typ']],
+                ['to-string', ['get', 'line_type_code']],
                 '13',
                 '#CC0000',
                 '3',
@@ -886,11 +880,11 @@ var data_from_python;
 // sending the data for index calculations and receiving the index data
 async function sendData(check_id){
     console.log('function for sending the data')
-    // const query = await fetch('/flask/'+JSON.stringify(f), { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
     const query = await fetch('/flask/', { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
+    //     const query = await fetch('/flask/', { method: 'POST', body: JSON.stringify(original_data_aspern_landuse)});
 
     const data = await query.json();
-    console.log('index data: ', data);
+    console.log(data);
     data_from_python = data;
 
     map.setLayoutProperty(
@@ -1140,24 +1134,24 @@ async function sendData(check_id){
                             li.getElementsByTagName('span')[0].innerHTML = '\n        <form action="#" style="width:170px">\n            <p class="range-field">\n                <input type="range" id="test5" min="0" max="'+max_range_nr+'"  value="'+span_text+'"><span class="thumb"><span class="value"></span></span>\n            </p>\n        </form>\n    '
                             // String(Number(span_text)*3)
                         }else
-                        // putting the dropdown for landuse layer, NUTZUNG_LEVEL2 property
-                        if(properties_keys[i]== 'NUTZUNG_LEVEL2'){
+                        // putting the dropdown for landuse layer, use_lvl2 property
+                        if(properties_keys[i]== 'use_lvl2'){
                             console.log('span text: ', span_text)
                             li.getElementsByTagName('span')[0].innerHTML =
                                 '<form action="#" style="width:170px;" id="select_form">\n'+
                                 // '<input style="display: none;"type="text" >'+
                                 '<select name="level2" id="level2" style="display: block;  height: 40px">\n' +
-                                '  <option value="Erholungs- u. Freizeiteinrichtungen">Erholungs- u. Freizeiteinrichtungen</option>\n' +
-                                '  <option value="Gewässer">Gewässer</option>\n' +
-                                '  <option value="Landwirtschaft">Landwirtschaft</option>\n' +
-                                '  <option value="Naturraum">Naturraum</option>\n' +
-                                '  <option value="Geschäfts,- Kern- und Mischnutzung (Schwerpunkt betriebl. Tätigkeit)">Geschäfts,- Kern- und Mischnutzung (Schwerpunkt betriebl. Tätigkeit)</option>\n' +
-                                '  <option value="Industrie- und Gewerbenutzung">Industrie- und Gewerbenutzung</option>\n' +
-                                '  <option value="soziale Infrastruktur">soziale Infrastruktur</option>\n' +
-                                '  <option value="Technische Infrastruktur/Kunstbauten/Sondernutzung">Technische Infrastruktur/Kunstbauten/Sondernutzung</option>\n' +
-                                '  <option value="Wohn- u. Mischnutzung (Schwerpunkt Wohnen)">Wohn- u. Mischnutzung (Schwerpunkt Wohnen)</option>\n' +
-                                '  <option value="Straßenraum">Straßenraum</option>\n' +
-                                '  <option value="weitere verkehrliche Nutzungen">weitere verkehrliche Nutzungen</option>\n' +
+                                '  <option value="recreation and leisure facilities">recreation and leisure facilities</option>\n' +
+                                '  <option value="water">water</option>\n' +
+                                '  <option value="agriculture">agriculture</option>\n' +
+                                '  <option value="natural area">natural area</option>\n' +
+                                '  <option value="business and mixed use with emphasis on business activity">business and mixed use with emphasis on business activity</option>\n' +
+                                '  <option value="industrial and commercial uses">industrial and commercial uses</option>\n' +
+                                '  <option value="social infrastructure">social infrastructure</option>\n' +
+                                '  <option value="technical infrastructure/art buildings/special uses">technical infrastructure/art buildings/special uses</option>\n' +
+                                '  <option value="residential and mixed use with emphasis on residential">residential and mixed use with emphasis on residential</option>\n' +
+                                '  <option value="road space">road space</option>\n' +
+                                '  <option value="other transportation uses">other transportation uses</option>\n' +
                                 '</select>\n'+
                                 '</form>'
 
@@ -1285,7 +1279,7 @@ async function sendData(check_id){
                 // trigger the function that send the data to the py script
                 calc_index_button.onclick = (function(){
                     console.log('calc index button clicked');
-                    sendData(check_id)
+                    sendData(check_id);
                 });
 
             });
