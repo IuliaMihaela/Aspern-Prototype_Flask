@@ -67,7 +67,7 @@ body {
 
   .list-group {
     /* width: 250px; */
-    width: 300px;
+    width: 240px;
 
   }
 
@@ -418,9 +418,7 @@ body {
         border-bottom: 1px solid transparent
     }
 
-    .mapboxgl-popup-content {
-        width: 310px;
-    }
+
 
 
 </style>
@@ -444,16 +442,6 @@ body {
 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
     <button style="display:none" id="index_calc" type="button" class="btn btn-outline-dark">Index</button>
 </div>
-
-
-<!--legend -->
-<!--<div class="dropdown-center" id="legend" style="display: none">-->
-<!--    <button class="btn btn-secondary btn-light btn-sm dropdown-toggle vertical-scrollable" type="button" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--        Legend-->
-<!--    </button>-->
-<!--    <ul class="dropdown-menu legend_ul">-->
-<!--    </ul>-->
-<!--</div>-->
 
 
 <!-- LEFT CANVAS (LAYERS)-->
@@ -578,28 +566,6 @@ body {
 </div>
 
 
-<!-- RIGHT CANVAS (PROPERTIES) -->
-<div class="split right offcanvas offcanvas-end show" style="display: none" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling2" aria-labelledby="offcanvasScrollingLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasScrollingLabel2">Legend</h5>
-<!--    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">-->
-<!--       <button style="display:none" id="index_calc" type="button" class="btn btn-outline-dark">Calculate index</button>-->
-<!--    </div>-->
-
-  </div>
-  <div class="offcanvas-body" style="height: 80%; width: 100%">
-    <div id="property-body"></div>
-
-<!--      legend-->
-<!--        <ul class=" legend_ul">-->
-<!--        </ul>-->
-
-
-  </div>
-</div>
-
-
-
 <!--RIGHT CANVAS (LEGEND)-->
 <button id="btn-open-legend" class="btn btn-outline-secondary " type="button" >...</button>
 <div class="split right offcanvas offcanvas-end menu offcanvas-size-sm" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling3" aria-labelledby="offcanvasScrollingLabel">
@@ -623,8 +589,6 @@ body {
 
   </div>
 </div>
-
-
 
 
 <!-- BOTTOM CANVAS (GRAPHS) -->
@@ -1504,8 +1468,8 @@ async function sendData(check_id){
             document.getElementById('index_calc').style.display = "none";
 
             // every time you click on a layer, the properties from the previous clicked feature disappear
-            var content = document.getElementById('property-body');
-            content.innerHTML = ''; // delete previous content
+            //var content = document.getElementById('property-body');
+            //content.innerHTML = ''; // delete previous content
 
             // get the html elements for the start, end and bottom canvases
             const canvas_start_el = document.getElementsByClassName('offcanvas-start')[0];
@@ -1734,15 +1698,15 @@ async function sendData(check_id){
 
 
 
-                range_property_list = ['height', 'FLAECHE', 'SHAPELENGTH','area', 'max_height', 'count_trees', 'count_trees20m', 'count_shops', 'count_stops50m' ];
+                range_property_list = ['height', 'FLAECHE', 'SHAPELENGTH', 'max_height'];
 
                 // for prop canvas
                 // creating the list of properties can can be changed directly
                 function create_dynamic_prop_canvas(){
 
                     console.log('properties values in create dynamic func: ', properties_values)
-                    content = document.getElementById('property-body');
-                    content.innerHTML = ''; // delete previous content
+                    //content = document.getElementById('property-body');
+                    //content.innerHTML = ''; // delete previous content
                     const ul = document.createElement('ul');
                     ul.className = "list-group list-group-flush"
                     ul.id = 'off-canvas';
@@ -1793,14 +1757,14 @@ async function sendData(check_id){
                                     max_range_nr = String(Math.pow(Number(span_text),2));
                                 }
 
-                                li.getElementsByTagName('span')[0].innerHTML = '\n        <form action="#" style="width:170px">\n            <p class="range-field">\n                <input type="range" id="test5" min="0" max="'+max_range_nr+'"  value="'+span_text+'"><span class="thumb"><span class="value"></span></span>\n            </p>\n        </form>\n    '
+                                li.getElementsByTagName('span')[0].innerHTML = '\n        <form action="#" style="width:130px">\n            <p class="range-field">\n                <input type="range" id="test5" min="0" max="'+max_range_nr+'"  value="'+span_text+'"><span class="thumb"><span class="value"></span></span>\n            </p>\n        </form>\n    '
                                 // String(Number(span_text)*3)
                             }else
                             // putting the dropdown for landuse layer, use_lvl2 property
                             if(properties_keys[i]== 'use_lvl2'){
                                 console.log('span text: ', span_text)
                                 li.getElementsByTagName('span')[0].innerHTML =
-                                    '<form action="#" style="width:170px;" id="select_form">\n'+
+                                    '<form action="#" style="width:150px;" id="select_form">\n'+
                                     // '<input style="display: none;"type="text" >'+
                                     '<select name="level2" id="level2" style="display: block;  height: 40px">\n' +
                                     '  <option value="recreation and leisure facilities">recreation and leisure facilities</option>\n' +
@@ -1822,12 +1786,12 @@ async function sendData(check_id){
                                 // li.getElementsByTagName('span')[0].innerHTML = li.getElementsByTagName('select')[0].value;
 
                             } else {
-                                li.getElementsByTagName('span')[0].innerHTML= '<input style="width:180px; height: 40px" type="text"'+'value="'+properties_values[i]+'"'+ 'class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">';
+                                li.getElementsByTagName('span')[0].innerHTML= '<input style="width:110px; height: 40px" type="text"'+'value="'+properties_values[i]+'"'+ 'class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">';
                             }
                             ul.appendChild(li);
 
                             // we append the item to the list
-                            content.appendChild(ul);
+                            //content.appendChild(ul);
 
                             popup.setDOMContent(ul);
                         }
@@ -1853,24 +1817,13 @@ async function sendData(check_id){
                         // we find the feature in the dictionary that has been changed (we look for the same id)
                         if ( f['properties'][id_property] == value_clicked_feature_id){
                             console.log('found: ', f);
-                            const dict_properties = f.properties;
-                            // const dict_properties_keys = Object.keys(dict_properties);
 
-                            // get the list with the properties from the canvas
-                            // the list has the changes saved ( from the save_properties() function which is called before)
-                            // change_ul = document.getElementById('off-canvas');
-                            // // get each item from the list
-                            // lis = change_ul.childNodes;
-                            // for (li = 0; li<lis.length; li++){
-                            //     const dict_key = dict_properties_keys[li];
-                            //     f['properties'][dict_key] = lis[li].getElementsByTagName('span')[0].innerHTML;
-                            // }
                             console.log('li in save dict: ', li);
+
                             dict_key = li.getElementsByTagName('b')[0].innerHTML;
                             console.log(li.getElementsByTagName('b'))
                             console.log('dict key from li: ', dict_key);
                             f['properties'][dict_key] =new_value;
-
 
                             map.getSource(clickedLayer).setData(eval('data_'+check_id));
                             console.log('data after: ', f);
