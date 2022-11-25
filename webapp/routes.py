@@ -42,7 +42,6 @@ def design3():
     return render_template('design3.html')
 
 
-
 ########### data ###########
 @app.route("/data/prototype_layerWGS84.geojson", methods=['GET'])
 def data1():

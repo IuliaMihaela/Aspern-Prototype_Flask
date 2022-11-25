@@ -325,7 +325,11 @@ body {
     /*}*/
 
 
-     /*.dropdown-menu,*/
+     .dropdown-menu {
+         width: 100%;
+     }
+
+
      .layers_ul {
         --bs-dropdown-border-color: none;
         --bs-dropdown-link-active-bg: none;
@@ -1814,13 +1818,21 @@ $('.navbar-nav .dropdown-menu').on({
                             } else {
                                 li.getElementsByTagName('span')[0].innerHTML= '<input style="width:110px; height: 35px; font-size: 14px; max-width: 130px" type="text"'+'value="'+properties_values[i]+'"'+ 'class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">';
                             }
+
+
+                           li.getElementsByTagName('span')[0].onchange = function(e){
+                                console.log('e: ', e);
+                                console.log('on change this: ', this);
+                                let new_value =e.target.value;
+                                save_dict_property(li, new_value);
+                            }
+
                             ul.appendChild(li);
 
 
-                            popup.setDOMContent(ul);
                         }
 
-
+                        popup.setDOMContent(ul);
 
                     }
                 }
@@ -1918,7 +1930,7 @@ $('.navbar-nav .dropdown-menu').on({
 
 
                 }
-                dynamically_save_changes();
+                // dynamically_save_changes();
 
                 // get the button
                 const calc_index_button = document.getElementById('index_calc');

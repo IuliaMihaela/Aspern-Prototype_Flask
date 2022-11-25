@@ -325,7 +325,10 @@ body {
     /*}*/
 
 
-     /*.dropdown-menu,*/
+     .dropdown-menu {
+         width: 100%;
+     }
+
      .layers_ul {
         --bs-dropdown-border-color: none;
         --bs-dropdown-link-active-bg: none;
@@ -1418,6 +1421,9 @@ function load_layer_zoning(){
 var data_from_python;
 // sending the data for index calculations and receiving the index data
 async function sendData(check_id){
+    b= document.getElementById('index_calc');
+    b.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\n' +
+        '  Loading...'
     console.log('function for sending the data');
     console.log('json data to send: ', JSON.stringify(eval('data_'+check_id)));
     const query = await fetch('/flask/', { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
@@ -1442,6 +1448,7 @@ async function sendData(check_id){
     else {
         load_index_layer(data_from_python);
     }
+    b.innerHTML = 'Index'
 }
 
 
@@ -1460,6 +1467,7 @@ $('.navbar-nav .dropdown-menu').on({
 
   map.on('load', ()=>{
     getXml() // load the local geojson files
+
 
     //get the canvas that displays the layers options
     canvas_layers = document.getElementsByClassName('offcanvas-start');
@@ -1728,14 +1736,14 @@ $('.navbar-nav .dropdown-menu').on({
 
 
                 // for popup
-                const popup_ul = document.createElement('ul');
-                popup_ul.className = "list-group list-group-flush";
-                for (let i=0; i< properties_keys.length; i++){
-                    const li = document.createElement('li');
-                    li.className = 'list-group-item';
-                    li.innerHTML = '<b>'+properties_keys[i]+'</b>: '+properties_values[i];
-                    popup_ul.appendChild(li);
-                }
+                // const popup_ul = document.createElement('ul');
+                // popup_ul.className = "list-group list-group-flush";
+                // for (let i=0; i< properties_keys.length; i++){
+                //     const li = document.createElement('li');
+                //     li.className = 'list-group-item';
+                //     li.innerHTML = '<b>'+properties_keys[i]+'</b>: '+properties_values[i];
+                //     popup_ul.appendChild(li);
+                // }
                 const popup = new mapboxgl.Popup()
                   .setLngLat(e.lngLat)
                   .addTo(map);
@@ -1821,10 +1829,8 @@ $('.navbar-nav .dropdown-menu').on({
                                 case 'shop':
                                     li_prop_user= 'type of shop/service';
                                     break;
-
-
-
                             }
+
 
                             const li = document.createElement('li');
                             li.id = 'p'+ i.toString();
@@ -1858,6 +1864,15 @@ $('.navbar-nav .dropdown-menu').on({
 
                                 li.getElementsByTagName('span')[0].innerHTML = '\n        <form action="#" style="width:130px; font-size: 14px">\n            <p class="range-field">\n                <input type="range" id="test5" min="0" max="'+max_range_nr+'"  value="'+span_text+'"><span class="thumb"><span class="value"></span></span>\n            </p>\n        </form>\n    '
                                 // String(Number(span_text)*3)
+
+                                // li.getElementsByTagName('span')[0].onchange = function(e){
+                                //     console.log('e: ', e);
+                                //     console.log('on change this: ', this);
+                                //     let new_value =e.target.value;
+                                //     save_dict_property(li, new_value);
+                                // }
+
+
                             }else
                             // putting the dropdown for landuse layer, use_lvl2 property
                             if(properties_keys[i]== 'use_lvl2'){
@@ -1884,18 +1899,31 @@ $('.navbar-nav .dropdown-menu').on({
                                 // li.getElementsByTagName('input')[0].value = span_text;
                                 // li.getElementsByTagName('span')[0].innerHTML = li.getElementsByTagName('select')[0].value;
 
+                                // li.getElementsByTagName('span')[0].onchange = function(e){
+                                //     console.log('e: ', e);
+                                //     console.log('on change this: ', this);
+                                //     let new_value =e.target.value;
+                                //     save_dict_property(li, new_value);
+                                // }
+
                             } else {
 
                                 // li.getElementsByTagName('span')[0].innerHTML= '<input style="width:110px; height: 35px; font-size: 14px; max-width: 130px" type="text"'+'value="'+properties_values[i]+'"'+ 'class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">';
                                 li.getElementsByTagName('span')[0].innerHTML= properties_values[i];
 
                             }
+
+                           li.getElementsByTagName('span')[0].onchange = function(e){
+                                console.log('e: ', e);
+                                console.log('on change this: ', this);
+                                let new_value =e.target.value;
+                                save_dict_property(li, new_value);
+                            }
+
                             ul.appendChild(li);
 
-
-                            popup.setDOMContent(ul);
                         }
-
+                        popup.setDOMContent(ul);
 
 
                     }
@@ -1915,9 +1943,62 @@ $('.navbar-nav .dropdown-menu').on({
                             console.log('li in save dict: ', li);
 
                             dict_key = li.getElementsByTagName('b')[0].innerHTML;
+
+
+                            // user-friendly prop names changed back to initial names
+                            switch(dict_key){
+                                case 'share of green space':
+                                    dict_key = 'area_green_rel';
+                                    break;
+                                case 'open space ratio':
+                                    dict_key= 'OSR';
+                                    break;
+                                case 'maximum building height':
+                                    dict_key = 'max_height';
+                                    break;
+                                case 'stock of trees':
+                                    dict_key= 'count_trees';
+                                    break;
+                                case 'number of shops':
+                                    dict_key= 'count_shops';
+                                    break;
+                                case 'land cover':
+                                    dict_key= 'class';
+                                    break;
+                                case 'generalized land use':
+                                    dict_key= 'use_lvl1';
+                                    break;
+                                case 'land use category':
+                                    dict_key= 'use_lvl2';
+                                    break;
+                                case 'detailed land use category':
+                                    dict_key= 'use_lvl3';
+                                    break;
+                                case 'construction form of the section':
+                                    dict_key= 'form';
+                                    break;
+                                case 'means of transport':
+                                    dict_key= 'line_type';
+                                    break;
+                                case 'year of planting':
+                                    dict_key= 'year';
+                                    break;
+                                case 'name of stop':
+                                    dict_key= 'stop_name';
+                                    break;
+                                case 'type of shop/service':
+                                    dict_key= 'shop';
+                                    break;
+                            }
+
+
+
+
                             console.log(li.getElementsByTagName('b'))
                             console.log('dict key from li: ', dict_key);
+                            console.log('f prop: ', f['properties']);
                             f['properties'][dict_key] =new_value;
+
 
                             map.getSource(clickedLayer).setData(eval('data_'+check_id));
                             console.log('data after: ', f);
@@ -1940,11 +2021,13 @@ $('.navbar-nav .dropdown-menu').on({
 
                 //dynamically save the changes
                 function dynamically_save_changes(){
+                  console.log('dynamically_save_changes');
                     property_ul = document.getElementById('off-canvas');
                     property_lis = property_ul.childNodes;
                     // get the input elements in the list the shows the properties
                     property_inputs = property_ul.getElementsByTagName('input');
                     for(const property_input of property_inputs){
+                      console.log('property_input: ', property_input)
                         property_input.onchange = function(e){
                             console.log('e')
                             console.log('property changed dynamically');
@@ -1964,17 +2047,14 @@ $('.navbar-nav .dropdown-menu').on({
 
 
 
-
-
                                 //save_properties();
                                 // const f = save_dict_properties();
                                 // create_dynamic_prop_canvas(f);
                         }
-                            //solve !!!
-                            // you save to click on the feature again to change the properties again and to see the changes
                     }
                     try{
                         select = property_ul.getElementsByTagName('select');
+                        console.log('select: ', select);
                         select[0].onchange = function(e){
                             console.log('e')
                             console.log('property changed dynamically');
@@ -1984,8 +2064,6 @@ $('.navbar-nav .dropdown-menu').on({
                             let el = this;
                             let list_el = this.parentElement.parentElement.parentElement;
 
-
-
                             // save_property(list_el, new_value);
                             save_dict_property(list_el, new_value);
                         }
@@ -1993,10 +2071,8 @@ $('.navbar-nav .dropdown-menu').on({
                     catch(err){
                         console.log('no select input')
                             }
-
-
                 }
-                dynamically_save_changes();
+                // dynamically_save_changes();
 
                 // get the button
                 const calc_index_button = document.getElementById('index_calc');
