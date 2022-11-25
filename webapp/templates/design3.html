@@ -428,6 +428,10 @@ body {
         border-bottom: 1px solid transparent
     }
 
+    button:focus {
+        background-color: lightgray;
+    }
+
 
 
 
@@ -468,19 +472,25 @@ body {
 <!--          justify-content-end flex-grow-1 pe-3-->
           <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Main Layers
+                Land Use
               </a>
               <ul class="dropdown-menu layers_ul">
-                  <div class="form-check dropdown-item">
-                    <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr">
-                    <label class="form-check-label" for="aspern_blocks_attr">
-                        Block Attributes
-                    </label>
-                  </div>
-                  <div class="form-check dropdown-item">
-                    <input class="form-check-input" type="checkbox" value="" id="aspern_realUseBlocks" >
-                    <label class="form-check-label" for="aspern_realUseBlocks">
-                        Real Use - detailed blocks
+<!--                  <div class="form-check dropdown-item">-->
+<!--                    <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr">-->
+<!--                    <label class="form-check-label" for="aspern_blocks_attr">-->
+<!--                        Block Attributes-->
+<!--                    </label>-->
+<!--                  </div>-->
+<!--                  <div class="form-check dropdown-item">-->
+<!--                    <input class="form-check-input" type="checkbox" value="" id="aspern_realUseBlocks" >-->
+<!--                    <label class="form-check-label" for="aspern_realUseBlocks">-->
+<!--                        Real Use - detailed blocks-->
+<!--                    </label>-->
+<!--                  </div>-->
+                   <div class="form-check dropdown-item">
+                    <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr_realUseBlocks">
+                    <label class="form-check-label" for="aspern_blocks_attr_realUseBlocks">
+                        Generalised blocks
                     </label>
                   </div>
                   <div class="form-check dropdown-item">
@@ -489,12 +499,19 @@ body {
                         Land Use - block level
                     </label>
                   </div>
-                   <div class="form-check dropdown-item">
-                    <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr_realUseBlocks">
-                    <label class="form-check-label" for="aspern_blocks_attr_realUseBlocks">
-                        All blocks Attributes & Real Use
+                  <div class="form-check dropdown-item">
+                    <input class="form-check-input" type="checkbox" value="" id="osr">
+                    <label class="form-check-label" for="osr">
+                        OSR
+                    </label>
+                </div>
+                <div class="form-check dropdown-item">
+                    <input class="form-check-input" type="checkbox" value="" id="zoning">
+                    <label class="form-check-label" for="zoning">
+                        Zoning
                     </label>
                   </div>
+
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -541,26 +558,26 @@ body {
                   </div>
                 </ul>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Other viz
-                </a>
-                <ul class="dropdown-menu layers_ul" >
-                    <div class="form-check dropdown-item">
-                        <input class="form-check-input" type="checkbox" value="" id="osr">
-                        <label class="form-check-label" for="osr">
-                            OSR
-                        </label>
-                    </div>
-                    <div class="form-check dropdown-item">
-                        <input class="form-check-input" type="checkbox" value="" id="zoning">
-                        <label class="form-check-label" for="zoning">
-                            Zoning
-                        </label>
-                  </div>
+<!--              <li class="nav-item dropdown">-->
+<!--                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                  Other viz-->
+<!--                </a>-->
+<!--                <ul class="dropdown-menu layers_ul" >-->
+<!--                    <div class="form-check dropdown-item">-->
+<!--                        <input class="form-check-input" type="checkbox" value="" id="osr">-->
+<!--                        <label class="form-check-label" for="osr">-->
+<!--                            OSR-->
+<!--                        </label>-->
+<!--                    </div>-->
+<!--                    <div class="form-check dropdown-item">-->
+<!--                        <input class="form-check-input" type="checkbox" value="" id="zoning">-->
+<!--                        <label class="form-check-label" for="zoning">-->
+<!--                            Zoning-->
+<!--                        </label>-->
+<!--                  </div>-->
 
-                </ul>
-              </li>
+<!--                </ul>-->
+<!--              </li>-->
       </ul>
 
 <!--      legend -->
@@ -578,7 +595,7 @@ body {
 
 <!--RIGHT CANVAS (LEGEND)-->
 <button id="btn-open-legend" class="btn btn-outline-secondary " type="button" >...</button>
-<div class="split right offcanvas offcanvas-end menu offcanvas-size-sm" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling3" aria-labelledby="offcanvasScrollingLabel">
+<div class="split right offcanvas offcanvas-end menu " data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling3" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasScrollingLabel3">Legend</h5>
     <button id="btn-close-legend" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -718,7 +735,7 @@ const properties_aspern_bkmBlocks = ['height'];
 const properties_aspern_landuse = ['use_lvl1', 'use_lvl2', 'use_lvl3'];
 const properties_aspern_roads = ['name', 'category', 'form ', 'width '];
 const properties_aspern_publiclines = ['line', 'line_type'];
-const properties_aspern_trees_blocks = ['species', 'year ', 'address', 'height'];
+const properties_aspern_trees_blocks = ['species', 'year', 'address', 'height'];
 const properties_aspern_publicstops = ['stop_name', 'line', 'line_type'];
 const properties_shops = ['shop'];
 const properties_osr = ['OSR', 'openspace'];
@@ -1425,12 +1442,8 @@ async function sendData(check_id){
     else {
         load_index_layer(data_from_python);
     }
-
 }
 
-  map.on('style.load', () => {
-      map.setFog({}); // Set the default atmosphere style
-  });
 
 // the dropdown remains open after clicking a layer
 $('.navbar-nav .dropdown-menu').on({
@@ -1438,6 +1451,12 @@ $('.navbar-nav .dropdown-menu').on({
       e.stopPropagation();
     }
 });
+
+
+  map.on('style.load', () => {
+      map.setFog({}); // Set the default atmosphere style
+  });
+
 
   map.on('load', ()=>{
     getXml() // load the local geojson files
@@ -1482,12 +1501,11 @@ $('.navbar-nav .dropdown-menu').on({
 
             // hide the index layer if it is loaded
             if( map.getLayer('layer_index')){
-                map.setLayoutProperty(
+               map.setLayoutProperty(
                     'layer_index',
                     'visibility',
                     'none'
                 );
-
             }
 
             // hide the index calculation button
@@ -1644,6 +1662,8 @@ $('.navbar-nav .dropdown-menu').on({
                     document.getElementById('index_calc').style.display = "block";
                 }
 
+                // zoom in on the clicked feature
+                map.flyTo({center: e.lngLat, zoom:16});
 
                 // store the feature we clicked on
                 const clicked_feature = e.features[0];
@@ -1724,7 +1744,7 @@ $('.navbar-nav .dropdown-menu').on({
 
 
 
-                range_property_list = ['height', 'FLAECHE', 'SHAPELENGTH', 'max_height'];
+                range_property_list = ['height'];
 
                 // for prop canvas
                 // creating the list of properties can can be changed directly
@@ -1756,17 +1776,70 @@ $('.navbar-nav .dropdown-menu').on({
 
                         if (imp_prop.includes(properties_keys[i])){
 
+                            // user friendly prop names
+                            let li_prop_user = properties_keys[i];
+                            switch(properties_keys[i]){
+                                case 'area_green_rel':
+                                    li_prop_user = 'share of green space';
+                                    break;
+                                case 'OSR':
+                                    li_prop_user= 'open space ratio';
+                                    break;
+                                case 'max_height':
+                                    li_prop_user = 'maximum building height';
+                                    break;
+                                case 'count_trees':
+                                    li_prop_user= 'stock of trees';
+                                    break;
+                                case 'count_shops':
+                                    li_prop_user= 'number of shops';
+                                    break;
+                                case 'class':
+                                    li_prop_user= 'land cover';
+                                    break;
+                                case 'use_lvl1':
+                                    li_prop_user= 'generalized land use';
+                                    break;
+                                case 'use_lvl2':
+                                    li_prop_user= 'land use category';
+                                    break;
+                                case 'use_lvl3':
+                                    li_prop_user= 'detailed land use category';
+                                    break;
+                                case 'form':
+                                    li_prop_user= 'construction form of the section';
+                                    break;
+                                case 'line_type':
+                                    li_prop_user= 'means of transport';
+                                    break;
+                                case 'year':
+                                    li_prop_user= 'year of planting';
+                                    break;
+                                case 'stop_name':
+                                    li_prop_user= 'name of stop';
+                                    break;
+                                case 'shop':
+                                    li_prop_user= 'type of shop/service';
+                                    break;
+
+
+
+                            }
+
                             const li = document.createElement('li');
                             li.id = 'p'+ i.toString();
                             li.className = 'list-group-item';
-                            // li.style ="display: inline;";properties_values[i]
-                            li.innerHTML = '<b>'+properties_keys[i]+'</b>: '+'<span></span>';
+                            li.innerHTML = '<b style="">'+li_prop_user+'</b>: '+'<span style="width: auto" ></span>';
                             ul.appendChild(li);
                             let span_el = li.getElementsByTagName('span')[0]
 
                             // putting the range for certain properties that have number values
                             li_prop = properties_keys[i];
                             span_text = properties_values[i];
+
+
+
+
                             // if the property is one of the above and its value is not null
                             if (range_property_list.includes(li_prop) && span_text!='null'){
                                 // we define the range stop number
@@ -1812,7 +1885,10 @@ $('.navbar-nav .dropdown-menu').on({
                                 // li.getElementsByTagName('span')[0].innerHTML = li.getElementsByTagName('select')[0].value;
 
                             } else {
-                                li.getElementsByTagName('span')[0].innerHTML= '<input style="width:110px; height: 35px; font-size: 14px; max-width: 130px" type="text"'+'value="'+properties_values[i]+'"'+ 'class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">';
+
+                                // li.getElementsByTagName('span')[0].innerHTML= '<input style="width:110px; height: 35px; font-size: 14px; max-width: 130px" type="text"'+'value="'+properties_values[i]+'"'+ 'class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">';
+                                li.getElementsByTagName('span')[0].innerHTML= properties_values[i];
+
                             }
                             ul.appendChild(li);
 
@@ -1864,12 +1940,10 @@ $('.navbar-nav .dropdown-menu').on({
 
                 //dynamically save the changes
                 function dynamically_save_changes(){
-                    console.log('dynamicallly save changes')
                     property_ul = document.getElementById('off-canvas');
                     property_lis = property_ul.childNodes;
                     // get the input elements in the list the shows the properties
                     property_inputs = property_ul.getElementsByTagName('input');
-                    console.log('property_inputs inside dynam save ch: ', property_inputs);
                     for(const property_input of property_inputs){
                         property_input.onchange = function(e){
                             console.log('e')
@@ -1888,6 +1962,10 @@ $('.navbar-nav .dropdown-menu').on({
                                 save_dict_property(list_el, new_value);
                             }
 
+
+
+
+
                                 //save_properties();
                                 // const f = save_dict_properties();
                                 // create_dynamic_prop_canvas(f);
@@ -1897,20 +1975,20 @@ $('.navbar-nav .dropdown-menu').on({
                     }
                     try{
                         select = property_ul.getElementsByTagName('select');
-                        console.log('select inside dynam save ch: ', select);
                         select[0].onchange = function(e){
                             console.log('e')
                             console.log('property changed dynamically');
                             console.log('on change e: ', e.target.value);
                             console.log('on change this: ', this);
                             let new_value =e.target.value;
-                            // let el = this;
+                            let el = this;
                             let list_el = this.parentElement.parentElement.parentElement;
+
+
 
                             // save_property(list_el, new_value);
                             save_dict_property(list_el, new_value);
                         }
-                        console.log('after select on change f');
                     }
                     catch(err){
                         console.log('no select input')

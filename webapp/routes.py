@@ -37,6 +37,10 @@ def design2():
 def prop3():
     return render_template('improved_prop_engl.html')
 
+@app.route("/design3/", methods=['GET'])
+def design3():
+    return render_template('design3.html')
+
 
 
 ########### data ###########
