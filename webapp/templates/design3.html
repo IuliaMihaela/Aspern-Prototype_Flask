@@ -513,7 +513,19 @@ body {
                     <label class="form-check-label" for="zoning">
                         Zoning
                     </label>
-                  </div>
+                </div>
+                  <div class="form-check dropdown-item">
+                    <input class="form-check-input" type="checkbox" value="" id="green_area">
+                    <label class="form-check-label" for="green_area">
+                        Green Area
+                    </label>
+                </div>
+                  <div class="form-check dropdown-item">
+                    <input class="form-check-input" type="checkbox" value="" id="max_height">
+                    <label class="form-check-label" for="max_height">
+                        Maximum height
+                    </label>
+                </div>
 
               </ul>
             </li>
@@ -561,26 +573,6 @@ body {
                   </div>
                 </ul>
               </li>
-<!--              <li class="nav-item dropdown">-->
-<!--                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--                  Other viz-->
-<!--                </a>-->
-<!--                <ul class="dropdown-menu layers_ul" >-->
-<!--                    <div class="form-check dropdown-item">-->
-<!--                        <input class="form-check-input" type="checkbox" value="" id="osr">-->
-<!--                        <label class="form-check-label" for="osr">-->
-<!--                            OSR-->
-<!--                        </label>-->
-<!--                    </div>-->
-<!--                    <div class="form-check dropdown-item">-->
-<!--                        <input class="form-check-input" type="checkbox" value="" id="zoning">-->
-<!--                        <label class="form-check-label" for="zoning">-->
-<!--                            Zoning-->
-<!--                        </label>-->
-<!--                  </div>-->
-
-<!--                </ul>-->
-<!--              </li>-->
       </ul>
 
 <!--      legend -->
@@ -794,6 +786,8 @@ function getXml() {
                     load_layer_aspern_blocks_attr()
                     load_layer_osr()
                     load_layer_zoning()
+                    load_layer_green_area()
+                    load_layer_max_height()
                     break;
                 case 'aspern_realUseBlocks':
                     data_aspern_realUseBlocks = json_response;
@@ -1415,8 +1409,93 @@ function load_layer_zoning(){
       });
 }
 
+function load_layer_green_area(){
+    map.addLayer(
+      {
+        'id': 'layer_green_area',
+        'type': 'fill',
+        'source': {
+            type: 'geojson',
+            data: data_aspern_blocks_attr
+            },
+        'paint': {
+
+        'fill-color': [
+                'case',
+                  ['<=', ['to-number',  ['get', 'area_green_rel']], 10],
+                  '#72de62',
+                  ['<=', ['to-number',  ['get', 'area_green_rel']], 20],
+                  '#6cd15c',
+                  ['<=', ['to-number',  ['get', 'area_green_rel']], 30],
+                  '#66c758',
+                  ['<=', ['to-number',  ['get', 'area_green_rel']], 40],
+                  '#62bf54',
+                  ['<=', ['to-number',  ['get', 'area_green_rel']], 50],
+                  '#5eb851',
+                  ['<=', ['to-number',  ['get', 'area_green_rel']], 60],
+                  '#57a84a',
+                  ['<=', ['to-number',  ['get', 'area_green_rel']], 70],
+                  '#4f9943',
+                  ['<=', ['to-number',  ['get', 'area_green_rel']], 80],
+                  '#478a3d',
+                  ['<=', ['to-number',  ['get', 'area_green_rel']], 90],
+                  '#3e7835',
+                  ['<=', ['to-number',  ['get', 'area_green_rel']], 120],
+                  '#34662d',
+
+                  '#dbf0a8',
 
 
+              ]
+        },
+        'layout': {
+                'visibility': 'none'
+        },
+      });
+}
+
+function load_layer_max_height(){
+    map.addLayer(
+      {
+        'id': 'layer_max_height',
+        'type': 'fill',
+        'source': {
+            type: 'geojson',
+            data: data_aspern_blocks_attr
+            },
+        'paint': {
+
+        'fill-color': [
+                'case',
+                  ['<=', ['to-number',  ['get', 'max_height']], 10],
+                  '#edc4b3',
+                  ['<=', ['to-number',  ['get', 'max_height']], 20],
+                  '#e6b8a2',
+                  ['<=', ['to-number',  ['get', 'max_height']], 30],
+                  '#deab90',
+                  ['<=', ['to-number',  ['get', 'max_height']], 40],
+                  '#d69f7e',
+                  ['<=', ['to-number',  ['get', 'max_height']], 50],
+                  '#cd9777',
+                  ['<=', ['to-number',  ['get', 'max_height']], 60],
+                  '#c38e70',
+                  ['<=', ['to-number',  ['get', 'max_height']], 70],
+                  '#b07d62',
+                  ['<=', ['to-number',  ['get', 'max_height']], 80],
+                  '#9d6b53',
+                  ['<=', ['to-number',  ['get', 'max_height']], 100],
+                  '#8a5a44',
+
+                  '#ede0d4'
+
+              ],
+
+        },
+        'layout': {
+                'visibility': 'none'
+        },
+      });
+}
 
 var data_from_python;
 // sending the data for index calculations and receiving the index data
@@ -1733,6 +1812,13 @@ $('.navbar-nav .dropdown-menu').on({
                 console.log('prop keys: ', properties_keys);
                 console.log('prop values: ', properties_values);
                 console.log('prop len: ', properties_values.length);
+                try{
+                    console.log('abs: ',properties['area_green_abs']);
+                    console.log('rel: ',properties['area_green_rel']);
+                    console.log('max_height: ',properties['max_height'])
+                }catch (e) {
+                    console.log('no attr layer');
+                }
 
 
                 // for popup
