@@ -436,6 +436,23 @@ body {
     }
 
 
+    /*color range */
+    .row {
+      height: 12px;
+      width: 100%;
+    }
+
+    .colors {
+      margin-bottom: 5px;
+
+    }
+
+    .label {
+      width: 15%;
+      display: inline-block;
+      text-align: center;
+    }
+
 
 
 </style>
@@ -505,7 +522,7 @@ body {
                   <div class="form-check dropdown-item">
                     <input class="form-check-input" type="checkbox" value="" id="osr">
                     <label class="form-check-label" for="osr">
-                        OSR
+                        Open Space Ratio
                     </label>
                 </div>
                 <div class="form-check dropdown-item">
@@ -720,7 +737,75 @@ const legend_zoning = '   <li><strong>Main Zoning Categories: </strong></li>\n' 
     '            <li><span style="background: #F4A460;"></span>IG: <em>industrial area</em></li>\n'+
     '            <li><span style="background: #DEB887;"></span>S: <em>protected area</em></li>\n' +
     '            <li><span style="background: #FFE4B5;"></span>WO: <em>residential area</em></li>\n' +
-    '            <li><span style="background: #000000;"></span>Other</li>\n';
+    '            <li><span style="background: #000000;"></span>Other</li>\n'+
+
+    '      <br>\n' +
+
+    '      <div>\n' +
+    // '        <h5>Green area</h5>\n' +
+    '        <div class=\'row colors\' style="background: linear-gradient(to right, #FFE4B5, #DEB887,#F4A460, #CD853F, #D2691E, #8B4513, #774c43);">\n' +
+    '        </div>\n' +
+    // '        <div class=\'row labels\'>\n' +
+    // '          <div class=\'label\'>10</div>\n' +
+    // '          <div class=\'label\'>30</div>\n' +
+    // '          <div class=\'label\'>50</div>\n' +
+    // '          <div class=\'label\'>70</div>\n' +
+    // '          <div class=\'label\'>90</div>\n' +
+    // '          <div class=\'label\'>110</div>\n' +
+    // '        </div>\n' +
+    '      </div>\n' +
+    '    </br>';
+
+const legend_osr = '<div>\n' +
+    '      <div>\n' +
+    '        <h5>OSR</h5>\n' +
+    '        <div class=\'row colors\' style="background: linear-gradient(to right, #a9d6e5, #89c2d9,#61a5c2, #468faf, #2c7da0, #2a6f97, #014f86, #01497c, #013a63);">\n' +
+    '        </div>\n' +
+    '        <div class=\'row labels\'>\n' +
+    '          <div class=\'label\'>5</div>\n' +
+    '          <div class=\'label\'>10</div>\n' +
+    '          <div class=\'label\'>30</div>\n' +
+    '          <div class=\'label\'>50</div>\n' +
+    '          <div class=\'label\'>80</div>\n' +
+    '          <div class=\'label\'>100</div>\n' +
+    '        </div>\n' +
+    '      </div>\n' +
+    '    </div>'+
+    '<div>\n';
+
+
+const legend_green_area = '<div>\n' +
+    '      <div>\n' +
+    '        <h5>Green area</h5>\n' +
+    '        <div class=\'row colors\' style="background: linear-gradient(to right, #72de62, #6cd15c,#66c758, #62bf54, #5eb851, #57a84a, #4f9943, #478a3d, #3e7835, #34662d);">\n' +
+    '        </div>\n' +
+    '        <div class=\'row labels\'>\n' +
+    '          <div class=\'label\'>10</div>\n' +
+    '          <div class=\'label\'>30</div>\n' +
+    '          <div class=\'label\'>50</div>\n' +
+    '          <div class=\'label\'>70</div>\n' +
+    '          <div class=\'label\'>90</div>\n' +
+    '          <div class=\'label\'>110</div>\n' +
+    '        </div>\n' +
+    '      </div>\n' +
+    '    </div>';
+
+const legend_max_height = '<div>\n' +
+    '      <div>\n' +
+    '        <h5>Maximum height</h5>\n' +
+    '        <div class=\'row colors\' style="background: linear-gradient(to right, #edc4b3, #e6b8a2,#deab90, #cd9777, #c38e70, #b07d62, #9d6b53, #8a5a44);">\n' +
+    '        </div>\n' +
+    '        <div class=\'row labels\'>\n' +
+    '          <div class=\'label\'>10</div>\n' +
+    '          <div class=\'label\'>30</div>\n' +
+    '          <div class=\'label\'>50</div>\n' +
+    '          <div class=\'label\'>70</div>\n' +
+    '          <div class=\'label\'>90</div>\n' +
+    '          <div class=\'label\'>100</div>\n' +
+    '        </div>\n' +
+    '      </div>\n' +
+    '    </div>';
+
 
 
 // store the properties to be displayed for each layer
@@ -733,8 +818,10 @@ const properties_aspern_publiclines = ['line', 'line_type'];
 const properties_aspern_trees_blocks = ['species', 'year', 'address', 'height'];
 const properties_aspern_publicstops = ['stop_name', 'line', 'line_type'];
 const properties_shops = ['shop'];
-const properties_osr = ['OSR', 'openspace'];
-const properties_zoning = ['zoning_code']
+const properties_osr = ['main_use', 'OSR', 'openspace'];
+const properties_zoning = ['main_use', 'zoning_code', 'zoning'];
+const properties_green_area = ['main_use', 'area_green_rel'];
+const properties_max_height = ['main_use', 'max_height'];
 
 
 // define the dictionaries that are going to store the geojson data that is going to get updated
@@ -1310,67 +1397,111 @@ function load_layer_aspern_blocks_attr_realUseBlocks(){
 }
 
 function load_layer_osr(){
+    // map.addLayer(
+    //   {
+    //     'id': 'layer_osr',
+    //     'type': 'heatmap',
+    //     'source': {
+    //         type: 'geojson',
+    //         data: data_aspern_blocks_attr
+    //         },
+    //     'paint': {
+    //     'heatmap-weight': {
+    //             property: 'OSR',
+    //             type: 'exponential',
+    //             stops: [
+    //             [1, 0],
+    //             [62, 1]
+    //             ]
+    //         },
+    //         // increase intensity as zoom level increases
+    //         'heatmap-intensity': {
+    //             stops: [
+    //             [11, 1],
+    //             [15, 3]
+    //             ]
+    //         },
+    //         // assign color values be applied to points depending on their density
+    //         'heatmap-color': [
+    //             'interpolate', // addiing an interpolate expression that defines a linear relationship
+    //             // between heatmap-density and heatmap-color using a set of input-output pairs
+    //             ['linear'],
+    //             ['heatmap-density'],
+    //             0,
+    //             'rgba(236,222,239,0)',
+    //             0.2,
+    //             '#CCFFE5',
+    //             0.4,
+    //             '#95eca0',
+    //             0.6,
+    //             '#24b76d',
+    //             0.8,
+    //             '#0c8c4f'
+    //         ],
+    //         // increase radius as zoom increases
+    //         'heatmap-radius': {
+    //             stops: [
+    //             [11, 15],
+    //             [15, 20]
+    //             ]
+    //         },
+    //         // decrease opacity to transition into the circle layer
+    //         'heatmap-opacity': {
+    //             default: 1,
+    //             stops: [
+    //             [14, 1],
+    //             [17, 0]
+    //             ]
+    //         }
+    //     },
+    //     'layout': {
+    //             'visibility': 'none'
+    //     },
+    //   });
+
     map.addLayer(
       {
         'id': 'layer_osr',
-        'type': 'heatmap',
+        'type': 'fill',
         'source': {
             type: 'geojson',
             data: data_aspern_blocks_attr
             },
         'paint': {
-        'heatmap-weight': {
-                property: 'OSR',
-                type: 'exponential',
-                stops: [
-                [1, 0],
-                [62, 1]
-                ]
-            },
-            // increase intensity as zoom level increases
-            'heatmap-intensity': {
-                stops: [
-                [11, 1],
-                [15, 3]
-                ]
-            },
-            // assign color values be applied to points depending on their density
-            'heatmap-color': [
-                'interpolate', // addiing an interpolate expression that defines a linear relationship
-                // between heatmap-density and heatmap-color using a set of input-output pairs
-                ['linear'],
-                ['heatmap-density'],
-                0,
-                'rgba(236,222,239,0)',
-                0.2,
-                '#CCFFE5',
-                0.4,
-                '#95eca0',
-                0.6,
-                '#24b76d',
-                0.8,
-                '#0c8c4f'
-            ],
-            // increase radius as zoom increases
-            'heatmap-radius': {
-                stops: [
-                [11, 15],
-                [15, 20]
-                ]
-            },
-            // decrease opacity to transition into the circle layer
-            'heatmap-opacity': {
-                default: 1,
-                stops: [
-                [14, 1],
-                [17, 0]
-                ]
-            }
+
+        'fill-color': [
+                'case',
+                  ['<=', ['to-number',  ['get', 'OSR']], 5],
+                  '#a9d6e5',
+                  ['<=', ['to-number',  ['get', 'OSR']], 10],
+                  '#89c2d9',
+                  ['<=', ['to-number',  ['get', 'OSR']], 15],
+                  '#61a5c2',
+                  ['<=', ['to-number',  ['get', 'OSR']], 20],
+                  '#468faf',
+                  ['<=', ['to-number',  ['get', 'OSR']], 30],
+                  '#2c7da0',
+                  ['<=', ['to-number',  ['get', 'OSR']], 50],
+                  '#2a6f97',
+                  ['<=', ['to-number',  ['get', 'OSR']], 70],
+                  '#014f86',
+                  ['<=', ['to-number',  ['get', 'OSR']], 80],
+                  '#01497c',
+                  ['<=', ['to-number',  ['get', 'OSR']], 100],
+                  '#013a63',
+                  ['==', ['to-number',  ['get', 'OSR']], 0],
+                  '#ede0d4',
+
+                  '#ede0d4'
+
+              ],
+
         },
         'layout': {
                 'visibility': 'none'
         },
       });
+
 }
 
 function load_layer_zoning(){
@@ -1400,7 +1531,7 @@ function load_layer_zoning(){
                 '#DEB887',
                 'residential area',
                 '#FFE4B5',
-                '#000000' // any other store type
+                '#efdada' // any other store type
               ]
         },
         'layout': {
@@ -1422,6 +1553,7 @@ function load_layer_green_area(){
 
         'fill-color': [
                 'case',
+
                   ['<=', ['to-number',  ['get', 'area_green_rel']], 10],
                   '#72de62',
                   ['<=', ['to-number',  ['get', 'area_green_rel']], 20],
@@ -1442,11 +1574,12 @@ function load_layer_green_area(){
                   '#3e7835',
                   ['<=', ['to-number',  ['get', 'area_green_rel']], 120],
                   '#34662d',
+                  ['==', ['to-number',  ['get', 'area_green_rel']], 0],
+                 '#dbf0a8',
 
-                  '#dbf0a8',
-
-
+                  '#dbf0a8'
               ]
+
         },
         'layout': {
                 'visibility': 'none'
@@ -1485,6 +1618,8 @@ function load_layer_max_height(){
                   '#9d6b53',
                   ['<=', ['to-number',  ['get', 'max_height']], 100],
                   '#8a5a44',
+                  ['==', ['to-number',  ['get', 'max_height']], 0],
+                  '#ede0d4',
 
                   '#ede0d4'
 
@@ -1501,6 +1636,7 @@ var data_from_python;
 // sending the data for index calculations and receiving the index data
 async function sendData(check_id){
     b= document.getElementById('index_calc');
+    //while the indices are calculating, we inform the user that the layer is loading
     b.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\n' +
         '  Loading...'
     console.log('function for sending the data');
@@ -1510,11 +1646,6 @@ async function sendData(check_id){
     console.log(data);
     data_from_python = data;
 
-    // map.setLayoutProperty(
-    //                 'layer_aspern_landuse',
-    //                 'visibility',
-    //                 'none'
-    //             );
 
     if( map.getLayer('layer_index')){
         map.getSource('layer_index').setData(data_from_python);
@@ -1888,7 +2019,7 @@ $('.navbar-nav .dropdown-menu').on({
                                 case 'count_shops':
                                     li_prop_user= 'number of shops';
                                     break;
-                                case 'class':
+                                case 'main_use': //'class':
                                     li_prop_user= 'land cover';
                                     break;
                                 case 'use_lvl1':
@@ -2049,7 +2180,7 @@ $('.navbar-nav .dropdown-menu').on({
                                     dict_key= 'count_shops';
                                     break;
                                 case 'land cover':
-                                    dict_key= 'class';
+                                    dict_key= 'main_use'; //'class';
                                     break;
                                 case 'generalized land use':
                                     dict_key= 'use_lvl1';
