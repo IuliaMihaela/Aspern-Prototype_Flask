@@ -41,6 +41,9 @@ def prop3():
 def design3():
     return render_template('design3.html')
 
+@app.route("/design4/", methods=['GET'])
+def design4():
+    return render_template('design4.html')
 
 ########### data ###########
 @app.route("/data/prototype_layerWGS84.geojson", methods=['GET'])

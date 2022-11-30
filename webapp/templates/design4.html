@@ -63,8 +63,8 @@ body {
   }
 
   ul span{
-    width: 23px;
-    height: 23px;
+    width: 20px;
+    height: 20px;
     display: inline-block;
     margin-right: 8px;
     border-radius: 30%
@@ -458,8 +458,14 @@ body {
 
     }
 
-    .label {
+    .labels .label {
       width: 15%;
+      display: inline-block;
+      text-align: center;
+    }
+
+    li.label {
+      width: 6.7%;
       display: inline-block;
       text-align: center;
     }
@@ -476,9 +482,33 @@ body {
     .card {
         position: absolute;
         z-index: 1;
-        top: 7%;
-        right: 6%;
+        top: 11%;
+        right: 1%;
     }
+
+    .btn:hover {
+        background-color: #6c757d;
+        border-color: #2125296b;
+    }
+    .btn:active {
+        background-color: #6c757d;
+        border-color: #2125296b;
+    }
+    .btn:focus {
+        background-color: #6c757d;
+        border-color: #2125296b;
+    }
+
+    /*#legend_section {*/
+    /*   position: absolute;*/
+    /*    z-index: 1;*/
+    /*    top: 10px;*/
+    /*    left: 20px;*/
+    /*    border-radius: 3px;*/
+    /*    width: 50px;*/
+    /*    height: 25px;*/
+    /*    align-content:flex-start*/
+    /*}*/
 
 
 
@@ -524,24 +554,15 @@ body {
 
 </div>
 
-<div class="card" style="width: 18rem; display:none" id="popover_content">
-    <button style="right: 0%" id="btn-close-analyse" type="button" class="btn-close" aria-label="Close"></button>
+<div class="card" style="width: 18rem; display:none; height: 40%" id="popover_content">
+    <button style="padding-right: 32rem" id="btn-close-analyse" type="button" class="btn-close" aria-label="Close"></button>
 
-  <div class="card-body">
+  <div class="card-body" style="height: 90%">
     <h5 class="card-title">Indices Analysis</h5>
     <p class="card-text"> Short index explanation</p>
     <a href="#" class="card-link">buttons group for dif indices</a>
 
-<!--      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">-->
-<!--          <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>-->
-<!--          <label class="btn btn-outline-primary" for="btnradio1">Radio 1</label>-->
 
-<!--          <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">-->
-<!--          <label class="btn btn-outline-primary" for="btnradio2">Radio 2</label>-->
-
-<!--          <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">-->
-<!--          <label class="btn btn-outline-primary" for="btnradio3">Radio 3</label>-->
-<!--       </div>-->
 
   </div>
 </div>
@@ -564,7 +585,7 @@ body {
   <div class="offcanvas-body" style="height: 70%">
 
 <!--      layers-->
-      <ul class="navbar-nav" style="height: 90%; overflow-y: auto">
+      <ul class="navbar-nav" style="height: 85%; overflow-y: auto">
 <!--          justify-content-end flex-grow-1 pe-3-->
           <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -677,11 +698,10 @@ body {
 <!--        </ul>-->
 <!--      </div>-->
 
-
-<!--      <section>-->
-<!--          <ul class="legend_ul" style="padding-left: 0rem;">-->
-<!--        </ul>-->
-<!--      </section>-->
+      <section style="padding-top: 5px">
+          <ul class="legend_ul" style="padding-left: 0rem;">
+        </ul>
+      </section>
   </div>
 </div>
 
@@ -689,29 +709,39 @@ body {
 <!--RIGHT CANVAS (LEGEND)-->
 <button id="btn-open-legend" class="btn btn-outline-secondary " type="button" ><i style="font-size: 1.1rem" class="material-icons small">info_outline</i>
 </button>
-<div class="split right offcanvas offcanvas-end menu " data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling3" aria-labelledby="offcanvasScrollingLabel">
+<div class="split right offcanvas offcanvas-end menu offcanvas-size-sm" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling3" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasScrollingLabel3">Legend</h5>
     <button id="btn-close-legend" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-
-  <!--      send data button-->
-<!--      <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">-->
-<!--        <button style="display:none" id="index_calc" type="button" class="btn btn-outline-dark">Calculate index</button>-->
-<!--      </div>-->
-
-
   </div>
+  <div class="offcanvas-body" style="height: 80%">
 
-  <div class="offcanvas-body">
+<!--      <ul class="legend_ul">-->
+<!--        </ul>-->
 
-      <ul class="legend_ul">
-        </ul>
+<!--      <section id="legend_section">-->
+<!--          <ul class="legend_ul" style="padding-left: 0rem;">-->
+<!--        </ul>-->
+<!--        </section>-->
 
+<!--      <div class="btn-group">-->
+<!--      <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--        Small button-->
+<!--      </button>-->
+<!--      <ul class="dropdown-menu legend_ul">-->
+<!--        ...-->
+<!--      </ul>-->
+<!--    </div>-->
 
 
   </div>
 </div>
 
+
+<!--<section id="legend_section">-->
+<!--  <ul class="legend_ul" style="padding-left: 0rem;">-->
+<!--</ul>-->
+<!--</section>-->
 
 
 <!-- BOTTOM CANVAS (GRAPHS) -->
@@ -735,8 +765,6 @@ body {
 
 
 <script>
-
-
 // var popover = new bootstrap.Popover(document.querySelector('#analyse'), {
 //   container: 'body',
 //     html : true,
@@ -778,97 +806,145 @@ const map = new mapboxgl.Map({
 
 
 // define the html for the legend for each layer
-const legend_aspern_blocks_attr= '   <li><strong>Main Form of Usage: </strong></li>\n' +
-    '            <br>\n' +
-    '            <li><span style="background: #60c36c;"></span>greenSpace: <em>green open spaces, gardens, agricultural land</em></li>\n' +
-    '            <li><span style="background: #856666;"></span>sealedSpace: <em>public and private sealed area, including roads, bike paths etc.</em></li>\n' +
-    '            <li><span style="background: #ad949e;"></span>buildings</li>\n' +
-    '            <li><span style="background: #808080;"></span>construction: <em>construction sites, gravel pit</em></li>\n' +
-    '            <li><span style="background: #0080FF;"></span>water</li>\n';
+// const legend_aspern_blocks_attr= '   <li><strong>Main Form of Usage: </strong></li>\n' +
+//     '            <br>\n' +
+//     '            <li><span style="background: #60c36c;"></span>greenSpace: <em>green open spaces, gardens, agricultural land</em></li>\n' +
+//     '            <li><span style="background: #856666;"></span>sealedSpace: <em>public and private sealed area, including roads, bike paths etc.</em></li>\n' +
+//     '            <li><span style="background: #ad949e;"></span>buildings</li>\n' +
+//     '            <li><span style="background: #808080;"></span>construction: <em>construction sites, gravel pit</em></li>\n' +
+//     '            <li><span style="background: #0080FF;"></span>water</li>\n';
 
-// const legend_aspern_blocks_attr=
-//     '            <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>\n' +
-//     '            <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>\n' +
-//     '            <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>\n' +
-//     '            <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>\n' +
-//     '            <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>\n';
-//
+const legend_aspern_blocks_attr=
+    '            <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>\n' +
+    '            <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>\n' +
+    '            <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>\n' +
+    '            <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>\n' +
+    '            <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>\n';
+
 
 
 
 const legend_aspern_realUseBlocks ='   <li><strong>Class (”land cover”): </strong></li>\n' +
     '            <br>\n' +
-    '            <li><span style="background: #60c36c;"></span>green area: <em>green open spaces, gardens, agricultural land</em></li>\n' +
-    '            <li><span style="background: #856666;"></span>sealed area (excluding buildings): <em>public and private sealed area excluding buildings, including roads, bike paths etc.</em></li>\n' +
-    '            <li><span style="background: #ad949e;"></span>buildings</li>\n' +
-    '            <li><span style="background: #808080;"></span>construction site: <em>construction sites, gravel pit</em></li>\n' +
-    '            <li><span style="background: #0080FF;"></span>water body</li>\n';
+    '            <li class="label"><span style="background: #60c36c;"></span>green area: <em>green open spaces, gardens, agricultural land</em></li>\n' +
+    '            <li class="label"><span style="background: #856666;"></span>sealed area (excluding buildings): <em>public and private sealed area excluding buildings, including roads, bike paths etc.</em></li>\n' +
+    '            <li class="label"><span style="background: #ad949e;"></span>buildings</li>\n' +
+    '            <li class="label"><span style="background: #808080;"></span>construction site: <em>construction sites, gravel pit</em></li>\n' +
+    '            <li class="label"><span style="background: #0080FF;"></span>water body</li>\n';
 
 const legend_aspern_bkmBlocks = '';
 
-const legend_aspern_landuse ='   <li><strong>Land Use: </strong></li>\n' +
-    '            <br>\n' +
-    '            <li><span style="background: #88db35;"></span>recreation and leisure facilities</li>\n' +
-    '            <li><span style="background: #e2d4c0;"></span>business and mixed use with emphasis on business activity</li>\n' +
-    '            <li><span style="background: #60c8c5;"></span>water</li>\n' +
-    '            <li><span style="background: #de8d24;"></span>industrial and commercial uses</li>\n' +
-    '            <li><span style="background: #8baf76;"></span>agriculture</li>\n'+
-    '            <li><span style="background: #bce48b;"></span>natural area</li>\n' +
-    '            <li><span style="background: #c4bcef;"></span>social infrastructure</li>\n' +
-    '            <li><span style="background: #c2d0a1;"></span>technical infrastructure/art buildings/special uses</li>\n' +
-    '            <li><span style="background: #a8cfc6;"></span>other transportation uses</li>\n' +
-    '            <li><span style="background: #d9bdc6;"></span>residential and mixed use with emphasis on residential</li>\n'+
-    '            <li><span style="background: #d2e0c5;"></span>road space</li>\n';
+// const legend_aspern_landuse ='   <li><strong>Land Use: </strong></li>\n' +
+//     '            <br>\n' +
+//     '            <li><span style="background: #88db35;"></span>recreation and leisure facilities</li>\n' +
+//     '            <li><span style="background: #e2d4c0;"></span>business and mixed use with emphasis on business activity</li>\n' +
+//     '            <li><span style="background: #60c8c5;"></span>water</li>\n' +
+//     '            <li><span style="background: #de8d24;"></span>industrial and commercial uses</li>\n' +
+//     '            <li><span style="background: #8baf76;"></span>agriculture</li>\n'+
+//     '            <li><span style="background: #bce48b;"></span>natural area</li>\n' +
+//     '            <li><span style="background: #c4bcef;"></span>social infrastructure</li>\n' +
+//     '            <li><span style="background: #c2d0a1;"></span>technical infrastructure/art buildings/special uses</li>\n' +
+//     '            <li><span style="background: #a8cfc6;"></span>other transportation uses</li>\n' +
+//     '            <li><span style="background: #d9bdc6;"></span>residential and mixed use with emphasis on residential</li>\n'+
+//     '            <li><span style="background: #d2e0c5;"></span>road space</li>\n';
 
-const legend_aspern_roads ='   <li><strong>Road Category of the Section: </strong></li>\n' +
-    '            <br>\n' +
-    '            <li><span style="background: #FFFF66;"></span>G: <em>municipal road</em></li>\n' +
-    '            <li><span style="background: #FF9933;"></span>L: <em>state main road</em></li>\n'+
-    '            <li><span style="background: #a117c7;"></span>B: <em>main road</em></li>\n';
+const legend_aspern_landuse =
+    '            <li class="label"><span style="background: #88db35;" data-bs-toggle="tooltip" data-bs-placement="left" title="recreation and leisure facilities"></span></li>\n' +
+    '            <li class="label"><span style="background: #e2d4c0;" data-bs-toggle="tooltip" data-bs-placement="left" title="business and mixed use with emphasis on business activity"></span></li>\n' +
+    '            <li class="label"><span style="background: #60c8c5;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>\n' +
+    '            <li class="label"><span style="background: #de8d24;" data-bs-toggle="tooltip" data-bs-placement="left" title="industrial and commercial uses"></span></li>\n' +
+    '            <li class="label"><span style="background: #8baf76;" data-bs-toggle="tooltip" data-bs-placement="left" title="agriculture"></span></li>\n'+
+    '            <li class="label"><span style="background: #bce48b;" data-bs-toggle="tooltip" data-bs-placement="left" title="natural area"></span></li>\n' +
+    '            <li class="label"><span style="background: #c4bcef;" data-bs-toggle="tooltip" data-bs-placement="left" title="social infrastructure"></span></li>\n' +
+    '            <li class="label"><span style="background: #c2d0a1;" data-bs-toggle="tooltip" data-bs-placement="left" title="technical infrastructure/art buildings/special uses"></span></li>\n' +
+    '            <li class="label"><span style="background: #a8cfc6;" data-bs-toggle="tooltip" data-bs-placement="left" title="other transportation uses"></span></li>\n' +
+    '            <li class="label"><span style="background: #d9bdc6;" data-bs-toggle="tooltip" data-bs-placement="left" title="residential and mixed use with emphasis on residential"></span></li>\n'+
+    '            <li class="label"><span style="background: #d2e0c5;" data-bs-toggle="tooltip" data-bs-placement="left" title="road space"></span></li>\n';
 
-const legend_aspern_publiclines ='   <li><strong>Type of the Means of Transport: </strong></li>\n' +
-    '            <br>\n' +
-    '            <li><span style="background: #CC0000;"></span>13: <em>astax</em></li>\n' +
-    '            <li><span style="background: #FF8000;"></span>3: <em>regional bus</em></li>\n' +
-    '            <li><span style="background: #FFFF00;"></span>2: <em>bus</em></li>\n' +
-    '            <li><span style="background: #00FF00;"></span>5: <em>rapid transit and regional train</em></li>\n' +
-    '            <li><span style="background: #00FFFF;"></span>9: <em>astax</em></li>\n'+
-    '            <li><span style="background: #0000FF;"></span>10: <em>night bus</em></li>\n' +
-    '            <li><span style="background: #FF33FF;"></span>11: <em>night bus</em></li>\n' +
-    '            <li><span style="background: #FF3399;"></span>4: <em>subway</em></li>\n';
 
-const legend_aspern_trees_blocks ='   <li><strong>Classification Categories of Tree height: </strong></li>\n' +
-    '            <br>\n' +
-    '            <li><span style="background: #99FF99;"></span>0</li>\n' +
-    '            <li><span style="background: #66FF66;"></span>1</li>\n' +
-    '            <li><span style="background: #33FF33;"></span>2</li>\n' +
-    '            <li><span style="background: #00CC00;"></span>3</li>\n' +
-    '            <li><span style="background: #00CC00;"></span>4</li>\n'+
-    '            <li><span style="background: #009900;"></span>5</li>\n';
+// const legend_aspern_roads ='   <li><strong>Road Category of the Section: </strong></li>\n' +
+//     '            <br>\n' +
+//     '            <li><span style="background: #FFFF66;"></span>G: <em>municipal road</em></li>\n' +
+//     '            <li><span style="background: #FF9933;"></span>L: <em>state main road</em></li>\n'+
+//     '            <li><span style="background: #a117c7;"></span>B: <em>main road</em></li>\
 
-const legend_aspern_publicstops ='   <li><strong>Type of the Means of Transport: </strong></li>\n' +
-    '            <br>\n' +
-    '            <li><span style="background: #CC0000;"></span>13: <em>astax</em></li>\n' +
-    '            <li><span style="background: #FF8000;"></span>3: <em>regional bus</em></li>\n' +
-    '            <li><span style="background: #FFFF00;"></span>2: <em>bus</em></li>\n' +
-    '            <li><span style="background: #00FF00;"></span>5: <em>rapid transit and regional train</em></li>\n' +
-    '            <li><span style="background: #00FFFF;"></span>9: <em>astax</em></li>\n'+
-    '            <li><span style="background: #0000FF;"></span>10: <em>night bus</em></li>\n' +
-    '            <li><span style="background: #FF33FF;"></span>11: <em>night bus</em></li>\n' +
-    '            <li><span style="background: #FF3399;"></span>4: <em>subway</em></li>\n';
+const legend_aspern_roads =
+    '            <li class="label"><span style="background: #FFFF66;" data-bs-toggle="tooltip" data-bs-placement="left" title="G: municipal road"></span></li>\n' +
+    '            <li class="label"><span style="background: #FF9933;" data-bs-toggle="tooltip" data-bs-placement="left" title="L: state main road"></span></li>\n'+
+    '            <li class="label"><span style="background: #a117c7;" data-bs-toggle="tooltip" data-bs-placement="left" title="B: main road"></span></li>\n';
+
+
+// const legend_aspern_publiclines ='   <li><strong>Type of the Means of Transport: </strong></li>\n' +
+//     '            <br>\n' +
+//     '            <li><span style="background: #CC0000;"></span>13: <em>astax</em></li>\n' +
+//     '            <li><span style="background: #FF8000;"></span>3: <em>regional bus</em></li>\n' +
+//     '            <li><span style="background: #FFFF00;"></span>2: <em>bus</em></li>\n' +
+//     '            <li><span style="background: #00FF00;"></span>5: <em>rapid transit and regional train</em></li>\n' +
+//     '            <li><span style="background: #00FFFF;"></span>9: <em>astax</em></li>\n'+
+//     '            <li><span style="background: #0000FF;"></span>10: <em>night bus</em></li>\n' +
+//     '            <li><span style="background: #FF33FF;"></span>11: <em>night bus</em></li>\n' +
+//     '            <li><span style="background: #FF3399;"></span>4: <em>subway</em></li>\n';
+
+const legend_aspern_publiclines =
+    '            <li class="label"><span style="background: #CC0000;" data-bs-toggle="tooltip" data-bs-placement="left" title="13: astax"></span></li>\n' +
+    '            <li class="label"><span style="background: #FF8000;" data-bs-toggle="tooltip" data-bs-placement="left" title="3: regional bus"></span></li>\n' +
+    '            <li class="label"><span style="background: #FFFF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="2: bus"></span></li>\n' +
+    '            <li class="label"><span style="background: #00FF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="5: rapid transit and regional train"></span></li>\n' +
+    '            <li class="label"><span style="background: #00FFFF;" data-bs-toggle="tooltip" data-bs-placement="left" title="9: astax"></span></li>\n'+
+    '            <li class="label"><span style="background: #0000FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="10: night bus"></span></li>\n' +
+    '            <li class="label"><span style="background: #FF33FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="11: night bus"></span></li>\n' +
+    '            <li class="label"><span style="background: #FF3399;" data-bs-toggle="tooltip" data-bs-placement="left" title="4: subway"></span></li>\n';
+
+
+// const legend_aspern_trees_blocks ='   <li><strong>Classification Categories of Tree height: </strong></li>\n' +
+//     '            <br>\n' +
+//     '            <li class="label"><span style="background: #99FF99;"></span>0</li>\n' +
+//     '            <li class="label"><span style="background: #66FF66;"></span>1</li>\n' +
+//     '            <li class="label"><span style="background: #33FF33;"></span>2</li>\n' +
+//     '            <li class="label"><span style="background: #00CC00;"></span>3</li>\n' +
+//     '            <li class="label"><span style="background: #00CC00;"></span>4</li>\n'+
+//     '            <li class="label"><span style="background: #009900;"></span>5</li>\n';
+
+const legend_aspern_trees_blocks =
+    '      <div>\n' +
+    '        <div class=\'row colors\' style="background: linear-gradient(to right, #99FF99, #66FF66,#33FF33, #00CC00, #00CC00, #009900);">\n' +
+    '        </div>\n' +
+    '        <div class=\'row labels\'>\n' +
+    '          <div class=\'label\'>0</div>\n' +
+    '          <div class=\'label\'>1</div>\n' +
+    '          <div class=\'label\'>2</div>\n' +
+    '          <div class=\'label\'>3</div>\n' +
+    '          <div class=\'label\'>4</div>\n' +
+    '          <div class=\'label\'>5</div>\n' +
+    '        </div>\n' +
+    '      </div>\n' +
+    '    </div>'+
+    '<div>\n';
+
+// const legend_aspern_publicstops ='   <li><strong>Type of the Means of Transport: </strong></li>\n' +
+//     '            <br>\n' +
+//     '            <li><span style="background: #CC0000;"></span>13: <em>astax</em></li>\n' +
+//     '            <li><span style="background: #FF8000;"></span>3: <em>regional bus</em></li>\n' +
+//     '            <li><span style="background: #FFFF00;"></span>2: <em>bus</em></li>\n' +
+//     '            <li><span style="background: #00FF00;"></span>5: <em>rapid transit and regional train</em></li>\n' +
+//     '            <li><span style="background: #00FFFF;"></span>9: <em>astax</em></li>\n'+
+//     '            <li><span style="background: #0000FF;"></span>10: <em>night bus</em></li>\n' +
+//     '            <li><span style="background: #FF33FF;"></span>11: <em>night bus</em></li>\n' +
+//     '            <li><span style="background: #FF3399;"></span>4: <em>subway</em></li>\n';
+
+const legend_aspern_publicstops = legend_aspern_publiclines;
 
 const legend_shops = '';
 
-const legend_zoning = '   <li><strong>Main Zoning Categories: </strong></li>\n' +
-    '            <br>\n' +
-    '            <li><span style="background: #774c43;"></span>E: <em>recreation area</em></li>\n' +
-    '            <li><span style="background: #8B4513;"></span>GB: <em>mixed developement</em></li>\n' +
-    '            <li><span style="background: #D2691E;"></span>GBBG: <em>mixed developement - business developement area</em></li>\n' +
-    '            <li><span style="background: #CD853F;"></span>GBGV: <em>mixed developement - business district</em></li>\n' +
-    '            <li><span style="background: #F4A460;"></span>IG: <em>industrial area</em></li>\n'+
-    '            <li><span style="background: #DEB887;"></span>S: <em>protected area</em></li>\n' +
-    '            <li><span style="background: #FFE4B5;"></span>WO: <em>residential area</em></li>\n' +
-    '            <li><span style="background: #000000;"></span>Other</li>\n'+
+const legend_zoning =
+    '            <li class="label"><span style="background: #774c43;" data-bs-toggle="tooltip" data-bs-placement="left" title="E: recreation area"></span></li>\n' +
+    '            <li class="label"><span style="background: #8B4513;" data-bs-toggle="tooltip" data-bs-placement="left" title="GB: mixed developement"></span></li>\n' +
+    '            <li class="label"><span style="background: #D2691E;" data-bs-toggle="tooltip" data-bs-placement="left" title="GBBG: mixed developement - business developement area"></span></li>\n' +
+    '            <li class="label"><span style="background: #CD853F;" data-bs-toggle="tooltip" data-bs-placement="left" title="GBGV: mixed developement - business district"></span></li>\n' +
+    '            <li class="label"><span style="background: #F4A460;" data-bs-toggle="tooltip" data-bs-placement="left" title="IG: industrial area"></span></li>\n'+
+    '            <li class="label"><span style="background: #DEB887;" data-bs-toggle="tooltip" data-bs-placement="left" title="S: protected area"></span></li>\n' +
+    '            <li class="label"><span style="background: #FFE4B5;" data-bs-toggle="tooltip" data-bs-placement="left" title="WO: residential area"></span></li>\n' +
+    '            <li class="label"><span style="background: #000000;" data-bs-toggle="tooltip" data-bs-placement="left" title="Other"></span></li>\n'+
 
     '      <br>\n' +
     '      <div>\n' +
@@ -879,7 +955,6 @@ const legend_zoning = '   <li><strong>Main Zoning Categories: </strong></li>\n' 
 
 const legend_osr = '<div>\n' +
     '      <div>\n' +
-    '        <h5>OSR</h5>\n' +
     '        <div class=\'row colors\' style="background: linear-gradient(to right, #a9d6e5, #89c2d9,#61a5c2, #468faf, #2c7da0, #2a6f97, #014f86, #01497c, #013a63);">\n' +
     '        </div>\n' +
     '        <div class=\'row labels\'>\n' +
@@ -897,7 +972,6 @@ const legend_osr = '<div>\n' +
 
 const legend_green_area = '<div>\n' +
     '      <div>\n' +
-    '        <h5>Green area</h5>\n' +
     '        <div class=\'row colors\' style="background: linear-gradient(to right, #72de62, #6cd15c,#66c758, #62bf54, #5eb851, #57a84a, #4f9943, #478a3d, #3e7835, #34662d);">\n' +
     '        </div>\n' +
     '        <div class=\'row labels\'>\n' +
@@ -913,7 +987,6 @@ const legend_green_area = '<div>\n' +
 
 const legend_max_height = '<div>\n' +
     '      <div>\n' +
-    '        <h5>Maximum height</h5>\n' +
     '        <div class=\'row colors\' style="background: linear-gradient(to right, #edc4b3, #e6b8a2,#deab90, #cd9777, #c38e70, #b07d62, #9d6b53, #8a5a44);">\n' +
     '        </div>\n' +
     '        <div class=\'row labels\'>\n' +
