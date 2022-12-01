@@ -60,6 +60,7 @@ body {
     position: absolute;
     top: 0;
     bottom: 0;
+    z-index: 0;
   }
 
   ul span{
@@ -310,7 +311,7 @@ body {
         color: #404040;
         display: block;
         margin: 0;
-        padding: 0;
+        /*padding: 0;*/
         padding: 10px;
         text-decoration: none;
         border-bottom: 1px solid rgba(0, 0, 0, 0.25);
@@ -451,6 +452,8 @@ body {
     .row {
       height: 12px;
       width: 100%;
+
+      --bs-gutter-x: 0;
     }
 
     .colors {
@@ -470,21 +473,70 @@ body {
       text-align: center;
     }
 
-    /*analyse button */
-    #analyse {
+    /*shannon button */
+    #shannon_group {
         position: absolute;
-        z-index: 1;
-        top: 7%;
+        z-index: 0;
+        top: 2%;
         right: 1%;
         align-content: flex-start;
     }
 
-    .card {
+    #shannon_content {
         position: absolute;
         z-index: 1;
-        top: 11%;
+        top: 5%;
         right: 1%;
     }
+
+    #green_group {
+        position: absolute;
+        z-index: 0;
+        top: 6%;
+        right: 1%;
+        align-content: flex-start;
+    }
+
+    #green_content {
+        position: absolute;
+        top: 9%;
+        right: 1%;
+        z-index: 1;
+    }
+
+    #osr_group {
+        position: absolute;
+        z-index: 0;
+        top: 10%;
+        right: 1%;
+        align-content: flex-start;
+    }
+
+    #osr_content {
+        position: absolute;
+        top: 13%;
+        right: 1%;
+        z-index: 1;
+
+    }
+
+    #max_height_group {
+        position: absolute;
+        z-index: 0;
+        top: 14%;
+        right: 1%;
+        align-content: flex-start;
+    }
+
+    #max_height_content {
+        position: absolute;
+        top: 17%;
+        right: 1%;
+        z-index: 1;
+
+    }
+
+
 
     .btn:hover {
         background-color: #6c757d;
@@ -499,6 +551,11 @@ body {
         border-color: #2125296b;
     }
 
+    .btn-group>.btn {
+        height: 25px;
+        width: 140px;
+    }
+
     /*#legend_section {*/
     /*   position: absolute;*/
     /*    z-index: 1;*/
@@ -509,6 +566,30 @@ body {
     /*    height: 25px;*/
     /*    align-content:flex-start*/
     /*}*/
+
+    .card {
+        width: 18rem;
+        display:none;
+        height: 20%
+    }
+    .card-body{
+        height: 90%;  padding-top: 1px;
+    }
+
+    #shannon_content .label {
+        width: 19%;
+    }
+
+    .spinner-border-sm {
+    --bs-spinner-border-width: 0.1em;
+    }
+
+    .card .btn-close{
+        position: absolute;
+        right: 0px;
+
+    }
+
 
 
 
@@ -533,7 +614,7 @@ body {
 <!--<button type="button" id="analyse" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="" >-->
 <!--  Analysis-->
 <!--</button>-->
-<!--<div id="popover_content" style="height: 20%; width: 20%">-->
+<!--<div id="shannon_content" style="height: 20%; width: 20%">-->
 <!--      <div class='session'>-->
 <!--        <h2>Surface</h2>-->
 <!--        <div class='row colors' style="background: linear-gradient(to right, #FFE4B5, #DEB887,#F4A460, #CD853F, #D2691E, #8B4513, #774c43);">-->
@@ -548,26 +629,151 @@ body {
 <!--      </div>-->
 <!--</div>-->
 
+
+<!--shannon section-->
 <section>
-<div class="btn-group btn-group-sm" id="analyse" role="group" aria-label="Small button group">
-    <button type="button" id="analyseb" class="btn btn-outline-dark">Analysis</button>
+<div class="btn-group btn-group-sm" id="shannon_group" role="group" aria-label="Small button group">
+    <button type="button" id="shannon" class="btn btn-outline-dark">Shannon Index</button>
 
 </div>
 
-<div class="card" style="width: 18rem; display:none; height: 40%" id="popover_content">
-    <button style="padding-right: 32rem" id="btn-close-analyse" type="button" class="btn-close" aria-label="Close"></button>
+<div class="card" style="width: 18rem; display:none; height: 20%" id="shannon_content">
+    <button id="btn-close-shannon" type="button" class="btn-close" aria-label="Close"></button>
+    <h6 class="card-title"style="text-align: center;">Shannon Index  <div class="spinner-border spinner-border-sm" role="status" style="display: inline-block;">
+      <span class="visually-hidden">Loading...</span>
+    </div></h6>
 
-  <div class="card-body" style="height: 90%">
-    <h5 class="card-title">Indices Analysis</h5>
+  <div class="card-body" style="height: 90%;  padding-top: 1px;">
     <p class="card-text"> Short index explanation</p>
-    <a href="#" class="card-link">buttons group for dif indices</a>
+      <br>
+      <br>
 
-
+            <div>
+          <div>
+            <div class='row colors' style="background: linear-gradient(to right, #e1aeb4, #d3828f,#d55f5f, #b42f2f, #8c172c);">
+            </div>
+            <div class='row labels'>
+              <div class='label'>0.8</div>
+              <div class='label'>1</div>
+              <div class='label'>1.4</div>
+              <div class='label'>1.8</div>
+              <div class='label'>2.21</div>
+            </div>
+          </div>
+        </div>
 
   </div>
 </div>
-
 </section>
+
+
+
+<!--green section-->
+<section>
+<div class="btn-group btn-group-sm" id="green_group" role="group" aria-label="Small button group">
+    <button type="button" id="green" class="btn btn-outline-dark ">Green Area</button>
+<!--form-check-input-->
+</div>
+
+<div class="card" style="width: 18rem; display:none; height: 20%" id="green_content">
+    <button id="btn-close-green" type="button" class="btn-close" aria-label="Close"></button>
+    <h6 class="card-title" style="text-align: center;">Green Area</h6>
+
+  <div class="card-body" style="height: 90%; padding-top: 1px;">
+    <p class="card-text"> Share (percentage) of green area within block</p>
+      <br>
+      <br>
+
+      <div>
+          <div>
+            <div class='row colors' style="background: linear-gradient(to right, #72de62, #6cd15c,#66c758, #62bf54, #5eb851, #57a84a, #4f9943, #478a3d, #3e7835, #34662d);">
+            </div>
+            <div class='row labels'>
+              <div class='label'>10</div>
+              <div class='label'>30</div>
+              <div class='label'>50</div>
+              <div class='label'>70</div>
+              <div class='label'>90</div>
+              <div class='label'>110</div>
+            </div>
+          </div>
+        </div>
+
+  </div>
+</div>
+</section>
+
+
+<!--osr section-->
+<section>
+<div class="btn-group btn-group-sm" id="osr_group" role="group" aria-label="Small button group">
+    <button type="button" id="osrbut" class="btn btn-outline-dark ">Open Space Ratio</button>
+</div>
+
+<div class="card" style="width: 18rem; display:none; height: 20%" id="osr_content">
+    <button id="btn-close-osr" type="button" class="btn-close" aria-label="Close"></button>
+    <h6 class="card-title" style="text-align: center;">OSR</h6>
+
+  <div class="card-body" style="height: 90%; padding-top: 1px;">
+    <p class="card-text"> Open space share relative to the building square footage</p>
+      <br>
+
+
+      <div>
+          <div>
+            <div class='row colors' style="background: linear-gradient(to right, #a9d6e5, #89c2d9,#61a5c2, #468faf, #2c7da0, #2a6f97, #014f86, #01497c, #013a63);">
+            </div>
+            <div class='row labels'>
+              <div class='label'>5</div>
+              <div class='label'>10</div>
+              <div class='label'>30</div>
+              <div class='label'>50</div>
+              <div class='label'>80</div>
+              <div class='label'>100</div>
+            </div>
+          </div>
+        </div>
+
+  </div>
+</div>
+</section>
+
+
+<!--max height section-->
+<section>
+<div class="btn-group btn-group-sm" id="max_height_group" role="group" aria-label="Small button group">
+    <button type="button" id="max_heightbut" class="btn btn-outline-dark ">Max Height</button>
+</div>
+
+<div class="card" style="width: 18rem; display:none; height: 20%" id="max_height_content">
+    <button id="btn-close-max_height" type="button" class="btn-close" aria-label="Close"></button>
+    <h6 class="card-title" style="text-align: center;">Max height</h6>
+
+  <div class="card-body" style="height: 90%; padding-top: 1px;">
+    <p class="card-text"> Open space share relative to the building square footage</p>
+      <br>
+
+
+      <div>
+          <div>
+            <div class='row colors' style="background: linear-gradient(to right,  #edc4b3, #e6b8a2,#deab90, #cd9777, #c38e70, #b07d62, #9d6b53, #8a5a44);">
+            </div>
+            <div class='row labels'>
+              <div class='label'>10</div>
+              <div class='label'>30</div>
+              <div class='label'>50</div>
+              <div class='label'>70</div>
+              <div class='label'>90</div>
+              <div class='label'>100</div>
+            </div>
+          </div>
+        </div>
+
+  </div>
+</div>
+</section>
+
+
 
 <!--send data button-->
 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
@@ -577,15 +783,15 @@ body {
 
 <!-- LEFT CANVAS (LAYERS)-->
 <button id="btn-open-layers" class="btn btn-outline-secondary " type="button" ><i style="font-size: 1.1rem" class="material-icons small">filter_none</i></button>
-<div style="height: 40%" class="split left offcanvas offcanvas-start offcanvas-size-sm menu" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling1" aria-labelledby="offcanvasScrollingLabel">
+<div style="height: 70%" class="split left offcanvas offcanvas-start offcanvas-size-sm menu" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling1" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasScrollingLabel1">Layers</h5>
     <button id="btn-close-layers" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
-  <div class="offcanvas-body" style="height: 70%">
+  <div class="offcanvas-body" style="height: 80%">
 
 <!--      layers-->
-      <ul class="navbar-nav" style="height: 85%; overflow-y: auto">
+      <ul class="navbar-nav" style="height: 95%; overflow-y: auto">
 <!--          justify-content-end flex-grow-1 pe-3-->
           <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -698,7 +904,9 @@ body {
 <!--        </ul>-->
 <!--      </div>-->
 
-      <section style="padding-top: 5px">
+
+
+      <section>
           <ul class="legend_ul" style="padding-left: 0rem;">
         </ul>
       </section>
@@ -707,35 +915,33 @@ body {
 
 
 <!--RIGHT CANVAS (LEGEND)-->
-<button id="btn-open-legend" class="btn btn-outline-secondary " type="button" ><i style="font-size: 1.1rem" class="material-icons small">info_outline</i>
-</button>
-<div class="split right offcanvas offcanvas-end menu offcanvas-size-sm" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling3" aria-labelledby="offcanvasScrollingLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasScrollingLabel3">Legend</h5>
-    <button id="btn-close-legend" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body" style="height: 80%">
+<!--<button id="btn-open-legend" class="btn btn-outline-secondary " type="button" ><i style="font-size: 1.1rem" class="material-icons small">info_outline</i>-->
+<!--</button>-->
+<!--<div class="split right offcanvas offcanvas-end menu offcanvas-size-sm" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling3" aria-labelledby="offcanvasScrollingLabel">-->
+<!--  <div class="offcanvas-header">-->
+<!--    <h5 class="offcanvas-title" id="offcanvasScrollingLabel3">Legend</h5>-->
+<!--    <button id="btn-close-legend" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>-->
+<!--  </div>-->
+<!--  <div class="offcanvas-body" style="height: 80%">-->
 
-<!--      <ul class="legend_ul">-->
-<!--        </ul>-->
+<!--&lt;!&ndash;      <ul class="legend_ul">&ndash;&gt;-->
+<!--&lt;!&ndash;        </ul>&ndash;&gt;-->
 
-<!--      <section id="legend_section">-->
-<!--          <ul class="legend_ul" style="padding-left: 0rem;">-->
-<!--        </ul>-->
-<!--        </section>-->
+<!--&lt;!&ndash;      <section id="legend_section">&ndash;&gt;-->
+<!--&lt;!&ndash;          <ul class="legend_ul" style="padding-left: 0rem;">&ndash;&gt;-->
+<!--&lt;!&ndash;        </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;        </section>&ndash;&gt;-->
 
-<!--      <div class="btn-group">-->
-<!--      <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--        Small button-->
-<!--      </button>-->
-<!--      <ul class="dropdown-menu legend_ul">-->
-<!--        ...-->
-<!--      </ul>-->
-<!--    </div>-->
-
-
-  </div>
-</div>
+<!--&lt;!&ndash;      <div class="btn-group">&ndash;&gt;-->
+<!--&lt;!&ndash;      <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">&ndash;&gt;-->
+<!--&lt;!&ndash;        Small button&ndash;&gt;-->
+<!--&lt;!&ndash;      </button>&ndash;&gt;-->
+<!--&lt;!&ndash;      <ul class="dropdown-menu legend_ul">&ndash;&gt;-->
+<!--&lt;!&ndash;        ...&ndash;&gt;-->
+<!--&lt;!&ndash;      </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--  </div>-->
+<!--</div>-->
 
 
 <!--<section id="legend_section">-->
@@ -776,23 +982,6 @@ var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggl
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
-
-
-const analyse_button =$('#analyseb')[0];
-analyse_button.onclick = function (e){
-    if ($('#popover_content')[0].style.display == 'none')
-    {
-        $('#popover_content').css('display', 'block');
-    }else {
-        $('#popover_content')[0].style.display = 'none'
-    }
-
-
-}
-const close_analyse_button =$('#btn-close-analyse')[0];
-close_analyse_button.onclick = function (e){
-    $('#popover_content').css('display', 'none');
-}
 
 
 
@@ -944,14 +1133,14 @@ const legend_zoning =
     '            <li class="label"><span style="background: #F4A460;" data-bs-toggle="tooltip" data-bs-placement="left" title="IG: industrial area"></span></li>\n'+
     '            <li class="label"><span style="background: #DEB887;" data-bs-toggle="tooltip" data-bs-placement="left" title="S: protected area"></span></li>\n' +
     '            <li class="label"><span style="background: #FFE4B5;" data-bs-toggle="tooltip" data-bs-placement="left" title="WO: residential area"></span></li>\n' +
-    '            <li class="label"><span style="background: #000000;" data-bs-toggle="tooltip" data-bs-placement="left" title="Other"></span></li>\n'+
+    '            <li class="label"><span style="background: #000000;" data-bs-toggle="tooltip" data-bs-placement="left" title="Other"></span></li>\n'
 
-    '      <br>\n' +
-    '      <div>\n' +
-    '        <div class=\'row colors\' style="background: linear-gradient(to right, #FFE4B5, #DEB887,#F4A460, #CD853F, #D2691E, #8B4513, #774c43);">\n' +
-    '        </div>\n' +
-    '      </div>\n' +
-    '    </br>';
+    // '      <br>\n' +
+    // '      <div>\n' +
+    // '        <div class=\'row colors\' style="background: linear-gradient(to right, #FFE4B5, #DEB887,#F4A460, #CD853F, #D2691E, #8B4513, #774c43);">\n' +
+    // '        </div>\n' +
+    // '      </div>\n' +
+    // '    </br>';
 
 const legend_osr = '<div>\n' +
     '      <div>\n' +
@@ -1829,17 +2018,30 @@ function load_layer_max_height(){
 var data_from_python;
 // sending the data for index calculations and receiving the index data
 async function sendData(check_id){
+    // for shannon index
     b= document.getElementById('index_calc');
     //while the indices are calculating, we inform the user that the layer is loading
     b.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\n' +
         '  Loading...'
+    // the spinner on the card
+    c = $('#shannon_content .card-title')[0];
+    c.innerHTML = 'Shannon Index  <div class="spinner-border spinner-border-sm" role="status" style="display: inline-block;">\n      ' +
+        '<span class="visually-hidden">Loading...</span>\n    </div>'
+
+
     console.log('function for sending the data');
-    console.log('json data to send: ', JSON.stringify(eval('data_'+check_id)));
-    const query = await fetch('/flask/', { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
+    // console.log('json data to send: ', JSON.stringify(eval('data_'+check_id)));
+    // const query = await fetch('/flask/', { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
+    const query = await fetch('/flask/', { method: 'POST', body: JSON.stringify(data_aspern_landuse)});
     const data = await query.json();
     console.log(data);
     data_from_python = data;
 
+    // map.setLayoutProperty(
+    //                 'layer_aspern_landuse',
+    //                 'visibility',
+    //                 'visible'
+    //             );
 
     if( map.getLayer('layer_index')){
         map.getSource('layer_index').setData(data_from_python);
@@ -1852,7 +2054,8 @@ async function sendData(check_id){
     else {
         load_index_layer(data_from_python);
     }
-    b.innerHTML = 'Index'
+    b.innerHTML = 'Index';
+    c.innerHTML='Shannon Index'
 }
 
 
@@ -1873,6 +2076,160 @@ $('.navbar-nav .dropdown-menu').on({
     getXml() // load the local geojson files
 
 
+        // indices buttons
+        const shannon_button =$('#shannon')[0];
+        shannon_button.onclick = function (e){
+            if ($('#shannon_content')[0].style.display == 'none')
+            {
+                $('#shannon_content').css('display', 'block');
+                if( map.getLayer('layer_index')){
+                   map.setLayoutProperty(
+                        'layer_index',
+                        'visibility',
+                        'visible'
+                    );
+                   console.log('make the already calculated index layer visible ')
+                }else{
+                    console.log('calculate index layer first time ');
+                    sendData('');
+                }
+
+            }else {
+                $('#shannon_content')[0].style.display = 'none'
+                if( map.getLayer('layer_index')){
+                   map.setLayoutProperty(
+                        'layer_index',
+                        'visibility',
+                        'none'
+                    );
+                }
+            }
+        }
+        const close_shannon_button =$('#btn-close-shannon')[0];
+        close_shannon_button.onclick = function (e){
+            $('#shannon_content').css('display', 'none');
+
+            if( map.getLayer('layer_index')){
+                   map.setLayoutProperty(
+                        'layer_index',
+                        'visibility',
+                        'none'
+                    );
+            }
+        }
+
+        const green_button =$('#green')[0];
+        green_button.onclick = function (e){
+            if ($('#green_content')[0].style.display == 'none')
+            {
+                $('#green_content').css('display', 'block');
+                if( map.getLayer('layer_green_area')){
+                   map.setLayoutProperty(
+                        'layer_green_area',
+                        'visibility',
+                        'visible'
+                    );
+            }
+            }else {
+                $('#green_content')[0].style.display = 'none'
+                if( map.getLayer('layer_green_area')){
+                   map.setLayoutProperty(
+                        'layer_green_area',
+                        'visibility',
+                        'none'
+                    );
+                }
+            }
+        }
+        const close_green_button =$('#btn-close-green')[0];
+        close_green_button.onclick = function (e){
+            $('#green_content').css('display', 'none');
+
+             if( map.getLayer('layer_green_area')){
+                   map.setLayoutProperty(
+                        'layer_green_area',
+                        'visibility',
+                        'none'
+                   );
+            }
+        }
+
+        const osr_button =$('#osrbut')[0];
+        osr_button.onclick = function (e){
+            if ($('#osr_content')[0].style.display == 'none')
+            {
+                $('#osr_content').css('display', 'block');
+                if( map.getLayer('layer_osr')){
+                   map.setLayoutProperty(
+                        'layer_osr',
+                        'visibility',
+                        'visible'
+                    );
+            }
+            }else {
+                $('#osr_content')[0].style.display = 'none'
+                if( map.getLayer('layer_osr')){
+                   map.setLayoutProperty(
+                        'layer_osr',
+                        'visibility',
+                        'none'
+                    );
+                }
+            }
+        }
+        const close_osr_button =$('#btn-close-osr')[0];
+        close_osr_button.onclick = function (e){
+            $('#osr_content').css('display', 'none');
+
+             if( map.getLayer('layer_osr')){
+                   map.setLayoutProperty(
+                        'layer_osr',
+                        'visibility',
+                        'none'
+                   );
+            }
+        }
+
+        const max_height_button =$('#max_heightbut')[0];
+        max_height_button.onclick = function (e){
+            if ($('#max_height_content')[0].style.display == 'none')
+            {
+                $('#max_height_content').css('display', 'block');
+                if( map.getLayer('layer_max_height')){
+                   map.setLayoutProperty(
+                        'layer_max_height',
+                        'visibility',
+                        'visible'
+                    );
+            }
+            }else {
+                $('#max_height_content')[0].style.display = 'none'
+                if( map.getLayer('layer_max_height')){
+                   map.setLayoutProperty(
+                        'layer_max_height',
+                        'visibility',
+                        'none'
+                    );
+                }
+            }
+        }
+        const close_max_height_button =$('#btn-close-max_height')[0];
+        close_max_height_button.onclick = function (e){
+            $('#max_height_content').css('display', 'none');
+
+             if( map.getLayer('layer_max_height')){
+                   map.setLayoutProperty(
+                        'layer_max_height',
+                        'visibility',
+                        'none'
+                   );
+            }
+        }
+
+
+
+
+
     //get the canvas that displays the layers options
     canvas_layers = document.getElementsByClassName('offcanvas-start');
     // when you click on the button
@@ -1889,18 +2246,18 @@ $('.navbar-nav .dropdown-menu').on({
 
 
     //get the canvas that displays the legend
-    canvas_legend = document.getElementById('offcanvasScrolling3');
-    // when you click on the button
-    document.getElementById('btn-open-legend').onclick = (function(){
-        // console.log(canvas_layers);
-        // it shows the canvas with the legend
-        canvas_legend.className = 'show '+ canvas_legend.className; // it adds the class 'show' to the canvas element
-    });
-    //when you click on the x button on the canvas with the legend
-    document.getElementById('btn-close-legend').onclick = (function(){
-        // the canvas is hidden
-        canvas_legend.className = canvas_legend.className.substring(4,canvas_legend.className.length);// it removes the class 'show' to the canvas element
-    });
+    // canvas_legend = document.getElementById('offcanvasScrolling3');
+    // // when you click on the button
+    // document.getElementById('btn-open-legend').onclick = (function(){
+    //     // console.log(canvas_layers);
+    //     // it shows the canvas with the legend
+    //     canvas_legend.className = 'show '+ canvas_legend.className; // it adds the class 'show' to the canvas element
+    // });
+    // //when you click on the x button on the canvas with the legend
+    // document.getElementById('btn-close-legend').onclick = (function(){
+    //     // the canvas is hidden
+    //     canvas_legend.className = canvas_legend.className.substring(4,canvas_legend.className.length);// it removes the class 'show' to the canvas element
+    // });
 
 
     ///... here comes code for switching between layers ... ///
@@ -1912,13 +2269,13 @@ $('.navbar-nav .dropdown-menu').on({
             // console.log(e);
 
             // hide the index layer if it is loaded
-            if( map.getLayer('layer_index')){
-               map.setLayoutProperty(
-                    'layer_index',
-                    'visibility',
-                    'none'
-                );
-            }
+            // if( map.getLayer('layer_index')){
+            //    map.setLayoutProperty(
+            //         'layer_index',
+            //         'visibility',
+            //         'none'
+            //     );
+            // }
 
             // hide the index calculation button
             document.getElementById('index_calc').style.display = "none";
@@ -1929,7 +2286,7 @@ $('.navbar-nav .dropdown-menu').on({
 
             // get the html elements for the start, end and bottom canvases
             const canvas_start_el = document.getElementsByClassName('offcanvas-start')[0];
-            const canvas_end_el = document.getElementsByClassName('offcanvas-end')[0];
+            // const canvas_end_el = document.getElementsByClassName('offcanvas-end')[0];
             const canvas_bottom_el = document.getElementsByClassName('offcanvas-bottom')[0];
             // get the map container
             const map_el = document.getElementById('map');
@@ -1984,9 +2341,9 @@ $('.navbar-nav .dropdown-menu').on({
                 // if ((canvas_start_el.classList).contains('split')){
                 //     canvas_start_el.classList.replace('split', 'split_no_graph');
                 // }
-                if ((canvas_end_el.classList).contains('split')){
-                    canvas_end_el.classList.replace('split', 'split_no_graph');
-                }
+                // if ((canvas_end_el.classList).contains('split')){
+                //     canvas_end_el.classList.replace('split', 'split_no_graph');
+                // }
                 if ((map_el.classList).contains('split')){
                     map_el.classList.replace('split', 'split_no_graph');
                 }
