@@ -1037,16 +1037,16 @@ const legend_aspern_bkmBlocks = '';
 //     '            <li><span style="background: #d2e0c5;"></span>road space</li>\n';
 
 const legend_aspern_landuse =
-    '            <li class="label"><span style="background: #88db35;" data-bs-toggle="tooltip" data-bs-placement="left" title="recreation and leisure facilities"></span></li>\n' +
-    '            <li class="label"><span style="background: #e2d4c0;" data-bs-toggle="tooltip" data-bs-placement="left" title="business and mixed use with emphasis on business activity"></span></li>\n' +
+    '            <li class="label"><span style="background: #88db35;" data-bs-toggle="tooltip" data-bs-placement="left" title="recreation & leisure facilities"></span></li>\n' +
+    '            <li class="label"><span style="background: #e2d4c0;" data-bs-toggle="tooltip" data-bs-placement="left" title="business uses"></span></li>\n' +
     '            <li class="label"><span style="background: #60c8c5;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>\n' +
-    '            <li class="label"><span style="background: #de8d24;" data-bs-toggle="tooltip" data-bs-placement="left" title="industrial and commercial uses"></span></li>\n' +
+    '            <li class="label"><span style="background: #de8d24;" data-bs-toggle="tooltip" data-bs-placement="left" title="industrial & commercial uses"></span></li>\n' +
     '            <li class="label"><span style="background: #8baf76;" data-bs-toggle="tooltip" data-bs-placement="left" title="agriculture"></span></li>\n'+
     '            <li class="label"><span style="background: #bce48b;" data-bs-toggle="tooltip" data-bs-placement="left" title="natural area"></span></li>\n' +
     '            <li class="label"><span style="background: #c4bcef;" data-bs-toggle="tooltip" data-bs-placement="left" title="social infrastructure"></span></li>\n' +
-    '            <li class="label"><span style="background: #c2d0a1;" data-bs-toggle="tooltip" data-bs-placement="left" title="technical infrastructure/art buildings/special uses"></span></li>\n' +
+    '            <li class="label"><span style="background: #c2d0a1;" data-bs-toggle="tooltip" data-bs-placement="left" title="technical infrastructure"></span></li>\n' +
     '            <li class="label"><span style="background: #a8cfc6;" data-bs-toggle="tooltip" data-bs-placement="left" title="other transportation uses"></span></li>\n' +
-    '            <li class="label"><span style="background: #d9bdc6;" data-bs-toggle="tooltip" data-bs-placement="left" title="residential and mixed use with emphasis on residential"></span></li>\n'+
+    '            <li class="label"><span style="background: #d9bdc6;" data-bs-toggle="tooltip" data-bs-placement="left" title="residential use"></span></li>\n'+
     '            <li class="label"><span style="background: #d2e0c5;" data-bs-toggle="tooltip" data-bs-placement="left" title="road space"></span></li>\n';
 
 
@@ -1194,7 +1194,7 @@ const legend_max_height = '<div>\n' +
 const properties_aspern_blocks_attr = ['main_cover', 'OSR', 'max_height', 'count_trees', 'count_trees20m', 'count_shops', 'zoning']
 const properties_aspern_realUseBlocks = ['class'];
 const properties_aspern_bkmBlocks = ['height'];
-const properties_aspern_landuse = ['use_lvl1', 'use_lvl2', 'use_lvl3'];
+const properties_aspern_landuse = ['landuse'];
 const properties_aspern_roads = ['name', 'category', 'form ', 'width '];
 const properties_aspern_publiclines = ['line', 'line_type'];
 const properties_aspern_trees_blocks = ['species', 'year', 'address', 'height'];
@@ -2652,6 +2652,9 @@ $('.navbar-nav .dropdown-menu').on({
                                 case 'shop':
                                     li_prop_user= 'type of shop/service';
                                     break;
+                                case 'landuse':
+                                    li_prop_user= 'landuse category';
+                                    break;
                             }
 
 
@@ -2698,21 +2701,21 @@ $('.navbar-nav .dropdown-menu').on({
 
                             }else
                             // putting the dropdown for landuse layer, use_lvl2 property
-                            if(properties_keys[i]== 'use_lvl2'){
+                            if(properties_keys[i]== 'landuse'){
                                 console.log('span text: ', span_text)
                                 li.getElementsByTagName('span')[0].innerHTML =
                                     '<form action="#" style="width:150px; font-size: 14px;" id="select_form">\n'+
                                     // '<input style="display: none;"type="text" >'+
                                     '<select name="level2" id="level2" style="display: block;  height: 35px">\n' +
-                                    '  <option value="recreation and leisure facilities">recreation and leisure facilities</option>\n' +
+                                    '  <option value="recreation & leisure facilities">recreation & leisure facilities</option>\n' +
                                     '  <option value="water">water</option>\n' +
                                     '  <option value="agriculture">agriculture</option>\n' +
                                     '  <option value="natural area">natural area</option>\n' +
-                                    '  <option value="business and mixed use with emphasis on business activity">business and mixed use with emphasis on business activity</option>\n' +
-                                    '  <option value="industrial and commercial uses">industrial and commercial uses</option>\n' +
+                                    '  <option value="business uses">business uses</option>\n' +
+                                    '  <option value="industrial & commercial uses">industrial & commercial uses</option>\n' +
                                     '  <option value="social infrastructure">social infrastructure</option>\n' +
-                                    '  <option value="technical infrastructure/art buildings/special uses">technical infrastructure/art buildings/special uses</option>\n' +
-                                    '  <option value="residential and mixed use with emphasis on residential">residential and mixed use with emphasis on residential</option>\n' +
+                                    '  <option value="technical infrastructure">technical infrastructure</option>\n' +
+                                    '  <option value="residential use">residential use</option>\n' +
                                     '  <option value="road space">road space</option>\n' +
                                     '  <option value="other transportation uses">other transportation uses</option>\n' +
                                     '</select>\n'+
@@ -2811,6 +2814,9 @@ $('.navbar-nav .dropdown-menu').on({
                                     break;
                                 case 'type of shop/service':
                                     dict_key= 'shop';
+                                    break;
+                                case 'landuse category':
+                                    li_prop_user= 'landuse';
                                     break;
                             }
 
