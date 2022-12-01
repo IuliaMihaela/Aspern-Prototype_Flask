@@ -1455,26 +1455,69 @@ function load_layer_aspern_bkmBlocks(){
 }
 
 function load_layer_aspern_landuse(){
-    map.addLayer(
+    // map.addLayer(
+    //   {
+    //     'id': 'layer_aspern_landuse',
+    //     'type': 'fill',
+    //     'source': {
+    //         type: 'geojson',
+    //         data: data_aspern_landuse
+    //         },
+    //     'paint': {
+    //
+    //     'fill-color': [
+    //             'match',
+    //             ['get', 'use_lvl2'],
+    //             'recreation and leisure facilities',
+    //             '#88db35',
+    //             'business and mixed use with emphasis on business activity',
+    //             '#e2d4c0',
+    //             'water',
+    //             '#60c8c5',
+    //             'industrial and commercial uses',
+    //             '#de8d24',
+    //             'agriculture',
+    //             '#8baf76',
+    //             'natural area',
+    //             '#bce48b',
+    //             'social infrastructure',
+    //             '#c4bcef',
+    //             'technical infrastructure/art buildings/special uses',
+    //             '#c2d0a1',
+    //             'other transportation uses',
+    //             '#a8cfc6',
+    //             'residential and mixed use with emphasis on residential',
+    //             '#d9bdc6',
+    //             'road space',
+    //             '#d2e0c5',
+    //
+    //             '#000000' // any other store type
+    //           ]
+    //     },
+    //     'layout': {
+    //             'visibility': 'none'
+    //     },
+    //   });
+     map.addLayer(
       {
         'id': 'layer_aspern_landuse',
         'type': 'fill',
         'source': {
             type: 'geojson',
-            data: data_aspern_landuse
+            data: data_aspern_blocks_attr
             },
         'paint': {
 
         'fill-color': [
                 'match',
-                ['get', 'use_lvl2'],
-                'recreation and leisure facilities',
+                ['get', 'landuse'],
+                'recreation & leisure facilities',
                 '#88db35',
-                'business and mixed use with emphasis on business activity',
+                'business uses',
                 '#e2d4c0',
                 'water',
                 '#60c8c5',
-                'industrial and commercial uses',
+                'industrial & commercial uses',
                 '#de8d24',
                 'agriculture',
                 '#8baf76',
@@ -1482,11 +1525,11 @@ function load_layer_aspern_landuse(){
                 '#bce48b',
                 'social infrastructure',
                 '#c4bcef',
-                'technical infrastructure/art buildings/special uses',
+                'technical infrastructure',
                 '#c2d0a1',
                 'other transportation uses',
                 '#a8cfc6',
-                'residential and mixed use with emphasis on residential',
+                'residential use',
                 '#d9bdc6',
                 'road space',
                 '#d2e0c5',
@@ -1909,9 +1952,11 @@ function load_layer_zoning(){
                 '#774c43',
                 'mixed developement',
                 '#8B4513',
-                'mixed developement - business developement area',
+                // 'mixed developement - business developement area',
+                 'business developement area',
                 '#D2691E',
-                'mixed developement - business district',
+                // 'mixed developement - business district',
+                'commercial district',
                 '#CD853F',
                 'industrial area',
                 '#F4A460',
