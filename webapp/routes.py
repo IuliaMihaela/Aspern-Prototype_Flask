@@ -45,6 +45,10 @@ def design3():
 def design4():
     return render_template('design4.html')
 
+@app.route("/design5/", methods=['GET'])
+def design5():
+    return render_template('design5.html')
+
 ########### data ###########
 @app.route("/data/prototype_layerWGS84.geojson", methods=['GET'])
 def data1():
@@ -56,9 +60,19 @@ def data2():
     with open(r'webapp\data\final\aspern_blocks_attr.geojson', encoding='utf-8') as f:
         return f.read()
 
+@app.route("/data/final/aspern_blocks_final.geojson", methods=['GET'])
+def data21():
+    with open(r'webapp\data\final\aspern_blocks_final.geojson', encoding='utf-8') as f:
+        return f.read()
+
 @app.route("/data/final/aspern_realUseBlocks.geojson", methods=['GET'])
 def data3():
     with open(r'webapp\data\final\aspern_realUseBlocks.geojson', encoding='utf-8') as f:
+        return f.read()
+
+@app.route("/data/final/aspern_landcover_final.geojson", methods=['GET'])
+def data31():
+    with open(r'webapp\data\final\aspern_landcover_final.geojson', encoding='utf-8') as f:
         return f.read()
 
 @app.route("/data/final/aspern_bkmBlocks.geojson", methods=['GET'])

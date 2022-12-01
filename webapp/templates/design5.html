@@ -1,0 +1,3000 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+<meta charset="utf-8">
+<title>Aspern prototype</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></script>
+
+<!-- Materialize -->
+<link rel = "stylesheet"
+href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel = "stylesheet"
+href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+<script type = "text/javascript"
+src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
+</script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Mapbox Assembly -->
+<link
+href="https://api.mapbox.com/mapbox-assembly/v1.3.0/assembly.min.css"
+rel="stylesheet"
+/>
+<script src="https://api.mapbox.com/mapbox-assembly/v1.3.0/assembly.js"></script>
+
+<!-- Bootstarp -->
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
+
+<!-- Turf  -->
+
+<script src="https://api.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js"></script>
+<script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+
+<!-- Draw -->
+
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.css" type="text/css">
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.js"></script>
+
+
+<!-- Plotly -->
+<script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
+
+
+<!--    Popover.js-->
+<script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.0.2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.0.7"></script>
+
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+  }
+ #map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 0;
+  }
+
+  ul span{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 8px;
+    border-radius: 30%
+  }
+
+
+
+  .list-group {
+    /* width: 250px; */
+    width: 240px;
+
+  }
+
+  .mapboxgl-popup {
+    max-width: 250px;
+  }
+
+  .mapboxgl-popup-content{
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.5);
+    /* min-width: 200px;
+    max-width: 400px; */
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+    margin-bottom: 0;
+    width: 250px;
+    -webkit-text-size-adjust: auto;
+  }
+
+
+  p {
+      font-family: 'Open Sans';
+      margin: 0;
+      font-size: 13px;
+  }
+
+    .navbar {
+        border-width: 1.5px;
+        border-style: solid;
+
+    }
+
+    .split {
+        height: 70%;
+        /*width: 74%;*/
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+
+     .split_no_graph {
+        height: 100%;
+        /*width: 74%;*/
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+        /* Control the left side */
+    .left {
+        left: 0;
+    }
+    /* Control the right side */
+    .right {
+        right: 0;
+        height: 80%;
+        width: 20%;
+        overflow: auto;
+    }
+    /* Control the bottom side */
+    .bottom {
+        bottom: 0;
+        height: 30%;
+        width: 100%;
+    }
+    .header {
+        /*float: inline-start;*/
+        overflow: hidden;
+        /* background-color: #f1f1f1; */
+        padding: 20px 10px;
+    }
+    .offcanvas-body {
+      position: absolute;
+      top:90px;
+      overflow: hidden;
+      /*height: 80%;*/
+    }
+
+    .btn-group-sm {
+      position: absolute;
+      /* left: 30px; */
+      top:70px;
+    }
+
+    .form-control {
+        width: auto;
+    }
+
+
+    #btn-open-layers {
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        left: 10px;
+        border-radius: 3px;
+        width: 50px;
+        height: 25px;
+        align-content:flex-start
+    }
+
+      #btn-open-legend {
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        right: 10px;
+        border-radius: 3px;
+        width: 50px;
+        height: 25px;
+        align-content:flex-start
+    }
+
+    /* https://stackoverflow.com/questions/73292950/change-bootstrap-offcanvas-size-via-css-bootstrap-5-2 */
+    .offcanvas-size-sm {
+    --bs-offcanvas-width: min(95vw, 250px) !important;
+    }
+
+    .navbar-nav {
+        width: 250px;
+        height: 260px;
+    }
+
+    .form-check-input:checked {
+        background-color: #404040;
+        border-color:rgba(0, 0, 0, 0.25);
+    }
+    .offcanvas-end {
+        height:70%;
+        --bs-offcanvas-width: 26%;
+    }
+    /* for the range */
+    /* source: https://stackoverflow.com/questions/40534973/changing-the-color-of-the-range-slider-in-materializecss */
+    input[type=range]::-webkit-slider-thumb {
+        background-color: #757d82;
+    }
+    input[type=range]::-moz-range-thumb {
+        background-color: #757d82;
+    }
+    input[type=range]::-ms-thumb {
+        background-color: #757d82;
+    }
+    /***** These are to edit the thumb and the text inside the thumb *****/
+    input[type=range] + .thumb {
+        background-color: #dedede;
+    }
+    input[type=range] + .thumb.active .value {
+        color: #757d82;
+    }
+
+
+    [type="checkbox"]:checked+label:before {
+        border-right: 2px solid #757d82;
+    border-bottom: 2px solid #757d82;
+    }
+
+    .btn-group-sm {
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        right: 80px;
+        align-content:flex-start
+    }
+
+    #index_calc {
+        height: 25px
+    }
+
+    .btn-group-sm>.btn, .btn-sm {
+        --bs-btn-font-size: 0.75rem;
+    }
+
+    .btn {
+        --bs-btn-padding-x: none;
+    }
+
+
+    /* style scrollbar */
+    .offcanvas::-webkit-scrollbar {
+        width: 12px;               /* width of the entire scrollbar */
+    }
+
+    .offcanvas::-webkit-scrollbar-track {
+        background: whitesmoke;        /* color of the tracking area */
+    }
+
+    .offcanvas::-webkit-scrollbar-thumb {
+        background-color: darkgrey;    /* color of the scroll thumb */
+        border-radius: 20px;       /* roundness of the scroll thumb */
+        border: 3px solid whitesmoke;  /* creates padding around scroll thumb */
+    }
+
+
+    #select-form {
+        font-size: 14px;
+    }
+
+    form {
+        font-size: 14px;
+    }
+
+
+
+    .form-select {
+      width: 30px !important;
+    }
+
+    select {
+        border-color: #f2f2f21a;
+    }
+
+    select option:hover {
+        background-color: #404040;
+    }
+
+
+
+    /*new layers design*/
+    #menu {
+        background: #fff;
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        right: 10px;
+        border-radius: 3px;
+        width: 120px;
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    #menu label {
+        font-size: 13px;
+        color: #404040;
+        display: block;
+        margin: 0;
+        /*padding: 0;*/
+        padding: 10px;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+        text-align: center;
+    }
+
+    #menu label:last-child {
+        border: none;
+    }
+
+    #menu label:hover {
+        background-color: #f8f8f8;
+        color: #404040;
+    }
+    /*#menu label, a.nav-link>input:checked {*/
+    /*    background-color: #3887be;*/
+    /*    color: #ffffff;*/
+    /*}*/
+
+    /*#menu label, input:checked:hover {*/
+    /*    background: #3074a4;*/
+    /*    !* color: #00008b; *!*/
+    /*}*/
+
+
+     .dropdown-menu {
+         width: 100%;
+     }
+
+     .layers_ul {
+        --bs-dropdown-border-color: none;
+        --bs-dropdown-link-active-bg: none;
+    }
+
+
+    /*toggle 3d later button */
+
+    .form-switch {
+      position: absolute;
+      /*bottom: 0.5%;*/
+      /*right: 7%;*/
+      /*bottom: 36%;*/
+      /*right: 26.8%;*/
+      right: 1%;
+      z-index: 1;
+      /*display: inline-block;*/
+      width: 60px;
+      height: 34px;
+    }
+
+     .button3d_bottom_graph {
+      bottom: 36%;
+    }
+
+    .button3d_bottom_no_graph {
+      bottom: 6%;
+    }
+
+    /*show only the tick from materialize, hide the bootstrap checkbox*/
+    [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        visibility: hidden;
+    }
+
+    /*for the 3d checkbox, hide the materialize tick */
+    #aspern_bkmBlocks:not(:checked), #aspern_bkmBlocks:checked {
+        visibility: visible;
+    }
+
+    #aspern_bkmBlocks:not(:checked), #aspern_bkmBlocks:checked {
+        position: initial;
+    }
+
+    #aspern_bkmBlocks+label:before {
+        content: none;
+    }
+
+    #aspern_bkmBlocks+label {
+        padding-left:0px;
+    }
+
+
+    /*legend */
+    /*#legend {*/
+    /*    !* background: white;  *!*/
+    /*    !* width: 300px;  *!*/
+    /*    border: 1px solid rgba(0, 0, 0, 0.05);*/
+    /*    position: absolute;*/
+    /*    z-index: 1;*/
+    /*    right: 27%;*/
+    /*    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);*/
+    /*    color: rgba(0, 0, 0, 0.5);*/
+    /*    }*/
+    /*.legend_ul ul{*/
+    /*    list-style-type: none;*/
+    /*    margin: 0;*/
+    /*    padding: 16px;*/
+    /*    width: 300px;*/
+    /*}*/
+    /*.legend_ul ul span{*/
+    /*    width: 10px;*/
+    /*    height: 10px;*/
+    /*    display: inline-block;*/
+    /*    margin-right: 8px;*/
+    /*    border-radius: 50%*/
+    /*}*/
+    /*.legend_ul {*/
+    /*    height: 200px;*/
+    /*    width: 180px;*/
+    /*    border: 1px  solid #eee;*/
+    /*    padding: 5px;*/
+    /*    overflow-y: auto;*/
+    /*}*/
+
+    #btn-close-layers:focus {
+        background-color: #757d82;
+        box-shadow: 0 0 0 0.25rem rgb(26 34 36 / 25%);
+    }
+
+     #btn-close-legend:focus {
+        background-color: #757d82;
+        box-shadow: 0 0 0 0.25rem rgb(26 34 36 / 25%);
+    }
+
+    input[type=text]:focus:not([readonly]){
+        border-bottom: 1px solid transparent;
+        box-shadow: 0 1px 0 0 transparent;
+    }
+    input[type=text] {
+        border-bottom: 1px solid transparent
+    }
+
+    button:focus {
+        background-color: lightgray;
+    }
+
+
+    /*color range */
+    .row {
+      height: 12px;
+      width: 100%;
+
+      --bs-gutter-x: 0;
+    }
+
+    .colors {
+      margin-bottom: 5px;
+
+    }
+
+    .labels .label {
+      width: 15%;
+      display: inline-block;
+      text-align: center;
+    }
+
+    li.label {
+      width: 6.7%;
+      display: inline-block;
+      text-align: center;
+    }
+
+    /*shannon button */
+    #shannon_group {
+        position: absolute;
+        z-index: 0;
+        top: 2%;
+        right: 1%;
+        align-content: flex-start;
+    }
+
+    #shannon_content {
+        position: absolute;
+        z-index: 1;
+        top: 5%;
+        right: 1%;
+    }
+
+    #green_group {
+        position: absolute;
+        z-index: 0;
+        top: 6%;
+        right: 1%;
+        align-content: flex-start;
+    }
+
+    #green_content {
+        position: absolute;
+        top: 9%;
+        right: 1%;
+        z-index: 1;
+    }
+
+    #osr_group {
+        position: absolute;
+        z-index: 0;
+        top: 10%;
+        right: 1%;
+        align-content: flex-start;
+    }
+
+    #osr_content {
+        position: absolute;
+        top: 13%;
+        right: 1%;
+        z-index: 1;
+
+    }
+
+    #max_height_group {
+        position: absolute;
+        z-index: 0;
+        top: 14%;
+        right: 1%;
+        align-content: flex-start;
+    }
+
+    #max_height_content {
+        position: absolute;
+        top: 17%;
+        right: 1%;
+        z-index: 1;
+
+    }
+
+
+
+    .btn:hover {
+        background-color: #6c757d;
+        border-color: #2125296b;
+    }
+    .btn:active {
+        background-color: #6c757d;
+        border-color: #2125296b;
+    }
+    .btn:focus {
+        background-color: #6c757d;
+        border-color: #2125296b;
+    }
+
+    .btn-group>.btn {
+        height: 25px;
+        width: 140px;
+    }
+
+    /*#legend_section {*/
+    /*   position: absolute;*/
+    /*    z-index: 1;*/
+    /*    top: 10px;*/
+    /*    left: 20px;*/
+    /*    border-radius: 3px;*/
+    /*    width: 50px;*/
+    /*    height: 25px;*/
+    /*    align-content:flex-start*/
+    /*}*/
+
+    .card {
+        width: 18rem;
+        display:none;
+        height: 20%
+    }
+    .card-body{
+        height: 90%;  padding-top: 1px;
+    }
+
+    #shannon_content .label {
+        width: 19%;
+    }
+
+    .spinner-border-sm {
+    --bs-spinner-border-width: 0.1em;
+    }
+
+    .card .btn-close{
+        position: absolute;
+        right: 0px;
+
+    }
+
+
+
+
+</style>
+</head>
+<body>
+
+
+<div id="map" class="split_no_graph left"></div>
+
+
+<!--3d button -->
+<div>
+    <div class="form-check form-switch button3d_bottom_no_graph" >
+      <input class="form-check-input" type="checkbox" id="aspern_bkmBlocks">
+      <label class="form-check-label" for="aspern_bkmBlocks">3D</label>
+    </div>
+</div>
+
+
+<!--analyse button-->
+<!--<button type="button" id="analyse" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="" >-->
+<!--  Analysis-->
+<!--</button>-->
+<!--<div id="shannon_content" style="height: 20%; width: 20%">-->
+<!--      <div class='session'>-->
+<!--        <h2>Surface</h2>-->
+<!--        <div class='row colors' style="background: linear-gradient(to right, #FFE4B5, #DEB887,#F4A460, #CD853F, #D2691E, #8B4513, #774c43);">-->
+<!--        </div>-->
+<!--        <div class='row labels'>-->
+<!--          <div class='label'>5</div>-->
+<!--          <div class='label'>10</div>-->
+<!--          <div class='label'>50</div>-->
+<!--          <div class='label'>300</div>-->
+<!--          <div class='label'>500</div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--</div>-->
+
+
+<!--shannon section-->
+<section>
+<div class="btn-group btn-group-sm" id="shannon_group" role="group" aria-label="Small button group">
+    <button type="button" id="shannon" class="btn btn-outline-dark">Shannon Index</button>
+</div>
+
+<div class="card" style="width: 18rem; display:none; height: 20%" id="shannon_content">
+    <button id="btn-close-shannon" type="button" class="btn-close" aria-label="Close"></button>
+    <h6 class="card-title"style="text-align: center;">Shannon Index  <div class="spinner-border spinner-border-sm" role="status" style="display: inline-block;">
+      <span class="visually-hidden">Loading...</span>
+    </div></h6>
+
+  <div class="card-body" style="height: 90%;  padding-top: 1px;">
+    <p class="card-text"> Short index explanation</p>
+      <br>
+      <br>
+
+            <div>
+          <div>
+            <div class='row colors' style="background: linear-gradient(to right, #e1aeb4, #d3828f,#d55f5f, #b42f2f, #8c172c);">
+            </div>
+            <div class='row labels'>
+              <div class='label'>0.8</div>
+              <div class='label'>1</div>
+              <div class='label'>1.4</div>
+              <div class='label'>1.8</div>
+              <div class='label'>2.21</div>
+            </div>
+          </div>
+        </div>
+
+  </div>
+</div>
+</section>
+
+
+
+<!--green section-->
+<section>
+<div class="btn-group btn-group-sm" id="green_group" role="group" aria-label="Small button group">
+    <button type="button" id="green" class="btn btn-outline-dark ">Green Area</button>
+<!--form-check-input-->
+</div>
+
+<div class="card" style="width: 18rem; display:none; height: 20%" id="green_content">
+    <button id="btn-close-green" type="button" class="btn-close" aria-label="Close"></button>
+    <h6 class="card-title" style="text-align: center;">Green Area</h6>
+
+  <div class="card-body" style="height: 90%; padding-top: 1px;">
+    <p class="card-text"> Share (percentage) of green area within block</p>
+      <br>
+      <br>
+
+      <div>
+          <div>
+            <div class='row colors' style="background: linear-gradient(to right, #72de62, #6cd15c,#66c758, #62bf54, #5eb851, #57a84a, #4f9943, #478a3d, #3e7835, #34662d);">
+            </div>
+            <div class='row labels'>
+              <div class='label'>10</div>
+              <div class='label'>30</div>
+              <div class='label'>50</div>
+              <div class='label'>70</div>
+              <div class='label'>90</div>
+              <div class='label'>110</div>
+            </div>
+          </div>
+        </div>
+
+  </div>
+</div>
+</section>
+
+
+<!--osr section-->
+<section>
+<div class="btn-group btn-group-sm" id="osr_group" role="group" aria-label="Small button group">
+    <button type="button" id="osrbut" class="btn btn-outline-dark ">Open Space Ratio</button>
+</div>
+
+<div class="card" style="width: 18rem; display:none; height: 20%" id="osr_content">
+    <button id="btn-close-osr" type="button" class="btn-close" aria-label="Close"></button>
+    <h6 class="card-title" style="text-align: center;">OSR</h6>
+
+  <div class="card-body" style="height: 90%; padding-top: 1px;">
+    <p class="card-text"> Open space share relative to the building square footage</p>
+      <br>
+
+
+      <div>
+          <div>
+            <div class='row colors' style="background: linear-gradient(to right, #a9d6e5, #89c2d9,#61a5c2, #468faf, #2c7da0, #2a6f97, #014f86, #01497c, #013a63);">
+            </div>
+            <div class='row labels'>
+              <div class='label'>5</div>
+              <div class='label'>10</div>
+              <div class='label'>30</div>
+              <div class='label'>50</div>
+              <div class='label'>80</div>
+              <div class='label'>100</div>
+            </div>
+          </div>
+        </div>
+
+  </div>
+</div>
+</section>
+
+
+<!--max height section-->
+<section>
+<div class="btn-group btn-group-sm" id="max_height_group" role="group" aria-label="Small button group">
+    <button type="button" id="max_heightbut" class="btn btn-outline-dark ">Max Height</button>
+</div>
+
+<div class="card" style="width: 18rem; display:none; height: 20%" id="max_height_content">
+    <button id="btn-close-max_height" type="button" class="btn-close" aria-label="Close"></button>
+    <h6 class="card-title" style="text-align: center;">Max height</h6>
+
+  <div class="card-body" style="height: 90%; padding-top: 1px;">
+    <p class="card-text"> Open space share relative to the building square footage</p>
+      <br>
+
+
+      <div>
+          <div>
+            <div class='row colors' style="background: linear-gradient(to right,  #edc4b3, #e6b8a2,#deab90, #cd9777, #c38e70, #b07d62, #9d6b53, #8a5a44);">
+            </div>
+            <div class='row labels'>
+              <div class='label'>10</div>
+              <div class='label'>30</div>
+              <div class='label'>50</div>
+              <div class='label'>70</div>
+              <div class='label'>90</div>
+              <div class='label'>100</div>
+            </div>
+          </div>
+        </div>
+
+  </div>
+</div>
+</section>
+
+
+
+<!--send data button-->
+<div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+    <button style="display:none" id="index_calc" type="button" class="btn btn-outline-dark">Index</button>
+</div>
+
+
+<!-- LEFT CANVAS (LAYERS)-->
+<button id="btn-open-layers" class="btn btn-outline-secondary " type="button" ><i style="font-size: 1.1rem" class="material-icons small">filter_none</i></button>
+<div style="height: 70%" class="split left offcanvas offcanvas-start offcanvas-size-sm menu" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling1" aria-labelledby="offcanvasScrollingLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel1">Layers</h5>
+    <button id="btn-close-layers" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body" style="height: 80%">
+
+<!--      layers-->
+      <ul class="navbar-nav" style="height: 95%; overflow-y: auto">
+<!--          justify-content-end flex-grow-1 pe-3-->
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Land Use
+              </a>
+              <ul class="dropdown-menu layers_ul">
+<!--                  <div class="form-check dropdown-item">-->
+<!--                    <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr">-->
+<!--                    <label class="form-check-label" for="aspern_blocks_attr">-->
+<!--                        Block Attributes-->
+<!--                    </label>-->
+<!--                  </div>-->
+<!--                  <div class="form-check dropdown-item">-->
+<!--                    <input class="form-check-input" type="checkbox" value="" id="aspern_realUseBlocks" >-->
+<!--                    <label class="form-check-label" for="aspern_realUseBlocks">-->
+<!--                        Real Use - detailed blocks-->
+<!--                    </label>-->
+<!--                  </div>-->
+                   <div class="form-check dropdown-item">
+                    <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr_realUseBlocks">
+                    <label class="form-check-label" for="aspern_blocks_attr_realUseBlocks">
+                        Generalised blocks
+                    </label>
+                  </div>
+                  <div class="form-check dropdown-item">
+                    <input class="form-check-input" type="checkbox" value="" id="aspern_landuse">
+                    <label class="form-check-label" for="aspern_landuse">
+                        Land Use - block level
+                    </label>
+                  </div>
+                  <div class="form-check dropdown-item">
+                    <input class="form-check-input" type="checkbox" value="" id="osr">
+                    <label class="form-check-label" for="osr">
+                        Open Space Ratio
+                    </label>
+                </div>
+                <div class="form-check dropdown-item">
+                    <input class="form-check-input" type="checkbox" value="" id="zoning">
+                    <label class="form-check-label" for="zoning">
+                        Zoning
+                    </label>
+                </div>
+                  <div class="form-check dropdown-item">
+                    <input class="form-check-input" type="checkbox" value="" id="green_area">
+                    <label class="form-check-label" for="green_area">
+                        Green Area
+                    </label>
+                </div>
+                  <div class="form-check dropdown-item">
+                    <input class="form-check-input" type="checkbox" value="" id="max_height">
+                    <label class="form-check-label" for="max_height">
+                        Maximum height
+                    </label>
+                </div>
+
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Road & public transport net
+                </a>
+                <ul class="dropdown-menu layers_ul">
+                    <div class="form-check dropdown-item">
+                        <input class="form-check-input" type="checkbox" value="" id="aspern_roads" >
+                        <label class="form-check-label" for="aspern_roads">
+                            Street center-line
+                        </label>
+                  </div>
+                    <div class="form-check dropdown-item">
+                        <input class="form-check-input" type="checkbox" value="" id="aspern_publiclines">
+                        <label class="form-check-label" for="aspern_publiclines">
+                            Public transport lines
+                        </label>
+                  </div>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  PoIs
+                </a>
+                <ul class="dropdown-menu layers_ul">
+                    <div class="form-check dropdown-item">
+                        <input class="form-check-input" type="checkbox" value="" id="shops">
+                        <label class="form-check-label" for="shops">
+                            Shops
+                        </label>
+                    </div>
+                    <div class="form-check dropdown-item">
+                        <input class="form-check-input" type="checkbox" value="" id="aspern_trees_blocks">
+                        <label class="form-check-label" for="aspern_trees_blocks">
+                            Tree layer
+                        </label>
+                  </div>
+                    <div class="form-check dropdown-item">
+                        <input class="form-check-input" type="checkbox" value="" id="aspern_publicstops" >
+                        <label class="form-check-label" for="aspern_publicstops">
+                            Public transport stations
+                        </label>
+                  </div>
+                </ul>
+              </li>
+      </ul>
+
+<!--      legend -->
+<!--      <div class="dropdown-center" id="legend" style="display: none">-->
+<!--        <button class="btn btn-secondary btn-light dropdown-toggle vertical-scrollable" type="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--            Legend-->
+<!--        </button>-->
+<!--        <ul class="dropdown-menu legend_ul">-->
+<!--        </ul>-->
+<!--      </div>-->
+
+
+
+      <section>
+          <ul class="legend_ul" style="padding-left: 0rem;">
+        </ul>
+      </section>
+  </div>
+</div>
+
+
+<!--RIGHT CANVAS (LEGEND)-->
+<!--<button id="btn-open-legend" class="btn btn-outline-secondary " type="button" ><i style="font-size: 1.1rem" class="material-icons small">info_outline</i>-->
+<!--</button>-->
+<!--<div class="split right offcanvas offcanvas-end menu offcanvas-size-sm" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling3" aria-labelledby="offcanvasScrollingLabel">-->
+<!--  <div class="offcanvas-header">-->
+<!--    <h5 class="offcanvas-title" id="offcanvasScrollingLabel3">Legend</h5>-->
+<!--    <button id="btn-close-legend" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>-->
+<!--  </div>-->
+<!--  <div class="offcanvas-body" style="height: 80%">-->
+
+<!--&lt;!&ndash;      <ul class="legend_ul">&ndash;&gt;-->
+<!--&lt;!&ndash;        </ul>&ndash;&gt;-->
+
+<!--&lt;!&ndash;      <section id="legend_section">&ndash;&gt;-->
+<!--&lt;!&ndash;          <ul class="legend_ul" style="padding-left: 0rem;">&ndash;&gt;-->
+<!--&lt;!&ndash;        </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;        </section>&ndash;&gt;-->
+
+<!--&lt;!&ndash;      <div class="btn-group">&ndash;&gt;-->
+<!--&lt;!&ndash;      <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">&ndash;&gt;-->
+<!--&lt;!&ndash;        Small button&ndash;&gt;-->
+<!--&lt;!&ndash;      </button>&ndash;&gt;-->
+<!--&lt;!&ndash;      <ul class="dropdown-menu legend_ul">&ndash;&gt;-->
+<!--&lt;!&ndash;        ...&ndash;&gt;-->
+<!--&lt;!&ndash;      </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<!--<section id="legend_section">-->
+<!--  <ul class="legend_ul" style="padding-left: 0rem;">-->
+<!--</ul>-->
+<!--</section>-->
+
+
+<!-- BOTTOM CANVAS (GRAPHS) -->
+<div class="split left bottom split right offcanvas offcanvas-bottom" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Graphs</h5>
+    </div>
+    <div class="offcanvas-body">
+
+        <div id="graph1"></div>
+        <div id="graph2"></div>
+
+    </div>
+</div>
+
+
+
+<!--<i style="font-size: 1.1rem" class="material-icons small">info_outline</i>-->
+
+
+
+
+<script>
+// var popover = new bootstrap.Popover(document.querySelector('#analyse'), {
+//   container: 'body',
+//     html : true,
+//       content: function() {
+//         return document.getElementById('popover_content').outerHTML;}
+// })
+
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+
+
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiaXVsaWFtaWhhZWxhIiwiYSI6ImNsNmdiMTEwZTBwYmczb3ByMGY2YnhwcGEifQ.iwOH4cy-z0B3Q8a41_yfSQ';
+const map = new mapboxgl.Map({
+  container: 'map', // container ID
+  style: 'mapbox://styles/mapbox/light-v10',
+  center: [16.507,48.225], // starting position [lng, lat]
+  zoom: 13.66, // starting zoom
+ });
+
+
+// define the html for the legend for each layer
+// const legend_aspern_blocks_attr= '   <li><strong>Main Form of Usage: </strong></li>\n' +
+//     '            <br>\n' +
+//     '            <li><span style="background: #60c36c;"></span>greenSpace: <em>green open spaces, gardens, agricultural land</em></li>\n' +
+//     '            <li><span style="background: #856666;"></span>sealedSpace: <em>public and private sealed area, including roads, bike paths etc.</em></li>\n' +
+//     '            <li><span style="background: #ad949e;"></span>buildings</li>\n' +
+//     '            <li><span style="background: #808080;"></span>construction: <em>construction sites, gravel pit</em></li>\n' +
+//     '            <li><span style="background: #0080FF;"></span>water</li>\n';
+
+const legend_aspern_blocks_attr=
+    '            <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>\n' +
+    '            <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>\n' +
+    '            <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>\n' +
+    '            <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>\n' +
+    '            <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>\n';
+
+
+
+
+const legend_aspern_realUseBlocks ='   <li><strong>Class (”land cover”): </strong></li>\n' +
+    '            <br>\n' +
+    '            <li class="label"><span style="background: #60c36c;"></span>green area: <em>green open spaces, gardens, agricultural land</em></li>\n' +
+    '            <li class="label"><span style="background: #856666;"></span>sealed area (excluding buildings): <em>public and private sealed area excluding buildings, including roads, bike paths etc.</em></li>\n' +
+    '            <li class="label"><span style="background: #ad949e;"></span>buildings</li>\n' +
+    '            <li class="label"><span style="background: #808080;"></span>construction site: <em>construction sites, gravel pit</em></li>\n' +
+    '            <li class="label"><span style="background: #0080FF;"></span>water body</li>\n';
+
+const legend_aspern_bkmBlocks = '';
+
+// const legend_aspern_landuse ='   <li><strong>Land Use: </strong></li>\n' +
+//     '            <br>\n' +
+//     '            <li><span style="background: #88db35;"></span>recreation and leisure facilities</li>\n' +
+//     '            <li><span style="background: #e2d4c0;"></span>business and mixed use with emphasis on business activity</li>\n' +
+//     '            <li><span style="background: #60c8c5;"></span>water</li>\n' +
+//     '            <li><span style="background: #de8d24;"></span>industrial and commercial uses</li>\n' +
+//     '            <li><span style="background: #8baf76;"></span>agriculture</li>\n'+
+//     '            <li><span style="background: #bce48b;"></span>natural area</li>\n' +
+//     '            <li><span style="background: #c4bcef;"></span>social infrastructure</li>\n' +
+//     '            <li><span style="background: #c2d0a1;"></span>technical infrastructure/art buildings/special uses</li>\n' +
+//     '            <li><span style="background: #a8cfc6;"></span>other transportation uses</li>\n' +
+//     '            <li><span style="background: #d9bdc6;"></span>residential and mixed use with emphasis on residential</li>\n'+
+//     '            <li><span style="background: #d2e0c5;"></span>road space</li>\n';
+
+const legend_aspern_landuse =
+    '            <li class="label"><span style="background: #88db35;" data-bs-toggle="tooltip" data-bs-placement="left" title="recreation and leisure facilities"></span></li>\n' +
+    '            <li class="label"><span style="background: #e2d4c0;" data-bs-toggle="tooltip" data-bs-placement="left" title="business and mixed use with emphasis on business activity"></span></li>\n' +
+    '            <li class="label"><span style="background: #60c8c5;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>\n' +
+    '            <li class="label"><span style="background: #de8d24;" data-bs-toggle="tooltip" data-bs-placement="left" title="industrial and commercial uses"></span></li>\n' +
+    '            <li class="label"><span style="background: #8baf76;" data-bs-toggle="tooltip" data-bs-placement="left" title="agriculture"></span></li>\n'+
+    '            <li class="label"><span style="background: #bce48b;" data-bs-toggle="tooltip" data-bs-placement="left" title="natural area"></span></li>\n' +
+    '            <li class="label"><span style="background: #c4bcef;" data-bs-toggle="tooltip" data-bs-placement="left" title="social infrastructure"></span></li>\n' +
+    '            <li class="label"><span style="background: #c2d0a1;" data-bs-toggle="tooltip" data-bs-placement="left" title="technical infrastructure/art buildings/special uses"></span></li>\n' +
+    '            <li class="label"><span style="background: #a8cfc6;" data-bs-toggle="tooltip" data-bs-placement="left" title="other transportation uses"></span></li>\n' +
+    '            <li class="label"><span style="background: #d9bdc6;" data-bs-toggle="tooltip" data-bs-placement="left" title="residential and mixed use with emphasis on residential"></span></li>\n'+
+    '            <li class="label"><span style="background: #d2e0c5;" data-bs-toggle="tooltip" data-bs-placement="left" title="road space"></span></li>\n';
+
+
+// const legend_aspern_roads ='   <li><strong>Road Category of the Section: </strong></li>\n' +
+//     '            <br>\n' +
+//     '            <li><span style="background: #FFFF66;"></span>G: <em>municipal road</em></li>\n' +
+//     '            <li><span style="background: #FF9933;"></span>L: <em>state main road</em></li>\n'+
+//     '            <li><span style="background: #a117c7;"></span>B: <em>main road</em></li>\
+
+const legend_aspern_roads =
+    '            <li class="label"><span style="background: #FFFF66;" data-bs-toggle="tooltip" data-bs-placement="left" title="G: municipal road"></span></li>\n' +
+    '            <li class="label"><span style="background: #FF9933;" data-bs-toggle="tooltip" data-bs-placement="left" title="L: state main road"></span></li>\n'+
+    '            <li class="label"><span style="background: #a117c7;" data-bs-toggle="tooltip" data-bs-placement="left" title="B: main road"></span></li>\n';
+
+
+// const legend_aspern_publiclines ='   <li><strong>Type of the Means of Transport: </strong></li>\n' +
+//     '            <br>\n' +
+//     '            <li><span style="background: #CC0000;"></span>13: <em>astax</em></li>\n' +
+//     '            <li><span style="background: #FF8000;"></span>3: <em>regional bus</em></li>\n' +
+//     '            <li><span style="background: #FFFF00;"></span>2: <em>bus</em></li>\n' +
+//     '            <li><span style="background: #00FF00;"></span>5: <em>rapid transit and regional train</em></li>\n' +
+//     '            <li><span style="background: #00FFFF;"></span>9: <em>astax</em></li>\n'+
+//     '            <li><span style="background: #0000FF;"></span>10: <em>night bus</em></li>\n' +
+//     '            <li><span style="background: #FF33FF;"></span>11: <em>night bus</em></li>\n' +
+//     '            <li><span style="background: #FF3399;"></span>4: <em>subway</em></li>\n';
+
+const legend_aspern_publiclines =
+    '            <li class="label"><span style="background: #CC0000;" data-bs-toggle="tooltip" data-bs-placement="left" title="13: astax"></span></li>\n' +
+    '            <li class="label"><span style="background: #FF8000;" data-bs-toggle="tooltip" data-bs-placement="left" title="3: regional bus"></span></li>\n' +
+    '            <li class="label"><span style="background: #FFFF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="2: bus"></span></li>\n' +
+    '            <li class="label"><span style="background: #00FF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="5: rapid transit and regional train"></span></li>\n' +
+    '            <li class="label"><span style="background: #00FFFF;" data-bs-toggle="tooltip" data-bs-placement="left" title="9: astax"></span></li>\n'+
+    '            <li class="label"><span style="background: #0000FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="10: night bus"></span></li>\n' +
+    '            <li class="label"><span style="background: #FF33FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="11: night bus"></span></li>\n' +
+    '            <li class="label"><span style="background: #FF3399;" data-bs-toggle="tooltip" data-bs-placement="left" title="4: subway"></span></li>\n';
+
+
+// const legend_aspern_trees_blocks ='   <li><strong>Classification Categories of Tree height: </strong></li>\n' +
+//     '            <br>\n' +
+//     '            <li class="label"><span style="background: #99FF99;"></span>0</li>\n' +
+//     '            <li class="label"><span style="background: #66FF66;"></span>1</li>\n' +
+//     '            <li class="label"><span style="background: #33FF33;"></span>2</li>\n' +
+//     '            <li class="label"><span style="background: #00CC00;"></span>3</li>\n' +
+//     '            <li class="label"><span style="background: #00CC00;"></span>4</li>\n'+
+//     '            <li class="label"><span style="background: #009900;"></span>5</li>\n';
+
+const legend_aspern_trees_blocks =
+    '      <div>\n' +
+    '        <div class=\'row colors\' style="background: linear-gradient(to right, #99FF99, #66FF66,#33FF33, #00CC00, #00CC00, #009900);">\n' +
+    '        </div>\n' +
+    '        <div class=\'row labels\'>\n' +
+    '          <div class=\'label\'>0</div>\n' +
+    '          <div class=\'label\'>1</div>\n' +
+    '          <div class=\'label\'>2</div>\n' +
+    '          <div class=\'label\'>3</div>\n' +
+    '          <div class=\'label\'>4</div>\n' +
+    '          <div class=\'label\'>5</div>\n' +
+    '        </div>\n' +
+    '      </div>\n' +
+    '    </div>'+
+    '<div>\n';
+
+// const legend_aspern_publicstops ='   <li><strong>Type of the Means of Transport: </strong></li>\n' +
+//     '            <br>\n' +
+//     '            <li><span style="background: #CC0000;"></span>13: <em>astax</em></li>\n' +
+//     '            <li><span style="background: #FF8000;"></span>3: <em>regional bus</em></li>\n' +
+//     '            <li><span style="background: #FFFF00;"></span>2: <em>bus</em></li>\n' +
+//     '            <li><span style="background: #00FF00;"></span>5: <em>rapid transit and regional train</em></li>\n' +
+//     '            <li><span style="background: #00FFFF;"></span>9: <em>astax</em></li>\n'+
+//     '            <li><span style="background: #0000FF;"></span>10: <em>night bus</em></li>\n' +
+//     '            <li><span style="background: #FF33FF;"></span>11: <em>night bus</em></li>\n' +
+//     '            <li><span style="background: #FF3399;"></span>4: <em>subway</em></li>\n';
+
+const legend_aspern_publicstops = legend_aspern_publiclines;
+
+const legend_shops = '';
+
+const legend_zoning =
+    '            <li class="label"><span style="background: #774c43;" data-bs-toggle="tooltip" data-bs-placement="left" title="E: recreation area"></span></li>\n' +
+    '            <li class="label"><span style="background: #8B4513;" data-bs-toggle="tooltip" data-bs-placement="left" title="GB: mixed developement"></span></li>\n' +
+    '            <li class="label"><span style="background: #D2691E;" data-bs-toggle="tooltip" data-bs-placement="left" title="GBBG: mixed developement - business developement area"></span></li>\n' +
+    '            <li class="label"><span style="background: #CD853F;" data-bs-toggle="tooltip" data-bs-placement="left" title="GBGV: mixed developement - business district"></span></li>\n' +
+    '            <li class="label"><span style="background: #F4A460;" data-bs-toggle="tooltip" data-bs-placement="left" title="IG: industrial area"></span></li>\n'+
+    '            <li class="label"><span style="background: #DEB887;" data-bs-toggle="tooltip" data-bs-placement="left" title="S: protected area"></span></li>\n' +
+    '            <li class="label"><span style="background: #FFE4B5;" data-bs-toggle="tooltip" data-bs-placement="left" title="WO: residential area"></span></li>\n' +
+    '            <li class="label"><span style="background: #000000;" data-bs-toggle="tooltip" data-bs-placement="left" title="Other"></span></li>\n'
+
+    // '      <br>\n' +
+    // '      <div>\n' +
+    // '        <div class=\'row colors\' style="background: linear-gradient(to right, #FFE4B5, #DEB887,#F4A460, #CD853F, #D2691E, #8B4513, #774c43);">\n' +
+    // '        </div>\n' +
+    // '      </div>\n' +
+    // '    </br>';
+
+const legend_osr = '<div>\n' +
+    '      <div>\n' +
+    '        <div class=\'row colors\' style="background: linear-gradient(to right, #a9d6e5, #89c2d9,#61a5c2, #468faf, #2c7da0, #2a6f97, #014f86, #01497c, #013a63);">\n' +
+    '        </div>\n' +
+    '        <div class=\'row labels\'>\n' +
+    '          <div class=\'label\'>5</div>\n' +
+    '          <div class=\'label\'>10</div>\n' +
+    '          <div class=\'label\'>30</div>\n' +
+    '          <div class=\'label\'>50</div>\n' +
+    '          <div class=\'label\'>80</div>\n' +
+    '          <div class=\'label\'>100</div>\n' +
+    '        </div>\n' +
+    '      </div>\n' +
+    '    </div>'+
+    '<div>\n';
+
+
+const legend_green_area = '<div>\n' +
+    '      <div>\n' +
+    '        <div class=\'row colors\' style="background: linear-gradient(to right, #72de62, #6cd15c,#66c758, #62bf54, #5eb851, #57a84a, #4f9943, #478a3d, #3e7835, #34662d);">\n' +
+    '        </div>\n' +
+    '        <div class=\'row labels\'>\n' +
+    '          <div class=\'label\'>10</div>\n' +
+    '          <div class=\'label\'>30</div>\n' +
+    '          <div class=\'label\'>50</div>\n' +
+    '          <div class=\'label\'>70</div>\n' +
+    '          <div class=\'label\'>90</div>\n' +
+    '          <div class=\'label\'>110</div>\n' +
+    '        </div>\n' +
+    '      </div>\n' +
+    '    </div>';
+
+const legend_max_height = '<div>\n' +
+    '      <div>\n' +
+    '        <div class=\'row colors\' style="background: linear-gradient(to right, #edc4b3, #e6b8a2,#deab90, #cd9777, #c38e70, #b07d62, #9d6b53, #8a5a44);">\n' +
+    '        </div>\n' +
+    '        <div class=\'row labels\'>\n' +
+    '          <div class=\'label\'>10</div>\n' +
+    '          <div class=\'label\'>30</div>\n' +
+    '          <div class=\'label\'>50</div>\n' +
+    '          <div class=\'label\'>70</div>\n' +
+    '          <div class=\'label\'>90</div>\n' +
+    '          <div class=\'label\'>100</div>\n' +
+    '        </div>\n' +
+    '      </div>\n' +
+    '    </div>';
+
+
+
+// store the properties to be displayed for each layer
+const properties_aspern_blocks_attr = ['main_cover', 'OSR', 'max_height', 'count_trees', 'count_trees20m', 'count_shops', 'zoning']
+const properties_aspern_realUseBlocks = ['class'];
+const properties_aspern_bkmBlocks = ['height'];
+const properties_aspern_landuse = ['use_lvl1', 'use_lvl2', 'use_lvl3'];
+const properties_aspern_roads = ['name', 'category', 'form ', 'width '];
+const properties_aspern_publiclines = ['line', 'line_type'];
+const properties_aspern_trees_blocks = ['species', 'year', 'address', 'height'];
+const properties_aspern_publicstops = ['stop_name', 'line', 'line_type'];
+const properties_shops = ['shop'];
+const properties_osr = ['main_cover', 'OSR', 'openspace'];
+const properties_zoning = ['main_cover', 'zoning_code', 'zoning'];
+const properties_green_area = ['main_cover', 'area_green_rel'];
+const properties_max_height = ['main_cover', 'max_height'];
+
+
+// define the dictionaries that are going to store the geojson data that is going to get updated
+// var data = '';
+data_prototype_layerWGS84 = '';
+data_aspern_blocks_attr=''
+data_aspern_realUseBlocks = '';
+data_aspern_bkmBlocks = '';
+data_aspern_landuse = '';
+data_aspern_roads = '';
+data_aspern_publiclines = '';
+data_aspern_trees_blocks = '';
+data_aspern_publicstops = '';
+data_shops = '';
+// define the dictionaries that are going to store the geojson data that is going to stay intact
+original_data_prototype_layerWGS84 = '';
+original_data_aspern_blocks_attr=''
+original_data_aspern_realUseBlocks = '';
+original_data_aspern_bkmBlocks = '';
+original_data_aspern_landuse = '';
+original_data_aspern_roads = '';
+original_data_aspern_publiclines = '';
+original_data_aspern_trees_blocks = '';
+original_data_aspern_publicstops = '';
+original_data_shops = '';
+
+const file_path = ["../data/prototype_layerWGS84.geojson","../data/final/aspern_blocks_attr.geojson", "../data/final/aspern_blocks_final.geojson", "../data/final/aspern_realUseBlocks.geojson", "../data/final/aspern_landcover_final.geojson", "../data/final/aspern_bkmBlocks.geojson", "../data/final/aspern_landuse.geojson", "../data/final/aspern_roads.geojson", "../data/final/aspern_publiclines.geojson", "../data/final/aspern_trees_blocks.geojson", "../data/final/aspern_publicstops.geojson", "../data/final/shops.geojson"]
+
+
+//..............open all files...............//
+cnt = 0, xmlhttp = new XMLHttpRequest(), method = "GET";
+function getXml() {
+  xmlhttp.open(method, file_path[cnt], true);
+  xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState === XMLHttpRequest.DONE && xmlhttp.status === 200) {
+        try {
+            const json_response = JSON.parse(this.responseText);
+            console.log(JSON.parse(this.responseText).name);
+            switch(json_response.name){
+                // case 'prototype_layerWGS84':
+                //     original_data_prototype_layerWGS84 = json_response;
+                //     data_prototype_layerWGS84 = json_response;
+                //     load_layer_prototype_layerWGS84()
+                //     break;
+                case 'aspern_blocks_final':  //'aspern_blocks_attr4':
+                    data= json_response;
+                    data_aspern_blocks_attr = json_response;
+                    original_data_aspern_blocks_attr = json_response;
+                    load_layer_aspern_blocks_attr()
+                    load_layer_osr()
+                    load_layer_zoning()
+                    load_layer_green_area()
+                    load_layer_max_height()
+                    break;
+                case 'aspern_landcover_final':  //'aspern_realUseBlocks':
+                    data_aspern_realUseBlocks = json_response;
+                    original_data_aspern_realUseBlocks = json_response;
+                    load_layer_aspern_realUseBlocks()
+                    load_layer_aspern_blocks_attr_realUseBlocks()
+                    break;
+                case 'aspern_bkmBlocks':
+                    data_aspern_bkmBlocks = json_response;
+                    original_data_aspern_bkmBlocks = json_response;
+                    load_layer_aspern_bkmBlocks()
+                    break;
+                case 'aspern_landuse_cl':
+                    data_aspern_landuse = json_response;
+                    original_data_aspern_landuse = json_response;
+                    load_layer_aspern_landuse()
+                    break;
+                case 'aspern_roads':
+                    data_aspern_roads = json_response;
+                    original_data_aspern_roads = json_response;
+                    load_layer_aspern_roads()
+                    break;
+                case 'aspern_publiclines':
+                    data_aspern_publiclines = json_response;
+                    original_data_aspern_publiclines = json_response;
+                    load_layer_aspern_publiclines()
+                    break;
+                case 'aspern_trees_blocks':
+                    data_aspern_trees_blocks = json_response;
+                    original_data_aspern_trees_blocks = json_response;
+                    load_layer_aspern_trees_blocks()
+                    break;
+                case 'aspern_publicstops':
+                    data_aspern_publicstops = json_response;
+                    original_data_aspern_publicstops = json_response;
+                    load_layer_aspern_publicstops()
+                    break;
+                case 'shops':
+                    data_shops = json_response;
+                    original_data_shops = json_response;
+                    load_layer_shops()
+                    break;
+            }
+        }
+        catch (error) {
+            console.log('Error parsing JSON:', error, data);
+        }
+      cnt++;
+      if (cnt < file_path.length) getXml(); // call again
+    }
+  };
+  xmlhttp.send();
+}
+//getXml(); // start it
+
+
+// navigation
+var nav = new mapboxgl.NavigationControl();
+map.addControl(nav, 'bottom-left')
+
+map.addControl(new mapboxgl.ScaleControl(), 'bottom-right');
+
+
+// functions for loading the different layers
+function load_layer_prototype_layerWGS84(){
+      map.addLayer(
+      {
+        'id': 'layer_prototype_layerWGS84',
+        'type': 'fill',
+        'source': {
+            type: 'geojson',
+            data: data_prototype_layerWGS84
+            },
+        'paint': {
+
+        'fill-color': [
+                'match',
+                ['get', 'LAYER'],
+                'Grünfläche',
+                '#60c36c',
+                'sealed',
+                '#856666',
+                'Gebäude',
+                '#ad949e',
+                '#000000' // any other store type
+              ]
+        },
+        'layout': {
+                'visibility': 'none'
+        },
+      });
+}
+
+function load_layer_aspern_blocks_attr(){
+    map.addLayer(
+      {
+        'id': 'layer_aspern_blocks_attr',
+        'type': 'fill',
+        'source': {
+            type: 'geojson',
+            data: data_aspern_blocks_attr
+            },
+        'paint': {
+        'fill-color': [
+                'match',
+                ['get', 'main_cover'],
+                'green area',
+                '#60c36c',
+                'other sealed area',
+                '#856666',
+                'buildings',
+                '#ad949e',
+                'construction site',
+                '#808080',
+                'water',
+                '#0080FF',
+                '#000000' // any other store type
+              ]
+        },
+        'layout': {
+                'visibility': 'none'
+        },
+      });
+}
+
+function load_layer_aspern_realUseBlocks(){
+    map.addLayer(
+      {
+        'id': 'layer_aspern_realUseBlocks',
+        'type': 'fill',
+        'source': {
+            type: 'geojson',
+            data: data_aspern_realUseBlocks
+            },
+        'paint': {
+        'fill-color': [
+                'match',
+                ['get', 'class'],
+                'green area',
+                '#60c36c',
+                'sealed area (excluding buildings)',
+                '#856666',
+                'buildings',
+                '#ad949e',
+                'construction site',
+                '#808080',
+                'water body',
+                '#0080FF',
+                '#000000' // any other store type
+              ]
+        },
+        'layout': {
+                'visibility': 'none'
+        },
+      });
+}
+
+function load_layer_aspern_bkmBlocks(){
+    map.addLayer(
+    {
+        'id': 'layer_aspern_bkmBlocks',
+        'source': {
+            type: 'geojson',
+            data: data_aspern_bkmBlocks
+            },
+        'type': 'fill-extrusion',
+        'paint': {
+        'fill-extrusion-color': '#aaa',
+        // Use an 'interpolate' expression to
+        // add a smooth transition effect to
+        // the buildings as the user zooms in.
+        'fill-extrusion-height': [
+        'interpolate',
+        ['linear'],
+        ['zoom'],
+        15,
+        0,
+        15.05,
+        ['to-number', ['get', 'height']]
+        ],
+        'fill-extrusion-base': [
+        'interpolate',
+        ['linear'],
+        ['zoom'],
+        15,
+        0,
+        15.05,
+        ['get', 'min_height']
+        ],
+        'fill-extrusion-opacity': 0.6
+        },
+        'layout': {
+                'visibility': 'none'
+        },
+    });
+}
+
+function load_layer_aspern_landuse(){
+    map.addLayer(
+      {
+        'id': 'layer_aspern_landuse',
+        'type': 'fill',
+        'source': {
+            type: 'geojson',
+            data: data_aspern_landuse
+            },
+        'paint': {
+
+        'fill-color': [
+                'match',
+                ['get', 'use_lvl2'],
+                'recreation and leisure facilities',
+                '#88db35',
+                'business and mixed use with emphasis on business activity',
+                '#e2d4c0',
+                'water',
+                '#60c8c5',
+                'industrial and commercial uses',
+                '#de8d24',
+                'agriculture',
+                '#8baf76',
+                'natural area',
+                '#bce48b',
+                'social infrastructure',
+                '#c4bcef',
+                'technical infrastructure/art buildings/special uses',
+                '#c2d0a1',
+                'other transportation uses',
+                '#a8cfc6',
+                'residential and mixed use with emphasis on residential',
+                '#d9bdc6',
+                'road space',
+                '#d2e0c5',
+
+                '#000000' // any other store type
+              ]
+        },
+        'layout': {
+                'visibility': 'none'
+        },
+      });
+}
+
+function load_layer_aspern_roads(){
+      map.addLayer(
+      {
+        'id': 'layer_aspern_roads',
+        'type': 'line',
+        'source': {
+            type: 'geojson',
+            data: data_aspern_roads
+            },
+        'paint': {
+
+            'line-color': [
+                'match',
+                ['get', 'category_code'],
+                'G',
+                '#FFFF66',
+                'L',
+                '#FF9933',
+                'B',
+                '#a117c7',
+                '#000000' // any other store type
+            ],
+            'line-width':[
+            'case',
+                  ['<=', ['to-number',  ['get', 'width']], 5],
+                  0.3,
+                  ['<=', ['to-number',  ['get', 'width']], 10],
+                  0.5,
+                  ['<=', ['to-number',  ['get', 'width']], 20],
+                  0.7,
+                  ['<=', ['to-number',  ['get', 'width']], 30],
+                  0.85,
+                  ['<=', ['to-number',  ['get', 'width']], 40],
+                  1,
+
+                  1
+            ]
+        },
+        'layout': {
+                'visibility': 'none'
+        },
+      });
+}
+
+function load_layer_aspern_publiclines(){
+    map.addLayer(
+      {
+        'id': 'layer_aspern_publiclines',
+        'type': 'line',
+        'source': {
+            type: 'geojson',
+            data: data_aspern_publiclines
+            },
+        'paint': {
+            'line-color': [
+
+                'match',
+                ['get', 'line_type_code'],
+                '13',
+                '#CC0000',
+                '3',
+                '#FF8000',
+                '2',
+                '#FFFF00',
+                '5',
+                '#00FF00',
+                '9',
+                '#00FFFF',
+                '10',
+                '#0000FF',
+                '11',
+                '#FF33FF',
+                '4',
+                '#FF3399',
+
+                '#000000' // any other store type
+            ],
+        },
+        'layout': {
+                'visibility': 'none'
+        },
+      });
+}
+
+function load_layer_aspern_trees_blocks(){
+    map.addLayer(
+      {
+        'id': 'layer_aspern_trees_blocks',
+        'type': 'circle',
+        'source': {
+            type: 'geojson',
+            data: data_aspern_trees_blocks
+            },
+        'paint': {
+            'circle-color': [
+
+                'match',
+                ['to-string', ['get', 'height_code']],
+                '0',
+                '#99FF99',
+                '1',
+                '#66FF66',
+                '2',
+                '#33FF33',
+                '3',
+                '#00CC00',
+                '4',
+                '#00CC00',
+                '5',
+                '#009900',
+
+                '#000000' // any other store type
+            ],
+        },
+        'layout': {
+                'visibility': 'none'
+        },
+      });
+}
+
+function load_layer_aspern_publicstops(){
+    map.addLayer(
+      {
+        'id': 'layer_aspern_publicstops',
+        'type': 'circle',
+        'source': {
+            type: 'geojson',
+            data: data_aspern_publicstops
+            },
+        'paint': {
+            'circle-color': [
+
+                'match',
+                ['to-string', ['get', 'line_type_code']],
+                '13',
+                '#CC0000',
+                '3',
+                '#FF8000',
+                '2',
+                '#FFFF00',
+                '5',
+                '#00FF00',
+                '9',
+                '#00FFFF',
+                '10',
+                '#0000FF',
+                '11',
+                '#FF33FF',
+                '4',
+                '#FF3399',
+
+                '#000000' // any other store type
+            ],
+        },
+        'layout': {
+                'visibility': 'none'
+        },
+      });
+}
+
+function load_layer_shops(){
+    map.addLayer(
+      {
+        'id': 'layer_shops',
+        'type': 'circle',
+        'source': {
+            type: 'geojson',
+            data: data_shops
+            },
+        'paint': {
+            'circle-color':
+
+                '#000000'
+
+        },
+        'layout': {
+                'visibility': 'none'
+        },
+      });
+}
+
+function load_index_layer(data_index){
+  map.addLayer(
+      {
+        'id': 'layer_index',
+        'type': 'fill',
+        'source': {
+            type: 'geojson',
+            data: data_index
+            },
+        'paint': {
+
+        'fill-color': [
+                'case',
+                  ['<=', ['to-number',  ['get', 'div_index']], 0.8],
+                  '#e1aeb4',
+                  ['<=', ['to-number',  ['get', 'div_index']], 1],
+                  '#d3828f',
+                  ['<=', ['to-number',  ['get', 'div_index']], 1.4],
+                  '#d55f5f',
+                  ['<=', ['to-number',  ['get', 'div_index']], 1.8],
+                  '#b42f2f',
+                  ['<=', ['to-number',  ['get', 'div_index']], 2.21],
+                  '#8c172c',
+
+                  '#000005'
+
+              ]
+        }
+      });
+}
+
+function load_layer_aspern_blocks_attr_realUseBlocks(){
+    const zoomThreshold = 15;
+    map.addLayer(
+      {
+        'id': 'layer_aspern_blocks_attr_zoom',
+        'type': 'fill',
+        'maxzoom': zoomThreshold,
+        'source': {
+            type: 'geojson',
+            data: data_aspern_blocks_attr
+            },
+        'paint': {
+        'fill-color': [
+                'match',
+                ['get', 'main_cover'],
+                'green area',
+                '#60c36c',
+                'other sealed area',
+                '#856666',
+                'buildings',
+                '#ad949e',
+                'construction site',
+                '#808080',
+                'water',
+                '#0080FF',
+                '#000000' // any other store type
+              ]
+        },
+        'layout': {
+                'visibility': 'none'
+        },
+      });
+
+    map.addLayer(
+      {
+        'id': 'layer_aspern_realUseBlocks_zoom',
+        'type': 'fill',
+        'minzoom': zoomThreshold,
+        'source': {
+            type: 'geojson',
+            data: data_aspern_realUseBlocks
+            },
+        'paint': {
+        'fill-color': [
+                'match',
+                ['get', 'class'],
+                'green area',
+                '#60c36c',
+                'sealed area (excluding buildings)',
+                '#856666',
+                'buildings',
+                '#ad949e',
+                'construction site',
+                '#808080',
+                'water body',
+                '#0080FF',
+                '#000000' // any other store type
+              ]
+        },
+        'layout': {
+                'visibility': 'none'
+        },
+      });
+
+}
+
+function load_layer_osr(){
+    // map.addLayer(
+    //   {
+    //     'id': 'layer_osr',
+    //     'type': 'heatmap',
+    //     'source': {
+    //         type: 'geojson',
+    //         data: data_aspern_blocks_attr
+    //         },
+    //     'paint': {
+    //     'heatmap-weight': {
+    //             property: 'OSR',
+    //             type: 'exponential',
+    //             stops: [
+    //             [1, 0],
+    //             [62, 1]
+    //             ]
+    //         },
+    //         // increase intensity as zoom level increases
+    //         'heatmap-intensity': {
+    //             stops: [
+    //             [11, 1],
+    //             [15, 3]
+    //             ]
+    //         },
+    //         // assign color values be applied to points depending on their density
+    //         'heatmap-color': [
+    //             'interpolate', // addiing an interpolate expression that defines a linear relationship
+    //             // between heatmap-density and heatmap-color using a set of input-output pairs
+    //             ['linear'],
+    //             ['heatmap-density'],
+    //             0,
+    //             'rgba(236,222,239,0)',
+    //             0.2,
+    //             '#CCFFE5',
+    //             0.4,
+    //             '#95eca0',
+    //             0.6,
+    //             '#24b76d',
+    //             0.8,
+    //             '#0c8c4f'
+    //         ],
+    //         // increase radius as zoom increases
+    //         'heatmap-radius': {
+    //             stops: [
+    //             [11, 15],
+    //             [15, 20]
+    //             ]
+    //         },
+    //         // decrease opacity to transition into the circle layer
+    //         'heatmap-opacity': {
+    //             default: 1,
+    //             stops: [
+    //             [14, 1],
+    //             [17, 0]
+    //             ]
+    //         }
+    //     },
+    //     'layout': {
+    //             'visibility': 'none'
+    //     },
+    //   });
+
+    map.addLayer(
+      {
+        'id': 'layer_osr',
+        'type': 'fill',
+        'source': {
+            type: 'geojson',
+            data: data_aspern_blocks_attr
+            },
+        'paint': {
+
+        'fill-color': [
+                'case',
+                  ['<=', ['to-number',  ['get', 'OSR']], 5],
+                  '#a9d6e5',
+                  ['<=', ['to-number',  ['get', 'OSR']], 10],
+                  '#89c2d9',
+                  ['<=', ['to-number',  ['get', 'OSR']], 15],
+                  '#61a5c2',
+                  ['<=', ['to-number',  ['get', 'OSR']], 20],
+                  '#468faf',
+                  ['<=', ['to-number',  ['get', 'OSR']], 30],
+                  '#2c7da0',
+                  ['<=', ['to-number',  ['get', 'OSR']], 50],
+                  '#2a6f97',
+                  ['<=', ['to-number',  ['get', 'OSR']], 70],
+                  '#014f86',
+                  ['<=', ['to-number',  ['get', 'OSR']], 80],
+                  '#01497c',
+                  ['<=', ['to-number',  ['get', 'OSR']], 100],
+                  '#013a63',
+                  ['<=', ['to-number',  ['get', 'OSR']], 200],
+                  '#01365b',
+                  ['<=', ['to-number',  ['get', 'OSR']], 300],
+                  '#022c49',
+                  ['<=', ['to-number',  ['get', 'OSR']], 400],
+                  '#011e31',
+                  ['==', ['to-number',  ['get', 'OSR']], 0],
+                  '#ede0d4',
+
+                  '#ede0d4'
+
+              ],
+
+        },
+        'layout': {
+                'visibility': 'none'
+        },
+      });
+
+}
+
+function load_layer_zoning(){
+     map.addLayer(
+      {
+        'id': 'layer_zoning',
+        'type': 'fill',
+        'source': {
+            type: 'geojson',
+            data: data_aspern_blocks_attr
+            },
+        'paint': {
+        'fill-color': [
+                'match',
+                ['get', 'zoning'],
+                'recreation area',
+                '#774c43',
+                'mixed developement',
+                '#8B4513',
+                'mixed developement - business developement area',
+                '#D2691E',
+                'mixed developement - business district',
+                '#CD853F',
+                'industrial area',
+                '#F4A460',
+                'protected area',
+                '#DEB887',
+                'residential area',
+                '#FFE4B5',
+                '#efdada' // any other store type
+              ]
+        },
+        'layout': {
+                'visibility': 'none'
+        },
+      });
+}
+
+function load_layer_green_area(){
+    map.addLayer(
+      {
+        'id': 'layer_green_area',
+        'type': 'fill',
+        'source': {
+            type: 'geojson',
+            data: data_aspern_blocks_attr
+            },
+        'paint': {
+
+        'fill-color': [
+                'case',
+
+                  ['<=', ['to-number',  ['get', 'area_green_rel']], 10],
+                  '#72de62',
+                  ['<=', ['to-number',  ['get', 'area_green_rel']], 20],
+                  '#6cd15c',
+                  ['<=', ['to-number',  ['get', 'area_green_rel']], 30],
+                  '#66c758',
+                  ['<=', ['to-number',  ['get', 'area_green_rel']], 40],
+                  '#62bf54',
+                  ['<=', ['to-number',  ['get', 'area_green_rel']], 50],
+                  '#5eb851',
+                  ['<=', ['to-number',  ['get', 'area_green_rel']], 60],
+                  '#57a84a',
+                  ['<=', ['to-number',  ['get', 'area_green_rel']], 70],
+                  '#4f9943',
+                  ['<=', ['to-number',  ['get', 'area_green_rel']], 80],
+                  '#478a3d',
+                  ['<=', ['to-number',  ['get', 'area_green_rel']], 90],
+                  '#3e7835',
+                  ['<=', ['to-number',  ['get', 'area_green_rel']], 120],
+                  '#34662d',
+                  ['==', ['to-number',  ['get', 'area_green_rel']], 0],
+                 '#dbf0a8',
+
+                  '#dbf0a8'
+              ]
+
+        },
+        'layout': {
+                'visibility': 'none'
+        },
+      });
+}
+
+function load_layer_max_height(){
+    map.addLayer(
+      {
+        'id': 'layer_max_height',
+        'type': 'fill',
+        'source': {
+            type: 'geojson',
+            data: data_aspern_blocks_attr
+            },
+        'paint': {
+
+        'fill-color': [
+                'case',
+                  ['<=', ['to-number',  ['get', 'max_height']], 10],
+                  '#edc4b3',
+                  ['<=', ['to-number',  ['get', 'max_height']], 20],
+                  '#e6b8a2',
+                  ['<=', ['to-number',  ['get', 'max_height']], 30],
+                  '#deab90',
+                  ['<=', ['to-number',  ['get', 'max_height']], 40],
+                  '#d69f7e',
+                  ['<=', ['to-number',  ['get', 'max_height']], 50],
+                  '#cd9777',
+                  ['<=', ['to-number',  ['get', 'max_height']], 60],
+                  '#c38e70',
+                  ['<=', ['to-number',  ['get', 'max_height']], 70],
+                  '#b07d62',
+                  ['<=', ['to-number',  ['get', 'max_height']], 80],
+                  '#9d6b53',
+                  ['<=', ['to-number',  ['get', 'max_height']], 100],
+                  '#8a5a44',
+                  ['==', ['to-number',  ['get', 'max_height']], 0],
+                  '#ede0d4',
+
+                  '#ede0d4'
+
+              ],
+
+        },
+        'layout': {
+                'visibility': 'none'
+        },
+      });
+}
+
+var data_from_python;
+// sending the data for index calculations and receiving the index data
+async function sendData(check_id){
+    // for shannon index
+    b= document.getElementById('index_calc');
+    //while the indices are calculating, we inform the user that the layer is loading
+    b.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\n' +
+        '  Loading...'
+    // the spinner on the card
+    c = $('#shannon_content .card-title')[0];
+    c.innerHTML = 'Shannon Index  <div class="spinner-border spinner-border-sm" role="status" style="display: inline-block;">\n      ' +
+        '<span class="visually-hidden">Loading...</span>\n    </div>'
+
+
+    console.log('function for sending the data');
+    // console.log('json data to send: ', JSON.stringify(eval('data_'+check_id)));
+    // const query = await fetch('/flask/', { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
+    const query = await fetch('/flask/', { method: 'POST', body: JSON.stringify(data_aspern_landuse)});
+    const data = await query.json();
+    console.log(data);
+    data_from_python = data;
+
+    // map.setLayoutProperty(
+    //                 'layer_aspern_landuse',
+    //                 'visibility',
+    //                 'visible'
+    //             );
+
+    if( map.getLayer('layer_index')){
+        map.getSource('layer_index').setData(data_from_python);
+        map.setLayoutProperty(
+                    'layer_index',
+                    'visibility',
+                    'visible'
+                );
+     }
+    else {
+        load_index_layer(data_from_python);
+    }
+    b.innerHTML = 'Index';
+    c.innerHTML='Shannon Index'
+}
+
+
+// the dropdown remains open after clicking a layer
+$('.navbar-nav .dropdown-menu').on({
+	"click":function(e){
+      e.stopPropagation();
+    }
+});
+
+
+  map.on('style.load', () => {
+      map.setFog({}); // Set the default atmosphere style
+  });
+
+
+  map.on('load', ()=>{
+    getXml() // load the local geojson files
+
+
+        // indices buttons
+        const shannon_button =$('#shannon')[0];
+        shannon_button.onclick = function (e){
+            if ($('#shannon_content')[0].style.display == 'none')
+            {
+                $('#shannon_content').css('display', 'block');
+                if( map.getLayer('layer_index')){
+                   map.setLayoutProperty(
+                        'layer_index',
+                        'visibility',
+                        'visible'
+                    );
+                   console.log('make the already calculated index layer visible ')
+                }else{
+                    console.log('calculate index layer first time ');
+                    sendData('');
+                }
+
+            }else {
+                $('#shannon_content')[0].style.display = 'none'
+                if( map.getLayer('layer_index')){
+                   map.setLayoutProperty(
+                        'layer_index',
+                        'visibility',
+                        'none'
+                    );
+                }
+            }
+        }
+        const close_shannon_button =$('#btn-close-shannon')[0];
+        close_shannon_button.onclick = function (e){
+            $('#shannon_content').css('display', 'none');
+
+            if( map.getLayer('layer_index')){
+                   map.setLayoutProperty(
+                        'layer_index',
+                        'visibility',
+                        'none'
+                    );
+            }
+        }
+
+        const green_button =$('#green')[0];
+        green_button.onclick = function (e){
+            if ($('#green_content')[0].style.display == 'none')
+            {
+                $('#green_content').css('display', 'block');
+                if( map.getLayer('layer_green_area')){
+                   map.setLayoutProperty(
+                        'layer_green_area',
+                        'visibility',
+                        'visible'
+                    );
+            }
+            }else {
+                $('#green_content')[0].style.display = 'none'
+                if( map.getLayer('layer_green_area')){
+                   map.setLayoutProperty(
+                        'layer_green_area',
+                        'visibility',
+                        'none'
+                    );
+                }
+            }
+        }
+        const close_green_button =$('#btn-close-green')[0];
+        close_green_button.onclick = function (e){
+            $('#green_content').css('display', 'none');
+
+             if( map.getLayer('layer_green_area')){
+                   map.setLayoutProperty(
+                        'layer_green_area',
+                        'visibility',
+                        'none'
+                   );
+            }
+        }
+
+        const osr_button =$('#osrbut')[0];
+        osr_button.onclick = function (e){
+            if ($('#osr_content')[0].style.display == 'none')
+            {
+                $('#osr_content').css('display', 'block');
+                if( map.getLayer('layer_osr')){
+                   map.setLayoutProperty(
+                        'layer_osr',
+                        'visibility',
+                        'visible'
+                    );
+            }
+            }else {
+                $('#osr_content')[0].style.display = 'none'
+                if( map.getLayer('layer_osr')){
+                   map.setLayoutProperty(
+                        'layer_osr',
+                        'visibility',
+                        'none'
+                    );
+                }
+            }
+        }
+        const close_osr_button =$('#btn-close-osr')[0];
+        close_osr_button.onclick = function (e){
+            $('#osr_content').css('display', 'none');
+
+             if( map.getLayer('layer_osr')){
+                   map.setLayoutProperty(
+                        'layer_osr',
+                        'visibility',
+                        'none'
+                   );
+            }
+        }
+
+        const max_height_button =$('#max_heightbut')[0];
+        max_height_button.onclick = function (e){
+            if ($('#max_height_content')[0].style.display == 'none')
+            {
+                $('#max_height_content').css('display', 'block');
+                if( map.getLayer('layer_max_height')){
+                   map.setLayoutProperty(
+                        'layer_max_height',
+                        'visibility',
+                        'visible'
+                    );
+            }
+            }else {
+                $('#max_height_content')[0].style.display = 'none'
+                if( map.getLayer('layer_max_height')){
+                   map.setLayoutProperty(
+                        'layer_max_height',
+                        'visibility',
+                        'none'
+                    );
+                }
+            }
+        }
+        const close_max_height_button =$('#btn-close-max_height')[0];
+        close_max_height_button.onclick = function (e){
+            $('#max_height_content').css('display', 'none');
+
+             if( map.getLayer('layer_max_height')){
+                   map.setLayoutProperty(
+                        'layer_max_height',
+                        'visibility',
+                        'none'
+                   );
+            }
+        }
+
+
+
+
+
+    //get the canvas that displays the layers options
+    canvas_layers = document.getElementsByClassName('offcanvas-start');
+    // when you click on the button
+    document.getElementById('btn-open-layers').onclick = (function(){
+        console.log(canvas_layers);
+        // it shows the canvas with the layers
+        canvas_layers[0].className = 'show '+ canvas_layers[0].className; // it adds the class 'show' to the canvas element
+    });
+    //when you click on the x button on the canvas with the layers
+    document.getElementById('btn-close-layers').onclick = (function(){
+        // the canvas is hidden
+        canvas_layers[0].className = canvas_layers[0].className.substring(4,canvas_layers[0].className.length);// it removes the class 'show' to the canvas element
+    });
+
+
+    //get the canvas that displays the legend
+    // canvas_legend = document.getElementById('offcanvasScrolling3');
+    // // when you click on the button
+    // document.getElementById('btn-open-legend').onclick = (function(){
+    //     // console.log(canvas_layers);
+    //     // it shows the canvas with the legend
+    //     canvas_legend.className = 'show '+ canvas_legend.className; // it adds the class 'show' to the canvas element
+    // });
+    // //when you click on the x button on the canvas with the legend
+    // document.getElementById('btn-close-legend').onclick = (function(){
+    //     // the canvas is hidden
+    //     canvas_legend.className = canvas_legend.className.substring(4,canvas_legend.className.length);// it removes the class 'show' to the canvas element
+    // });
+
+
+    ///... here comes code for switching between layers ... ///
+    const layer_inputs = document.getElementsByClassName('form-check-input');
+
+    for(const layer_input of layer_inputs){
+        layer_input.onclick = function(e){
+            // console.log(this);
+            // console.log(e);
+
+            // hide the index layer if it is loaded
+            // if( map.getLayer('layer_index')){
+            //    map.setLayoutProperty(
+            //         'layer_index',
+            //         'visibility',
+            //         'none'
+            //     );
+            // }
+
+            // hide the index calculation button
+            document.getElementById('index_calc').style.display = "none";
+
+            // every time you click on a layer, the properties from the previous clicked feature disappear
+            //var content = document.getElementById('property-body');
+            //content.innerHTML = ''; // delete previous content
+
+            // get the html elements for the start, end and bottom canvases
+            const canvas_start_el = document.getElementsByClassName('offcanvas-start')[0];
+            // const canvas_end_el = document.getElementsByClassName('offcanvas-end')[0];
+            const canvas_bottom_el = document.getElementsByClassName('offcanvas-bottom')[0];
+            // get the map container
+            const map_el = document.getElementById('map');
+            // get the 3d button
+            const button3d_el = document.getElementsByClassName('form-switch')[0];
+
+            // check classes for the canvases
+            // if (canvas_start_el.classList.includes(''))
+
+
+
+
+            // store the html input element id that displays each layer
+            // with this id we create the different variables or functions for each layer
+            const check_id = layer_input.id;
+            console.log('check id: ', check_id)
+            // store the clicked layer name
+            var clickedLayer = 'layer_'+check_id;
+
+            if (check_id == 'aspern_blocks_attr_realUseBlocks'){
+                clickedLayer = 'layer_aspern_blocks_attr';
+                // check_id = 'aspern_blocks_attr';
+            }
+
+            const legend_ul = document.getElementsByClassName('legend_ul')[0];
+            // const legend = document.getElementById('legend');
+
+            // if we unclick a layer
+            if(!(layer_input.checked)){
+                if (check_id == 'aspern_blocks_attr_realUseBlocks'){
+                    map.setLayoutProperty(
+                        'layer_aspern_realUseBlocks_zoom',
+                        'visibility',
+                        'none'
+                    );
+                }
+                 // we hide the layer
+                map.setLayoutProperty(
+                    clickedLayer,
+                    'visibility',
+                    'none'
+                );
+
+
+                // if we unlick the 3d building we set a pitch normal
+                if(clickedLayer == 'layer_aspern_bkmBlocks'){
+                    map.setPitch(0);
+                }
+                // if the layer has any plots shown, we delete them
+                delete_graph();
+                // check canvases and map classes
+                // if ((canvas_start_el.classList).contains('split')){
+                //     canvas_start_el.classList.replace('split', 'split_no_graph');
+                // }
+                // if ((canvas_end_el.classList).contains('split')){
+                //     canvas_end_el.classList.replace('split', 'split_no_graph');
+                // }
+                if ((map_el.classList).contains('split')){
+                    map_el.classList.replace('split', 'split_no_graph');
+                }
+                if ((canvas_bottom_el.classList).contains('show')){
+                    canvas_bottom_el.classList.remove('show');
+                }
+                 if ((button3d_el.classList).contains('button3d_bottom_graph')){
+                    button3d_el.classList.remove('button3d_bottom_graph');
+                    button3d_el.classList.add('button3d_bottom_no_graph');
+                }
+
+
+
+                // remove legend
+                legend_ul.style.display = "none";
+
+            }
+            //if we click a layer
+            else
+            {
+                // if we show the 3d building we set a pitch to the map
+                if(clickedLayer == 'layer_aspern_bkmBlocks'){
+                    // loadIconsLayer();
+                    map.setPitch(45);
+                }
+
+                if (check_id == 'aspern_blocks_attr_realUseBlocks'){
+                    map.setLayoutProperty(
+                        'layer_aspern_realUseBlocks_zoom',
+                        'visibility',
+                        'visible'
+                    );
+                }
+
+                map.setLayoutProperty(
+                    clickedLayer,
+                    'visibility',
+                    'visible'
+                );
+                //if any left graph, delete it
+                delete_graph();
+                // load the graphs
+                try{
+                    eval('graph_'+check_id)(eval('data_'+check_id));
+
+                    console.log('show graph');
+                    //replace their split class with the class that has the same properties, but with the height 100%
+                    // canvas_start_el.classList.replace('split_no_graph', 'split');
+                    canvas_end_el.classList.replace('split_no_graph', 'split');
+                    map_el.classList.replace('split_no_graph', 'split');
+                    // show the bottom canvas
+                    canvas_bottom_el.classList.add('show');
+                    button3d_el.classList.replace('button3d_bottom_no_graph','button3d_bottom_graph');
+
+                }
+                catch(err){
+                    console.log('no graph function')
+                }
+
+                // show legend
+                legend_ul.style.display = "block";
+                try{
+
+                    legend_ul.innerHTML = eval('legend_'+check_id);
+                }
+                catch(err){
+                    legend_ul.innerHTML = '';
+                    console.log('no legend var')
+                }
+
+                if(check_id == 'aspern_blocks_attr_realUseBlocks'){
+                        legend_ul.innerHTML = legend_aspern_blocks_attr;
+                    }
+
+            }
+
+
+            map.on('mousemove', clickedLayer, (e) => {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+            map.on('mouseleave', clickedLayer, (e) => {
+                map.getCanvas().style.cursor = '';
+            });
+
+            // when we click on the map on the layer checked
+            map.on('click', clickedLayer, (e)=>{
+                // show the button for calculating indices only for the landuse layer
+                if (clickedLayer == 'layer_aspern_landuse'){
+                    console.log('landuse clicked -> data button')
+                    document.getElementById('index_calc').style.display = "block";
+                }
+
+                // zoom in on the clicked feature
+                map.flyTo({center: e.lngLat, zoom:16});
+
+                // store the feature we clicked on
+                const clicked_feature = e.features[0];
+                console.log('feature clicked: ', clicked_feature)
+
+                // having a variable which stores the id of the layer
+                var id_property = '';
+                // store the id (its value) opf the clicked feature
+                var value_clicked_feature_id ='';
+                // console.log('data: ', eval('data_'+check_id));
+                // assign values for the id name and its value depending on the layer clicked
+                switch(clickedLayer){
+                    case 'layer_prototype_layerWGS84':
+                        id_property = 'BLK';
+                        value_clicked_feature_id = clicked_feature.properties.BLK;
+                        break;
+                    case 'layer_aspern_blocks_attr':
+                        id_property= 'id';
+                        value_clicked_feature_id = clicked_feature.properties.id;
+                        break;
+                    case 'layer_aspern_realUseBlocks':
+                        id_property = 'blockID';
+                        value_clicked_feature_id = clicked_feature.properties.blockID;
+                        break;
+                    case 'layer_aspern_bkmBlocks':
+                        id_property= 'FMZK_ID';
+                        value_clicked_feature_id = clicked_feature.properties.FMZK_ID;
+                        break;
+                    case 'layer_aspern_landuse':
+                        id_property= 'OBJECTID';
+                        value_clicked_feature_id = clicked_feature.properties.OBJECTID;
+                        break;
+                    case 'layer_aspern_roads':
+                        id_property= 'OBJECTID';
+                        value_clicked_feature_id = clicked_feature.properties.OBJECTID;
+                        break;
+                    case 'layer_aspern_publiclines':
+                        id_property= 'OBJECTID';
+                        value_clicked_feature_id = clicked_feature.properties.OBJECTID;
+                        break;
+                    case 'layer_aspern_trees_blocks':
+                        id_property= 'BAUM_ID';
+                        value_clicked_feature_id = clicked_feature.properties.BAUM_ID;
+                        break;
+                    case 'layer_aspern_publicstops':
+                        id_property= 'OBJECTID';
+                        value_clicked_feature_id = clicked_feature.properties.OBJECTID;
+                        break;
+                    case 'layer_shops':
+                        id_property= 'osm_id';
+                        value_clicked_feature_id = clicked_feature.properties.osm_id;
+                        break;
+                }
+                console.log('clicked feature id: ', value_clicked_feature_id);
+
+                properties = clicked_feature.properties; // store the feature's properties
+                properties_keys = Object.keys(properties); // store the properties keys of the feature
+                properties_values = Object.values(properties); // store the properties values of the feature
+                console.log('prop keys: ', properties_keys);
+                console.log('prop values: ', properties_values);
+                console.log('prop len: ', properties_values.length);
+                try{
+                    console.log('abs: ',properties['area_green_abs']);
+                    console.log('rel: ',properties['area_green_rel']);
+                    console.log('max_height: ',properties['max_height'])
+                }catch (e) {
+                    console.log('no attr layer');
+                }
+
+
+                // for popup
+                // const popup_ul = document.createElement('ul');
+                // popup_ul.className = "list-group list-group-flush";
+                // for (let i=0; i< properties_keys.length; i++){
+                //     const li = document.createElement('li');
+                //     li.className = 'list-group-item';
+                //     li.innerHTML = '<b>'+properties_keys[i]+'</b>: '+properties_values[i];
+                //     popup_ul.appendChild(li);
+                // }
+                const popup = new mapboxgl.Popup()
+                  .setLngLat(e.lngLat)
+                  .addTo(map);
+
+                // const lngLat = e.lngLat;
+
+
+
+                range_property_list = ['height'];
+
+                // for prop canvas
+                // creating the list of properties can can be changed directly
+                function create_dynamic_prop_canvas(){
+
+                    console.log('properties values in create dynamic func: ', properties_values)
+                    //content = document.getElementById('property-body');
+                    //content.innerHTML = ''; // delete previous content
+                    const ul = document.createElement('ul');
+                    ul.className = "list-group list-group-flush"
+                    ul.id = 'off-canvas';
+
+                  if(check_id == 'aspern_blocks_attr_realUseBlocks'){
+                        imp_prop = properties_aspern_blocks_attr;
+                    } else {
+                      try{
+                          imp_prop = eval('properties_'+check_id);
+                      } catch (err){
+                          imp_prop =properties_keys;
+                      }
+
+                    }
+                  console.log('type imp prop: ',  imp_prop)
+
+                    for (let i=0; i< properties_keys.length; i++){
+                        // have the important properties only shown
+
+
+
+                        if (imp_prop.includes(properties_keys[i])){
+
+                            // user friendly prop names
+                            let li_prop_user = properties_keys[i];
+                            switch(properties_keys[i]){
+                                case 'area_green_rel':
+                                    li_prop_user = 'share of green space';
+                                    break;
+                                case 'OSR':
+                                    li_prop_user= 'open space ratio';
+                                    break;
+                                case 'max_height':
+                                    li_prop_user = 'maximum building height';
+                                    break;
+                                case 'count_trees':
+                                    li_prop_user= 'stock of trees';
+                                    break;
+                                case 'count_shops':
+                                    li_prop_user= 'number of shops';
+                                    break;
+                                case 'main_cover': //'class':
+                                    li_prop_user= 'land cover';
+                                    break;
+                                case 'use_lvl1':
+                                    li_prop_user= 'generalized land use';
+                                    break;
+                                case 'use_lvl2':
+                                    li_prop_user= 'land use category';
+                                    break;
+                                case 'use_lvl3':
+                                    li_prop_user= 'detailed land use category';
+                                    break;
+                                case 'form':
+                                    li_prop_user= 'construction form of the section';
+                                    break;
+                                case 'line_type':
+                                    li_prop_user= 'means of transport';
+                                    break;
+                                case 'year':
+                                    li_prop_user= 'year of planting';
+                                    break;
+                                case 'stop_name':
+                                    li_prop_user= 'name of stop';
+                                    break;
+                                case 'shop':
+                                    li_prop_user= 'type of shop/service';
+                                    break;
+                            }
+
+
+                            const li = document.createElement('li');
+                            li.id = 'p'+ i.toString();
+                            li.className = 'list-group-item';
+                            li.innerHTML = '<b style="">'+li_prop_user+'</b>: '+'<span style="width: auto" ></span>';
+                            ul.appendChild(li);
+                            let span_el = li.getElementsByTagName('span')[0]
+
+                            // putting the range for certain properties that have number values
+                            li_prop = properties_keys[i];
+                            span_text = properties_values[i];
+
+
+
+
+                            // if the property is one of the above and its value is not null
+                            if (range_property_list.includes(li_prop) && span_text!='null'){
+                                // we define the range stop number
+                                if (Number(span_text)<10){
+                                    max_range_nr ='100'
+                                }
+                                else if (Number(span_text)>1000){
+                                    max_range_nr = String(Number(span_text)*3)
+                                }
+                                else if (Number(span_text)>10000){
+                                    max_range_nr = String(Number(span_text)*2)
+                                }
+                                else{
+                                    max_range_nr = String(Math.pow(Number(span_text),2));
+                                }
+
+                                li.getElementsByTagName('span')[0].innerHTML = '\n        <form action="#" style="width:130px; font-size: 14px">\n            <p class="range-field">\n                <input type="range" id="test5" min="0" max="'+max_range_nr+'"  value="'+span_text+'"><span class="thumb"><span class="value"></span></span>\n            </p>\n        </form>\n    '
+                                // String(Number(span_text)*3)
+
+                                // li.getElementsByTagName('span')[0].onchange = function(e){
+                                //     console.log('e: ', e);
+                                //     console.log('on change this: ', this);
+                                //     let new_value =e.target.value;
+                                //     save_dict_property(li, new_value);
+                                // }
+
+
+                            }else
+                            // putting the dropdown for landuse layer, use_lvl2 property
+                            if(properties_keys[i]== 'use_lvl2'){
+                                console.log('span text: ', span_text)
+                                li.getElementsByTagName('span')[0].innerHTML =
+                                    '<form action="#" style="width:150px; font-size: 14px;" id="select_form">\n'+
+                                    // '<input style="display: none;"type="text" >'+
+                                    '<select name="level2" id="level2" style="display: block;  height: 35px">\n' +
+                                    '  <option value="recreation and leisure facilities">recreation and leisure facilities</option>\n' +
+                                    '  <option value="water">water</option>\n' +
+                                    '  <option value="agriculture">agriculture</option>\n' +
+                                    '  <option value="natural area">natural area</option>\n' +
+                                    '  <option value="business and mixed use with emphasis on business activity">business and mixed use with emphasis on business activity</option>\n' +
+                                    '  <option value="industrial and commercial uses">industrial and commercial uses</option>\n' +
+                                    '  <option value="social infrastructure">social infrastructure</option>\n' +
+                                    '  <option value="technical infrastructure/art buildings/special uses">technical infrastructure/art buildings/special uses</option>\n' +
+                                    '  <option value="residential and mixed use with emphasis on residential">residential and mixed use with emphasis on residential</option>\n' +
+                                    '  <option value="road space">road space</option>\n' +
+                                    '  <option value="other transportation uses">other transportation uses</option>\n' +
+                                    '</select>\n'+
+                                    '</form>'
+
+                                li.getElementsByTagName('select')[0].value = span_text;
+                                // li.getElementsByTagName('input')[0].value = span_text;
+                                // li.getElementsByTagName('span')[0].innerHTML = li.getElementsByTagName('select')[0].value;
+
+                                // li.getElementsByTagName('span')[0].onchange = function(e){
+                                //     console.log('e: ', e);
+                                //     console.log('on change this: ', this);
+                                //     let new_value =e.target.value;
+                                //     save_dict_property(li, new_value);
+                                // }
+
+                            } else {
+
+                                // li.getElementsByTagName('span')[0].innerHTML= '<input style="width:110px; height: 35px; font-size: 14px; max-width: 130px" type="text"'+'value="'+properties_values[i]+'"'+ 'class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">';
+                                li.getElementsByTagName('span')[0].innerHTML= properties_values[i];
+
+                            }
+
+                           li.getElementsByTagName('span')[0].onchange = function(e){
+                                console.log('e: ', e);
+                                console.log('on change this: ', this);
+                                let new_value =e.target.value;
+                                save_dict_property(li, new_value);
+                            }
+
+                            ul.appendChild(li);
+
+                        }
+                        popup.setDOMContent(ul);
+
+
+                    }
+                }
+                create_dynamic_prop_canvas();
+
+                // function for saving the changes in the dictionary
+                function save_dict_property(li, new_value){
+                    console.log('save the data into the dict');
+
+                    for (f of eval('data_'+check_id).features){
+                        // f is the clicked feature from the dictionary
+                        // we find the feature in the dictionary that has been changed (we look for the same id)
+                        if ( f['properties'][id_property] == value_clicked_feature_id){
+                            console.log('found: ', f);
+
+                            console.log('li in save dict: ', li);
+
+                            dict_key = li.getElementsByTagName('b')[0].innerHTML;
+
+
+                            // user-friendly prop names changed back to initial names
+                            switch(dict_key){
+                                case 'share of green space':
+                                    dict_key = 'area_green_rel';
+                                    break;
+                                case 'open space ratio':
+                                    dict_key= 'OSR';
+                                    break;
+                                case 'maximum building height':
+                                    dict_key = 'max_height';
+                                    break;
+                                case 'stock of trees':
+                                    dict_key= 'count_trees';
+                                    break;
+                                case 'number of shops':
+                                    dict_key= 'count_shops';
+                                    break;
+                                case 'land cover':
+                                    dict_key= 'main_cover'; //'class';
+                                    break;
+                                case 'generalized land use':
+                                    dict_key= 'use_lvl1';
+                                    break;
+                                case 'land use category':
+                                    dict_key= 'use_lvl2';
+                                    break;
+                                case 'detailed land use category':
+                                    dict_key= 'use_lvl3';
+                                    break;
+                                case 'construction form of the section':
+                                    dict_key= 'form';
+                                    break;
+                                case 'means of transport':
+                                    dict_key= 'line_type';
+                                    break;
+                                case 'year of planting':
+                                    dict_key= 'year';
+                                    break;
+                                case 'name of stop':
+                                    dict_key= 'stop_name';
+                                    break;
+                                case 'type of shop/service':
+                                    dict_key= 'shop';
+                                    break;
+                            }
+
+
+
+
+                            console.log(li.getElementsByTagName('b'))
+                            console.log('dict key from li: ', dict_key);
+                            console.log('f prop: ', f['properties']);
+                            f['properties'][dict_key] =new_value;
+
+
+                            map.getSource(clickedLayer).setData(eval('data_'+check_id));
+                            console.log('data after: ', f);
+                            feature = f;
+
+                            // call the function that loads the graphs
+                            try{
+                                eval('graph_'+check_id)(eval('data_'+check_id));
+                            }
+                            catch(err){  // in case there is no function that shows any graph for the layer clicked
+                                console.log('no graph function')
+                            }
+
+
+                            return feature
+                        }
+
+                    }
+                }
+
+                //dynamically save the changes
+                function dynamically_save_changes(){
+                  console.log('dynamically_save_changes');
+                    property_ul = document.getElementById('off-canvas');
+                    property_lis = property_ul.childNodes;
+                    // get the input elements in the list the shows the properties
+                    property_inputs = property_ul.getElementsByTagName('input');
+                    for(const property_input of property_inputs){
+                      console.log('property_input: ', property_input)
+                        property_input.onchange = function(e){
+                            console.log('e')
+                            console.log('property changed dynamically');
+                            console.log('on change e: ', e.target.value);
+                            console.log('on change this: ', this);
+                            let new_value =e.target.value;
+                            let el = this;
+                            let list_el = this.parentElement.parentElement;
+                            if (this.type == 'range'){
+                                list_el = this.parentElement.parentElement.parentElement.parentElement;
+                            }
+
+
+                            if(check_id != 'aspern_blocks_attr_realUseBlocks'){
+                                save_dict_property(list_el, new_value);
+                            }
+
+
+
+                                //save_properties();
+                                // const f = save_dict_properties();
+                                // create_dynamic_prop_canvas(f);
+                        }
+                    }
+                    try{
+                        select = property_ul.getElementsByTagName('select');
+                        console.log('select: ', select);
+                        select[0].onchange = function(e){
+                            console.log('e')
+                            console.log('property changed dynamically');
+                            console.log('on change e: ', e.target.value);
+                            console.log('on change this: ', this);
+                            let new_value =e.target.value;
+                            let el = this;
+                            let list_el = this.parentElement.parentElement.parentElement;
+
+                            // save_property(list_el, new_value);
+                            save_dict_property(list_el, new_value);
+                        }
+                    }
+                    catch(err){
+                        console.log('no select input')
+                            }
+                }
+                // dynamically_save_changes();
+
+                // get the button
+                const calc_index_button = document.getElementById('index_calc');
+                // trigger the function that send the data to the py script
+                calc_index_button.onclick = (function(){
+                    console.log('calc index button clicked');
+                    sendData(check_id);
+                });
+
+            });
+        }
+    }
+
+
+
+
+    // ~~~~~ GRAPHS ~~~~~
+    function delete_graph(){
+        document.getElementById('graph1').innerHTML = '';
+        document.getElementById('graph2').innerHTML = '';
+    }
+
+    function graph_aspern_blocks_attr(data){
+        len_greenSpace = 0;
+        len_sealedSpace = 0;
+        len_buildings = 0;
+        len_construction = 0;
+        len_water = 0;
+
+        // count how many of each there are
+        for (f of data.features){
+            switch(f['properties']['main_cover']){
+                case 'greenSpace':
+                    len_greenSpace++;
+                    break;
+                case 'sealedSpace':
+                    len_sealedSpace++
+                    break;
+                case 'buildings':
+                    len_buildings++
+                    break;
+                case 'construction':
+                    len_construction++;
+                    break;
+                case 'water':
+                    len_water++;
+                    break;
+            }
+        }
+
+        graph1El = document.getElementById('graph1');
+        var data1 = [
+        {
+            x: ['greenSpace', 'sealedSpace', 'buildings', 'construction', 'water'],
+            y: [len_greenSpace, len_sealedSpace, len_buildings, len_construction, len_water],
+            type: 'bar'
+        }
+        ];
+        layout= {
+            height : 300,
+            width : 500,
+        };
+            Plotly.newPlot( graph1El, data1, layout);
+
+        graph2El = document.getElementById('graph2');
+        colors = ['#60c36c', '#856666', '#ad949e', '#808080', '#0080FF'];
+        var data2 = [
+        {
+            labels: ['greenSpace', 'sealedSpace', 'buildings', 'construction', 'water'],
+            values: [len_greenSpace, len_sealedSpace, len_buildings, len_construction, len_water],
+            type: 'pie',
+            marker: {
+            colors: colors
+        },
+        }
+        ];
+            Plotly.newPlot( graph2El, data2, layout);
+    }
+
+    function graph_aspern_trees_blocks(data){
+
+        //bar chart ~~~~~
+        dict = {}
+        dict2 = {}
+
+        for (f of data.features){
+
+            //bar chart
+            if (Object.keys(dict).includes(f['properties']['species'])){ // if the species is already the dictionary key
+                dict[f['properties']['species']]++; // we add one to its value ( we count the total of each species)
+            }
+            else{
+                dict[f['properties']['species']]=1; // we initialise it with one, the first counted
+            }
+
+            //time series
+            if (f['properties']['year']!=0){  // if the year is already the dictionary key
+                if (Object.keys(dict2).includes(String(f['properties']['year']))){
+                    dict2[f['properties']['year']]++; // add one to the count
+                }
+                else{
+                    dict2[f['properties']['year']]=1; // initialise it with one
+                }
+            }
+        }
+
+        graph1El = document.getElementById('graph1');
+        var data1 = [
+        {
+            x: Object.keys(dict),
+            y: Object.values(dict),
+            type: 'bar',
+            marker: {
+            color: '#00994C'
+        },
+        }
+        ];
+        layout= {
+            height : 300,
+            width : 500,
+        }
+
+            Plotly.newPlot( graph1El, data1,layout);
+
+        graph2El = document.getElementById('graph2');
+        var data2 = [
+        {
+            x: Object.keys(dict2),
+            y: Object.values(dict2),
+            type: 'scatter',
+            marker: {
+              color: '#00994C'
+            },
+        }
+        ];
+            Plotly.newPlot( graph2El, data2, layout);
+    }
+
+});
+
+
+
+
+</script>
+
+</body>
+</html>
