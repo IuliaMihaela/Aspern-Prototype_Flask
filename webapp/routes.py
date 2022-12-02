@@ -3,7 +3,8 @@ from webapp import app
 import json
 import geopandas
 from requests import put, get, post, delete
-from script import index_calculation, reproject
+# from script import index_calculation, reproject
+from poly_shannon import reproject, indexCalculation
 
 @app.route("/", methods=['GET'])
 def home():
@@ -181,6 +182,28 @@ def data110():
 
 
 
+# @app.route('/flask/', methods=['POST'])
+# def post_calculated_data():
+#     #steps:
+#     # get data from map,
+#     # call function for index calculation with the data,
+#     # (store the changes and the indices in a file ?),
+#     # return the result from the function
+#
+#     print('flask route')
+#     print('request decode type', type((request.data).decode()))
+#     dict = json.loads((request.data).decode())
+#
+#     df = geopandas.GeoDataFrame.from_features(dict, crs="EPSG:4326")
+#     print(type(df), df)
+#
+#     df = reproject(df)
+#
+#     result = index_calculation(df)
+#     print('index result: ', result)
+#     return result.to_json()
+
+
 @app.route('/flask/', methods=['POST'])
 def post_calculated_data():
     #steps:
@@ -198,8 +221,6 @@ def post_calculated_data():
 
     df = reproject(df)
 
-    result = index_calculation(df)
+    result = indexCalculation(df, 'landuse')
     print('index result: ', result)
     return result.to_json()
-
-

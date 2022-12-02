@@ -610,26 +610,6 @@ body {
 </div>
 
 
-<!--analyse button-->
-<!--<button type="button" id="analyse" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="" >-->
-<!--  Analysis-->
-<!--</button>-->
-<!--<div id="shannon_content" style="height: 20%; width: 20%">-->
-<!--      <div class='session'>-->
-<!--        <h2>Surface</h2>-->
-<!--        <div class='row colors' style="background: linear-gradient(to right, #FFE4B5, #DEB887,#F4A460, #CD853F, #D2691E, #8B4513, #774c43);">-->
-<!--        </div>-->
-<!--        <div class='row labels'>-->
-<!--          <div class='label'>5</div>-->
-<!--          <div class='label'>10</div>-->
-<!--          <div class='label'>50</div>-->
-<!--          <div class='label'>300</div>-->
-<!--          <div class='label'>500</div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--</div>-->
-
-
 <!--shannon section-->
 <section>
 <div class="btn-group btn-group-sm" id="shannon_group" role="group" aria-label="Small button group">
@@ -638,14 +618,17 @@ body {
 
 <div class="card" style="width: 18rem; display:none; height: 20%" id="shannon_content">
     <button id="btn-close-shannon" type="button" class="btn-close" aria-label="Close"></button>
-    <h6 class="card-title"style="text-align: center;">Shannon Index  <div class="spinner-border spinner-border-sm" role="status" style="display: inline-block;">
-      <span class="visually-hidden">Loading...</span>
-    </div></h6>
+
+    <button type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="left" title="Recompute index" style="
+    position: absolute;height: 25px;width: 30px;" id="recalculate_index"><i style="font-size: 1.1rem" class="material-icons small">input</i></button>
+    <h6 class="card-title"style="text-align: center;">Shannon Index
+<!--        <div class="spinner-border spinner-border-sm" role="status" style="display: inline-block;">-->
+<!--          <span class="visually-hidden">Loading...</span>-->
+<!--        </div>-->
+    </h6>
 
   <div class="card-body" style="height: 90%;  padding-top: 1px;">
-    <p class="card-text"> Short index explanation</p>
-      <br>
-      <br>
+    <p class="card-text">A measure of the variety of land uses in an area, indicating the number of different classes</p>
 
             <div>
           <div>
@@ -666,7 +649,6 @@ body {
 </section>
 
 
-
 <!--green section-->
 <section>
 <div class="btn-group btn-group-sm" id="green_group" role="group" aria-label="Small button group">
@@ -680,7 +662,6 @@ body {
 
   <div class="card-body" style="height: 90%; padding-top: 1px;">
     <p class="card-text"> Share (percentage) of green area within block</p>
-      <br>
       <br>
 
       <div>
@@ -749,9 +730,8 @@ body {
     <h6 class="card-title" style="text-align: center;">Max height</h6>
 
   <div class="card-body" style="height: 90%; padding-top: 1px;">
-    <p class="card-text"> Open space share relative to the building square footage</p>
+    <p class="card-text"> Maximum height of buildings within block</p>
       <br>
-
 
       <div>
           <div>
@@ -775,9 +755,9 @@ body {
 
 
 <!--send data button-->
-<div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-    <button style="display:none" id="index_calc" type="button" class="btn btn-outline-dark">Index</button>
-</div>
+<!--<div class="btn-group btn-group-sm" role="group" aria-label="Small button group">-->
+<!--    <button style="display:none" id="index_calc" type="button" class="btn btn-outline-dark">Index</button>-->
+<!--</div>-->
 
 
 <!-- LEFT CANVAS (LAYERS)-->
@@ -821,30 +801,30 @@ body {
                         Land Use - block level
                     </label>
                   </div>
-                  <div class="form-check dropdown-item">
-                    <input class="form-check-input" type="checkbox" value="" id="osr">
-                    <label class="form-check-label" for="osr">
-                        Open Space Ratio
-                    </label>
-                </div>
+<!--                  <div class="form-check dropdown-item">-->
+<!--                    <input class="form-check-input" type="checkbox" value="" id="osr">-->
+<!--                    <label class="form-check-label" for="osr">-->
+<!--                        Open Space Ratio-->
+<!--                    </label>-->
+<!--                </div>-->
                 <div class="form-check dropdown-item">
                     <input class="form-check-input" type="checkbox" value="" id="zoning">
                     <label class="form-check-label" for="zoning">
                         Zoning
                     </label>
                 </div>
-                  <div class="form-check dropdown-item">
-                    <input class="form-check-input" type="checkbox" value="" id="green_area">
-                    <label class="form-check-label" for="green_area">
-                        Green Area
-                    </label>
-                </div>
-                  <div class="form-check dropdown-item">
-                    <input class="form-check-input" type="checkbox" value="" id="max_height">
-                    <label class="form-check-label" for="max_height">
-                        Maximum height
-                    </label>
-                </div>
+<!--                  <div class="form-check dropdown-item">-->
+<!--                    <input class="form-check-input" type="checkbox" value="" id="green_area">-->
+<!--                    <label class="form-check-label" for="green_area">-->
+<!--                        Green Area-->
+<!--                    </label>-->
+<!--                </div>-->
+<!--                  <div class="form-check dropdown-item">-->
+<!--                    <input class="form-check-input" type="checkbox" value="" id="max_height">-->
+<!--                    <label class="form-check-label" for="max_height">-->
+<!--                        Maximum height-->
+<!--                    </label>-->
+<!--                </div>-->
 
               </ul>
             </li>
@@ -2067,12 +2047,13 @@ function load_layer_max_height(){
 
 var data_from_python;
 // sending the data for index calculations and receiving the index data
-async function sendData(check_id){
+async function sendData(){
     // for shannon index
-    b= document.getElementById('index_calc');
-    //while the indices are calculating, we inform the user that the layer is loading
-    b.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\n' +
-        '  Loading...'
+    // b= document.getElementById('index_calc');
+    // //while the indices are calculating, we inform the user that the layer is loading
+    // b.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\n' +
+    //     '  Loading...'
+
     // the spinner on the card
     c = $('#shannon_content .card-title')[0];
     c.innerHTML = 'Shannon Index  <div class="spinner-border spinner-border-sm" role="status" style="display: inline-block;">\n      ' +
@@ -2082,7 +2063,7 @@ async function sendData(check_id){
     console.log('function for sending the data');
     // console.log('json data to send: ', JSON.stringify(eval('data_'+check_id)));
     // const query = await fetch('/flask/', { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
-    const query = await fetch('/flask/', { method: 'POST', body: JSON.stringify(data_aspern_landuse)});
+    const query = await fetch('/flask/', { method: 'POST', body: JSON.stringify(data_aspern_blocks_attr)});
     const data = await query.json();
     console.log(data);
     data_from_python = data;
@@ -2104,7 +2085,7 @@ async function sendData(check_id){
     else {
         load_index_layer(data_from_python);
     }
-    b.innerHTML = 'Index';
+    // b.innerHTML = 'Index';
     c.innerHTML='Shannon Index'
 }
 
@@ -2124,6 +2105,17 @@ $('.navbar-nav .dropdown-menu').on({
 
   map.on('load', ()=>{
     getXml() // load the local geojson files
+
+
+
+      // get the button
+        const recalc_index_button = document.getElementById('recalculate_index');
+        // trigger the function that send the data to the py script
+        recalc_index_button.onclick = (function(){
+            console.log('recalc index button clicked');
+            sendData();
+        });
+
 
 
         // indices buttons
@@ -2328,7 +2320,7 @@ $('.navbar-nav .dropdown-menu').on({
             // }
 
             // hide the index calculation button
-            document.getElementById('index_calc').style.display = "none";
+            //document.getElementById('index_calc').style.display = "none";
 
             // every time you click on a layer, the properties from the previous clicked feature disappear
             //var content = document.getElementById('property-body');
@@ -2351,8 +2343,8 @@ $('.navbar-nav .dropdown-menu').on({
 
             // store the html input element id that displays each layer
             // with this id we create the different variables or functions for each layer
-            const check_id = layer_input.id;
-            console.log('check id: ', check_id)
+            let check_id = layer_input.id;
+
             // store the clicked layer name
             var clickedLayer = 'layer_'+check_id;
 
@@ -2360,6 +2352,11 @@ $('.navbar-nav .dropdown-menu').on({
                 clickedLayer = 'layer_aspern_blocks_attr';
                 // check_id = 'aspern_blocks_attr';
             }
+            // if (check_id == 'aspern_landuse'){
+            //     // clickedLayer = 'layer_aspern_blocks_attr';
+            //     check_id = 'aspern_blocks_attr';
+            // }
+            console.log('check id: ', check_id)
 
             const legend_ul = document.getElementsByClassName('legend_ul')[0];
             // const legend = document.getElementById('legend');
@@ -2458,6 +2455,9 @@ $('.navbar-nav .dropdown-menu').on({
                 try{
 
                     legend_ul.innerHTML = eval('legend_'+check_id);
+                    if(check_id == 'aspern_landuse'){
+                        legend_ul.innerHTML = legend_aspern_landuse;
+                    }
                 }
                 catch(err){
                     legend_ul.innerHTML = '';
@@ -2467,6 +2467,7 @@ $('.navbar-nav .dropdown-menu').on({
                 if(check_id == 'aspern_blocks_attr_realUseBlocks'){
                         legend_ul.innerHTML = legend_aspern_blocks_attr;
                     }
+
 
             }
 
@@ -2481,10 +2482,10 @@ $('.navbar-nav .dropdown-menu').on({
             // when we click on the map on the layer checked
             map.on('click', clickedLayer, (e)=>{
                 // show the button for calculating indices only for the landuse layer
-                if (clickedLayer == 'layer_aspern_landuse'){
-                    console.log('landuse clicked -> data button')
-                    document.getElementById('index_calc').style.display = "block";
-                }
+                // if (clickedLayer == 'layer_aspern_landuse'){
+                //     console.log('landuse clicked -> data button')
+                //     document.getElementById('index_calc').style.display = "block";
+                // }
 
                 // zoom in on the clicked feature
                 map.flyTo({center: e.lngLat, zoom:16});
@@ -2505,12 +2506,12 @@ $('.navbar-nav .dropdown-menu').on({
                         value_clicked_feature_id = clicked_feature.properties.BLK;
                         break;
                     case 'layer_aspern_blocks_attr':
-                        id_property= 'id';
-                        value_clicked_feature_id = clicked_feature.properties.id;
+                        id_property= 'OBJECTID';//'id';
+                        value_clicked_feature_id = clicked_feature.properties.OBJECTID;//id;
                         break;
                     case 'layer_aspern_realUseBlocks':
-                        id_property = 'blockID';
-                        value_clicked_feature_id = clicked_feature.properties.blockID;
+                        id_property = 'OBJECTID';//'blockID';
+                        value_clicked_feature_id = clicked_feature.properties.OBJECTID;//blockID;
                         break;
                     case 'layer_aspern_bkmBlocks':
                         id_property= 'FMZK_ID';
@@ -2743,7 +2744,13 @@ $('.navbar-nav .dropdown-menu').on({
                                 console.log('e: ', e);
                                 console.log('on change this: ', this);
                                 let new_value =e.target.value;
-                                save_dict_property(li, new_value);
+
+                                if (check_id == 'aspern_landuse'){
+                                    save_dict_property(li, new_value, 'aspern_blocks_attr');
+                                }else{
+                                    save_dict_property(li, new_value, check_id);
+                                }
+
                             }
 
                             ul.appendChild(li);
@@ -2757,10 +2764,16 @@ $('.navbar-nav .dropdown-menu').on({
                 create_dynamic_prop_canvas();
 
                 // function for saving the changes in the dictionary
-                function save_dict_property(li, new_value){
+                function save_dict_property(li, new_value, data_check_id){
                     console.log('save the data into the dict');
+                    // if (check_id == 'aspern_landuse'){
+                    //     // clickedLayer = 'layer_aspern_blocks_attr';
+                    //     check_id = 'aspern_blocks_attr';
+                    // }
 
-                    for (f of eval('data_'+check_id).features){
+                    console.log('data check id: ', data_check_id)
+
+                    for (f of eval('data_'+data_check_id).features){
                         // f is the clicked feature from the dictionary
                         // we find the feature in the dictionary that has been changed (we look for the same id)
                         if ( f['properties'][id_property] == value_clicked_feature_id){
@@ -2816,7 +2829,7 @@ $('.navbar-nav .dropdown-menu').on({
                                     dict_key= 'shop';
                                     break;
                                 case 'landuse category':
-                                    li_prop_user= 'landuse';
+                                    dict_key= 'landuse';
                                     break;
                             }
 
@@ -2828,8 +2841,9 @@ $('.navbar-nav .dropdown-menu').on({
                             console.log('f prop: ', f['properties']);
                             f['properties'][dict_key] =new_value;
 
+                            console.log('clicked layer in save in dict: ', clickedLayer)
 
-                            map.getSource(clickedLayer).setData(eval('data_'+check_id));
+                            map.getSource(clickedLayer).setData(eval('data_'+data_check_id));
                             console.log('data after: ', f);
                             feature = f;
 
@@ -2904,12 +2918,21 @@ $('.navbar-nav .dropdown-menu').on({
                 // dynamically_save_changes();
 
                 // get the button
-                const calc_index_button = document.getElementById('index_calc');
-                // trigger the function that send the data to the py script
-                calc_index_button.onclick = (function(){
-                    console.log('calc index button clicked');
-                    sendData(check_id);
-                });
+                // const calc_index_button = document.getElementById('index_calc');
+                // // trigger the function that send the data to the py script
+                // calc_index_button.onclick = (function(){
+                //     console.log('calc index button clicked');
+                //     sendData();
+                // });
+
+
+                // // get the button
+                // const recalc_index_button = document.getElementById('recalculate_index');
+                // // trigger the function that send the data to the py script
+                // recalc_index_button.onclick = (function(){
+                //     console.log('recalc index button clicked');
+                //     sendData();
+                // });
 
             });
         }
