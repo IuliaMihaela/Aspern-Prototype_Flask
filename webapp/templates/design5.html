@@ -517,7 +517,6 @@ body {
         top: 13%;
         right: 1%;
         z-index: 1;
-
     }
 
     #max_height_group {
@@ -533,8 +532,24 @@ body {
         top: 17%;
         right: 1%;
         z-index: 1;
+    }
+
+    #accessibility_group {
+        position: absolute;
+        z-index: 0;
+        top: 18%;
+        right: 1%;
+        align-content: flex-start;
+    }
+
+    #accessibility_content {
+        position: absolute;
+        top: 21%;
+        right: 1%;
+        z-index: 1;
 
     }
+
 
 
 
@@ -589,6 +604,11 @@ body {
         right: 0px;
 
     }
+
+    #accessibility_content .card-body{
+        padding: 0;
+    }
+
 
 
 
@@ -752,6 +772,69 @@ body {
 </div>
 </section>
 
+
+<!--accessability section-->
+<section>
+<div class="btn-group btn-group-sm" id="accessibility_group" role="group" aria-label="Small button group">
+    <button type="button" id="accessibilitybut" class="btn btn-outline-dark ">Accessibility</button>
+</div>
+
+<div class="card" style="width: 18rem; display:none; height: 30%" id="accessibility_content">
+    <button id="btn-close-accessibility" type="button" class="btn-close" aria-label="Close"></button>
+     <button type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="left" title="Compute accessibility" style="
+    position: absolute;height: 25px;width: 30px;" id="calc_accessibility"><i style="font-size: 1.1rem" class="material-icons small">input</i></button>
+    <h6 class="card-title" style="text-align: center;">Accessibility</h6>
+
+  <div class="card-body" style="height: 90%; padding-top: 1px; padding-left: 5%;">
+<!--    <p class="card-text">text...</p>-->
+      <br>
+
+      <div>
+          <h6 class="txt-m txt-bold mb6">Choose distance:</h6>
+          <form action="#" style="width:80%; font-size: 14px">
+              <p class="range-field">
+                  <input type="range" id="test" min="50" max="500" step="50"  value="'+span_text+'">
+                  <span class="thumb">
+<!--                      <span class="value"></span>-->
+                  </span>
+              </p>
+          </form>
+      </div>
+
+
+      <div class="row align-items-end absolute round">
+          <form id="params">
+              <h6 class="txt-m txt-bold mb6">Choose PoI:</h6>
+              <div class="mb12 mr12 toggle-group align-center">
+                  <label class="toggle-container">
+                      <input name="poi" type="radio" value="transport_stations" id="9gf01vwa" />
+                      <div class="toggle toggle--active-null toggle--null">Transport stations</div>
+                  </label>
+                  <label class="toggle-container">
+                      <input name="poi" type="radio" value="shops" id="3hilt6p4"/>
+                      <div class="toggle toggle--active-null toggle--null">Shops</div>
+                  </label>
+              </div>
+          </form>
+      </div>
+      <br>
+
+<!--      <div>-->
+<!--          <h6 class="txt-m txt-bold mb6">Choose distance:</h6>-->
+<!--          <form action="#" style="width:80%; font-size: 14px">-->
+<!--              <p class="range-field">-->
+<!--                  <input type="range" id="test" min="50" max="500" step="50"  value="'+span_text+'">-->
+<!--                  <span class="thumb">-->
+<!--                      <span class="value"></span>-->
+<!--                  </span>-->
+<!--              </p>-->
+<!--          </form>-->
+<!--      </div>-->
+
+
+  </div>
+</div>
+</section>
 
 
 <!--send data button-->
@@ -2045,6 +2128,22 @@ function load_layer_max_height(){
       });
 }
 
+function load_accessibility_polygons_layer(data){
+  map.addLayer(
+      {
+        'id': 'layer_accessibility_polygons',
+        'type': 'fill',
+        'source': {
+            type: 'geojson',
+            data: data
+            },
+        'paint': {
+
+        'fill-color': '#8c172c'
+        }
+      });
+}
+
 var data_from_python;
 // sending the data for index calculations and receiving the index data
 async function sendData(){
@@ -2087,7 +2186,67 @@ async function sendData(){
     }
     // b.innerHTML = 'Index';
     c.innerHTML='Shannon Index'
+
+    // if(map.getLayer('layer_aspern_landuse').visibility == 'none'){
+    //     document.getElementsByClassName('form-check-input')[2].click()
+    //     map.setLayoutProperty(
+    //                     'layer_aspern_landuse',
+    //                     'visibility',
+    //                     'visible'
+    //                 );
+    // }
+
 }
+
+async function calc_accessibility(dist, poi){
+
+
+    // the spinner on the card
+    c = $('#accessibility_content .card-title')[0];
+    c.innerHTML = 'Accessibility  <div class="spinner-border spinner-border-sm" role="status" style="display: inline-block;">\n      ' +
+        '<span class="visually-hidden">Loading...</span>\n    </div>'
+
+
+    console.log('function for sending the accessibility data');
+    // console.log('json data to send: ', JSON.stringify(eval('data_'+check_id)));
+    // const query = await fetch('/flask/', { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
+    const query = await fetch('/accessibility/', { method: 'POST', body: JSON.stringify({'poi':poi, 'dist':dist})});
+    const data = await query.json();
+    console.log(data);
+    data_from_python = data;
+
+    // map.setLayoutProperty(
+    //                 'layer_aspern_landuse',
+    //                 'visibility',
+    //                 'visible'
+    //             );
+
+    if( map.getLayer('layer_accessibility_polygons')){
+        map.getSource('layer_accessibility_polygons').setData(data);
+        map.setLayoutProperty(
+                    'layer_accessibility_polygons',
+                    'visibility',
+                    'visible'
+                );
+     }
+    else {
+        load_accessibility_polygons_layer(data);
+    }
+
+
+    c.innerHTML='Accessibility';
+
+    // if(map.getLayer('layer_aspern_landuse').visibility == 'none'){
+    //     document.getElementsByClassName('form-check-input')[2].click()
+    //     map.setLayoutProperty(
+    //                     'layer_aspern_landuse',
+    //                     'visibility',
+    //                     'visible'
+    //                 );
+    // }
+
+}
+
 
 
 // the dropdown remains open after clicking a layer
@@ -2095,6 +2254,28 @@ $('.navbar-nav .dropdown-menu').on({
 	"click":function(e){
       e.stopPropagation();
     }
+});
+// the dropdown does not close when you click outside the menu
+// https://stackoverflow.com/questions/26639346/prevent-bootstrap-dropdown-from-closing-on-clicks#:~:text=You%20need%20to%20stop%20event%20from%20bubbling%20up,where%20it%27s%20eventually%20handled%20by%20Bootstrap%20hiding%20menu.
+$(function() {
+  var closeble = false;
+  $('body').on('click', function (e) {
+    if (!$(event.target).is('a.dropdown-toggle')) {
+      closeble = false;
+    }
+  });
+  $('.dropdown').on({
+    'click': function (event) {
+      if ($(event.target).closest('.dropdown-toggle').length) {
+        closeble = true;
+      } else {
+        closeble = false;
+      }
+    },
+    'hide.bs.dropdown': function () {
+      return closeble;
+    }
+  });
 });
 
 
@@ -2108,7 +2289,7 @@ $('.navbar-nav .dropdown-menu').on({
 
 
 
-      // get the button
+      // get the button for sending the data for the index calculation
         const recalc_index_button = document.getElementById('recalculate_index');
         // trigger the function that send the data to the py script
         recalc_index_button.onclick = (function(){
@@ -2116,11 +2297,29 @@ $('.navbar-nav .dropdown-menu').on({
             sendData();
         });
 
+          // get the button for sending the data for the accessibility calculation
+        const calc_accessibility_button = document.getElementById('calc_accessibility');
+        // trigger the function that send the data to the py script
+        calc_accessibility_button.onclick = (function(){
+            console.log('recalc index button clicked');
+            const dist = $('.card-body input')[0].value;
+            let poi;
+            if ($('.card-body form')[1][0].checked){
+                poi = 'transport'
+            }
+            else{
+                poi = 'shops'
+            }
+
+            calc_accessibility(dist, poi);
+        });
+
 
 
         // indices buttons
         const shannon_button =$('#shannon')[0];
         shannon_button.onclick = function (e){
+            // show the layer and the content
             if ($('#shannon_content')[0].style.display == 'none')
             {
                 $('#shannon_content').css('display', 'block');
@@ -2136,7 +2335,8 @@ $('.navbar-nav .dropdown-menu').on({
                     sendData('');
                 }
 
-            }else {
+
+            }else{  //hide the layer and the content
                 $('#shannon_content')[0].style.display = 'none'
                 if( map.getLayer('layer_index')){
                    map.setLayoutProperty(
@@ -2146,6 +2346,7 @@ $('.navbar-nav .dropdown-menu').on({
                     );
                 }
             }
+
         }
         const close_shannon_button =$('#btn-close-shannon')[0];
         close_shannon_button.onclick = function (e){
@@ -2268,7 +2469,41 @@ $('.navbar-nav .dropdown-menu').on({
             }
         }
 
+        const accessibility_button =$('#accessibilitybut')[0];
+        accessibility_button.onclick = function (e){
+            if ($('#accessibility_content')[0].style.display == 'none')
+            {
+                $('#accessibility_content').css('display', 'block');
+                // if( map.getLayer('layer_max_height')){
+                //    map.setLayoutProperty(
+                //         'layer_max_height',
+                //         'visibility',
+                //         'visible'
+                //     );
+                // }
+            }else {
+                $('#accessibility_content')[0].style.display = 'none'
+                // if( map.getLayer('layer_max_height')){
+                //    map.setLayoutProperty(
+                //         'layer_max_height',
+                //         'visibility',
+                //         'none'
+                //     );
+                // }
+            }
+        }
+        const close_accessibility_button =$('#btn-close-accessibility')[0];
+        close_accessibility_button.onclick = function (e){
+            $('#accessibility_content').css('display', 'none');
 
+            //  if( map.getLayer('layer_max_height')){
+            //        map.setLayoutProperty(
+            //             'layer_max_height',
+            //             'visibility',
+            //             'none'
+            //        );
+            // }
+        }
 
 
 

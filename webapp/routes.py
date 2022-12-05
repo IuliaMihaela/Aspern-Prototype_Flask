@@ -1,10 +1,12 @@
 from flask import render_template, url_for, redirect, request
 from webapp import app
 import json
-import geopandas
+import geopandas as gpd
 from requests import put, get, post, delete
 # from script import index_calculation, reproject
 from poly_shannon import reproject, indexCalculation
+from distance_calc import reproject, bufferDist
+
 
 @app.route("/", methods=['GET'])
 def home():
@@ -216,7 +218,7 @@ def post_calculated_data():
     print('request decode type', type((request.data).decode()))
     dict = json.loads((request.data).decode())
 
-    df = geopandas.GeoDataFrame.from_features(dict, crs="EPSG:4326")
+    df = gpd.GeoDataFrame.from_features(dict, crs="EPSG:4326")
     print(type(df), df)
 
     df = reproject(df)
@@ -224,3 +226,31 @@ def post_calculated_data():
     result = indexCalculation(df, 'landuse')
     print('index result: ', result)
     return result.to_json()
+
+@app.route('/accessibility/', methods=['POST'])
+def post_calculated_accessibility():
+
+    print('accessibility route')
+    print('request decode type', type((request.data).decode()))
+    dict = json.loads((request.data).decode())
+    poi = dict['poi']
+    dist = dict['dist']
+    print(poi, dict)
+
+    if poi == 'transport':
+        poi_file = gpd.read_file(r'webapp\data\final\aspern_publicstops.geojson')
+    else:
+        poi_file = gpd.read_file(r'webapp\data\final\shops.geojson')
+
+    blocks_file = gpd.read_file(r'webapp\data\final\aspern_blocks_final.geojson')
+
+    # df = geopandas.GeoDataFrame.from_features(dict, crs="EPSG:4326")
+    # print(type(df), df)
+
+    reprojection = reproject(poi_file, blocks_file)
+    print('reprojection', reprojection)
+
+    result = bufferDist(reprojection[0], reprojection[1], int(dist))
+    print('accessibility result: ', result)
+    blocksWithinDist, bufArea_dis =result
+    return blocksWithinDist.to_json()
