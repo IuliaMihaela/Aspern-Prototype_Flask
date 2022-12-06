@@ -779,7 +779,7 @@ body {
     <button type="button" id="accessibilitybut" class="btn btn-outline-dark ">Accessibility</button>
 </div>
 
-<div class="card" style="width: 18rem; display:none; height: 30%" id="accessibility_content">
+<div class="card" style="width: 18rem; display:none; height: 40%" id="accessibility_content">
     <button id="btn-close-accessibility" type="button" class="btn-close" aria-label="Close"></button>
      <button type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="left" title="Compute accessibility" style="
     position: absolute;height: 25px;width: 30px;" id="calc_accessibility"><i style="font-size: 1.1rem" class="material-icons small">input</i></button>
@@ -817,7 +817,22 @@ body {
               </div>
           </form>
       </div>
-      <br>
+
+       <div class="row align-items-end absolute round" style="bottom: 20%;">
+          <form id="accessibility_layers" style="">
+              <h6 class="txt-m txt-bold mb6">Choose Type Layer:</h6>
+              <div class="mb12 mr12 toggle-group align-center">
+                  <label class="toggle-container">
+                      <input name="layer" type="radio" value="polygons" id="pol" />
+                      <div class="toggle toggle--active-null toggle--null">Polygons</div>
+                  </label>
+                  <label class="toggle-container">
+                      <input name="layer" type="radio" value="buffer" id="buf"/>
+                      <div class="toggle toggle--active-null toggle--null">Buffer</div>
+                  </label>
+              </div>
+          </form>
+      </div>
 
 <!--      <div>-->
 <!--          <h6 class="txt-m txt-bold mb6">Choose distance:</h6>-->
@@ -2142,6 +2157,37 @@ function load_accessibility_polygons_layer(data){
         'fill-color': '#8c172c'
         }
       });
+  // map.addLayer(
+      // {
+      //   'id': 'layer_aspern_blocks_attr_accessibility',
+      //   'type': 'fill',
+      //   'source': {
+      //       type: 'geojson',
+      //       data: data_aspern_blocks_attr
+      //       },
+      //   'paint': {
+      //   'fill-color': [
+      //           'match',
+      //           ['get', 'main_cover'],
+      //           'green area',
+      //           '#60c36c',
+      //           'other sealed area',
+      //           '#856666',
+      //           'buildings',
+      //           '#ad949e',
+      //           'construction site',
+      //           '#808080',
+      //           'water',
+      //           '#0080FF',
+      //           '#000000' // any other store type
+      //         ],
+      //       'fill-opacity': 0.5
+      //   },
+      //   // 'layout': {
+      //   //         'visibility': 'none'
+      //   // },
+      // });
+
 }
 
 var data_from_python;
@@ -2198,7 +2244,9 @@ async function sendData(){
 
 }
 
-async function calc_accessibility(dist, poi){
+let buffer_data;
+let blocks_data
+async function calc_accessibility(dist, poi, layer){
 
 
     // the spinner on the card
@@ -2214,8 +2262,8 @@ async function calc_accessibility(dist, poi){
     const data = await query.json();
     console.log('data', data);
     console.log(typeof data['blocks'])
-    const buffer_data = JSON.parse(data['buffer']);
-    const blocks_data =JSON.parse(data['blocks']);
+    buffer_data = JSON.parse(data['buffer']);
+    blocks_data =JSON.parse(data['blocks']);
 
 
     // map.setLayoutProperty(
@@ -2224,8 +2272,16 @@ async function calc_accessibility(dist, poi){
     //                 'visible'
     //             );
 
+    let layer_data;
+    if (layer == 'polygons'){
+        layer_data = blocks_data;
+    }
+    else{
+        layer_data = buffer_data
+    }
+
     if( map.getLayer('layer_accessibility_polygons')){
-        map.getSource('layer_accessibility_polygons').setData(blocks_data);
+        map.getSource('layer_accessibility_polygons').setData(layer_data);
         map.setLayoutProperty(
                     'layer_accessibility_polygons',
                     'visibility',
@@ -2233,7 +2289,7 @@ async function calc_accessibility(dist, poi){
                 );
      }
     else {
-        load_accessibility_polygons_layer(blocks_data);
+        load_accessibility_polygons_layer(layer_data);
     }
 
 
@@ -2314,7 +2370,19 @@ $(function() {
                 poi = 'shops'
             }
 
-            calc_accessibility(dist, poi);
+            let layer;
+            if ($('.card-body form')[2][0].checked){
+                layer = 'polygons'
+            }
+            else{
+                layer = 'buffer'
+            }
+
+            calc_accessibility(dist, poi, layer);
+
+            // $('#accessibility_layers')[0].style.display = 'block'
+
+
         });
 
 
@@ -2484,11 +2552,40 @@ $(function() {
                         'visibility',
                         'visible'
                     );
+
+                   // $('#accessibility_layers')[0].onchange = function (e){
+                   //     console.log(e.target.value)
+                   //     value = e.target.value;
+                   //     if (value == 'buffer'){
+                   //         map.getSource('layer_accessibility_polygons').setData(buffer_data);
+                   //
+                   //     }
+                   //     else{
+                   //         map.getSource('layer_accessibility_polygons').setData(blocks_data);
+                   //     }
+                   // }
                 }
                 else{
                     //at first when we open the section, we have the transportation option already checked
                     $('.card-body form')[1][0].checked=true
+                    //at first when we open the section, we have the polygon layer option already checked
+                    $('.card-body form')[2][0].checked=true
                 }
+
+
+                     $('#accessibility_layers')[0].onchange = function (e){
+                       console.log(e.target.value)
+                       value = e.target.value;
+                       if (value == 'buffer'){
+                           map.getSource('layer_accessibility_polygons').setData(buffer_data);
+
+                       }
+                       else{
+                           map.getSource('layer_accessibility_polygons').setData(blocks_data);
+                       }
+                   }
+
+
             }else {
                 $('#accessibility_content')[0].style.display = 'none'
                 if( map.getLayer('layer_accessibility_polygons')){
