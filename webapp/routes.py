@@ -5,7 +5,7 @@ import geopandas as gpd
 from requests import put, get, post, delete
 # from script import index_calculation, reproject
 from poly_shannon import reproject, indexCalculation
-from distance_calc import reproject, bufferDist
+from distance_calc import reprojectdist, bufferDist
 
 
 @app.route("/", methods=['GET'])
@@ -247,10 +247,15 @@ def post_calculated_accessibility():
     # df = geopandas.GeoDataFrame.from_features(dict, crs="EPSG:4326")
     # print(type(df), df)
 
-    reprojection = reproject(poi_file, blocks_file)
+    reprojection = reprojectdist(poi_file, blocks_file)
     print('reprojection', reprojection)
 
     result = bufferDist(reprojection[0], reprojection[1], int(dist))
     print('accessibility result: ', result)
     blocksWithinDist, bufArea_dis =result
-    return blocksWithinDist.to_json()
+    print('type blocksWithinDist: ', type(blocksWithinDist))
+    # return blocksWithinDist.to_json()
+    response = {'blocks': blocksWithinDist.to_json(), 'buffer': bufArea_dis.to_json()}
+    #return blocksWithinDist.to_json() #, bufArea_dis.to_json()
+    return response
+

@@ -2212,8 +2212,11 @@ async function calc_accessibility(dist, poi){
     // const query = await fetch('/flask/', { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
     const query = await fetch('/accessibility/', { method: 'POST', body: JSON.stringify({'poi':poi, 'dist':dist})});
     const data = await query.json();
-    console.log(data);
-    data_from_python = data;
+    console.log('data', data);
+    console.log(typeof data['blocks'])
+    const buffer_data = JSON.parse(data['buffer']);
+    const blocks_data =JSON.parse(data['blocks']);
+
 
     // map.setLayoutProperty(
     //                 'layer_aspern_landuse',
@@ -2222,7 +2225,7 @@ async function calc_accessibility(dist, poi){
     //             );
 
     if( map.getLayer('layer_accessibility_polygons')){
-        map.getSource('layer_accessibility_polygons').setData(data);
+        map.getSource('layer_accessibility_polygons').setData(blocks_data);
         map.setLayoutProperty(
                     'layer_accessibility_polygons',
                     'visibility',
@@ -2230,7 +2233,7 @@ async function calc_accessibility(dist, poi){
                 );
      }
     else {
-        load_accessibility_polygons_layer(data);
+        load_accessibility_polygons_layer(blocks_data);
     }
 
 
@@ -2471,38 +2474,43 @@ $(function() {
 
         const accessibility_button =$('#accessibilitybut')[0];
         accessibility_button.onclick = function (e){
+            //open the section
             if ($('#accessibility_content')[0].style.display == 'none')
             {
                 $('#accessibility_content').css('display', 'block');
-                // if( map.getLayer('layer_max_height')){
-                //    map.setLayoutProperty(
-                //         'layer_max_height',
-                //         'visibility',
-                //         'visible'
-                //     );
-                // }
+                if( map.getLayer('layer_accessibility_polygons')){
+                   map.setLayoutProperty(
+                        'layer_accessibility_polygons',
+                        'visibility',
+                        'visible'
+                    );
+                }
+                else{
+                    //at first when we open the section, we have the transportation option already checked
+                    $('.card-body form')[1][0].checked=true
+                }
             }else {
                 $('#accessibility_content')[0].style.display = 'none'
-                // if( map.getLayer('layer_max_height')){
-                //    map.setLayoutProperty(
-                //         'layer_max_height',
-                //         'visibility',
-                //         'none'
-                //     );
-                // }
+                if( map.getLayer('layer_accessibility_polygons')){
+                   map.setLayoutProperty(
+                        'layer_accessibility_polygons',
+                        'visibility',
+                        'none'
+                    );
+                }
             }
         }
         const close_accessibility_button =$('#btn-close-accessibility')[0];
         close_accessibility_button.onclick = function (e){
             $('#accessibility_content').css('display', 'none');
 
-            //  if( map.getLayer('layer_max_height')){
-            //        map.setLayoutProperty(
-            //             'layer_max_height',
-            //             'visibility',
-            //             'none'
-            //        );
-            // }
+             if( map.getLayer('layer_accessibility_polygons')){
+                   map.setLayoutProperty(
+                        'layer_accessibility_polygons',
+                        'visibility',
+                        'none'
+                   );
+            }
         }
 
 
