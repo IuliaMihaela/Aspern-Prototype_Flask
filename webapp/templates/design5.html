@@ -1054,6 +1054,15 @@ body {
 //       content: function() {
 //         return document.getElementById('popover_content').outerHTML;}
 // })
+// this funtion willbe used to find the index of a layer in the order list of the map
+function getKeyByValue(object, value) {
+            for (var prop in object) {
+                if (object.hasOwnProperty(prop)) {
+                    if (object[prop] === value)
+                    return prop;
+                }
+            }
+        }
 
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
@@ -1376,6 +1385,13 @@ function getXml() {
                     data_shops = json_response;
                     original_data_shops = json_response;
                     load_layer_shops()
+
+                    //console.log(map.style._order)
+                    // switch the layers order so that the 3d buildings layer is on top of the landuse layer
+                    index_landuse = getKeyByValue(map.style._order, 'layer_aspern_landuse');
+                    index_bkm = getKeyByValue(map.style._order, 'layer_aspern_bkmBlocks');
+                    map.style._order[index_bkm] = 'layer_aspern_landuse';
+                    map.style._order[index_landuse] = 'layer_aspern_bkmBlocks';
                     break;
             }
         }
@@ -2157,36 +2173,42 @@ function load_accessibility_polygons_layer(data){
         'fill-color': '#8c172c'
         }
       });
-  // map.addLayer(
-      // {
-      //   'id': 'layer_aspern_blocks_attr_accessibility',
-      //   'type': 'fill',
-      //   'source': {
-      //       type: 'geojson',
-      //       data: data_aspern_blocks_attr
-      //       },
-      //   'paint': {
-      //   'fill-color': [
-      //           'match',
-      //           ['get', 'main_cover'],
-      //           'green area',
-      //           '#60c36c',
-      //           'other sealed area',
-      //           '#856666',
-      //           'buildings',
-      //           '#ad949e',
-      //           'construction site',
-      //           '#808080',
-      //           'water',
-      //           '#0080FF',
-      //           '#000000' // any other store type
-      //         ],
-      //       'fill-opacity': 0.5
-      //   },
-      //   // 'layout': {
-      //   //         'visibility': 'none'
-      //   // },
-      // });
+  map.addLayer(
+      {
+        'id': 'layer_aspern_blocks_attr_accessibility',
+        'type': 'fill',
+        'source': {
+            type: 'geojson',
+            data: data_aspern_blocks_attr
+            },
+        'paint': {
+        'fill-color': [
+                'match',
+                ['get', 'main_cover'],
+                'green area',
+                '#60c36c',
+                'other sealed area',
+                '#856666',
+                'buildings',
+                '#ad949e',
+                'construction site',
+                '#808080',
+                'water',
+                '#0080FF',
+                '#000000' // any other store type
+              ],
+            'fill-opacity': 0.5
+        },
+        // 'layout': {
+        //         'visibility': 'none'
+        // },
+      });
+
+  // switch the layers order so that the 3d buildings layer is on top of the landuse layer
+    index_attr = getKeyByValue(map.style._order, 'layer_aspern_blocks_attr_accessibility');
+    index_pol = getKeyByValue(map.style._order, 'layer_accessibility_polygons');
+    map.style._order[index_attr] = 'layer_accessibility_polygons';
+    map.style._order[index_pol] = 'layer_aspern_blocks_attr_accessibility';
 
 }
 
@@ -2284,6 +2306,11 @@ async function calc_accessibility(dist, poi, layer){
         map.getSource('layer_accessibility_polygons').setData(layer_data);
         map.setLayoutProperty(
                     'layer_accessibility_polygons',
+                    'visibility',
+                    'visible'
+                );
+         map.setLayoutProperty(
+                    'layer_aspern_blocks_attr_accessibility',
                     'visibility',
                     'visible'
                 );
@@ -2552,6 +2579,11 @@ $(function() {
                         'visibility',
                         'visible'
                     );
+                   map.setLayoutProperty(
+                        'layer_aspern_blocks_attr_accessibility',
+                        'visibility',
+                        'visible'
+                    );
 
                    // $('#accessibility_layers')[0].onchange = function (e){
                    //     console.log(e.target.value)
@@ -2577,7 +2609,13 @@ $(function() {
                        console.log(e.target.value)
                        value = e.target.value;
                        if (value == 'buffer'){
-                           map.getSource('layer_accessibility_polygons').setData(buffer_data);
+                           try {
+                               map.getSource('layer_accessibility_polygons').setData(buffer_data);
+                           }
+                           catch (e) {
+                               console.log('no buffer data yet...')
+                           }
+
 
                        }
                        else{
@@ -2594,6 +2632,12 @@ $(function() {
                         'visibility',
                         'none'
                     );
+
+                   map.setLayoutProperty(
+                        'layer_aspern_blocks_attr_accessibility',
+                        'visibility',
+                        'none'
+                    );
                 }
             }
         }
@@ -2607,6 +2651,11 @@ $(function() {
                         'visibility',
                         'none'
                    );
+                   map.setLayoutProperty(
+                        'layer_aspern_blocks_attr_accessibility',
+                        'visibility',
+                        'none'
+                    );
             }
         }
 
@@ -2640,6 +2689,7 @@ $(function() {
     //     // the canvas is hidden
     //     canvas_legend.className = canvas_legend.className.substring(4,canvas_legend.className.length);// it removes the class 'show' to the canvas element
     // });
+
 
 
     ///... here comes code for switching between layers ... ///
