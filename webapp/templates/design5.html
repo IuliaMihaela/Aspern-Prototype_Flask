@@ -375,6 +375,19 @@ body {
         visibility: hidden;
     }
 
+    /*3d button change colors*/
+     .form-check-input:focus {
+        border-color: rgb(108 117 125);
+        box-shadow: 0 0 0 0.25rem #6c757d45;
+    }
+     .form-switch .form-check-input:focus {
+        background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='%231a2224bf'/></svg>");
+    }
+     .form-check-input:checked {
+        background-color: #6c757d;
+        border-color: rgba(0, 0, 0, 0.25);
+    }
+
     /*for the 3d checkbox, hide the materialize tick */
     #aspern_bkmBlocks:not(:checked), #aspern_bkmBlocks:checked {
         visibility: visible;
@@ -550,6 +563,21 @@ body {
 
     }
 
+    #retore_changes_group {
+        position: absolute;
+        z-index: 1;
+        bottom: 10%;
+        right: 1%;
+        top: 83%;
+    }
+
+    #retore_changes {
+        width: 57px;
+        font-size: xx-small;
+        height: fit-content;
+        /*--bs-btn-padding-x: 0;*/
+
+    }
 
 
 
@@ -851,11 +879,10 @@ body {
 </div>
 </section>
 
-
-<!--send data button-->
-<!--<div class="btn-group btn-group-sm" role="group" aria-label="Small button group">-->
-<!--    <button style="display:none" id="index_calc" type="button" class="btn btn-outline-dark">Index</button>-->
-<!--</div>-->
+<!--restore changes -->
+<div class="btn-group btn-group-sm" id="retore_changes_group" role="group" aria-label="Small button group">
+    <button type="button" id="retore_changes" style="display: none" class="btn btn-outline-dark ">Restore changes</button>
+</div>
 
 
 <!-- LEFT CANVAS (LAYERS)-->
@@ -972,16 +999,6 @@ body {
               </li>
       </ul>
 
-<!--      legend -->
-<!--      <div class="dropdown-center" id="legend" style="display: none">-->
-<!--        <button class="btn btn-secondary btn-light dropdown-toggle vertical-scrollable" type="button" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--            Legend-->
-<!--        </button>-->
-<!--        <ul class="dropdown-menu legend_ul">-->
-<!--        </ul>-->
-<!--      </div>-->
-
-
 
       <section>
           <ul class="legend_ul" style="padding-left: 0rem;">
@@ -989,42 +1006,6 @@ body {
       </section>
   </div>
 </div>
-
-
-<!--RIGHT CANVAS (LEGEND)-->
-<!--<button id="btn-open-legend" class="btn btn-outline-secondary " type="button" ><i style="font-size: 1.1rem" class="material-icons small">info_outline</i>-->
-<!--</button>-->
-<!--<div class="split right offcanvas offcanvas-end menu offcanvas-size-sm" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling3" aria-labelledby="offcanvasScrollingLabel">-->
-<!--  <div class="offcanvas-header">-->
-<!--    <h5 class="offcanvas-title" id="offcanvasScrollingLabel3">Legend</h5>-->
-<!--    <button id="btn-close-legend" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>-->
-<!--  </div>-->
-<!--  <div class="offcanvas-body" style="height: 80%">-->
-
-<!--&lt;!&ndash;      <ul class="legend_ul">&ndash;&gt;-->
-<!--&lt;!&ndash;        </ul>&ndash;&gt;-->
-
-<!--&lt;!&ndash;      <section id="legend_section">&ndash;&gt;-->
-<!--&lt;!&ndash;          <ul class="legend_ul" style="padding-left: 0rem;">&ndash;&gt;-->
-<!--&lt;!&ndash;        </ul>&ndash;&gt;-->
-<!--&lt;!&ndash;        </section>&ndash;&gt;-->
-
-<!--&lt;!&ndash;      <div class="btn-group">&ndash;&gt;-->
-<!--&lt;!&ndash;      <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">&ndash;&gt;-->
-<!--&lt;!&ndash;        Small button&ndash;&gt;-->
-<!--&lt;!&ndash;      </button>&ndash;&gt;-->
-<!--&lt;!&ndash;      <ul class="dropdown-menu legend_ul">&ndash;&gt;-->
-<!--&lt;!&ndash;        ...&ndash;&gt;-->
-<!--&lt;!&ndash;      </ul>&ndash;&gt;-->
-<!--&lt;!&ndash;    </div>&ndash;&gt;-->
-<!--  </div>-->
-<!--</div>-->
-
-
-<!--<section id="legend_section">-->
-<!--  <ul class="legend_ul" style="padding-left: 0rem;">-->
-<!--</ul>-->
-<!--</section>-->
 
 
 <!-- BOTTOM CANVAS (GRAPHS) -->
@@ -1042,8 +1023,6 @@ body {
 
 
 
-<!--<i style="font-size: 1.1rem" class="material-icons small">info_outline</i>-->
-
 
 
 
@@ -1054,7 +1033,9 @@ body {
 //       content: function() {
 //         return document.getElementById('popover_content').outerHTML;}
 // })
-// this funtion willbe used to find the index of a layer in the order list of the map
+
+
+// this function will be used to find the index of a layer in the order list of the map
 function getKeyByValue(object, value) {
             for (var prop in object) {
                 if (object.hasOwnProperty(prop)) {
@@ -1081,14 +1062,6 @@ const map = new mapboxgl.Map({
 
 
 // define the html for the legend for each layer
-// const legend_aspern_blocks_attr= '   <li><strong>Main Form of Usage: </strong></li>\n' +
-//     '            <br>\n' +
-//     '            <li><span style="background: #60c36c;"></span>greenSpace: <em>green open spaces, gardens, agricultural land</em></li>\n' +
-//     '            <li><span style="background: #856666;"></span>sealedSpace: <em>public and private sealed area, including roads, bike paths etc.</em></li>\n' +
-//     '            <li><span style="background: #ad949e;"></span>buildings</li>\n' +
-//     '            <li><span style="background: #808080;"></span>construction: <em>construction sites, gravel pit</em></li>\n' +
-//     '            <li><span style="background: #0080FF;"></span>water</li>\n';
-
 const legend_aspern_blocks_attr=
     '            <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>\n' +
     '            <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>\n' +
@@ -1109,20 +1082,6 @@ const legend_aspern_realUseBlocks ='   <li><strong>Class (”land cover”): </s
 
 const legend_aspern_bkmBlocks = '';
 
-// const legend_aspern_landuse ='   <li><strong>Land Use: </strong></li>\n' +
-//     '            <br>\n' +
-//     '            <li><span style="background: #88db35;"></span>recreation and leisure facilities</li>\n' +
-//     '            <li><span style="background: #e2d4c0;"></span>business and mixed use with emphasis on business activity</li>\n' +
-//     '            <li><span style="background: #60c8c5;"></span>water</li>\n' +
-//     '            <li><span style="background: #de8d24;"></span>industrial and commercial uses</li>\n' +
-//     '            <li><span style="background: #8baf76;"></span>agriculture</li>\n'+
-//     '            <li><span style="background: #bce48b;"></span>natural area</li>\n' +
-//     '            <li><span style="background: #c4bcef;"></span>social infrastructure</li>\n' +
-//     '            <li><span style="background: #c2d0a1;"></span>technical infrastructure/art buildings/special uses</li>\n' +
-//     '            <li><span style="background: #a8cfc6;"></span>other transportation uses</li>\n' +
-//     '            <li><span style="background: #d9bdc6;"></span>residential and mixed use with emphasis on residential</li>\n'+
-//     '            <li><span style="background: #d2e0c5;"></span>road space</li>\n';
-
 const legend_aspern_landuse =
     '            <li class="label"><span style="background: #88db35;" data-bs-toggle="tooltip" data-bs-placement="left" title="recreation & leisure facilities"></span></li>\n' +
     '            <li class="label"><span style="background: #e2d4c0;" data-bs-toggle="tooltip" data-bs-placement="left" title="business uses"></span></li>\n' +
@@ -1137,28 +1096,12 @@ const legend_aspern_landuse =
     '            <li class="label"><span style="background: #d2e0c5;" data-bs-toggle="tooltip" data-bs-placement="left" title="road space"></span></li>\n';
 
 
-// const legend_aspern_roads ='   <li><strong>Road Category of the Section: </strong></li>\n' +
-//     '            <br>\n' +
-//     '            <li><span style="background: #FFFF66;"></span>G: <em>municipal road</em></li>\n' +
-//     '            <li><span style="background: #FF9933;"></span>L: <em>state main road</em></li>\n'+
-//     '            <li><span style="background: #a117c7;"></span>B: <em>main road</em></li>\
-
 const legend_aspern_roads =
     '            <li class="label"><span style="background: #FFFF66;" data-bs-toggle="tooltip" data-bs-placement="left" title="G: municipal road"></span></li>\n' +
     '            <li class="label"><span style="background: #FF9933;" data-bs-toggle="tooltip" data-bs-placement="left" title="L: state main road"></span></li>\n'+
     '            <li class="label"><span style="background: #a117c7;" data-bs-toggle="tooltip" data-bs-placement="left" title="B: main road"></span></li>\n';
 
 
-// const legend_aspern_publiclines ='   <li><strong>Type of the Means of Transport: </strong></li>\n' +
-//     '            <br>\n' +
-//     '            <li><span style="background: #CC0000;"></span>13: <em>astax</em></li>\n' +
-//     '            <li><span style="background: #FF8000;"></span>3: <em>regional bus</em></li>\n' +
-//     '            <li><span style="background: #FFFF00;"></span>2: <em>bus</em></li>\n' +
-//     '            <li><span style="background: #00FF00;"></span>5: <em>rapid transit and regional train</em></li>\n' +
-//     '            <li><span style="background: #00FFFF;"></span>9: <em>astax</em></li>\n'+
-//     '            <li><span style="background: #0000FF;"></span>10: <em>night bus</em></li>\n' +
-//     '            <li><span style="background: #FF33FF;"></span>11: <em>night bus</em></li>\n' +
-//     '            <li><span style="background: #FF3399;"></span>4: <em>subway</em></li>\n';
 
 const legend_aspern_publiclines =
     '            <li class="label"><span style="background: #CC0000;" data-bs-toggle="tooltip" data-bs-placement="left" title="13: astax"></span></li>\n' +
@@ -1171,14 +1114,6 @@ const legend_aspern_publiclines =
     '            <li class="label"><span style="background: #FF3399;" data-bs-toggle="tooltip" data-bs-placement="left" title="4: subway"></span></li>\n';
 
 
-// const legend_aspern_trees_blocks ='   <li><strong>Classification Categories of Tree height: </strong></li>\n' +
-//     '            <br>\n' +
-//     '            <li class="label"><span style="background: #99FF99;"></span>0</li>\n' +
-//     '            <li class="label"><span style="background: #66FF66;"></span>1</li>\n' +
-//     '            <li class="label"><span style="background: #33FF33;"></span>2</li>\n' +
-//     '            <li class="label"><span style="background: #00CC00;"></span>3</li>\n' +
-//     '            <li class="label"><span style="background: #00CC00;"></span>4</li>\n'+
-//     '            <li class="label"><span style="background: #009900;"></span>5</li>\n';
 
 const legend_aspern_trees_blocks =
     '      <div>\n' +
@@ -1196,16 +1131,6 @@ const legend_aspern_trees_blocks =
     '    </div>'+
     '<div>\n';
 
-// const legend_aspern_publicstops ='   <li><strong>Type of the Means of Transport: </strong></li>\n' +
-//     '            <br>\n' +
-//     '            <li><span style="background: #CC0000;"></span>13: <em>astax</em></li>\n' +
-//     '            <li><span style="background: #FF8000;"></span>3: <em>regional bus</em></li>\n' +
-//     '            <li><span style="background: #FFFF00;"></span>2: <em>bus</em></li>\n' +
-//     '            <li><span style="background: #00FF00;"></span>5: <em>rapid transit and regional train</em></li>\n' +
-//     '            <li><span style="background: #00FFFF;"></span>9: <em>astax</em></li>\n'+
-//     '            <li><span style="background: #0000FF;"></span>10: <em>night bus</em></li>\n' +
-//     '            <li><span style="background: #FF33FF;"></span>11: <em>night bus</em></li>\n' +
-//     '            <li><span style="background: #FF3399;"></span>4: <em>subway</em></li>\n';
 
 const legend_aspern_publicstops = legend_aspern_publiclines;
 
@@ -1221,12 +1146,6 @@ const legend_zoning =
     '            <li class="label"><span style="background: #FFE4B5;" data-bs-toggle="tooltip" data-bs-placement="left" title="WO: residential area"></span></li>\n' +
     '            <li class="label"><span style="background: #000000;" data-bs-toggle="tooltip" data-bs-placement="left" title="Other"></span></li>\n'
 
-    // '      <br>\n' +
-    // '      <div>\n' +
-    // '        <div class=\'row colors\' style="background: linear-gradient(to right, #FFE4B5, #DEB887,#F4A460, #CD853F, #D2691E, #8B4513, #774c43);">\n' +
-    // '        </div>\n' +
-    // '      </div>\n' +
-    // '    </br>';
 
 const legend_osr = '<div>\n' +
     '      <div>\n' +
@@ -2373,6 +2292,47 @@ $(function() {
   map.on('load', ()=>{
     getXml() // load the local geojson files
 
+      // toggle between original and changed data of the landuse layer
+    const restoreb = document.getElementById('retore_changes');
+    restoreb.onclick = function (e){
+        if (restoreb.innerHTML == 'Restore changes'){
+           console.log('restore changes button clicked');
+            restoreb.innerHTML = 'Show original';
+            const file_path = "../data/final/aspern_blocks_final_updated.geojson";
+            const xmlhttp = new XMLHttpRequest();
+                xmlhttp.onload = function() {
+                  if (this.readyState == 4 && this.status == 200){
+                    // console.log(this.responseText);
+                    data_aspern_blocks_attr = JSON.parse(this.responseText);
+                    map.getSource('layer_aspern_landuse').setData(data_aspern_blocks_attr);
+                    console.log(data);
+                  } else {
+                    console.warn('Did not receive 200 OK from response!')
+                  }
+                }
+                xmlhttp.open("GET", file_path);
+                xmlhttp.send();
+        }
+        else {
+            console.log('show original data')
+            restoreb.innerHTML = 'Restore changes';
+            map.getSource('layer_aspern_landuse').setData(original_data_aspern_blocks_attr);
+            data_aspern_blocks_attr = original_data_aspern_blocks_attr;
+        }
+
+
+
+    }
+
+    //save changes function
+      async function save_changes(){
+        console.log('save changes function...')
+        const query = await fetch('/changes/', { method: 'POST', body: JSON.stringify(data_aspern_blocks_attr)});
+      }
+    // save changes every 10 seconds
+    const interval = setInterval(save_changes, 10000); // 10 000 miliseconds
+    // clearInterval(interval);
+
 
 
       // get the button for sending the data for the index calculation
@@ -2792,6 +2752,10 @@ $(function() {
                     button3d_el.classList.add('button3d_bottom_no_graph');
                 }
 
+                 if(check_id == 'aspern_landuse'){
+                        restoreb.style.display = 'none';
+                    }
+
 
 
                 // remove legend
@@ -2858,6 +2822,9 @@ $(function() {
                         legend_ul.innerHTML = legend_aspern_blocks_attr;
                     }
 
+                 if(check_id == 'aspern_landuse'){
+                        restoreb.style.display = 'block';
+                    }
 
             }
 

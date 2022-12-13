@@ -68,6 +68,12 @@ def data21():
     with open(r'webapp\data\final\aspern_blocks_final.geojson', encoding='utf-8') as f:
         return f.read()
 
+@app.route("/data/final/aspern_blocks_final_updated.geojson", methods=['GET'])
+def data211():
+    with open(r'webapp\data\final\aspern_blocks_final_updated.geojson', encoding='utf-8') as f:
+        return f.read()
+
+
 @app.route("/data/final/aspern_realUseBlocks.geojson", methods=['GET'])
 def data3():
     with open(r'webapp\data\final\aspern_realUseBlocks.geojson', encoding='utf-8') as f:
@@ -217,6 +223,12 @@ def post_calculated_data():
     print('flask route')
     print('request decode type', type((request.data).decode()))
     dict = json.loads((request.data).decode())
+    print('data: ', dict)
+
+    # save the updated landuse data on a separate file
+    with open(r'webapp\data\final\aspern_blocks_final_updated.geojson', 'w', encoding='utf-8') as f:
+        f.write(json.dumps(dict))
+
 
     df = gpd.GeoDataFrame.from_features(dict, crs="EPSG:4326")
     print(type(df), df)
@@ -259,3 +271,23 @@ def post_calculated_accessibility():
     #return blocksWithinDist.to_json() #, bufArea_dis.to_json()
     return response
 
+
+@app.route('/changes/', methods=['POST'])
+def post_save_changes():
+    dict = json.loads((request.data).decode())
+    print('data save: ', dict)
+
+    # save the updated landuse data on a separate file
+    with open(r'webapp\data\final\aspern_blocks_final_updated.geojson', 'w', encoding='utf-8') as f:
+        f.write(json.dumps(dict))
+    return '{"save": "True"}'
+
+@app.route('/changes/', methods=['DELETE'])
+def post_delete_changes():
+    dict = json.loads((request.data).decode())
+    print('data save: ', dict)
+
+    # save the updated landuse data on a separate file
+    with open(r'webapp\data\final\aspern_blocks_final_updated.geojson', 'w', encoding='utf-8') as f:
+        f.write('')
+    return
