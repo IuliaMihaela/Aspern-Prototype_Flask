@@ -678,7 +678,7 @@ body {
   <div class="card-body" style="height: 90%;  padding-top: 1px;">
     <p class="card-text">A measure of the variety of land uses in an area, indicating the number of different classes</p>
 
-            <div>
+        <div>
           <div>
             <div class='row colors' style="background: linear-gradient(to right, #e1aeb4, #d3828f,#d55f5f, #b42f2f, #8c172c);">
             </div>
@@ -691,6 +691,10 @@ body {
             </div>
           </div>
         </div>
+
+      <div id="shannon_graph">
+
+      </div>
 
   </div>
 </div>
@@ -818,7 +822,7 @@ body {
       <br>
 
       <div>
-          <h6 class="txt-m txt-bold mb6">Choose distance:</h6>
+          <h6 class="txt-m txt-bold mb6">Distance:</h6>
           <form action="#" style="width:80%; font-size: 14px">
               <p class="range-field">
                   <input type="range" id="test" min="50" max="500" step="50"  value="'+span_text+'">
@@ -832,7 +836,7 @@ body {
 
       <div class="row align-items-end absolute round">
           <form id="params">
-              <h6 class="txt-m txt-bold mb6">Choose PoI:</h6>
+              <h6 class="txt-m txt-bold mb6">Point of Interest:</h6>
               <div class="mb12 mr12 toggle-group align-center">
                   <label class="toggle-container">
                       <input name="poi" type="radio" value="transport_stations" id="9gf01vwa" />
@@ -848,11 +852,11 @@ body {
 
        <div class="row align-items-end absolute round" style="bottom: 20%;">
           <form id="accessibility_layers" style="">
-              <h6 class="txt-m txt-bold mb6">Choose Type Layer:</h6>
+              <h6 class="txt-m txt-bold mb6">Show within distance:</h6>
               <div class="mb12 mr12 toggle-group align-center">
                   <label class="toggle-container">
                       <input name="layer" type="radio" value="polygons" id="pol" />
-                      <div class="toggle toggle--active-null toggle--null">Polygons</div>
+                      <div class="toggle toggle--active-null toggle--null">Blocks</div>
                   </label>
                   <label class="toggle-container">
                       <input name="layer" type="radio" value="buffer" id="buf"/>
@@ -2078,10 +2082,10 @@ function load_layer_max_height(){
       });
 }
 
-function load_accessibility_polygons_layer(data){
+function load_layer_accessibility(data, poi){
   map.addLayer(
       {
-        'id': 'layer_accessibility_polygons',
+        'id': 'layer_accessibility_fill',
         'type': 'fill',
         'source': {
             type: 'geojson',
@@ -2089,9 +2093,42 @@ function load_accessibility_polygons_layer(data){
             },
         'paint': {
 
-        'fill-color': '#8c172c'
+        'fill-color': '#8c172c',
+        'fill-opacity': 0.5
+        },
+        // 'layout': {
+        //         'visibility': 'none'
+        // },
+      });
+
+  map.addLayer(
+      {
+        'id': 'layer_accessibility_line',
+        'type': 'line',
+        'source': {
+            type: 'geojson',
+            data: data
+            },
+        'paint': {
+
+        'line-color': 'rgba(56,2,12,0.91)'
         }
       });
+
+  map.addLayer(
+      {
+        'id': 'layer_accessibility_points',
+        'type': 'circle',
+        'source': {
+            type: 'geojson',
+            data: poi
+            },
+        'paint': {
+
+        'circle-color': 'rgb(0,0,5)'
+        }
+      });
+
   map.addLayer(
       {
         'id': 'layer_aspern_blocks_attr_accessibility',
@@ -2101,22 +2138,23 @@ function load_accessibility_polygons_layer(data){
             data: data_aspern_blocks_attr
             },
         'paint': {
-        'fill-color': [
-                'match',
-                ['get', 'main_cover'],
-                'green area',
-                '#60c36c',
-                'other sealed area',
-                '#856666',
-                'buildings',
-                '#ad949e',
-                'construction site',
-                '#808080',
-                'water',
-                '#0080FF',
-                '#000000' // any other store type
-              ],
-            'fill-opacity': 0.5
+        'fill-color': '#C0C0C0',
+            // [
+            //     'match',
+            //     ['get', 'main_cover'],
+            //     'green area',
+            //     '#60c36c',
+            //     'other sealed area',
+            //     '#856666',
+            //     'buildings',
+            //     '#ad949e',
+            //     'construction site',
+            //     '#808080',
+            //     'water',
+            //     '#0080FF',
+            //     '#000000' // any other store type
+            //   ],
+            'fill-opacity': 0.6
         },
         // 'layout': {
         //         'visibility': 'none'
@@ -2125,8 +2163,8 @@ function load_accessibility_polygons_layer(data){
 
   // switch the layers order so that the 3d buildings layer is on top of the landuse layer
     index_attr = getKeyByValue(map.style._order, 'layer_aspern_blocks_attr_accessibility');
-    index_pol = getKeyByValue(map.style._order, 'layer_accessibility_polygons');
-    map.style._order[index_attr] = 'layer_accessibility_polygons';
+    index_pol = getKeyByValue(map.style._order, 'layer_accessibility_fill');
+    map.style._order[index_attr] = 'layer_accessibility_fill';
     map.style._order[index_pol] = 'layer_aspern_blocks_attr_accessibility';
 
 }
@@ -2220,14 +2258,28 @@ async function calc_accessibility(dist, poi, layer){
     else{
         layer_data = buffer_data
     }
+    const poi_data = poi == 'transport' ? data_aspern_publicstops : data_shops;
 
-    if( map.getLayer('layer_accessibility_polygons')){
-        map.getSource('layer_accessibility_polygons').setData(layer_data);
+    if( map.getLayer('layer_accessibility_fill')){
+        map.getSource('layer_accessibility_fill').setData(layer_data);
         map.setLayoutProperty(
-                    'layer_accessibility_polygons',
+                    'layer_accessibility_fill',
                     'visibility',
                     'visible'
                 );
+        map.getSource('layer_accessibility_line').setData(layer_data);
+        map.setLayoutProperty(
+                    'layer_accessibility_line',
+                    'visibility',
+                    'visible'
+                );
+        map.getSource('layer_accessibility_points').setData(poi_data);
+        map.setLayoutProperty(
+                    'layer_accessibility_points',
+                    'visibility',
+                    'visible'
+                );
+
          map.setLayoutProperty(
                     'layer_aspern_blocks_attr_accessibility',
                     'visibility',
@@ -2235,7 +2287,7 @@ async function calc_accessibility(dist, poi, layer){
                 );
      }
     else {
-        load_accessibility_polygons_layer(layer_data);
+        load_layer_accessibility(layer_data, poi_data);
     }
 
 
@@ -2330,7 +2382,7 @@ $(function() {
         const query = await fetch('/changes/', { method: 'POST', body: JSON.stringify(data_aspern_blocks_attr)});
       }
     // save changes every 10 seconds
-    const interval = setInterval(save_changes, 10000); // 10 000 miliseconds
+    // const interval = setInterval(save_changes, 10000); // 10 000 miliseconds
     // clearInterval(interval);
 
 
@@ -2533,9 +2585,19 @@ $(function() {
             if ($('#accessibility_content')[0].style.display == 'none')
             {
                 $('#accessibility_content').css('display', 'block');
-                if( map.getLayer('layer_accessibility_polygons')){
+                if( map.getLayer('layer_accessibility_fill')){
                    map.setLayoutProperty(
-                        'layer_accessibility_polygons',
+                        'layer_accessibility_fill',
+                        'visibility',
+                        'visible'
+                    );
+                   map.setLayoutProperty(
+                        'layer_accessibility_line',
+                        'visibility',
+                        'visible'
+                    );
+                   map.setLayoutProperty(
+                        'layer_accessibility_points',
                         'visibility',
                         'visible'
                     );
@@ -2549,11 +2611,11 @@ $(function() {
                    //     console.log(e.target.value)
                    //     value = e.target.value;
                    //     if (value == 'buffer'){
-                   //         map.getSource('layer_accessibility_polygons').setData(buffer_data);
+                   //         map.getSource('layer_accessibility_fill').setData(buffer_data);
                    //
                    //     }
                    //     else{
-                   //         map.getSource('layer_accessibility_polygons').setData(blocks_data);
+                   //         map.getSource('layer_accessibility_fill').setData(blocks_data);
                    //     }
                    // }
                 }
@@ -2570,7 +2632,8 @@ $(function() {
                        value = e.target.value;
                        if (value == 'buffer'){
                            try {
-                               map.getSource('layer_accessibility_polygons').setData(buffer_data);
+                               map.getSource('layer_accessibility_fill').setData(buffer_data);
+                               map.getSource('layer_accessibility_line').setData(buffer_data);
                            }
                            catch (e) {
                                console.log('no buffer data yet...')
@@ -2579,16 +2642,27 @@ $(function() {
 
                        }
                        else{
-                           map.getSource('layer_accessibility_polygons').setData(blocks_data);
+                           map.getSource('layer_accessibility_fill').setData(blocks_data);
+                           map.getSource('layer_accessibility_line').setData(blocks_data);
                        }
                    }
 
 
             }else {
                 $('#accessibility_content')[0].style.display = 'none'
-                if( map.getLayer('layer_accessibility_polygons')){
+                if( map.getLayer('layer_accessibility_fill')){
                    map.setLayoutProperty(
-                        'layer_accessibility_polygons',
+                        'layer_accessibility_fill',
+                        'visibility',
+                        'none'
+                    );
+                   map.setLayoutProperty(
+                        'layer_accessibility_line',
+                        'visibility',
+                        'none'
+                    );
+                   map.setLayoutProperty(
+                        'layer_accessibility_points',
                         'visibility',
                         'none'
                     );
@@ -2605,12 +2679,22 @@ $(function() {
         close_accessibility_button.onclick = function (e){
             $('#accessibility_content').css('display', 'none');
 
-             if( map.getLayer('layer_accessibility_polygons')){
+             if( map.getLayer('layer_accessibility_fill')){
                    map.setLayoutProperty(
-                        'layer_accessibility_polygons',
+                        'layer_accessibility_fill',
                         'visibility',
                         'none'
                    );
+                   map.setLayoutProperty(
+                        'layer_accessibility_line',
+                        'visibility',
+                        'none'
+                    );
+                   map.setLayoutProperty(
+                        'layer_accessibility_points',
+                        'visibility',
+                        'none'
+                    );
                    map.setLayoutProperty(
                         'layer_aspern_blocks_attr_accessibility',
                         'visibility',
