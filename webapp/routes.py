@@ -256,8 +256,6 @@ def post_calculated_accessibility():
 
     blocks_file = gpd.read_file(r'webapp\data\final\aspern_blocks_final.geojson')
 
-    # df = geopandas.GeoDataFrame.from_features(dict, crs="EPSG:4326")
-    # print(type(df), df)
 
     reprojection = reprojectdist(poi_file, blocks_file)
     print('reprojection', reprojection)
@@ -270,6 +268,25 @@ def post_calculated_accessibility():
     response = {'blocks': blocksWithinDist.to_json(), 'buffer': bufArea_dis.to_json()}
     #return blocksWithinDist.to_json() #, bufArea_dis.to_json()
     return response
+
+
+@app.route('/graph/', methods=['POST'])
+def post_calculated_graph_data():
+
+    print('graph route')
+    print('request decode type', type((request.data).decode()))
+    dict = json.loads((request.data).decode())
+    graph_type = dict['graph_type']
+    data_type = dict['data_type']
+    data = dict['data']
+
+    return
+
+
+
+
+
+
 
 
 @app.route('/changes/', methods=['POST'])

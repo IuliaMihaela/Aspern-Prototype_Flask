@@ -637,6 +637,11 @@ body {
         padding: 0;
     }
 
+    /*for the shannon graph*/
+     .js-plotly-plot .plotly .main-svg {
+        width: 250px;
+    }
+
 
 
 
@@ -2192,6 +2197,37 @@ async function sendData(){
     console.log(data);
     data_from_python = data;
 
+    // make the section bigger so that the graph can fit
+    s= $('#shannon_content')[0];
+    s.style.height = '70%'
+    //graph calculation
+    let x = [];
+    for (f of data.features){
+        x.push(f['properties']['div_index']);
+    }
+    var trace = {
+    x: x,
+    type: 'histogram',
+    marker: {
+            color: '#811515'
+        },
+      };
+    var grdata = [trace];
+    graph = document.getElementById('shannon_graph');
+    layout= {
+            height : 350,
+            width : 300,
+         margin: {
+            l: 0,
+            // r: 10,
+         //    b: 100,
+         //    t: 100,
+         //    pad: 4
+          },
+        };
+    Plotly.newPlot(graph, grdata, layout);
+
+
     // map.setLayoutProperty(
     //                 'layer_aspern_landuse',
     //                 'visibility',
@@ -2304,6 +2340,11 @@ async function calc_accessibility(dist, poi, layer){
 
 }
 
+
+async function calc_graph_data(graph_type, data_type, data){
+    const query = await fetch('/graph/', { method: 'POST', body: JSON.stringify({'graph_type':graph_type, 'data_type':data_type, 'data': data})});
+    const response = await query.json();
+}
 
 
 // the dropdown remains open after clicking a layer
@@ -3273,7 +3314,6 @@ $(function() {
                                     dict_key= 'landuse';
                                     break;
                             }
-
 
 
 
