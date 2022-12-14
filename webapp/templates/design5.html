@@ -896,12 +896,12 @@ body {
 
 <!-- LEFT CANVAS (LAYERS)-->
 <button id="btn-open-layers" class="btn btn-outline-secondary " type="button" ><i style="font-size: 1.1rem" class="material-icons small">filter_none</i></button>
-<div style="height: 70%" class="split left offcanvas offcanvas-start offcanvas-size-sm menu" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling1" aria-labelledby="offcanvasScrollingLabel">
+<div style="height: 80%" class="split left offcanvas offcanvas-start offcanvas-size-sm menu" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling1" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasScrollingLabel1">Layers</h5>
     <button id="btn-close-layers" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
-  <div class="offcanvas-body" style="height: 80%">
+  <div class="offcanvas-body" style="height: 85%">
 
 <!--      layers-->
       <ul class="navbar-nav" style="height: 95%; overflow-y: auto">
@@ -924,8 +924,10 @@ body {
 <!--                    </label>-->
 <!--                  </div>-->
                    <div class="form-check dropdown-item">
-                    <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr_realUseBlocks">
-                    <label class="form-check-label" for="aspern_blocks_attr_realUseBlocks">
+<!--                    <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr_realUseBlocks">-->
+<!--                    <label class="form-check-label" for="aspern_blocks_attr_realUseBlocks">-->
+                     <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr">
+                     <label class="form-check-label" for="aspern_blocks_attr">
                         Generalised blocks
                     </label>
                   </div>
@@ -1223,29 +1225,30 @@ const properties_max_height = ['main_cover', 'max_height'];
 
 // define the dictionaries that are going to store the geojson data that is going to get updated
 // var data = '';
-data_prototype_layerWGS84 = '';
+// data_prototype_layerWGS84 = '';
 data_aspern_blocks_attr=''
 data_aspern_realUseBlocks = '';
 data_aspern_bkmBlocks = '';
-data_aspern_landuse = '';
+// data_aspern_landuse = '';
 data_aspern_roads = '';
 data_aspern_publiclines = '';
 data_aspern_trees_blocks = '';
 data_aspern_publicstops = '';
 data_shops = '';
 // define the dictionaries that are going to store the geojson data that is going to stay intact
-original_data_prototype_layerWGS84 = '';
+// original_data_prototype_layerWGS84 = '';
 original_data_aspern_blocks_attr=''
 original_data_aspern_realUseBlocks = '';
 original_data_aspern_bkmBlocks = '';
-original_data_aspern_landuse = '';
+// original_data_aspern_landuse = '';
 original_data_aspern_roads = '';
 original_data_aspern_publiclines = '';
 original_data_aspern_trees_blocks = '';
 original_data_aspern_publicstops = '';
 original_data_shops = '';
 
-const file_path = ["../data/prototype_layerWGS84.geojson","../data/final/aspern_blocks_attr.geojson", "../data/final/aspern_blocks_final.geojson", "../data/final/aspern_realUseBlocks.geojson", "../data/final/aspern_landcover_final.geojson", "../data/final/aspern_bkmBlocks.geojson", "../data/final/aspern_landuse.geojson", "../data/final/aspern_roads.geojson", "../data/final/aspern_publiclines.geojson", "../data/final/aspern_trees_blocks.geojson", "../data/final/aspern_publicstops.geojson", "../data/final/shops.geojson"]
+// const file_path = ["../data/prototype_layerWGS84.geojson","../data/final/aspern_blocks_attr.geojson", "../data/final/aspern_blocks_final.geojson", "../data/final/aspern_realUseBlocks.geojson", "../data/final/aspern_landcover_final.geojson", "../data/final/aspern_bkmBlocks.geojson", "../data/final/aspern_landuse.geojson", "../data/final/aspern_roads.geojson", "../data/final/aspern_publiclines.geojson", "../data/final/aspern_trees_blocks.geojson", "../data/final/aspern_publicstops.geojson", "../data/final/shops.geojson"]
+const file_path = ["../data/final/aspern_blocks_final.geojson", "../data/final/aspern_landcover_final.geojson", "../data/final/aspern_bkmBlocks.geojson",  "../data/final/aspern_roads.geojson", "../data/final/aspern_publiclines.geojson", "../data/final/aspern_trees_blocks.geojson", "../data/final/aspern_publicstops.geojson", "../data/final/shops.geojson"]
 
 
 //..............open all files...............//
@@ -1267,16 +1270,17 @@ function getXml() {
                     data= json_response;
                     data_aspern_blocks_attr = json_response;
                     original_data_aspern_blocks_attr = json_response;
-                    load_layer_aspern_blocks_attr()
-                    load_layer_osr()
+                    // load_layer_aspern_blocks_attr()
+                    load_layer_aspern_landuse()
                     load_layer_zoning()
+                    load_layer_osr()
                     load_layer_green_area()
                     load_layer_max_height()
                     break;
                 case 'aspern_landcover_final':  //'aspern_realUseBlocks':
                     data_aspern_realUseBlocks = json_response;
                     original_data_aspern_realUseBlocks = json_response;
-                    load_layer_aspern_realUseBlocks()
+                    //load_layer_aspern_realUseBlocks()
                     load_layer_aspern_blocks_attr_realUseBlocks()
                     break;
                 case 'aspern_bkmBlocks':
@@ -1284,11 +1288,11 @@ function getXml() {
                     original_data_aspern_bkmBlocks = json_response;
                     load_layer_aspern_bkmBlocks()
                     break;
-                case 'aspern_landuse_cl':
-                    data_aspern_landuse = json_response;
-                    original_data_aspern_landuse = json_response;
-                    load_layer_aspern_landuse()
-                    break;
+                // case 'aspern_landuse_cl':
+                //     data_aspern_landuse = json_response;
+                //     original_data_aspern_landuse = json_response;
+                //     load_layer_aspern_landuse()
+                //     break;
                 case 'aspern_roads':
                     data_aspern_roads = json_response;
                     original_data_aspern_roads = json_response;
@@ -1343,98 +1347,98 @@ map.addControl(new mapboxgl.ScaleControl(), 'bottom-right');
 
 
 // functions for loading the different layers
-function load_layer_prototype_layerWGS84(){
-      map.addLayer(
-      {
-        'id': 'layer_prototype_layerWGS84',
-        'type': 'fill',
-        'source': {
-            type: 'geojson',
-            data: data_prototype_layerWGS84
-            },
-        'paint': {
+// function load_layer_prototype_layerWGS84(){
+//       map.addLayer(
+//       {
+//         'id': 'layer_prototype_layerWGS84',
+//         'type': 'fill',
+//         'source': {
+//             type: 'geojson',
+//             data: data_prototype_layerWGS84
+//             },
+//         'paint': {
+//
+//         'fill-color': [
+//                 'match',
+//                 ['get', 'LAYER'],
+//                 'Grünfläche',
+//                 '#60c36c',
+//                 'sealed',
+//                 '#856666',
+//                 'Gebäude',
+//                 '#ad949e',
+//                 '#000000' // any other store type
+//               ]
+//         },
+//         'layout': {
+//                 'visibility': 'none'
+//         },
+//       });
+// }
 
-        'fill-color': [
-                'match',
-                ['get', 'LAYER'],
-                'Grünfläche',
-                '#60c36c',
-                'sealed',
-                '#856666',
-                'Gebäude',
-                '#ad949e',
-                '#000000' // any other store type
-              ]
-        },
-        'layout': {
-                'visibility': 'none'
-        },
-      });
-}
+// function load_layer_aspern_blocks_attr(){
+//     map.addLayer(
+//       {
+//         'id': 'layer_aspern_blocks_attr',
+//         'type': 'fill',
+//         'source': {
+//             type: 'geojson',
+//             data: data_aspern_blocks_attr
+//             },
+//         'paint': {
+//         'fill-color': [
+//                 'match',
+//                 ['get', 'main_cover'],
+//                 'green area',
+//                 '#60c36c',
+//                 'other sealed area',
+//                 '#856666',
+//                 'buildings',
+//                 '#ad949e',
+//                 'construction site',
+//                 '#808080',
+//                 'water',
+//                 '#0080FF',
+//                 '#000000' // any other store type
+//               ]
+//         },
+//         'layout': {
+//                 'visibility': 'none'
+//         },
+//       });
+// }
 
-function load_layer_aspern_blocks_attr(){
-    map.addLayer(
-      {
-        'id': 'layer_aspern_blocks_attr',
-        'type': 'fill',
-        'source': {
-            type: 'geojson',
-            data: data_aspern_blocks_attr
-            },
-        'paint': {
-        'fill-color': [
-                'match',
-                ['get', 'main_cover'],
-                'green area',
-                '#60c36c',
-                'other sealed area',
-                '#856666',
-                'buildings',
-                '#ad949e',
-                'construction site',
-                '#808080',
-                'water',
-                '#0080FF',
-                '#000000' // any other store type
-              ]
-        },
-        'layout': {
-                'visibility': 'none'
-        },
-      });
-}
-
-function load_layer_aspern_realUseBlocks(){
-    map.addLayer(
-      {
-        'id': 'layer_aspern_realUseBlocks',
-        'type': 'fill',
-        'source': {
-            type: 'geojson',
-            data: data_aspern_realUseBlocks
-            },
-        'paint': {
-        'fill-color': [
-                'match',
-                ['get', 'class'],
-                'green area',
-                '#60c36c',
-                'sealed area (excluding buildings)',
-                '#856666',
-                'buildings',
-                '#ad949e',
-                'construction site',
-                '#808080',
-                'water body',
-                '#0080FF',
-                '#000000' // any other store type
-              ]
-        },
-        'layout': {
-                'visibility': 'none'
-        },
-      });
-}
+// function load_layer_aspern_realUseBlocks(){
+//     map.addLayer(
+//       {
+//         'id': 'layer_aspern_realUseBlocks',
+//         'type': 'fill',
+//         'source': {
+//             type: 'geojson',
+//             data: data_aspern_realUseBlocks
+//             },
+//         'paint': {
+//         'fill-color': [
+//                 'match',
+//                 ['get', 'class'],
+//                 'green area',
+//                 '#60c36c',
+//                 'sealed area (excluding buildings)',
+//                 '#856666',
+//                 'buildings',
+//                 '#ad949e',
+//                 'construction site',
+//                 '#808080',
+//                 'water body',
+//                 '#0080FF',
+//                 '#000000' // any other store type
+//               ]
+//         },
+//         'layout': {
+//                 'visibility': 'none'
+//         },
+//       });
+// }
 
 function load_layer_aspern_bkmBlocks(){
     map.addLayer(
@@ -1779,11 +1783,42 @@ function load_index_layer(data_index){
 
 function load_layer_aspern_blocks_attr_realUseBlocks(){
     const zoomThreshold = 15;
-    map.addLayer(
+    // map.addLayer(
+    //   {
+    //     'id': 'layer_aspern_blocks_attr_zoom',
+    //     'type': 'fill',
+    //     'maxzoom': zoomThreshold,
+    //     'source': {
+    //         type: 'geojson',
+    //         data: data_aspern_blocks_attr
+    //         },
+    //     'paint': {
+    //     'fill-color': [
+    //             'match',
+    //             ['get', 'main_cover'],
+    //             'green area',
+    //             '#60c36c',
+    //             'other sealed area',
+    //             '#856666',
+    //             'buildings',
+    //             '#ad949e',
+    //             'construction site',
+    //             '#808080',
+    //             'water',
+    //             '#0080FF',
+    //             '#000000' // any other store type
+    //           ]
+    //     },
+    //     'layout': {
+    //             'visibility': 'none'
+    //     },
+    //   });
+
+
+map.addLayer(
       {
-        'id': 'layer_aspern_blocks_attr_zoom',
+        'id': 'layer_aspern_blocks_attr',
         'type': 'fill',
-        'maxzoom': zoomThreshold,
         'source': {
             type: 'geojson',
             data: data_aspern_blocks_attr
@@ -1809,6 +1844,7 @@ function load_layer_aspern_blocks_attr_realUseBlocks(){
                 'visibility': 'none'
         },
       });
+
 
     map.addLayer(
       {
@@ -2823,42 +2859,56 @@ $(function() {
             // store the clicked layer name
             var clickedLayer = 'layer_'+check_id;
 
-            if (check_id == 'aspern_blocks_attr_realUseBlocks'){
-                clickedLayer = 'layer_aspern_blocks_attr';
-                // check_id = 'aspern_blocks_attr';
-            }
+            // if (check_id == 'aspern_blocks_attr_realUseBlocks'){
+            //     clickedLayer = 'layer_aspern_blocks_attr';
+            //     // check_id = 'aspern_blocks_attr';
+            // }
+
+
             // if (check_id == 'aspern_landuse'){
             //     // clickedLayer = 'layer_aspern_blocks_attr';
             //     check_id = 'aspern_blocks_attr';
             // }
             console.log('check id: ', check_id)
+            console.log('cliked layer: ', clickedLayer)
 
             const legend_ul = document.getElementsByClassName('legend_ul')[0];
             // const legend = document.getElementById('legend');
 
             // if we unclick a layer
             if(!(layer_input.checked)){
-                if (check_id == 'aspern_blocks_attr_realUseBlocks'){
+                // if (check_id == 'aspern_blocks_attr_realUseBlocks'){
+                //     map.setLayoutProperty(
+                //         'layer_aspern_realUseBlocks_zoom',
+                //         'visibility',
+                //         'none'
+                //     );
+                // }
+
+                // we also hide the 2nd layer with more detailed blocks
+                // that's shown only at certain zoom level
+                  if (check_id == 'aspern_blocks_attr'){
                     map.setLayoutProperty(
                         'layer_aspern_realUseBlocks_zoom',
                         'visibility',
                         'none'
                     );
                 }
-                 // we hide the layer
+                 // we hide the layer clicked with the check id
                 map.setLayoutProperty(
                     clickedLayer,
                     'visibility',
                     'none'
                 );
 
-
                 // if we unlick the 3d building we set a pitch normal
                 if(clickedLayer == 'layer_aspern_bkmBlocks'){
                     map.setPitch(0);
                 }
+
                 // if the layer has any plots shown, we delete them
                 delete_graph();
+
                 // check canvases and map classes
                 // if ((canvas_start_el.classList).contains('split')){
                 //     canvas_start_el.classList.replace('split', 'split_no_graph');
@@ -2866,22 +2916,27 @@ $(function() {
                 // if ((canvas_end_el.classList).contains('split')){
                 //     canvas_end_el.classList.replace('split', 'split_no_graph');
                 // }
+
+                // we show the map on 100% display
                 if ((map_el.classList).contains('split')){
                     map_el.classList.replace('split', 'split_no_graph');
                 }
+                // the bottom canvas with the graphs disappears
                 if ((canvas_bottom_el.classList).contains('show')){
                     canvas_bottom_el.classList.remove('show');
                 }
+                //the button with the 3d buidings replaces one class so that it is displayed accordingly
+                // we show it at the with the style considering no bottom canvas
                  if ((button3d_el.classList).contains('button3d_bottom_graph')){
-                    button3d_el.classList.remove('button3d_bottom_graph');
-                    button3d_el.classList.add('button3d_bottom_no_graph');
+                    // button3d_el.classList.remove('button3d_bottom_graph');
+                    // button3d_el.classList.add('button3d_bottom_no_graph');
+                    button3d_el.classList.replace('button3d_bottom_graph', 'button3d_bottom_no_graph');
                 }
 
+                 // when we unclick the lanuse layer, we hide the button that restores its data
                  if(check_id == 'aspern_landuse'){
                         restoreb.style.display = 'none';
                     }
-
-
 
                 // remove legend
                 legend_ul.style.display = "none";
@@ -2896,21 +2951,33 @@ $(function() {
                     map.setPitch(45);
                 }
 
-                if (check_id == 'aspern_blocks_attr_realUseBlocks'){
-                    map.setLayoutProperty(
+                // if (check_id == 'aspern_blocks_attr_realUseBlocks'){
+                //     map.setLayoutProperty(
+                //         'layer_aspern_realUseBlocks_zoom',
+                //         'visibility',
+                //         'visible'
+                //     );
+                // }
+
+                // we also show the detailed blocks layer that is visible when zooming in
+                if (check_id == 'aspern_blocks_attr'){
+                map.setLayoutProperty(
                         'layer_aspern_realUseBlocks_zoom',
                         'visibility',
                         'visible'
                     );
-                }
+            }
 
+                // we make visible the layer with the id that we clicked
                 map.setLayoutProperty(
                     clickedLayer,
                     'visibility',
                     'visible'
                 );
+
                 //if any left graph, delete it
                 delete_graph();
+
                 // load the graphs
                 try{
                     eval('graph_'+check_id)(eval('data_'+check_id));
@@ -2918,7 +2985,7 @@ $(function() {
                     console.log('show graph');
                     //replace their split class with the class that has the same properties, but with the height 100%
                     // canvas_start_el.classList.replace('split_no_graph', 'split');
-                    canvas_end_el.classList.replace('split_no_graph', 'split');
+                    canvas_end_el.classList.replace('split_no_graph', 'split');  // comment so that the graphs are displayed
                     map_el.classList.replace('split_no_graph', 'split');
                     // show the bottom canvas
                     canvas_bottom_el.classList.add('show');
@@ -2926,6 +2993,7 @@ $(function() {
 
                 }
                 catch(err){
+                    console.log(err)
                     console.log('no graph function')
                 }
 
@@ -2943,10 +3011,11 @@ $(function() {
                     console.log('no legend var')
                 }
 
-                if(check_id == 'aspern_blocks_attr_realUseBlocks'){
-                        legend_ul.innerHTML = legend_aspern_blocks_attr;
-                    }
+                // if(check_id == 'aspern_blocks_attr_realUseBlocks'){
+                //         legend_ul.innerHTML = legend_aspern_blocks_attr;
+                //     }
 
+                // if we show the landuse layer, we display also the button for restoring the data
                  if(check_id == 'aspern_landuse'){
                         restoreb.style.display = 'block';
                     }
@@ -3428,7 +3497,7 @@ $(function() {
         document.getElementById('graph2').innerHTML = '';
     }
 
-    function graph_aspern_blocks_attr(data){
+    function graph_aspern_blocks_attr(data){ //graph_aspern_blocks_attr(data)
         len_greenSpace = 0;
         len_sealedSpace = 0;
         len_buildings = 0;
