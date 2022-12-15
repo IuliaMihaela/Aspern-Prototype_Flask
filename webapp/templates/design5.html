@@ -1015,6 +1015,7 @@ body {
           <ul class="legend_ul" style="padding-left: 0rem;">
         </ul>
       </section>
+
   </div>
 </div>
 
@@ -2210,7 +2211,7 @@ function load_layer_accessibility(data, poi){
 
 }
 
-var data_from_python;
+var data_shannon_index;
 // sending the data for index calculations and receiving the index data
 async function sendData(){
     // for shannon index
@@ -2231,16 +2232,21 @@ async function sendData(){
     const query = await fetch('/flask/', { method: 'POST', body: JSON.stringify(data_aspern_blocks_attr)});
     const data = await query.json();
     console.log(data);
-    data_from_python = data;
+    data_shannon_index = data;
 
     // make the section bigger so that the graph can fit
-    s= $('#shannon_content')[0];
-    s.style.height = '70%'
-    //graph calculation
-    let x = [];
-    for (f of data.features){
-        x.push(f['properties']['div_index']);
-    }
+    const s= $('#shannon_content')[0];
+    s.style.height = 'fit-content'; //'70%'
+    //graph data calculation
+    // let x = [];
+    // for (f of data.features){
+    //     x.push(f['properties']['div_index']);
+    // }
+    let x = await calc_graph_data('histogram', 'numerical', data_shannon_index, 'div_index')
+    console.log('graph x: ', x)
+    x= x['result'];
+    console.log('x[\'result\']: ', x);
+    //graph para
     var trace = {
     x: x,
     type: 'histogram',
@@ -2255,23 +2261,14 @@ async function sendData(){
             width : 300,
          margin: {
             l: 0,
-            // r: 10,
-         //    b: 100,
-         //    t: 100,
-         //    pad: 4
           },
         };
     Plotly.newPlot(graph, grdata, layout);
 
 
-    // map.setLayoutProperty(
-    //                 'layer_aspern_landuse',
-    //                 'visibility',
-    //                 'visible'
-    //             );
 
     if( map.getLayer('layer_index')){
-        map.getSource('layer_index').setData(data_from_python);
+        map.getSource('layer_index').setData(data_shannon_index);
         map.setLayoutProperty(
                     'layer_index',
                     'visibility',
@@ -2279,7 +2276,7 @@ async function sendData(){
                 );
      }
     else {
-        load_index_layer(data_from_python);
+        load_index_layer(data_shannon_index);
     }
     // b.innerHTML = 'Index';
     c.innerHTML='Shannon Index'
@@ -2377,9 +2374,11 @@ async function calc_accessibility(dist, poi, layer){
 }
 
 
-async function calc_graph_data(graph_type, data_type, data){
-    const query = await fetch('/graph/', { method: 'POST', body: JSON.stringify({'graph_type':graph_type, 'data_type':data_type, 'data': data})});
+async function calc_graph_data(graph_type, data_type, data, prop){
+    const query = await fetch('/graph/', { method: 'POST', body: JSON.stringify({'graph_type':graph_type, 'data_type':data_type, 'data': data, 'prop': prop})});
     const response = await query.json();
+    console.log('api graph response: ', response)
+    return response
 }
 
 
@@ -3008,7 +3007,7 @@ $(function() {
                 }
                 catch(err){
                     legend_ul.innerHTML = '';
-                    console.log('no legend var')
+                    console.log('no legend')
                 }
 
                 // if(check_id == 'aspern_blocks_attr_realUseBlocks'){
@@ -3047,15 +3046,16 @@ $(function() {
 
                 // having a variable which stores the id of the layer
                 var id_property = '';
-                // store the id (its value) opf the clicked feature
+                // store the id (its value) of the clicked feature
                 var value_clicked_feature_id ='';
                 // console.log('data: ', eval('data_'+check_id));
                 // assign values for the id name and its value depending on the layer clicked
+                // we use these 2 variables when we want to change some properties
                 switch(clickedLayer){
-                    case 'layer_prototype_layerWGS84':
-                        id_property = 'BLK';
-                        value_clicked_feature_id = clicked_feature.properties.BLK;
-                        break;
+                    // case 'layer_prototype_layerWGS84':
+                    //     id_property = 'BLK';
+                    //     value_clicked_feature_id = clicked_feature.properties.BLK;
+                    //     break;
                     case 'layer_aspern_blocks_attr':
                         id_property= 'OBJECTID';//'id';
                         value_clicked_feature_id = clicked_feature.properties.OBJECTID;//id;
@@ -3101,13 +3101,14 @@ $(function() {
                 console.log('prop keys: ', properties_keys);
                 console.log('prop values: ', properties_values);
                 console.log('prop len: ', properties_values.length);
-                try{
-                    console.log('abs: ',properties['area_green_abs']);
-                    console.log('rel: ',properties['area_green_rel']);
-                    console.log('max_height: ',properties['max_height'])
-                }catch (e) {
-                    console.log('no attr layer');
-                }
+
+                // try{
+                //     console.log('abs: ',properties['area_green_abs']);
+                //     console.log('rel: ',properties['area_green_rel']);
+                //     console.log('max_height: ',properties['max_height'])
+                // }catch (e) {
+                //     console.log('no attr layer');
+                // }
 
 
                 // for popup
@@ -3140,26 +3141,24 @@ $(function() {
                     ul.className = "list-group list-group-flush"
                     ul.id = 'off-canvas';
 
-                  if(check_id == 'aspern_blocks_attr_realUseBlocks'){
-                        imp_prop = properties_aspern_blocks_attr;
-                    } else {
+                  // if(check_id == 'aspern_blocks_attr_realUseBlocks'){
+                  //       imp_prop = properties_aspern_blocks_attr;
+                  //   } else {
+                      // get the list of properties that we want to show
+                      // if such list is not defined, we show all properties
                       try{
                           imp_prop = eval('properties_'+check_id);
                       } catch (err){
                           imp_prop =properties_keys;
                       }
 
-                    }
+                    //}
                   console.log('type imp prop: ',  imp_prop)
 
                     for (let i=0; i< properties_keys.length; i++){
                         // have the important properties only shown
-
-
-
                         if (imp_prop.includes(properties_keys[i])){
-
-                            // user friendly prop names
+                            // user-friendly property names
                             let li_prop_user = properties_keys[i];
                             switch(properties_keys[i]){
                                 case 'area_green_rel':
@@ -3215,7 +3214,7 @@ $(function() {
                             li.className = 'list-group-item';
                             li.innerHTML = '<b style="">'+li_prop_user+'</b>: '+'<span style="width: auto" ></span>';
                             ul.appendChild(li);
-                            let span_el = li.getElementsByTagName('span')[0]
+                            // let span_el = li.getElementsByTagName('span')[0]
 
                             // putting the range for certain properties that have number values
                             li_prop = properties_keys[i];
@@ -3252,7 +3251,7 @@ $(function() {
 
 
                             }else
-                            // putting the dropdown for landuse layer, use_lvl2 property
+                            // putting the dropdown for landuse property
                             if(properties_keys[i]== 'landuse'){
                                 console.log('span text: ', span_text)
                                 li.getElementsByTagName('span')[0].innerHTML =
@@ -3297,6 +3296,7 @@ $(function() {
                                 let new_value =e.target.value;
 
                                 if (check_id == 'aspern_landuse'){
+                                    // we store the changes of landuse in the main blocks layer
                                     save_dict_property(li, new_value, 'aspern_blocks_attr');
                                 }else{
                                     save_dict_property(li, new_value, check_id);
@@ -3386,7 +3386,7 @@ $(function() {
 
 
 
-                            console.log(li.getElementsByTagName('b'))
+                            console.log(li.getElementsByTagName('b'));
                             console.log('dict key from li: ', dict_key);
                             console.log('f prop: ', f['properties']);
                             f['properties'][dict_key] =new_value;
@@ -3412,77 +3412,6 @@ $(function() {
                     }
                 }
 
-                //dynamically save the changes
-                function dynamically_save_changes(){
-                  console.log('dynamically_save_changes');
-                    property_ul = document.getElementById('off-canvas');
-                    property_lis = property_ul.childNodes;
-                    // get the input elements in the list the shows the properties
-                    property_inputs = property_ul.getElementsByTagName('input');
-                    for(const property_input of property_inputs){
-                      console.log('property_input: ', property_input)
-                        property_input.onchange = function(e){
-                            console.log('e')
-                            console.log('property changed dynamically');
-                            console.log('on change e: ', e.target.value);
-                            console.log('on change this: ', this);
-                            let new_value =e.target.value;
-                            let el = this;
-                            let list_el = this.parentElement.parentElement;
-                            if (this.type == 'range'){
-                                list_el = this.parentElement.parentElement.parentElement.parentElement;
-                            }
-
-
-                            if(check_id != 'aspern_blocks_attr_realUseBlocks'){
-                                save_dict_property(list_el, new_value);
-                            }
-
-
-
-                                //save_properties();
-                                // const f = save_dict_properties();
-                                // create_dynamic_prop_canvas(f);
-                        }
-                    }
-                    try{
-                        select = property_ul.getElementsByTagName('select');
-                        console.log('select: ', select);
-                        select[0].onchange = function(e){
-                            console.log('e')
-                            console.log('property changed dynamically');
-                            console.log('on change e: ', e.target.value);
-                            console.log('on change this: ', this);
-                            let new_value =e.target.value;
-                            let el = this;
-                            let list_el = this.parentElement.parentElement.parentElement;
-
-                            // save_property(list_el, new_value);
-                            save_dict_property(list_el, new_value);
-                        }
-                    }
-                    catch(err){
-                        console.log('no select input')
-                            }
-                }
-                // dynamically_save_changes();
-
-                // get the button
-                // const calc_index_button = document.getElementById('index_calc');
-                // // trigger the function that send the data to the py script
-                // calc_index_button.onclick = (function(){
-                //     console.log('calc index button clicked');
-                //     sendData();
-                // });
-
-
-                // // get the button
-                // const recalc_index_button = document.getElementById('recalculate_index');
-                // // trigger the function that send the data to the py script
-                // recalc_index_button.onclick = (function(){
-                //     console.log('recalc index button clicked');
-                //     sendData();
-                // });
 
             });
         }

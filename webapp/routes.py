@@ -6,6 +6,7 @@ from requests import put, get, post, delete
 # from script import index_calculation, reproject
 from poly_shannon import reproject, indexCalculation
 from distance_calc import reprojectdist, bufferDist
+from graphs import graphs
 
 
 @app.route("/", methods=['GET'])
@@ -274,13 +275,17 @@ def post_calculated_accessibility():
 def post_calculated_graph_data():
 
     print('graph route')
-    print('request decode type', type((request.data).decode()))
+    # print('request decode type', type((request.data).decode()))
     dict = json.loads((request.data).decode())
     graph_type = dict['graph_type']
     data_type = dict['data_type']
     data = dict['data']
+    prop = dict['prop']
 
-    return
+    result = graphs(graph_type, data_type, data, prop)
+    print('graph data: ', result)
+
+    return {'result': result}
 
 
 
