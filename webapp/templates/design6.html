@@ -64,8 +64,8 @@ body {
   }
 
   ul span{
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     display: inline-block;
     margin-right: 8px;
     border-radius: 30%
@@ -486,8 +486,13 @@ body {
       text-align: center;
     }
 
-    /*shannon button */
-    #shannon_group {
+
+
+
+
+
+    /*Layers sections */
+    #blocks_group {
         position: absolute;
         z-index: 0;
         top: 2%;
@@ -495,44 +500,29 @@ body {
         align-content: flex-start;
     }
 
-    #shannon_content {
+    #blocks_content {
         position: absolute;
         z-index: 1;
         top: 5%;
         right: 1%;
     }
 
-    #green_group {
+    #landuse_group {
         position: absolute;
         z-index: 0;
-        top: 6%;
+        top: 8%;
         right: 1%;
         align-content: flex-start;
     }
 
-    #green_content {
+    #landuse_content {
         position: absolute;
-        top: 9%;
+        top: 11%;
         right: 1%;
         z-index: 1;
     }
 
-    #osr_group {
-        position: absolute;
-        z-index: 0;
-        top: 10%;
-        right: 1%;
-        align-content: flex-start;
-    }
-
-    #osr_content {
-        position: absolute;
-        top: 13%;
-        right: 1%;
-        z-index: 1;
-    }
-
-    #max_height_group {
+    #zoning_group {
         position: absolute;
         z-index: 0;
         top: 14%;
@@ -540,9 +530,145 @@ body {
         align-content: flex-start;
     }
 
-    #max_height_content {
+    #zoning_content {
         position: absolute;
         top: 17%;
+        right: 1%;
+        z-index: 1;
+    }
+
+    #streets_group {
+        position: absolute;
+        z-index: 0;
+        top: 20%;
+        right: 1%;
+        align-content: flex-start;
+    }
+
+    #streets_content {
+        position: absolute;
+        top: 23%;
+        right: 1%;
+        z-index: 1;
+    }
+
+    #public_lines_group {
+        position: absolute;
+        z-index: 0;
+        top: 26%;
+        right: 1%;
+        align-content: flex-start;
+    }
+
+    #public_lines_content {
+        position: absolute;
+        top: 29%;
+        right: 1%;
+        z-index: 1;
+    }
+
+    #shops_group {
+        position: absolute;
+        z-index: 0;
+        top: 32%;
+        right: 1%;
+        align-content: flex-start;
+    }
+
+    #shops_content {
+        position: absolute;
+        top: 35%;
+        right: 1%;
+        z-index: 1;
+    }
+
+    #trees_group {
+        position: absolute;
+        z-index: 0;
+        top: 38%;
+        right: 1%;
+        align-content: flex-start;
+    }
+
+    #trees_content {
+        position: absolute;
+        top: 41%;
+        right: 1%;
+        z-index: 1;
+    }
+
+    #public_stations_group {
+        position: absolute;
+        z-index: 0;
+        top: 44%;
+        right: 1%;
+        align-content: flex-start;
+    }
+
+    #public_stations_content {
+        position: absolute;
+        top: 47%;
+        right: 1%;
+        z-index: 1;
+    }
+
+    /*shannon button */
+    #shannon_group {
+        position: absolute;
+        z-index: 0;
+        top: 50%;
+        right: 1%;
+        align-content: flex-start;
+    }
+
+    #shannon_content {
+        position: absolute;
+        z-index: 1;
+        top: 53%;
+        right: 1%;
+    }
+
+    #green_group {
+        position: absolute;
+        z-index: 0;
+        top: 56%;
+        right: 1%;
+        align-content: flex-start;
+    }
+
+    #green_content {
+        position: absolute;
+        top: 59%;
+        right: 1%;
+        z-index: 1;
+    }
+
+    #osr_group {
+        position: absolute;
+        z-index: 0;
+        top: 62%;
+        right: 1%;
+        align-content: flex-start;
+    }
+
+    #osr_content {
+        position: absolute;
+        top: 65%;
+        right: 1%;
+        z-index: 1;
+    }
+
+    #max_height_group {
+        position: absolute;
+        z-index: 0;
+        top: 68%;
+        right: 1%;
+        align-content: flex-start;
+    }
+
+    #max_height_content {
+        position: absolute;
+        top: 71%;
         right: 1%;
         z-index: 1;
     }
@@ -550,18 +676,21 @@ body {
     #accessibility_group {
         position: absolute;
         z-index: 0;
-        top: 18%;
+        top: 74%;
         right: 1%;
         align-content: flex-start;
     }
 
     #accessibility_content {
         position: absolute;
-        top: 21%;
+        top: 77%;
         right: 1%;
         z-index: 1;
 
     }
+
+
+
 
     #retore_changes_group {
         position: absolute;
@@ -643,6 +772,24 @@ body {
     }
 
 
+    /*for the text and checkbox style*/
+    [type="checkbox"]+label {
+        padding-left: 25px;
+        line-height: 15px;
+        /*font-size: small;*/
+    }
+    [type="checkbox"]+label:before {
+        margin-top: 0;
+    }
+    label {
+        color: #4d5255;
+    }
+
+    .collapse .card-body {
+        height: 2%;
+    }
+
+
 
 
 
@@ -667,17 +814,456 @@ body {
 <!--................Layers..................-->
 <!--.......Land Use........-->
 <!--blocks section-->
+<section>
+<div class="btn-group btn-group-sm" id="blocks_group" role="group" aria-label="Small button group">
+<!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
+<!--form-check-input    dropdown-item-->
+
+    <button type="button" class="form-check btn btn-outline-dark"
+    data-bs-toggle="collapse" data-bs-target="#collapseBlocks" aria-expanded="false" aria-controls="collapseBlocks">
+        <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr" >
+        <label class="form-check-label" for="aspern_blocks_attr">
+            Generalised blocks
+        </label>
+    </button>
+
+    <button id="blocks" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+
+</div>
+
+<div class="collapse" id="collapseBlocks" style=" z-index: 1; position: absolute; top: 5%; right: 1%;">
+    <div class="card-body" style=" z-index: 1; position: fixed; top: 5%; right: 1%; max-width: 40%;">
+        <ul>
+        <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>
+        <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>
+        <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>
+        <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>
+        <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>
+       </ul>
+    </div>
+</div>
+
+<div class="card" style="width: 18rem; display:none; height: 20%" id="blocks_content">
+    <button id="btn-close-blocks" type="button" class="btn-close" aria-label="Close"></button>
+    <h6 class="card-title" style="text-align: center;">Generalised blocks</h6>
+
+  <div class="card-body" style="height: 90%; padding-top: 1px;">
+    <p class="card-text"> Share (percentage) of green area within block</p>
+      <br>
+
+      <div>
+          <div>
+            <div class='row colors' style="background: linear-gradient(to right, #72de62, #6cd15c,#66c758, #62bf54, #5eb851, #57a84a, #4f9943, #478a3d, #3e7835, #34662d);">
+            </div>
+            <div class='row labels'>
+              <div class='label'>10</div>
+              <div class='label'>30</div>
+              <div class='label'>50</div>
+              <div class='label'>70</div>
+              <div class='label'>90</div>
+              <div class='label'>110</div>
+            </div>
+          </div>
+        </div>
+
+  </div>
+</div>
+</section>
 <!--land-use section-->
+<section>
+<div class="btn-group btn-group-sm" id="landuse_group" role="group" aria-label="Small button group">
+<!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
+<!--form-check-input    dropdown-item-->
+
+    <button type="button" class="form-check btn btn-outline-dark"
+    data-bs-toggle="collapse" data-bs-target="#collapseLanduse" aria-expanded="false" aria-controls="collapseLanduse">
+        <input class="form-check-input" type="checkbox" value="" id="aspern_landuse" >
+        <label class="form-check-label" for="aspern_landuse">
+            Land Use
+        </label>
+    </button>
+
+    <button id="landuse" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+
+</div>
+
+<div class="collapse" id="collapseLanduse" style=" z-index: 1; position: absolute; top: 11%; right: 1%;">
+    <div class="card-body" style=" z-index: 1; position: fixed; top: 11%; right: 1%; max-width: 40%;">
+        <ul>
+        <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>
+        <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>
+        <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>
+        <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>
+        <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>
+       </ul>
+    </div>
+</div>
+
+<div class="card" style="width: 18rem; display:none; height: 20%" id="landuse_content">
+    <button id="btn-close-landuse" type="button" class="btn-close" aria-label="Close"></button>
+    <h6 class="card-title" style="text-align: center;">Generalised blocks</h6>
+
+  <div class="card-body" style="height: 90%; padding-top: 1px;">
+    <p class="card-text"> Share (percentage) of green area within block</p>
+      <br>
+
+      <div>
+          <div>
+            <div class='row colors' style="background: linear-gradient(to right, #72de62, #6cd15c,#66c758, #62bf54, #5eb851, #57a84a, #4f9943, #478a3d, #3e7835, #34662d);">
+            </div>
+            <div class='row labels'>
+              <div class='label'>10</div>
+              <div class='label'>30</div>
+              <div class='label'>50</div>
+              <div class='label'>70</div>
+              <div class='label'>90</div>
+              <div class='label'>110</div>
+            </div>
+          </div>
+        </div>
+
+  </div>
+</div>
+</section>
 <!--zoning section-->
+<section>
+<div class="btn-group btn-group-sm" id="zoning_group" role="group" aria-label="Small button group">
+<!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
+<!--form-check-input    dropdown-item-->
+
+    <button type="button" class="form-check btn btn-outline-dark"
+    data-bs-toggle="collapse" data-bs-target="#collapseZoning" aria-expanded="false" aria-controls="collapseZoning">
+        <input class="form-check-input" type="checkbox" value="" id="zoning" >
+        <label class="form-check-label" for="zoning">
+            Zoning
+        </label>
+    </button>
+
+    <button id="zoning_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+
+</div>
+
+<div class="collapse" id="collapseZoning" style=" z-index: 1; position: absolute; top: 17%; right: 1%;">
+    <div class="card-body" style=" z-index: 1; position: fixed; top: 17%; right: 1%; max-width: 40%;">
+        <ul>
+        <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>
+        <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>
+        <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>
+        <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>
+        <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>
+       </ul>
+    </div>
+</div>
+
+<div class="card" style="width: 18rem; display:none; height: 20%" id="zoning_content">
+    <button id="btn-close-zoning" type="button" class="btn-close" aria-label="Close"></button>
+    <h6 class="card-title" style="text-align: center;">Generalised blocks</h6>
+
+  <div class="card-body" style="height: 90%; padding-top: 1px;">
+    <p class="card-text"> Share (percentage) of green area within block</p>
+      <br>
+
+      <div>
+          <div>
+            <div class='row colors' style="background: linear-gradient(to right, #72de62, #6cd15c,#66c758, #62bf54, #5eb851, #57a84a, #4f9943, #478a3d, #3e7835, #34662d);">
+            </div>
+            <div class='row labels'>
+              <div class='label'>10</div>
+              <div class='label'>30</div>
+              <div class='label'>50</div>
+              <div class='label'>70</div>
+              <div class='label'>90</div>
+              <div class='label'>110</div>
+            </div>
+          </div>
+        </div>
+
+  </div>
+</div>
+</section>
 
 <!--.......Road & Transport........-->
 <!--street section-->
-<!--public transport lines section-->
+<section>
+<div class="btn-group btn-group-sm" id="streets_group" role="group" aria-label="Small button group">
+<!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
+<!--form-check-input    dropdown-item-->
 
+    <button type="button" class="form-check btn btn-outline-dark"
+    data-bs-toggle="collapse" data-bs-target="#collapseStreets" aria-expanded="false" aria-controls="collapseStreets">
+        <input class="form-check-input" type="checkbox" value="" id="aspern_roads" >
+        <label class="form-check-label" for="aspern_roads">
+            Streets
+        </label>
+    </button>
+
+    <button id="streets_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+
+</div>
+
+<div class="collapse" id="collapseStreets" style=" z-index: 1; position: absolute; top: 23%; right: 1%;">
+    <div class="card-body" style=" z-index: 1; position: fixed; top: 23%; right: 1%; max-width: 40%;">
+        <ul>
+        <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>
+        <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>
+        <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>
+        <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>
+        <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>
+       </ul>
+    </div>
+</div>
+
+<div class="card" style="width: 18rem; display:none; height: 20%" id="streets_content">
+    <button id="btn-close-streets" type="button" class="btn-close" aria-label="Close"></button>
+    <h6 class="card-title" style="text-align: center;">Generalised blocks</h6>
+
+  <div class="card-body" style="height: 90%; padding-top: 1px;">
+    <p class="card-text"> Share (percentage) of green area within block</p>
+      <br>
+
+      <div>
+          <div>
+            <div class='row colors' style="background: linear-gradient(to right, #72de62, #6cd15c,#66c758, #62bf54, #5eb851, #57a84a, #4f9943, #478a3d, #3e7835, #34662d);">
+            </div>
+            <div class='row labels'>
+              <div class='label'>10</div>
+              <div class='label'>30</div>
+              <div class='label'>50</div>
+              <div class='label'>70</div>
+              <div class='label'>90</div>
+              <div class='label'>110</div>
+            </div>
+          </div>
+        </div>
+
+  </div>
+</div>
+</section>
+<!--public transport lines section-->
+<section>
+<div class="btn-group btn-group-sm" id="public_lines_group" role="group" aria-label="Small button group">
+<!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
+<!--form-check-input    dropdown-item-->
+
+    <button type="button" class="form-check btn btn-outline-dark"
+    data-bs-toggle="collapse" data-bs-target="#collapsePublic_lines" aria-expanded="false" aria-controls="collapsePublic_lines">
+        <input class="form-check-input" type="checkbox" value="" id="aspern_publiclines" >
+        <label class="form-check-label" for="aspern_publiclines">
+            Public Transport Lines
+        </label>
+    </button>
+
+    <button id="public_lines_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+
+</div>
+
+<div class="collapse" id="collapsePublic_lines" style=" z-index: 1; position: absolute; top: 29%; right: 1%;">
+    <div class="card-body" style=" z-index: 1; position: fixed; top: 29%; right: 1%; max-width: 40%;">
+        <ul>
+        <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>
+        <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>
+        <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>
+        <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>
+        <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>
+       </ul>
+    </div>
+</div>
+
+<div class="card" style="width: 18rem; display:none; height: 20%" id="public_lines_content">
+    <button id="btn-close-public_lines" type="button" class="btn-close" aria-label="Close"></button>
+    <h6 class="card-title" style="text-align: center;">Generalised blocks</h6>
+
+  <div class="card-body" style="height: 90%; padding-top: 1px;">
+    <p class="card-text"> Share (percentage) of green area within block</p>
+      <br>
+
+      <div>
+          <div>
+            <div class='row colors' style="background: linear-gradient(to right, #72de62, #6cd15c,#66c758, #62bf54, #5eb851, #57a84a, #4f9943, #478a3d, #3e7835, #34662d);">
+            </div>
+            <div class='row labels'>
+              <div class='label'>10</div>
+              <div class='label'>30</div>
+              <div class='label'>50</div>
+              <div class='label'>70</div>
+              <div class='label'>90</div>
+              <div class='label'>110</div>
+            </div>
+          </div>
+        </div>
+
+  </div>
+</div>
+</section>
 <!--.......PoI........-->
 <!--shops section-->
+<section>
+<div class="btn-group btn-group-sm" id="shops_group" role="group" aria-label="Small button group">
+<!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
+<!--form-check-input    dropdown-item-->
+
+    <button type="button" class="form-check btn btn-outline-dark"
+    data-bs-toggle="collapse" data-bs-target="#collapseShops" aria-expanded="false" aria-controls="collapseShops">
+        <input class="form-check-input" type="checkbox" value="" id="shops" >
+        <label class="form-check-label" for="shops">
+            Shops
+        </label>
+    </button>
+
+    <button id="shops_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+
+</div>
+
+<div class="collapse" id="collapseShops" style=" z-index: 1; position: absolute; top: 35%; right: 1%;">
+    <div class="card-body" style=" z-index: 1; position: fixed; top: 35%; right: 1%; max-width: 40%;">
+        <ul>
+        <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>
+        <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>
+        <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>
+        <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>
+        <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>
+       </ul>
+    </div>
+</div>
+
+<div class="card" style="width: 18rem; display:none; height: 20%" id="shops_content">
+    <button id="btn-close-shops" type="button" class="btn-close" aria-label="Close"></button>
+    <h6 class="card-title" style="text-align: center;">Generalised blocks</h6>
+
+  <div class="card-body" style="height: 90%; padding-top: 1px;">
+    <p class="card-text"> Share (percentage) of green area within block</p>
+      <br>
+
+      <div>
+          <div>
+            <div class='row colors' style="background: linear-gradient(to right, #72de62, #6cd15c,#66c758, #62bf54, #5eb851, #57a84a, #4f9943, #478a3d, #3e7835, #34662d);">
+            </div>
+            <div class='row labels'>
+              <div class='label'>10</div>
+              <div class='label'>30</div>
+              <div class='label'>50</div>
+              <div class='label'>70</div>
+              <div class='label'>90</div>
+              <div class='label'>110</div>
+            </div>
+          </div>
+        </div>
+
+  </div>
+</div>
+</section>
 <!--trees section-->
+<section>
+<div class="btn-group btn-group-sm" id="trees_group" role="group" aria-label="Small button group">
+<!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
+<!--form-check-input    dropdown-item-->
+
+    <button type="button" class="form-check btn btn-outline-dark"
+    data-bs-toggle="collapse" data-bs-target="#collapseTrees" aria-expanded="false" aria-controls="collapseTrees">
+        <input class="form-check-input" type="checkbox" value="" id="aspern_trees_blocks" >
+        <label class="form-check-label" for="aspern_trees_blocks">
+            Trees
+        </label>
+    </button>
+
+    <button id="trees_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+
+</div>
+
+<div class="collapse" id="collapseTrees" style=" z-index: 1; position: absolute; top: 41%; right: 1%;">
+    <div class="card-body" style=" z-index: 1; position: fixed; top: 41%; right: 1%; max-width: 40%;">
+        <ul>
+        <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>
+        <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>
+        <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>
+        <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>
+        <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>
+       </ul>
+    </div>
+</div>
+
+<div class="card" style="width: 18rem; display:none; height: 20%" id="trees_content">
+    <button id="btn-close-trees" type="button" class="btn-close" aria-label="Close"></button>
+    <h6 class="card-title" style="text-align: center;">Generalised blocks</h6>
+
+  <div class="card-body" style="height: 90%; padding-top: 1px;">
+    <p class="card-text"> Share (percentage) of green area within block</p>
+      <br>
+
+      <div>
+          <div>
+            <div class='row colors' style="background: linear-gradient(to right, #72de62, #6cd15c,#66c758, #62bf54, #5eb851, #57a84a, #4f9943, #478a3d, #3e7835, #34662d);">
+            </div>
+            <div class='row labels'>
+              <div class='label'>10</div>
+              <div class='label'>30</div>
+              <div class='label'>50</div>
+              <div class='label'>70</div>
+              <div class='label'>90</div>
+              <div class='label'>110</div>
+            </div>
+          </div>
+        </div>
+
+  </div>
+</div>
+</section>
 <!--public transport stations section-->
+<section>
+<div class="btn-group btn-group-sm" id="public_stations_group" role="group" aria-label="Small button group">
+<!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
+<!--form-check-input    dropdown-item-->
+
+    <button type="button" class="form-check btn btn-outline-dark"
+    data-bs-toggle="collapse" data-bs-target="#collapsePublic_stations" aria-expanded="false" aria-controls="collapsePublic_stations">
+        <input class="form-check-input" type="checkbox" value="" id="aspern_publicstops" >
+        <label class="form-check-label" for="aspern_publicstops">
+            Zoning
+        </label>
+    </button>
+
+    <button id="public_stations_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+
+</div>
+
+<div class="collapse" id="collapsePublic_stations" style=" z-index: 1; position: absolute; top: 47%; right: 1%;">
+    <div class="card-body" style=" z-index: 1; position: fixed; top: 47%; right: 1%; max-width: 40%;">
+        <ul>
+        <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>
+        <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>
+        <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>
+        <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>
+        <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>
+       </ul>
+    </div>
+</div>
+
+<div class="card" style="width: 18rem; display:none; height: 20%" id="public_stations_content">
+    <button id="btn-close-public_stations" type="button" class="btn-close" aria-label="Close"></button>
+    <h6 class="card-title" style="text-align: center;">Generalised blocks</h6>
+
+  <div class="card-body" style="height: 90%; padding-top: 1px;">
+    <p class="card-text"> Share (percentage) of green area within block</p>
+      <br>
+
+      <div>
+          <div>
+            <div class='row colors' style="background: linear-gradient(to right, #72de62, #6cd15c,#66c758, #62bf54, #5eb851, #57a84a, #4f9943, #478a3d, #3e7835, #34662d);">
+            </div>
+            <div class='row labels'>
+              <div class='label'>10</div>
+              <div class='label'>30</div>
+              <div class='label'>50</div>
+              <div class='label'>70</div>
+              <div class='label'>90</div>
+              <div class='label'>110</div>
+            </div>
+          </div>
+        </div>
+
+  </div>
+</div>
+</section>
 
 
 <!--.......Analysis........-->
@@ -723,11 +1309,35 @@ body {
 </div>
 </section>
 
+
 <!--green section-->
 <section>
 <div class="btn-group btn-group-sm" id="green_group" role="group" aria-label="Small button group">
-    <button type="button" id="green" class="btn btn-outline-dark ">Green Area</button>
-<!--form-check-input-->
+<!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
+<!--form-check-input    dropdown-item-->
+
+    <button type="button" class="form-check btn btn-outline-dark"
+    data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <input class="form-check-input" type="checkbox" value="" id="green_area" >
+        <label class="form-check-label" for="green_area">
+            Green Area
+        </label>
+    </button>
+
+    <button id="green" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+
+</div>
+
+<div class="collapse" id="collapseExample" style=" z-index: 1; position: absolute; top: 59%; right: 1%;">
+    <div class="card-body" style=" z-index: 1; position: fixed; top: 59%; right: 1%; max-width: 40%;">
+        <ul>
+        <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>
+        <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>
+        <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>
+        <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>
+        <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>
+       </ul>
+    </div>
 </div>
 
 <div class="card" style="width: 18rem; display:none; height: 20%" id="green_content">
@@ -756,6 +1366,7 @@ body {
   </div>
 </div>
 </section>
+
 
 <!--osr section-->
 <section>
@@ -791,6 +1402,7 @@ body {
 </div>
 </section>
 
+
 <!--max height section-->
 <section>
 <div class="btn-group btn-group-sm" id="max_height_group" role="group" aria-label="Small button group">
@@ -824,7 +1436,8 @@ body {
 </div>
 </section>
 
-<!--accessability section-->
+
+<!--accessibility section-->
 <section>
 <div class="btn-group btn-group-sm" id="accessibility_group" role="group" aria-label="Small button group">
     <button type="button" id="accessibilitybut" class="btn btn-outline-dark ">Accessibility</button>
@@ -904,6 +1517,7 @@ body {
 
 
 
+
 <!--restore changes -->
 <div class="btn-group btn-group-sm" id="retore_changes_group" role="group" aria-label="Small button group">
     <button type="button" id="retore_changes" style="display: none" class="btn btn-outline-dark ">Restore changes</button>
@@ -920,111 +1534,111 @@ body {
   <div class="offcanvas-body" style="height: 85%">
 
 <!--      layers-->
-      <ul class="navbar-nav" style="height: 95%; overflow-y: auto">
-<!--          justify-content-end flex-grow-1 pe-3-->
-          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Land Use
-              </a>
-              <ul class="dropdown-menu layers_ul">
-<!--                  <div class="form-check dropdown-item">-->
-<!--                    <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr">-->
-<!--                    <label class="form-check-label" for="aspern_blocks_attr">-->
-<!--                        Block Attributes-->
+<!--      <ul class="navbar-nav" style="height: 95%; overflow-y: auto">-->
+<!--&lt;!&ndash;          justify-content-end flex-grow-1 pe-3&ndash;&gt;-->
+<!--          <li class="nav-item dropdown">-->
+<!--              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                Land Use-->
+<!--              </a>-->
+<!--              <ul class="dropdown-menu layers_ul">-->
+<!--&lt;!&ndash;                  <div class="form-check dropdown-item">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <label class="form-check-label" for="aspern_blocks_attr">&ndash;&gt;-->
+<!--&lt;!&ndash;                        Block Attributes&ndash;&gt;-->
+<!--&lt;!&ndash;                    </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="form-check dropdown-item">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <input class="form-check-input" type="checkbox" value="" id="aspern_realUseBlocks" >&ndash;&gt;-->
+<!--&lt;!&ndash;                    <label class="form-check-label" for="aspern_realUseBlocks">&ndash;&gt;-->
+<!--&lt;!&ndash;                        Real Use - detailed blocks&ndash;&gt;-->
+<!--&lt;!&ndash;                    </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--                   <div class="form-check dropdown-item">-->
+<!--&lt;!&ndash;                    <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr_realUseBlocks">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <label class="form-check-label" for="aspern_blocks_attr_realUseBlocks">&ndash;&gt;-->
+<!--                     <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr">-->
+<!--                     <label class="form-check-label" for="aspern_blocks_attr">-->
+<!--                        Generalised blocks-->
 <!--                    </label>-->
 <!--                  </div>-->
 <!--                  <div class="form-check dropdown-item">-->
-<!--                    <input class="form-check-input" type="checkbox" value="" id="aspern_realUseBlocks" >-->
-<!--                    <label class="form-check-label" for="aspern_realUseBlocks">-->
-<!--                        Real Use - detailed blocks-->
+<!--                    <input class="form-check-input" type="checkbox" value="" id="aspern_landuse">-->
+<!--                    <label class="form-check-label" for="aspern_landuse">-->
+<!--                        Land Use - block level-->
 <!--                    </label>-->
 <!--                  </div>-->
-                   <div class="form-check dropdown-item">
-<!--                    <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr_realUseBlocks">-->
-<!--                    <label class="form-check-label" for="aspern_blocks_attr_realUseBlocks">-->
-                     <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr">
-                     <label class="form-check-label" for="aspern_blocks_attr">
-                        Generalised blocks
-                    </label>
-                  </div>
-                  <div class="form-check dropdown-item">
-                    <input class="form-check-input" type="checkbox" value="" id="aspern_landuse">
-                    <label class="form-check-label" for="aspern_landuse">
-                        Land Use - block level
-                    </label>
-                  </div>
-<!--                  <div class="form-check dropdown-item">-->
-<!--                    <input class="form-check-input" type="checkbox" value="" id="osr">-->
-<!--                    <label class="form-check-label" for="osr">-->
-<!--                        Open Space Ratio-->
+<!--&lt;!&ndash;                  <div class="form-check dropdown-item">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <input class="form-check-input" type="checkbox" value="" id="osr">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <label class="form-check-label" for="osr">&ndash;&gt;-->
+<!--&lt;!&ndash;                        Open Space Ratio&ndash;&gt;-->
+<!--&lt;!&ndash;                    </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--                <div class="form-check dropdown-item">-->
+<!--                    <input class="form-check-input" type="checkbox" value="" id="zoning">-->
+<!--                    <label class="form-check-label" for="zoning">-->
+<!--                        Zoning-->
 <!--                    </label>-->
 <!--                </div>-->
-                <div class="form-check dropdown-item">
-                    <input class="form-check-input" type="checkbox" value="" id="zoning">
-                    <label class="form-check-label" for="zoning">
-                        Zoning
-                    </label>
-                </div>
-<!--                  <div class="form-check dropdown-item">-->
-<!--                    <input class="form-check-input" type="checkbox" value="" id="green_area">-->
-<!--                    <label class="form-check-label" for="green_area">-->
-<!--                        Green Area-->
-<!--                    </label>-->
-<!--                </div>-->
-<!--                  <div class="form-check dropdown-item">-->
-<!--                    <input class="form-check-input" type="checkbox" value="" id="max_height">-->
-<!--                    <label class="form-check-label" for="max_height">-->
-<!--                        Maximum height-->
-<!--                    </label>-->
-<!--                </div>-->
+<!--&lt;!&ndash;                  <div class="form-check dropdown-item">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <input class="form-check-input" type="checkbox" value="" id="green_area">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <label class="form-check-label" for="green_area">&ndash;&gt;-->
+<!--&lt;!&ndash;                        Green Area&ndash;&gt;-->
+<!--&lt;!&ndash;                    </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="form-check dropdown-item">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <input class="form-check-input" type="checkbox" value="" id="max_height">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <label class="form-check-label" for="max_height">&ndash;&gt;-->
+<!--&lt;!&ndash;                        Maximum height&ndash;&gt;-->
+<!--&lt;!&ndash;                    </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
 
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Road & public transport net
-                </a>
-                <ul class="dropdown-menu layers_ul">
-                    <div class="form-check dropdown-item">
-                        <input class="form-check-input" type="checkbox" value="" id="aspern_roads" >
-                        <label class="form-check-label" for="aspern_roads">
-                            Street center-line
-                        </label>
-                  </div>
-                    <div class="form-check dropdown-item">
-                        <input class="form-check-input" type="checkbox" value="" id="aspern_publiclines">
-                        <label class="form-check-label" for="aspern_publiclines">
-                            Public transport lines
-                        </label>
-                  </div>
-                </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  PoIs
-                </a>
-                <ul class="dropdown-menu layers_ul">
-                    <div class="form-check dropdown-item">
-                        <input class="form-check-input" type="checkbox" value="" id="shops">
-                        <label class="form-check-label" for="shops">
-                            Shops
-                        </label>
-                    </div>
-                    <div class="form-check dropdown-item">
-                        <input class="form-check-input" type="checkbox" value="" id="aspern_trees_blocks">
-                        <label class="form-check-label" for="aspern_trees_blocks">
-                            Tree layer
-                        </label>
-                  </div>
-                    <div class="form-check dropdown-item">
-                        <input class="form-check-input" type="checkbox" value="" id="aspern_publicstops" >
-                        <label class="form-check-label" for="aspern_publicstops">
-                            Public transport stations
-                        </label>
-                  </div>
-                </ul>
-              </li>
-      </ul>
+<!--              </ul>-->
+<!--            </li>-->
+<!--            <li class="nav-item dropdown">-->
+<!--                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                  Road & public transport net-->
+<!--                </a>-->
+<!--                <ul class="dropdown-menu layers_ul">-->
+<!--                    <div class="form-check dropdown-item">-->
+<!--                        <input class="form-check-input" type="checkbox" value="" id="aspern_roads" >-->
+<!--                        <label class="form-check-label" for="aspern_roads">-->
+<!--                            Street center-line-->
+<!--                        </label>-->
+<!--                  </div>-->
+<!--                    <div class="form-check dropdown-item">-->
+<!--                        <input class="form-check-input" type="checkbox" value="" id="aspern_publiclines">-->
+<!--                        <label class="form-check-label" for="aspern_publiclines">-->
+<!--                            Public transport lines-->
+<!--                        </label>-->
+<!--                  </div>-->
+<!--                </ul>-->
+<!--              </li>-->
+<!--              <li class="nav-item dropdown">-->
+<!--                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                  PoIs-->
+<!--                </a>-->
+<!--                <ul class="dropdown-menu layers_ul">-->
+<!--                    <div class="form-check dropdown-item">-->
+<!--                        <input class="form-check-input" type="checkbox" value="" id="shops">-->
+<!--                        <label class="form-check-label" for="shops">-->
+<!--                            Shops-->
+<!--                        </label>-->
+<!--                    </div>-->
+<!--                    <div class="form-check dropdown-item">-->
+<!--                        <input class="form-check-input" type="checkbox" value="" id="aspern_trees_blocks">-->
+<!--                        <label class="form-check-label" for="aspern_trees_blocks">-->
+<!--                            Tree layer-->
+<!--                        </label>-->
+<!--                  </div>-->
+<!--                    <div class="form-check dropdown-item">-->
+<!--                        <input class="form-check-input" type="checkbox" value="" id="aspern_publicstops" >-->
+<!--                        <label class="form-check-label" for="aspern_publicstops">-->
+<!--                            Public transport stations-->
+<!--                        </label>-->
+<!--                  </div>-->
+<!--                </ul>-->
+<!--              </li>-->
+<!--      </ul>-->
 
 
       <section>
@@ -2900,6 +3514,8 @@ $(function() {
                 //     );
                 // }
 
+                console.log('unclicked the layer')
+
                 // we also hide the 2nd layer with more detailed blocks
                 // that's shown only at certain zoom level
                   if (check_id == 'aspern_blocks_attr'){
@@ -2960,6 +3576,8 @@ $(function() {
             //if we click a layer
             else
             {
+
+                console.log('clicked the layer')
                 // if we show the 3d building we set a pitch to the map
                 if(clickedLayer == 'layer_aspern_bkmBlocks'){
                     // loadIconsLayer();

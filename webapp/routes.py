@@ -53,6 +53,10 @@ def design4():
 def design5():
     return render_template('design5.html')
 
+@app.route("/design6/", methods=['GET'])
+def design6():
+    return render_template('design6.html')
+
 ########### data ###########
 @app.route("/data/prototype_layerWGS84.geojson", methods=['GET'])
 def data1():
@@ -268,6 +272,7 @@ def post_calculated_accessibility():
     # return blocksWithinDist.to_json()
     response = {'blocks': blocksWithinDist.to_json(), 'buffer': bufArea_dis.to_json()}
     #return blocksWithinDist.to_json() #, bufArea_dis.to_json()
+
     return response
 
 
