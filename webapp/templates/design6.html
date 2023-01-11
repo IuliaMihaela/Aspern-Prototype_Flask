@@ -1156,12 +1156,7 @@ body {
 <div class="collapse" id="collapseShops" style=" z-index: 1; position: absolute; top: 35%; right: 1%;">
     <div class="card-body" style=" z-index: 1; position: fixed; top: 35%; right: 1%; max-width: 30%;">
         <ul>
-        <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>
-        <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>
-        <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>
-        <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>
-        <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>
-       </ul>
+        </ul>
     </div>
 </div>
 
@@ -1207,12 +1202,7 @@ body {
 <div class="collapse" id="collapseTrees" style=" z-index: 1; position: absolute; top: 41%; right: 1%;">
     <div class="card-body" style=" z-index: 1; position: fixed; top: 41%; right: 1%; max-width: 30%;">
         <ul>
-        <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>
-        <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>
-        <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>
-        <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>
-        <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>
-       </ul>
+        </ul>
     </div>
 </div>
 
@@ -2978,6 +2968,10 @@ async function sendData(){
     c.innerHTML = 'Shannon Index  <div class="spinner-border spinner-border-sm" role="status" style="display: inline-block;">\n      ' +
         '<span class="visually-hidden">Loading...</span>\n    </div>'
 
+    //the spinner on the button
+    $('#shannon label')[0].innerHTML= 'Shannon  <div class="spinner-border spinner-border-sm" role="status" style="display: inline-block;">\n      ' +
+        '<span class="visually-hidden">Loading...</span>\n    </div>';
+
 
     console.log('function for sending the data');
     // console.log('json data to send: ', JSON.stringify(eval('data_'+check_id)));
@@ -3033,6 +3027,7 @@ async function sendData(){
     }
     // b.innerHTML = 'Index';
     c.innerHTML='Shannon Index'
+    $('#shannon label')[0].innerHTML= 'Shannon';
 
     // if(map.getLayer('layer_aspern_landuse').visibility == 'none'){
     //     document.getElementsByClassName('form-check-input')[2].click()
@@ -3054,6 +3049,8 @@ async function calc_accessibility(dist, poi, layer){
     c = $('#accessibility_content .card-title')[0];
     c.innerHTML = 'Accessibility  <div class="spinner-border spinner-border-sm" role="status" style="display: inline-block;">\n      ' +
         '<span class="visually-hidden">Loading...</span>\n    </div>'
+
+
 
 
     console.log('function for sending the accessibility data');
@@ -3114,6 +3111,7 @@ async function calc_accessibility(dist, poi, layer){
 
 
     c.innerHTML='Accessibility';
+
 
     // if(map.getLayer('layer_aspern_landuse').visibility == 'none'){
     //     document.getElementsByClassName('form-check-input')[2].click()
@@ -3546,42 +3544,92 @@ $(function() {
 
 
 
+        const shannon_button =$('#shannon_arrow')[0];
+        shannon_button.onclick = function (e){
+            // show the layer and the content
+            if ($('#shannon_content')[0].style.display == 'none')
+            {
+                $('#shannon_content').css('display', 'block');
+                // if( map.getLayer('layer_index')){
+                //    map.setLayoutProperty(
+                //         'layer_index',
+                //         'visibility',
+                //         'visible'
+                //     );
+                //    console.log('make the already calculated index layer visible ')
+                // }else{
+                //     console.log('calculate index layer first time ');
+                //     sendData('');
+                // }
+
+
+            }else{  //hide the layer and the content
+                $('#shannon_content')[0].style.display = 'none'
+                // if( map.getLayer('layer_index')){
+                //    map.setLayoutProperty(
+                //         'layer_index',
+                //         'visibility',
+                //         'none'
+                //     );
+                // }
+            }
+
+        }
+        const close_shannon_button =$('#btn-close-shannon')[0];
+        close_shannon_button.onclick = function (e){
+            $('#shannon_content').css('display', 'none');
+
+            // if( map.getLayer('layer_index')){
+            //        map.setLayoutProperty(
+            //             'layer_index',
+            //             'visibility',
+            //             'none'
+            //         );
+            // }
+        }
+
+
+
 
         //
         //
         //
         // // indices buttons
-        // const shannon_button =$('#shannon')[0];
-        // shannon_button.onclick = function (e){
-        //     // show the layer and the content
-        //     if ($('#shannon_content')[0].style.display == 'none')
-        //     {
-        //         $('#shannon_content').css('display', 'block');
-        //         if( map.getLayer('layer_index')){
-        //            map.setLayoutProperty(
-        //                 'layer_index',
-        //                 'visibility',
-        //                 'visible'
-        //             );
-        //            console.log('make the already calculated index layer visible ')
-        //         }else{
-        //             console.log('calculate index layer first time ');
-        //             sendData('');
-        //         }
-        //
-        //
-        //     }else{  //hide the layer and the content
-        //         $('#shannon_content')[0].style.display = 'none'
-        //         if( map.getLayer('layer_index')){
-        //            map.setLayoutProperty(
-        //                 'layer_index',
-        //                 'visibility',
-        //                 'none'
-        //             );
-        //         }
-        //     }
-        //
-        // }
+        const shannon_button_l =$('#index')[0];
+        shannon_button_l.onclick = function (e){
+            console.log('shannon button layer');
+            console.log(this.checked);
+            console.log(e);
+            // show the layer
+            //if ($('#shannon_content')[0].style.display == 'none')
+            if (this.checked)
+            {
+                // $('#shannon_content').css('display', 'block');
+                if( map.getLayer('layer_index')){
+                   map.setLayoutProperty(
+                        'layer_index',
+                        'visibility',
+                        'visible'
+                    );
+                   console.log('make the already calculated index layer visible ')
+                }else{
+                    console.log('calculate index layer first time ');
+                    sendData('');
+                }
+
+
+            }else{  //hide the layer
+                //$('#shannon_content')[0].style.display = 'none'
+                if( map.getLayer('layer_index')){
+                   map.setLayoutProperty(
+                        'layer_index',
+                        'visibility',
+                        'none'
+                    );
+                }
+            }
+
+        }
         // const close_shannon_button =$('#btn-close-shannon')[0];
         // close_shannon_button.onclick = function (e){
         //     $('#shannon_content').css('display', 'none');
@@ -3594,7 +3642,8 @@ $(function() {
         //             );
         //     }
         // }
-        //
+
+
         const green_button =$('#green_arrow')[0];
         green_button.onclick = function (e){
             if ($('#green_content')[0].style.display == 'none')
@@ -3832,16 +3881,16 @@ $(function() {
     //get the canvas that displays the layers options
     canvas_layers = document.getElementsByClassName('offcanvas-start');
     // when you click on the button
-    document.getElementById('btn-open-layers').onclick = (function(){
-        console.log(canvas_layers);
-        // it shows the canvas with the layers
-        canvas_layers[0].className = 'show '+ canvas_layers[0].className; // it adds the class 'show' to the canvas element
-    });
+    // document.getElementById('btn-open-layers').onclick = (function(){
+    //     console.log(canvas_layers);
+    //     // it shows the canvas with the layers
+    //     canvas_layers[0].className = 'show '+ canvas_layers[0].className; // it adds the class 'show' to the canvas element
+    // });
     //when you click on the x button on the canvas with the layers
-    document.getElementById('btn-close-layers').onclick = (function(){
-        // the canvas is hidden
-        canvas_layers[0].className = canvas_layers[0].className.substring(4,canvas_layers[0].className.length);// it removes the class 'show' to the canvas element
-    });
+    // document.getElementById('btn-close-layers').onclick = (function(){
+    //     // the canvas is hidden
+    //     canvas_layers[0].className = canvas_layers[0].className.substring(4,canvas_layers[0].className.length);// it removes the class 'show' to the canvas element
+    // });
 
 
     //get the canvas that displays the legend
