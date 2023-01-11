@@ -488,12 +488,18 @@ body {
 
 
 
-
+    .collapse .card-body {
+        position: relative;
+    }
+    .collapse {
+        position: relative;
+    }
 
 
     /*Layers sections */
     #blocks_group {
-        position: absolute;
+        /*position: absolute;*/
+        position: relative;
         z-index: 0;
         top: 2%;
         right: 1%;
@@ -501,14 +507,15 @@ body {
     }
 
     #blocks_content {
-        position: absolute;
+        /*position: absolute;*/
+        position: relative;
         z-index: 1;
         top: 5%;
         right: 1%;
     }
 
     #landuse_group {
-        position: absolute;
+        position: relative;
         z-index: 0;
         top: 8%;
         right: 1%;
@@ -516,14 +523,14 @@ body {
     }
 
     #landuse_content {
-        position: absolute;
+        position: relative;
         top: 11%;
         right: 1%;
         z-index: 1;
     }
 
     #zoning_group {
-        position: absolute;
+        position: relative;
         z-index: 0;
         top: 14%;
         right: 1%;
@@ -531,14 +538,14 @@ body {
     }
 
     #zoning_content {
-        position: absolute;
+        position: relative;
         top: 17%;
         right: 1%;
         z-index: 1;
     }
 
     #streets_group {
-        position: absolute;
+        position: relative;
         z-index: 0;
         top: 20%;
         right: 1%;
@@ -546,14 +553,14 @@ body {
     }
 
     #streets_content {
-        position: absolute;
+        position: relative;
         top: 23%;
         right: 1%;
         z-index: 1;
     }
 
     #public_lines_group {
-        position: absolute;
+        position: relative;
         z-index: 0;
         top: 26%;
         right: 1%;
@@ -561,14 +568,14 @@ body {
     }
 
     #public_lines_content {
-        position: absolute;
+        position: relative;
         top: 29%;
         right: 1%;
         z-index: 1;
     }
 
     #shops_group {
-        position: absolute;
+        position: relative;
         z-index: 0;
         top: 32%;
         right: 1%;
@@ -576,14 +583,14 @@ body {
     }
 
     #shops_content {
-        position: absolute;
+        position: relative;
         top: 35%;
         right: 1%;
         z-index: 1;
     }
 
     #trees_group {
-        position: absolute;
+        position: relative;
         z-index: 0;
         top: 38%;
         right: 1%;
@@ -591,14 +598,14 @@ body {
     }
 
     #trees_content {
-        position: absolute;
+        position: relative;
         top: 41%;
         right: 1%;
         z-index: 1;
     }
 
     #public_stations_group {
-        position: absolute;
+        position: relative;
         z-index: 0;
         top: 44%;
         right: 1%;
@@ -606,7 +613,7 @@ body {
     }
 
     #public_stations_content {
-        position: absolute;
+        position: relative;
         top: 47%;
         right: 1%;
         z-index: 1;
@@ -614,7 +621,7 @@ body {
 
     /*shannon button */
     #shannon_group {
-        position: absolute;
+        position: relative;
         z-index: 0;
         top: 50%;
         right: 1%;
@@ -622,14 +629,14 @@ body {
     }
 
     #shannon_content {
-        position: absolute;
+        position: relative;
         z-index: 1;
         top: 53%;
         right: 1%;
     }
 
     #green_group {
-        position: absolute;
+        position: relative;
         z-index: 0;
         top: 56%;
         right: 1%;
@@ -637,14 +644,14 @@ body {
     }
 
     #green_content {
-        position: absolute;
+        position: relative;
         top: 59%;
         right: 1%;
         z-index: 1;
     }
 
     #osr_group {
-        position: absolute;
+        position: relative;
         z-index: 0;
         top: 62%;
         right: 1%;
@@ -652,14 +659,14 @@ body {
     }
 
     #osr_content {
-        position: absolute;
+        position: relative;
         top: 65%;
         right: 1%;
         z-index: 1;
     }
 
     #max_height_group {
-        position: absolute;
+        position: relative;
         z-index: 0;
         top: 68%;
         right: 1%;
@@ -667,14 +674,14 @@ body {
     }
 
     #max_height_content {
-        position: absolute;
+        position: relative;
         top: 71%;
         right: 1%;
         z-index: 1;
     }
 
     #accessibility_group {
-        position: absolute;
+        position: relative;
         z-index: 0;
         top: 74%;
         right: 1%;
@@ -682,7 +689,7 @@ body {
     }
 
     #accessibility_content {
-        position: absolute;
+        position: relative;
         /*top: 77%;*/
         right: 1%;
         z-index: 1;
@@ -812,7 +819,7 @@ body {
     #main_layers {
         position: absolute;
         left: 1%;
-        top: 2%;
+        top: 1%;
     }
 
     .collapsible-header {
@@ -821,6 +828,16 @@ body {
     .collapsible {
         padding-left: 0px;
         width: 18rem;
+    }
+
+    #analysis_layers {
+        position: absolute;
+        right: 1%;
+        top: 1%;
+    }
+
+    .btn-outline-dark {
+        --bs-btn-border-color: rgb(26 34 36 / 25%);
     }
 
 
@@ -851,79 +868,64 @@ body {
 <div id="main_layers">
 <ul class="collapsible">
     <li>
-      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-</ul>
-</div>
+      <div class="collapsible-header"><i class="material-icons">landscape</i>Land Use</div>
+      <div class="collapsible-body">
 
+          <section>
+            <div class="btn-group btn-group-sm" id="blocks_group" role="group" aria-label="Small button group">
+            <!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
+            <!--form-check-input    dropdown-item-->
 
-<!--................Layers..................-->
-<!--.......Land Use........-->
-<!--blocks section-->
-<section>
-<div class="btn-group btn-group-sm" id="blocks_group" role="group" aria-label="Small button group">
-<!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
-<!--form-check-input    dropdown-item-->
+                <button type="button" class="form-check btn btn-outline-dark">
+                    <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr" data-bs-toggle="collapse" data-bs-target="#collapseBlocks" aria-expanded="false" aria-controls="collapseBlocks">
+                    <label class="form-check-label" for="aspern_blocks_attr">
+                        Blocks
+                    </label>
+                </button>
 
-    <button type="button" class="form-check btn btn-outline-dark">
-        <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr" data-bs-toggle="collapse" data-bs-target="#collapseBlocks" aria-expanded="false" aria-controls="collapseBlocks">
-        <label class="form-check-label" for="aspern_blocks_attr">
-            Blocks
-        </label>
-    </button>
+                <button id="blocks_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
 
-    <button id="blocks_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+            </div>
 
-</div>
+            <div class="collapse" id="collapseBlocks" style=" z-index: 1; top: 5%; right: 1%;">
+                <div class="card-body" style=" z-index: 1; top: 5%; right: 1%; max-width: 30%;">
+                    <ul>
+                    <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>
+                    <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>
+                    <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>
+                    <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>
+                    <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>
+                   </ul>
+                </div>
+            </div>
 
-<div class="collapse" id="collapseBlocks" style=" z-index: 1; position: absolute; top: 5%; right: 1%;">
-    <div class="card-body" style=" z-index: 1; position: fixed; top: 5%; right: 1%; max-width: 30%;">
-        <ul>
-        <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>
-        <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>
-        <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>
-        <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>
-        <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>
-       </ul>
-    </div>
-</div>
+            <div class="card" style="width: 18rem; display:none; height: fit-content" id="blocks_content">
+                <button id="btn-close-blocks" type="button" class="btn-close" aria-label="Close"></button>
+                <h6 class="card-title" style="text-align: center;">Generalised blocks</h6>
 
-<div class="card" style="width: 18rem; display:none; height: fit-content" id="blocks_content">
-    <button id="btn-close-blocks" type="button" class="btn-close" aria-label="Close"></button>
-    <h6 class="card-title" style="text-align: center;">Generalised blocks</h6>
+              <div class="card-body" style="height: 90%; padding-top: 1px;">
+                  <br>
 
-  <div class="card-body" style="height: 90%; padding-top: 1px;">
-      <br>
+                  <div id="legend_blocks" >
+                    <ul>
+                        <li><span style="background: #60c36c;"></span>greenSpace: <em>green open spaces, gardens, agricultural land</em></li>
+                        <li><span style="background: #856666;"></span>sealedSpace: <em>public and private sealed area, including roads, bike paths etc.</em></li>
+                        <li><span style="background: #ad949e;"></span>buildings</li>
+                        <li><span style="background: #808080;"></span>construction: <em>construction sites, gravel pit</em></li>
+                        <li><span style="background: #0080FF;"></span>water</li>
+                    </ul>
+                  </div>
 
-      <div id="legend_blocks" >
-        <ul>
-            <li><span style="background: #60c36c;"></span>greenSpace: <em>green open spaces, gardens, agricultural land</em></li>
-            <li><span style="background: #856666;"></span>sealedSpace: <em>public and private sealed area, including roads, bike paths etc.</em></li>
-            <li><span style="background: #ad949e;"></span>buildings</li>
-            <li><span style="background: #808080;"></span>construction: <em>construction sites, gravel pit</em></li>
-            <li><span style="background: #0080FF;"></span>water</li>
-        </ul>
-      </div>
+                  <div id="graph_blocks">
 
-      <div id="graph_blocks">
+                  </div>
 
-      </div>
+              </div>
 
-  </div>
+            </div>
+          </section>
 
-</div>
-</section>
-<!--land-use section-->
-<section>
+          <section>
 <div class="btn-group btn-group-sm" id="landuse_group" role="group" aria-label="Small button group">
 <!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
 <!--form-check-input    dropdown-item-->
@@ -939,8 +941,8 @@ body {
 
 </div>
 
-<div class="collapse" id="collapseLanduse" style=" z-index: 1; position: absolute; top: 11%; right: 1%;">
-    <div class="card-body" style=" z-index: 1; position: fixed; top: 11%; right: 1%; max-width: 30%;">
+<div class="collapse" id="collapseLanduse" style=" z-index: 1; top: 11%; right: 1%;">
+    <div class="card-body" style=" z-index: 1;  top: 11%; right: 1%; max-width: 30%;">
         <ul>
         <li class="label"><span style="background: #88db35;" data-bs-toggle="tooltip" data-bs-placement="left" title="recreation & leisure facilities"></span></li>
         <li class="label"><span style="background: #e2d4c0;" data-bs-toggle="tooltip" data-bs-placement="left" title="business uses"></span></li>
@@ -988,8 +990,8 @@ body {
   </div>
 </div>
 </section>
-<!--zoning section-->
-<section>
+
+          <section>
 <div class="btn-group btn-group-sm" id="zoning_group" role="group" aria-label="Small button group">
 <!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
 <!--form-check-input    dropdown-item-->
@@ -1005,8 +1007,8 @@ body {
 
 </div>
 
-<div class="collapse" id="collapseZoning" style=" z-index: 1; position: absolute; top: 17%; right: 1%;">
-    <div class="card-body" style=" z-index: 1; position: fixed; top: 17%; right: 1%; max-width: 30%;">
+<div class="collapse" id="collapseZoning" style=" z-index: 1; top: 17%; right: 1%;">
+    <div class="card-body" style=" z-index: 1; top: 17%; right: 1%; max-width: 30%;">
         <ul>
             <li class="label"><span style="background: #774c43;" data-bs-toggle="tooltip" data-bs-placement="left" title="E: recreation area"></span></li>
             <li class="label"><span style="background: #8B4513;" data-bs-toggle="tooltip" data-bs-placement="left" title="GB: mixed developement"></span></li>
@@ -1049,568 +1051,1325 @@ body {
 </div>
 </section>
 
-<!--.......Road & Transport........-->
-<!--street section-->
-<section>
-<div class="btn-group btn-group-sm" id="streets_group" role="group" aria-label="Small button group">
-<!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
-<!--form-check-input    dropdown-item-->
+          <section>
+            <div class="btn-group btn-group-sm" id="green_group" role="group" aria-label="Small button group">
+            <!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
+            <!--form-check-input    dropdown-item-->
+
+                <button type="button" class="form-check btn btn-outline-dark"
+                data-bs-toggle="collapse" data-bs-target="#collapseGreen" aria-expanded="false" aria-controls="collapseGreen">
+                    <input class="form-check-input" type="checkbox" value="" id="green_area" >
+                    <label class="form-check-label" for="green_area">
+                        Green Area
+                    </label>
+                </button>
+
+                <button id="green_arrow" type="button" class="btn btn-outline-dark"
+                        style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
 
-    <button type="button" class="form-check btn btn-outline-dark">
-        <input class="form-check-input" type="checkbox" value="" id="aspern_roads" data-bs-toggle="collapse" data-bs-target="#collapseStreets" aria-expanded="false" aria-controls="collapseStreets">
-        <label class="form-check-label" for="aspern_roads">
-            Streets
-        </label>
-    </button>
-
-    <button id="streets_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
-
-</div>
-
-<div class="collapse" id="collapseStreets" style=" z-index: 1; position: absolute; top: 23%; right: 1%;">
-    <div class="card-body" style=" z-index: 1; position: fixed; top: 23%; right: 1%; max-width: 30%;">
-        <ul>
-        <li class="label"><span style="background: #FFFF66;" data-bs-toggle="tooltip" data-bs-placement="left" title="G: municipal road"></span></li>
-            <li class="label"><span style="background: #FF9933;" data-bs-toggle="tooltip" data-bs-placement="left" title="L: state main road"></span></li>
-            <li class="label"><span style="background: #a117c7;" data-bs-toggle="tooltip" data-bs-placement="left" title="B: main road"></span></li>
-       </ul>
-    </div>
-</div>
-
-<div class="card" style="width: 18rem; display:none; height: fit-content" id="streets_content">
-    <button id="btn-close-streets" type="button" class="btn-close" aria-label="Close"></button>
-    <h6 class="card-title" style="text-align: center;">Street center-line</h6>
-
-  <div class="card-body" style="height: 90%; padding-top: 1px;">
-      <br>
-
-      <div id="legend_streets">
-        <ul>
-            <li><span style="background: #FFFF66;"></span>G: <em>municipal road</em></li>
-            <li><span style="background: #FF9933;"></span>L: <em>state main road</em></li>
-            <li><span style="background: #a117c7;"></span>B: <em>main road</em></li>
-
-        </ul>
-      </div>
-
-      <div id="graph_streets">
-
-      </div>
-
-  </div>
-</div>
-</section>
-
-<!--public transport lines section-->
-<section>
-<div class="btn-group btn-group-sm" id="public_lines_group" role="group" aria-label="Small button group">
-<!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
-<!--form-check-input    dropdown-item-->
-
-    <button type="button" class="form-check btn btn-outline-dark">
-        <input class="form-check-input" type="checkbox" value="" id="aspern_publiclines" data-bs-toggle="collapse" data-bs-target="#collapsePublic_lines" aria-expanded="false" aria-controls="collapsePublic_lines">
-        <label class="form-check-label" for="aspern_publiclines">
-            Public Lines
-        </label>
-    </button>
-
-    <button id="public_lines_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
-
-</div>
-
-<div class="collapse" id="collapsePublic_lines" style=" z-index: 1; position: absolute; top: 29%; right: 1%;">
-    <div class="card-body" style=" z-index: 1; position: fixed; top: 29%; right: 1%; max-width: 30%;">
-        <ul>
-        <li class="label"><span style="background: #CC0000;" data-bs-toggle="tooltip" data-bs-placement="left" title="13: astax"></span></li>
-        <li class="label"><span style="background: #FF8000;" data-bs-toggle="tooltip" data-bs-placement="left" title="3: regional bus"></span></li>
-        <li class="label"><span style="background: #FFFF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="2: bus"></span></li>
-        <li class="label"><span style="background: #00FF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="5: rapid transit and regional train"></span></li>
-        <li class="label"><span style="background: #00FFFF;" data-bs-toggle="tooltip" data-bs-placement="left" title="9: astax"></span></li>
-        <li class="label"><span style="background: #0000FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="10: night bus"></span></li>
-        <li class="label"><span style="background: #FF33FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="11: night bus"></span></li>
-        <li class="label"><span style="background: #FF3399;" data-bs-toggle="tooltip" data-bs-placement="left" title="4: subway"></span></li>
-       </ul>
-    </div>
-</div>
-
-<div class="card" style="width: 18rem; display:none; height: fit-content" id="public_lines_content">
-    <button id="btn-close-public_lines" type="button" class="btn-close" aria-label="Close"></button>
-    <h6 class="card-title" style="text-align: center;">Public transport lines</h6>
-
-  <div class="card-body" style="height: 90%; padding-top: 1px;">
-      <br>
-
-      <div id="legend_public_lines">
-        <ul>
-            <li><span style="background: #CC0000;"></span>13: <em>astax</em></li>
-            <li><span style="background: #FF8000;"></span>3: <em>regional bus</em></li>
-            <li><span style="background: #FFFF00;"></span>2: <em>bus</em></li>
-            <li><span style="background: #00FF00;"></span>5: <em>rapid transit and regional train</em></li>
-            <li><span style="background: #00FFFF;"></span>9: <em>astax</em></li>
-            <li><span style="background: #0000FF;"></span>10: <em>night bus</em></li>
-            <li><span style="background: #FF33FF;"></span>11: <em>night bus</em></li>
-            <li><span style="background: #FF3399;"></span>4: <em>subway</em></li>
-
-        </ul>
-      </div>
-
-      <div id="graph_public_lines">
-
-      </div>
-
-  </div>
-</div>
-</section>
-
-<!--.......PoI........-->
-<!--shops section-->
-<section>
-<div class="btn-group btn-group-sm" id="shops_group" role="group" aria-label="Small button group">
-<!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
-<!--form-check-input    dropdown-item-->
-
-    <button type="button" class="form-check btn btn-outline-dark">
-        <input class="form-check-input" type="checkbox" value="" id="shops" data-bs-toggle="collapse" data-bs-target="#collapseShops" aria-expanded="false" aria-controls="collapseShops">
-        <label class="form-check-label" for="shops">
-            Shops
-        </label>
-    </button>
-
-    <button id="shops_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
-
-</div>
-
-<div class="collapse" id="collapseShops" style=" z-index: 1; position: absolute; top: 35%; right: 1%;">
-    <div class="card-body" style=" z-index: 1; position: fixed; top: 35%; right: 1%; max-width: 30%;">
-        <ul>
-        </ul>
-    </div>
-</div>
-
-<div class="card" style="width: 18rem; display:none; height: fit-content" id="shops_content">
-    <button id="btn-close-shops" type="button" class="btn-close" aria-label="Close"></button>
-    <h6 class="card-title" style="text-align: center;">Shops</h6>
-
-  <div class="card-body" style="height: 90%; padding-top: 1px;">
-      <br>
-
-     <div id="legend_shops">
-        <ul>
-
-        </ul>
-      </div>
-
-      <div id="graph_shops">
-
-      </div>
-
-  </div>
-</div>
-</section>
-
-<!--trees section-->
-<section>
-<div class="btn-group btn-group-sm" id="trees_group" role="group" aria-label="Small button group">
-<!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
-<!--form-check-input    dropdown-item-->
-
-    <button type="button" class="form-check btn btn-outline-dark">
-        <input class="form-check-input" type="checkbox" value="" id="aspern_trees_blocks" data-bs-toggle="collapse" data-bs-target="#collapseTrees" aria-expanded="false" aria-controls="collapseTrees">
-        <label class="form-check-label" for="aspern_trees_blocks">
-            Trees
-        </label>
-    </button>
-
-    <button id="trees_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
-
-</div>
-
-<div class="collapse" id="collapseTrees" style=" z-index: 1; position: absolute; top: 41%; right: 1%;">
-    <div class="card-body" style=" z-index: 1; position: fixed; top: 41%; right: 1%; max-width: 30%;">
-        <ul>
-        </ul>
-    </div>
-</div>
-
-<div class="card" style="width: 18rem; display:none; height: fit-content" id="trees_content">
-    <button id="btn-close-trees" type="button" class="btn-close" aria-label="Close"></button>
-    <h6 class="card-title" style="text-align: center;">Trees</h6>
-
-  <div class="card-body" style="height: 90%; padding-top: 1px;">
-      <br>
-
-     <div id="legend_trees">
-        <ul>
-            <li><strong>Classification Categories of Tree height: </strong></li>
-            <br>
-            <li><span style="background: #99FF99;"></span>0</li>
-            <li><span style="background: #66FF66;"></span>1</li>
-            <li><span style="background: #33FF33;"></span>2</li>
-            <li><span style="background: #00CC00;"></span>3</li>
-            <li><span style="background: #00CC00;"></span>4</li>
-            <li><span style="background: #009900;"></span>5</li>
-
-        </ul>
-      </div>
-
-      <div id="graph_trees">
-
-      </div>
-
-  </div>
-</div>
-</section>
-
-<!--public transport stations section-->
-<section>
-<div class="btn-group btn-group-sm" id="public_stations_group" role="group" aria-label="Small button group">
-<!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
-<!--form-check-input    dropdown-item-->
-
-    <button type="button" class="form-check btn btn-outline-dark">
-        <input class="form-check-input" type="checkbox" value="" id="aspern_publicstops" data-bs-toggle="collapse" data-bs-target="#collapsePublic_stations" aria-expanded="false" aria-controls="collapsePublic_stations">
-        <label class="form-check-label" for="aspern_publicstops">
-            Public stops
-        </label>
-    </button>
-
-    <button id="public_stations_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
-
-</div>
-
-<div class="collapse" id="collapsePublic_stations" style=" z-index: 1; position: absolute; top: 47%; right: 1%;">
-    <div class="card-body" style=" z-index: 1; position: fixed; top: 47%; right: 1%; max-width: 30%;">
-        <ul>
-        <li class="label"><span style="background: #CC0000;" data-bs-toggle="tooltip" data-bs-placement="left" title="13: astax"></span></li>
-        <li class="label"><span style="background: #FF8000;" data-bs-toggle="tooltip" data-bs-placement="left" title="3: regional bus"></span></li>
-        <li class="label"><span style="background: #FFFF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="2: bus"></span></li>
-        <li class="label"><span style="background: #00FF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="5: rapid transit and regional train"></span></li>
-        <li class="label"><span style="background: #00FFFF;" data-bs-toggle="tooltip" data-bs-placement="left" title="9: astax"></span></li>
-        <li class="label"><span style="background: #0000FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="10: night bus"></span></li>
-        <li class="label"><span style="background: #FF33FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="11: night bus"></span></li>
-        <li class="label"><span style="background: #FF3399;" data-bs-toggle="tooltip" data-bs-placement="left" title="4: subway"></span></li>
-       </ul>
-    </div>
-</div>
-
-<div class="card" style="width: 18rem; display:none; height: fit-content" id="public_stations_content">
-    <button id="btn-close-public_stations" type="button" class="btn-close" aria-label="Close"></button>
-    <h6 class="card-title" style="text-align: center;">Public transport stations</h6>
-
-  <div class="card-body" style="height: 90%; padding-top: 1px;">
-      <br>
-
-      <div id="legend_public_stations">
-        <ul>
-            <li><span style="background: #CC0000;"></span>13: <em>astax</em></li>
-            <li><span style="background: #FF8000;"></span>3: <em>regional bus</em></li>
-            <li><span style="background: #FFFF00;"></span>2: <em>bus</em></li>
-            <li><span style="background: #00FF00;"></span>5: <em>rapid transit and regional train</em></li>
-            <li><span style="background: #00FFFF;"></span>9: <em>astax</em></li>
-            <li><span style="background: #0000FF;"></span>10: <em>night bus</em></li>
-            <li><span style="background: #FF33FF;"></span>11: <em>night bus</em></li>
-            <li><span style="background: #FF3399;"></span>4: <em>subway</em></li>
-        </ul>
-      </div>
-
-      <div id="graph_public_stations">
-
-      </div>
-
-  </div>
-</div>
-</section>
-
-
-<!--.......Analysis........-->
-<!--shannon section-->
-<section>
-<div class="btn-group btn-group-sm" id="shannon_group" role="group" aria-label="Small button group">
-<!--    <button type="button" id="shannon" class="btn btn-outline-dark">Shannon Index</button>-->
-    <button type="button" id="shannon" class="form-check btn btn-outline-dark">
-        <input class="" type="checkbox" value="" id="index">
-        <label class="" for="index">
-            Shannon
-        </label>
-    </button>
-<!--    form-check-input form-check-label-->
-
-    <button id="shannon_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
-
-
-</div>
-
-<div class="card" style="width: 18rem; display:none; height: 20%" id="shannon_content">
-    <button id="btn-close-shannon" type="button" class="btn-close" aria-label="Close"></button>
-
-    <button type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="left" title="Recompute index" style="
-    position: absolute;height: 25px;width: 30px;" id="recalculate_index"><i style="font-size: 1.1rem" class="material-icons small">input</i></button>
-    <h6 class="card-title"style="text-align: center;">Shannon Index
-<!--        <div class="spinner-border spinner-border-sm" role="status" style="display: inline-block;">-->
-<!--          <span class="visually-hidden">Loading...</span>-->
-<!--        </div>-->
-    </h6>
-
-  <div class="card-body" style="height: 90%;  padding-top: 1px;">
-    <p class="card-text">A measure of the variety of land uses in an area, indicating the number of different classes</p>
-
-        <div>
-          <div>
-            <div class='row colors' style="background: linear-gradient(to right, #e1aeb4, #d3828f,#d55f5f, #b42f2f, #8c172c);">
             </div>
-            <div class='row labels'>
-              <div class='label'>0.8</div>
-              <div class='label'>1</div>
-              <div class='label'>1.4</div>
-              <div class='label'>1.8</div>
-              <div class='label'>2.21</div>
+
+            <div class="collapse" id="collapseGreen" style=" z-index: 1; top: 59%; right: 1%;">
+                <div class="card-body" style=" z-index: 1; top: 59%; right: 1%; max-width: 40%;">
+                    <ul>
+            <!--        <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>-->
+            <!--        <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>-->
+            <!--        <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>-->
+            <!--        <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>-->
+            <!--        <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>-->
+                   </ul>
+                </div>
             </div>
-          </div>
+
+            <div class="card " style="width: 18rem; display:none; height: 20%" id="green_content">
+                <button id="btn-close-green" type="button" class="btn-close" aria-label="Close"></button>
+                <h6 class="card-title" style="text-align: center;">Green Area</h6>
+
+              <div class="card-body" style="height: 90%; padding-top: 1px;">
+                <p class="card-text"> Share (percentage) of green area within block</p>
+                  <br>
+
+                  <div>
+                      <div>
+                        <div class='row colors' style="background: linear-gradient(to right, #72de62, #6cd15c,#66c758, #62bf54, #5eb851, #57a84a, #4f9943, #478a3d, #3e7835, #34662d);">
+                        </div>
+                        <div class='row labels'>
+                          <div class='label'>10</div>
+                          <div class='label'>30</div>
+                          <div class='label'>50</div>
+                          <div class='label'>70</div>
+                          <div class='label'>90</div>
+                          <div class='label'>110</div>
+                        </div>
+                      </div>
+                    </div>
+
+              </div>
+            </div>
+            </section>
+
+          <section>
+        <div class="btn-group btn-group-sm" id="osr_group" role="group" aria-label="Small button group">
+        <!--    <button type="button" id="osrbut" class="btn btn-outline-dark ">Open Space Ratio</button>-->
+
+            <button type="button" class="form-check btn btn-outline-dark">
+                <input class="form-check-input" type="checkbox" value="" id="osr" >
+                <label class="form-check-label" for="osr">
+                    OSR
+                </label>
+            </button>
+
+            <button id="osr_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+
+
         </div>
 
-      <div id="shannon_graph">
+        <div class="card" style="width: 18rem; display:none; height: 20%" id="osr_content">
+            <button id="btn-close-osr" type="button" class="btn-close" aria-label="Close"></button>
+            <h6 class="card-title" style="text-align: center;">OSR</h6>
+
+          <div class="card-body" style="height: 90%; padding-top: 1px;">
+            <p class="card-text"> Open space share relative to the building square footage</p>
+              <br>
+
+
+              <div>
+                  <div>
+                    <div class='row colors' style="background: linear-gradient(to right, #a9d6e5, #89c2d9,#61a5c2, #468faf, #2c7da0, #2a6f97, #014f86, #01497c, #013a63);">
+                    </div>
+                    <div class='row labels'>
+                      <div class='label'>5</div>
+                      <div class='label'>10</div>
+                      <div class='label'>30</div>
+                      <div class='label'>50</div>
+                      <div class='label'>80</div>
+                      <div class='label'>100</div>
+                    </div>
+                  </div>
+                </div>
+
+          </div>
+        </div>
+        </section>
+
+          <section>
+        <div class="btn-group btn-group-sm" id="max_height_group" role="group" aria-label="Small button group">
+        <!--    <button type="button" id="max_heightbut" class="btn btn-outline-dark ">Max Height</button>-->
+
+            <button type="button" class="form-check btn btn-outline-dark">
+                <input class="form-check-input" type="checkbox" value="" id="max_height" >
+                <label class="form-check-label" for="max_height">
+                    Max height
+                </label>
+            </button>
+
+            <button id="max_height_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+
+
+        </div>
+
+        <div class="card" style="width: 18rem; display:none; height: 20%" id="max_height_content">
+            <button id="btn-close-max_height" type="button" class="btn-close" aria-label="Close"></button>
+            <h6 class="card-title" style="text-align: center;">Max height</h6>
+
+          <div class="card-body" style="height: 90%; padding-top: 1px;">
+            <p class="card-text"> Maximum height of buildings within block</p>
+              <br>
+
+              <div>
+                  <div>
+                    <div class='row colors' style="background: linear-gradient(to right,  #edc4b3, #e6b8a2,#deab90, #cd9777, #c38e70, #b07d62, #9d6b53, #8a5a44);">
+                    </div>
+                    <div class='row labels'>
+                      <div class='label'>10</div>
+                      <div class='label'>30</div>
+                      <div class='label'>50</div>
+                      <div class='label'>70</div>
+                      <div class='label'>90</div>
+                      <div class='label'>100</div>
+                    </div>
+                  </div>
+                </div>
+
+          </div>
+        </div>
+        </section>
+
 
       </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">directions_subway</i>Road & public transport net</div>
+      <div class="collapsible-body">
+          <section>
+        <div class="btn-group btn-group-sm" id="streets_group" role="group" aria-label="Small button group">
+        <!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
+        <!--form-check-input    dropdown-item-->
 
-  </div>
+            <button type="button" class="form-check btn btn-outline-dark">
+                <input class="form-check-input" type="checkbox" value="" id="aspern_roads" data-bs-toggle="collapse" data-bs-target="#collapseStreets" aria-expanded="false" aria-controls="collapseStreets">
+                <label class="form-check-label" for="aspern_roads">
+                    Streets
+                </label>
+            </button>
+
+            <button id="streets_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+
+        </div>
+
+        <div class="collapse" id="collapseStreets" style=" z-index: 1; top: 23%; right: 1%;">
+            <div class="card-body" style=" z-index: 1; top: 23%; right: 1%; max-width: 30%;">
+                <ul>
+                <li class="label"><span style="background: #FFFF66;" data-bs-toggle="tooltip" data-bs-placement="left" title="G: municipal road"></span></li>
+                    <li class="label"><span style="background: #FF9933;" data-bs-toggle="tooltip" data-bs-placement="left" title="L: state main road"></span></li>
+                    <li class="label"><span style="background: #a117c7;" data-bs-toggle="tooltip" data-bs-placement="left" title="B: main road"></span></li>
+               </ul>
+            </div>
+        </div>
+
+        <div class="card" style="width: 18rem; display:none; height: fit-content" id="streets_content">
+            <button id="btn-close-streets" type="button" class="btn-close" aria-label="Close"></button>
+            <h6 class="card-title" style="text-align: center;">Street center-line</h6>
+
+          <div class="card-body" style="height: 90%; padding-top: 1px;">
+              <br>
+
+              <div id="legend_streets">
+                <ul>
+                    <li><span style="background: #FFFF66;"></span>G: <em>municipal road</em></li>
+                    <li><span style="background: #FF9933;"></span>L: <em>state main road</em></li>
+                    <li><span style="background: #a117c7;"></span>B: <em>main road</em></li>
+
+                </ul>
+              </div>
+
+              <div id="graph_streets">
+
+              </div>
+
+          </div>
+        </div>
+        </section>
+
+          <section>
+            <div class="btn-group btn-group-sm" id="public_lines_group" role="group" aria-label="Small button group">
+            <!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
+            <!--form-check-input    dropdown-item-->
+
+                <button type="button" class="form-check btn btn-outline-dark">
+                    <input class="form-check-input" type="checkbox" value="" id="aspern_publiclines" data-bs-toggle="collapse" data-bs-target="#collapsePublic_lines" aria-expanded="false" aria-controls="collapsePublic_lines">
+                    <label class="form-check-label" for="aspern_publiclines">
+                        Public Lines
+                    </label>
+                </button>
+
+                <button id="public_lines_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+
+            </div>
+
+            <div class="collapse" id="collapsePublic_lines" style=" z-index: 1; top: 29%; right: 1%;">
+                <div class="card-body" style=" z-index: 1; top: 29%; right: 1%; max-width: 30%;">
+                    <ul>
+                    <li class="label"><span style="background: #CC0000;" data-bs-toggle="tooltip" data-bs-placement="left" title="13: astax"></span></li>
+                    <li class="label"><span style="background: #FF8000;" data-bs-toggle="tooltip" data-bs-placement="left" title="3: regional bus"></span></li>
+                    <li class="label"><span style="background: #FFFF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="2: bus"></span></li>
+                    <li class="label"><span style="background: #00FF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="5: rapid transit and regional train"></span></li>
+                    <li class="label"><span style="background: #00FFFF;" data-bs-toggle="tooltip" data-bs-placement="left" title="9: astax"></span></li>
+                    <li class="label"><span style="background: #0000FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="10: night bus"></span></li>
+                    <li class="label"><span style="background: #FF33FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="11: night bus"></span></li>
+                    <li class="label"><span style="background: #FF3399;" data-bs-toggle="tooltip" data-bs-placement="left" title="4: subway"></span></li>
+                   </ul>
+                </div>
+            </div>
+
+            <div class="card" style="width: 18rem; display:none; height: fit-content" id="public_lines_content">
+                <button id="btn-close-public_lines" type="button" class="btn-close" aria-label="Close"></button>
+                <h6 class="card-title" style="text-align: center;">Public transport lines</h6>
+
+              <div class="card-body" style="height: 90%; padding-top: 1px;">
+                  <br>
+
+                  <div id="legend_public_lines">
+                    <ul>
+                        <li><span style="background: #CC0000;"></span>13: <em>astax</em></li>
+                        <li><span style="background: #FF8000;"></span>3: <em>regional bus</em></li>
+                        <li><span style="background: #FFFF00;"></span>2: <em>bus</em></li>
+                        <li><span style="background: #00FF00;"></span>5: <em>rapid transit and regional train</em></li>
+                        <li><span style="background: #00FFFF;"></span>9: <em>astax</em></li>
+                        <li><span style="background: #0000FF;"></span>10: <em>night bus</em></li>
+                        <li><span style="background: #FF33FF;"></span>11: <em>night bus</em></li>
+                        <li><span style="background: #FF3399;"></span>4: <em>subway</em></li>
+
+                    </ul>
+                  </div>
+
+                  <div id="graph_public_lines">
+
+                  </div>
+
+              </div>
+            </div>
+            </section>
+
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>PoIs</div>
+      <div class="collapsible-body">
+
+          <section>
+        <div class="btn-group btn-group-sm" id="shops_group" role="group" aria-label="Small button group">
+        <!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
+        <!--form-check-input    dropdown-item-->
+
+            <button type="button" class="form-check btn btn-outline-dark">
+                <input class="form-check-input" type="checkbox" value="" id="shops" data-bs-toggle="collapse" data-bs-target="#collapseShops" aria-expanded="false" aria-controls="collapseShops">
+                <label class="form-check-label" for="shops">
+                    Shops
+                </label>
+            </button>
+
+            <button id="shops_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+
+        </div>
+
+        <div class="collapse" id="collapseShops" style=" z-index: 1; top: 35%; right: 1%;">
+            <div class="card-body" style=" z-index: 1; top: 35%; right: 1%; max-width: 30%;">
+                <ul>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card" style="width: 18rem; display:none; height: fit-content" id="shops_content">
+            <button id="btn-close-shops" type="button" class="btn-close" aria-label="Close"></button>
+            <h6 class="card-title" style="text-align: center;">Shops</h6>
+
+          <div class="card-body" style="height: 90%; padding-top: 1px;">
+              <br>
+
+             <div id="legend_shops">
+                <ul>
+
+                </ul>
+              </div>
+
+              <div id="graph_shops">
+
+              </div>
+
+          </div>
+        </div>
+        </section>
+
+          <section>
+        <div class="btn-group btn-group-sm" id="trees_group" role="group" aria-label="Small button group">
+        <!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
+        <!--form-check-input    dropdown-item-->
+
+            <button type="button" class="form-check btn btn-outline-dark">
+                <input class="form-check-input" type="checkbox" value="" id="aspern_trees_blocks" data-bs-toggle="collapse" data-bs-target="#collapseTrees" aria-expanded="false" aria-controls="collapseTrees">
+                <label class="form-check-label" for="aspern_trees_blocks">
+                    Trees
+                </label>
+            </button>
+
+            <button id="trees_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+
+        </div>
+
+        <div class="collapse" id="collapseTrees" style=" z-index: 1; top: 41%; right: 1%;">
+            <div class="card-body" style=" z-index: 1; top: 41%; right: 1%; max-width: 30%;">
+                <ul>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card" style="width: 18rem; display:none; height: fit-content" id="trees_content">
+            <button id="btn-close-trees" type="button" class="btn-close" aria-label="Close"></button>
+            <h6 class="card-title" style="text-align: center;">Trees</h6>
+
+          <div class="card-body" style="height: 90%; padding-top: 1px;">
+              <br>
+
+             <div id="legend_trees">
+                <ul>
+                    <li><strong>Classification Categories of Tree height: </strong></li>
+                    <br>
+                    <li><span style="background: #99FF99;"></span>0</li>
+                    <li><span style="background: #66FF66;"></span>1</li>
+                    <li><span style="background: #33FF33;"></span>2</li>
+                    <li><span style="background: #00CC00;"></span>3</li>
+                    <li><span style="background: #00CC00;"></span>4</li>
+                    <li><span style="background: #009900;"></span>5</li>
+
+                </ul>
+              </div>
+
+              <div id="graph_trees">
+
+              </div>
+
+          </div>
+        </div>
+        </section>
+
+          <section>
+        <div class="btn-group btn-group-sm" id="public_stations_group" role="group" aria-label="Small button group">
+        <!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
+        <!--form-check-input    dropdown-item-->
+
+            <button type="button" class="form-check btn btn-outline-dark">
+                <input class="form-check-input" type="checkbox" value="" id="aspern_publicstops" data-bs-toggle="collapse" data-bs-target="#collapsePublic_stations" aria-expanded="false" aria-controls="collapsePublic_stations">
+                <label class="form-check-label" for="aspern_publicstops">
+                    Public stops
+                </label>
+            </button>
+
+            <button id="public_stations_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+
+        </div>
+
+        <div class="collapse" id="collapsePublic_stations" style=" z-index: 1; top: 47%; right: 1%;">
+            <div class="card-body" style=" z-index: 1; top: 47%; right: 1%; max-width: 30%;">
+                <ul>
+                <li class="label"><span style="background: #CC0000;" data-bs-toggle="tooltip" data-bs-placement="left" title="13: astax"></span></li>
+                <li class="label"><span style="background: #FF8000;" data-bs-toggle="tooltip" data-bs-placement="left" title="3: regional bus"></span></li>
+                <li class="label"><span style="background: #FFFF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="2: bus"></span></li>
+                <li class="label"><span style="background: #00FF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="5: rapid transit and regional train"></span></li>
+                <li class="label"><span style="background: #00FFFF;" data-bs-toggle="tooltip" data-bs-placement="left" title="9: astax"></span></li>
+                <li class="label"><span style="background: #0000FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="10: night bus"></span></li>
+                <li class="label"><span style="background: #FF33FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="11: night bus"></span></li>
+                <li class="label"><span style="background: #FF3399;" data-bs-toggle="tooltip" data-bs-placement="left" title="4: subway"></span></li>
+               </ul>
+            </div>
+        </div>
+
+        <div class="card" style="width: 18rem; display:none; height: fit-content" id="public_stations_content">
+            <button id="btn-close-public_stations" type="button" class="btn-close" aria-label="Close"></button>
+            <h6 class="card-title" style="text-align: center;">Public transport stations</h6>
+
+          <div class="card-body" style="height: 90%; padding-top: 1px;">
+              <br>
+
+              <div id="legend_public_stations">
+                <ul>
+                    <li><span style="background: #CC0000;"></span>13: <em>astax</em></li>
+                    <li><span style="background: #FF8000;"></span>3: <em>regional bus</em></li>
+                    <li><span style="background: #FFFF00;"></span>2: <em>bus</em></li>
+                    <li><span style="background: #00FF00;"></span>5: <em>rapid transit and regional train</em></li>
+                    <li><span style="background: #00FFFF;"></span>9: <em>astax</em></li>
+                    <li><span style="background: #0000FF;"></span>10: <em>night bus</em></li>
+                    <li><span style="background: #FF33FF;"></span>11: <em>night bus</em></li>
+                    <li><span style="background: #FF3399;"></span>4: <em>subway</em></li>
+                </ul>
+              </div>
+
+              <div id="graph_public_stations">
+
+              </div>
+
+          </div>
+        </div>
+        </section>
+
+
+      </div>
+    </li>
+</ul>
 </div>
-</section>
 
-<!--green section-->
-<section>
-<div class="btn-group btn-group-sm" id="green_group" role="group" aria-label="Small button group">
-<!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
-<!--form-check-input    dropdown-item-->
 
-    <button type="button" class="form-check btn btn-outline-dark"
-    data-bs-toggle="collapse" data-bs-target="#collapseGreen" aria-expanded="false" aria-controls="collapseGreen">
-        <input class="form-check-input" type="checkbox" value="" id="green_area" >
-        <label class="form-check-label" for="green_area">
-            Green Area
-        </label>
-    </button>
+<div id="analysis_layers">
+<ul class="collapsible">
+     <li>
+          <div class="collapsible-header"><i class="material-icons">filter_drama</i>Analysis</div>
+          <div class="collapsible-body">
 
-    <button id="green_arrow" type="button" class="btn btn-outline-dark"
-            style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+              <section>
+            <div class="btn-group btn-group-sm" id="shannon_group" role="group" aria-label="Small button group">
+            <!--    <button type="button" id="shannon" class="btn btn-outline-dark">Shannon Index</button>-->
+                <button type="button" id="shannon" class="form-check btn btn-outline-dark">
+                    <input class="" type="checkbox" value="" id="index">
+                    <label class="" for="index">
+                        Shannon
+                    </label>
+                </button>
+            <!--    form-check-input form-check-label-->
+
+                <button id="shannon_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+
+
+            </div>
+
+            <div class="card" style="width: 18rem; display:none; height: 20%" id="shannon_content">
+                <button id="btn-close-shannon" type="button" class="btn-close" aria-label="Close"></button>
+
+                <button type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="left" title="Recompute index" style="
+                position: absolute;height: 25px;width: 30px;" id="recalculate_index"><i style="font-size: 1.1rem" class="material-icons small">input</i></button>
+                <h6 class="card-title"style="text-align: center;">Shannon Index
+            <!--        <div class="spinner-border spinner-border-sm" role="status" style="display: inline-block;">-->
+            <!--          <span class="visually-hidden">Loading...</span>-->
+            <!--        </div>-->
+                </h6>
+
+              <div class="card-body" style="height: 90%;  padding-top: 1px;">
+                <p class="card-text">A measure of the variety of land uses in an area, indicating the number of different classes</p>
+
+                    <div>
+                      <div>
+                        <div class='row colors' style="background: linear-gradient(to right, #e1aeb4, #d3828f,#d55f5f, #b42f2f, #8c172c);">
+                        </div>
+                        <div class='row labels'>
+                          <div class='label'>0.8</div>
+                          <div class='label'>1</div>
+                          <div class='label'>1.4</div>
+                          <div class='label'>1.8</div>
+                          <div class='label'>2.21</div>
+                        </div>
+                      </div>
+                    </div>
+
+                  <div id="shannon_graph">
+
+                  </div>
+
+              </div>
+            </div>
+            </section>
+
+              <section>
+            <div class="btn-group btn-group-sm" id="accessibility_group" role="group" aria-label="Small button group">
+            <!--    <button type="button" id="accessibilitybut" class="btn btn-outline-dark ">Accessibility</button>-->
+
+                    <button type="button" id="accessibilitybut" class="form-check btn btn-outline-dark">
+                    <input class="" type="checkbox" value="" id="accessibility" >
+                    <label class="" for="accessibility">
+                        Accessibility
+                    </label>
+                </button>
+
+                <button id="accessibility_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+
+
+            </div>
+
+            <div class="card" style="width: 18rem; display:none; height: 40%" id="accessibility_content">
+                <button id="btn-close-accessibility" type="button" class="btn-close" aria-label="Close"></button>
+                 <button type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="left" title="Compute accessibility" style="
+                position: absolute;height: 25px;width: 30px;" id="calc_accessibility"><i style="font-size: 1.1rem" class="material-icons small">input</i></button>
+                <h6 class="card-title" style="text-align: center;">Accessibility</h6>
+
+              <div class="card-body" style="height: 90%; padding-top: 1px; padding-left: 5%;">
+            <!--    <p class="card-text">text...</p>-->
+                  <br>
+
+                  <div>
+                      <h6 class="txt-m txt-bold mb6">Distance:</h6>
+                      <form action="#" style="width:80%; font-size: 14px">
+                          <p class="range-field">
+                              <input type="range" id="test" min="50" max="500" step="50"  value="'+span_text+'">
+                              <span class="thumb">
+            <!--                      <span class="value"></span>-->
+                              </span>
+                          </p>
+                      </form>
+                  </div>
+
+
+                  <div class="row align-items-end absolute round">
+                      <form id="params">
+                          <h6 class="txt-m txt-bold mb6">Point of Interest:</h6>
+                          <div class="mb12 mr12 toggle-group align-center">
+                              <label class="toggle-container">
+                                  <input name="poi" type="radio" value="transport_stations" id="9gf01vwa" />
+                                  <div class="toggle toggle--active-null toggle--null">Transport stations</div>
+                              </label>
+                              <label class="toggle-container">
+                                  <input name="poi" type="radio" value="shops" id="3hilt6p4"/>
+                                  <div class="toggle toggle--active-null toggle--null">Shops</div>
+                              </label>
+                          </div>
+                      </form>
+                  </div>
+
+                   <div class="row align-items-end absolute round" style="bottom: 20%;">
+                      <form id="accessibility_layers" style="">
+                          <h6 class="txt-m txt-bold mb6">Show within distance:</h6>
+                          <div class="mb12 mr12 toggle-group align-center">
+                              <label class="toggle-container">
+                                  <input name="layer" type="radio" value="polygons" id="pol" />
+                                  <div class="toggle toggle--active-null toggle--null">Blocks</div>
+                              </label>
+                              <label class="toggle-container">
+                                  <input name="layer" type="radio" value="buffer" id="buf"/>
+                                  <div class="toggle toggle--active-null toggle--null">Buffer</div>
+                              </label>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+            </div>
+            </section>
+
+
+
+
+          </div>
+     </li>
+</ul>
 
 </div>
 
-<div class="collapse" id="collapseGreen" style=" z-index: 1; position: absolute; top: 59%; right: 1%;">
-    <div class="card-body" style=" z-index: 1; position: fixed; top: 59%; right: 1%; max-width: 40%;">
-        <ul>
+
+
+
+
+
+<!--................Layers..................-->
+<!--.......Land Use........-->
+<!--blocks section-->
+<!--<section>-->
+<!--<div class="btn-group btn-group-sm" id="blocks_group" role="group" aria-label="Small button group">-->
+<!--&lt;!&ndash;    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>&ndash;&gt;-->
+<!--&lt;!&ndash;form-check-input    dropdown-item&ndash;&gt;-->
+
+<!--    <button type="button" class="form-check btn btn-outline-dark">-->
+<!--        <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr" data-bs-toggle="collapse" data-bs-target="#collapseBlocks" aria-expanded="false" aria-controls="collapseBlocks">-->
+<!--        <label class="form-check-label" for="aspern_blocks_attr">-->
+<!--            Blocks-->
+<!--        </label>-->
+<!--    </button>-->
+
+<!--    <button id="blocks_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>-->
+
+<!--</div>-->
+
+<!--<div class="collapse" id="collapseBlocks" style=" z-index: 1; position: absolute; top: 5%; right: 1%;">-->
+<!--    <div class="card-body" style=" z-index: 1; position: fixed; top: 5%; right: 1%; max-width: 30%;">-->
+<!--        <ul>-->
 <!--        <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>-->
 <!--        <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>-->
 <!--        <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>-->
 <!--        <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>-->
 <!--        <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>-->
-       </ul>
-    </div>
-</div>
+<!--       </ul>-->
+<!--    </div>-->
+<!--</div>-->
 
-<div class="card " style="width: 18rem; display:none; height: 20%" id="green_content">
-    <button id="btn-close-green" type="button" class="btn-close" aria-label="Close"></button>
-    <h6 class="card-title" style="text-align: center;">Green Area</h6>
+<!--<div class="card" style="width: 18rem; display:none; height: fit-content" id="blocks_content">-->
+<!--    <button id="btn-close-blocks" type="button" class="btn-close" aria-label="Close"></button>-->
+<!--    <h6 class="card-title" style="text-align: center;">Generalised blocks</h6>-->
 
-  <div class="card-body" style="height: 90%; padding-top: 1px;">
-    <p class="card-text"> Share (percentage) of green area within block</p>
-      <br>
+<!--  <div class="card-body" style="height: 90%; padding-top: 1px;">-->
+<!--      <br>-->
 
-      <div>
-          <div>
-            <div class='row colors' style="background: linear-gradient(to right, #72de62, #6cd15c,#66c758, #62bf54, #5eb851, #57a84a, #4f9943, #478a3d, #3e7835, #34662d);">
-            </div>
-            <div class='row labels'>
-              <div class='label'>10</div>
-              <div class='label'>30</div>
-              <div class='label'>50</div>
-              <div class='label'>70</div>
-              <div class='label'>90</div>
-              <div class='label'>110</div>
-            </div>
-          </div>
-        </div>
+<!--      <div id="legend_blocks" >-->
+<!--        <ul>-->
+<!--            <li><span style="background: #60c36c;"></span>greenSpace: <em>green open spaces, gardens, agricultural land</em></li>-->
+<!--            <li><span style="background: #856666;"></span>sealedSpace: <em>public and private sealed area, including roads, bike paths etc.</em></li>-->
+<!--            <li><span style="background: #ad949e;"></span>buildings</li>-->
+<!--            <li><span style="background: #808080;"></span>construction: <em>construction sites, gravel pit</em></li>-->
+<!--            <li><span style="background: #0080FF;"></span>water</li>-->
+<!--        </ul>-->
+<!--      </div>-->
 
-  </div>
-</div>
-</section>
+<!--      <div id="graph_blocks">-->
 
-<!--osr section-->
-<section>
-<div class="btn-group btn-group-sm" id="osr_group" role="group" aria-label="Small button group">
-<!--    <button type="button" id="osrbut" class="btn btn-outline-dark ">Open Space Ratio</button>-->
+<!--      </div>-->
 
-    <button type="button" class="form-check btn btn-outline-dark">
-        <input class="form-check-input" type="checkbox" value="" id="osr" >
-        <label class="form-check-label" for="osr">
-            OSR
-        </label>
-    </button>
+<!--  </div>-->
 
-    <button id="osr_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+<!--</div>-->
+<!--</section>-->
+<!--land-use section-->
+<!--<section>-->
+<!--<div class="btn-group btn-group-sm" id="landuse_group" role="group" aria-label="Small button group">-->
+<!--&lt;!&ndash;    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>&ndash;&gt;-->
+<!--&lt;!&ndash;form-check-input    dropdown-item&ndash;&gt;-->
+
+<!--    <button type="button" class="form-check btn btn-outline-dark">-->
+<!--        <input class="form-check-input" type="checkbox" value="" id="aspern_landuse" data-bs-toggle="collapse" data-bs-target="#collapseLanduse" aria-expanded="false" aria-controls="collapseLanduse">-->
+<!--        <label class="form-check-label" for="aspern_landuse">-->
+<!--            Land Use-->
+<!--        </label>-->
+<!--    </button>-->
+
+<!--    <button id="landuse_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>-->
+
+<!--</div>-->
+
+<!--<div class="collapse" id="collapseLanduse" style=" z-index: 1; position: absolute; top: 11%; right: 1%;">-->
+<!--    <div class="card-body" style=" z-index: 1; position: fixed; top: 11%; right: 1%; max-width: 30%;">-->
+<!--        <ul>-->
+<!--        <li class="label"><span style="background: #88db35;" data-bs-toggle="tooltip" data-bs-placement="left" title="recreation & leisure facilities"></span></li>-->
+<!--        <li class="label"><span style="background: #e2d4c0;" data-bs-toggle="tooltip" data-bs-placement="left" title="business uses"></span></li>-->
+<!--        <li class="label"><span style="background: #60c8c5;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>-->
+<!--        <li class="label"><span style="background: #de8d24;" data-bs-toggle="tooltip" data-bs-placement="left" title="industrial & commercial uses"></span></li>-->
+<!--        <li class="label"><span style="background: #8baf76;" data-bs-toggle="tooltip" data-bs-placement="left" title="agriculture"></span></li>-->
+<!--        <li class="label"><span style="background: #bce48b;" data-bs-toggle="tooltip" data-bs-placement="left" title="natural area"></span></li>-->
+<!--        <li class="label"><span style="background: #c4bcef;" data-bs-toggle="tooltip" data-bs-placement="left" title="social infrastructure"></span></li>-->
+<!--        <li class="label"><span style="background: #c2d0a1;" data-bs-toggle="tooltip" data-bs-placement="left" title="technical infrastructure"></span></li>-->
+<!--        <li class="label"><span style="background: #a8cfc6;" data-bs-toggle="tooltip" data-bs-placement="left" title="other transportation uses"></span></li>-->
+<!--        <li class="label"><span style="background: #d9bdc6;" data-bs-toggle="tooltip" data-bs-placement="left" title="residential use"></span></li>-->
+<!--        <li class="label"><span style="background: #d2e0c5;" data-bs-toggle="tooltip" data-bs-placement="left" title="road space"></span></li>-->
+<!--       </ul>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div class="card" style="width: 18rem; display:none; height: fit-content" id="landuse_content">-->
+<!--    <button id="btn-close-landuse" type="button" class="btn-close" aria-label="Close"></button>-->
+<!--    <h6 class="card-title" style="text-align: center;">Land Use - block level</h6>-->
+
+<!--  <div class="card-body" style="height: 90%; padding-top: 1px;">-->
+<!--      <br>-->
+
+<!--      <div id="legend_landuse">-->
+<!--        <ul>-->
+<!--            <li><span style="background: #88db35;"></span>recreation and leisure facilities</li>-->
+<!--            <li><span style="background: #e2d4c0;"></span>business and mixed use with emphasis on business activity</li>-->
+<!--            <li><span style="background: #60c8c5;"></span>water</li>-->
+<!--            <li><span style="background: #de8d24;"></span>industrial and commercial uses</li>-->
+<!--            <li><span style="background: #8baf76;"></span>agriculture</li>-->
+<!--            <li><span style="background: #bce48b;"></span>natural area</li>-->
+<!--            <li><span style="background: #c4bcef;"></span>social infrastructure</li>-->
+<!--            <li><span style="background: #c2d0a1;"></span>technical infrastructure/art buildings/special uses</li>-->
+<!--            <li><span style="background: #a8cfc6;"></span>other transportation uses</li>-->
+<!--            <li><span style="background: #d9bdc6;"></span>residential and mixed use with emphasis on residential</li>-->
+<!--            <li><span style="background: #d2e0c5;"></span>road space</li>-->
+
+<!--        </ul>-->
+<!--      </div>-->
+
+<!--      <div id="graph_landuse">-->
+
+<!--      </div>-->
+
+<!--  </div>-->
+<!--</div>-->
+<!--</section>-->
+<!--zoning section-->
+<!--<section>-->
+<!--<div class="btn-group btn-group-sm" id="zoning_group" role="group" aria-label="Small button group">-->
+<!--&lt;!&ndash;    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>&ndash;&gt;-->
+<!--&lt;!&ndash;form-check-input    dropdown-item&ndash;&gt;-->
+
+<!--    <button type="button" class="form-check btn btn-outline-dark">-->
+<!--        <input class="form-check-input" type="checkbox" value="" id="zoning" data-bs-toggle="collapse" data-bs-target="#collapseZoning" aria-expanded="false" aria-controls="collapseZoning">-->
+<!--        <label class="form-check-label" for="zoning">-->
+<!--            Zoning-->
+<!--        </label>-->
+<!--    </button>-->
+
+<!--    <button id="zoning_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>-->
+
+<!--</div>-->
+
+<!--<div class="collapse" id="collapseZoning" style=" z-index: 1; position: absolute; top: 17%; right: 1%;">-->
+<!--    <div class="card-body" style=" z-index: 1; position: fixed; top: 17%; right: 1%; max-width: 30%;">-->
+<!--        <ul>-->
+<!--            <li class="label"><span style="background: #774c43;" data-bs-toggle="tooltip" data-bs-placement="left" title="E: recreation area"></span></li>-->
+<!--            <li class="label"><span style="background: #8B4513;" data-bs-toggle="tooltip" data-bs-placement="left" title="GB: mixed developement"></span></li>-->
+<!--            <li class="label"><span style="background: #D2691E;" data-bs-toggle="tooltip" data-bs-placement="left" title="GBBG: mixed developement - business developement area"></span></li>-->
+<!--            <li class="label"><span style="background: #CD853F;" data-bs-toggle="tooltip" data-bs-placement="left" title="GBGV: mixed developement - business district"></span></li>-->
+<!--            <li class="label"><span style="background: #F4A460;" data-bs-toggle="tooltip" data-bs-placement="left" title="IG: industrial area"></span></li>-->
+<!--            <li class="label"><span style="background: #DEB887;" data-bs-toggle="tooltip" data-bs-placement="left" title="S: protected area"></span></li>-->
+<!--            <li class="label"><span style="background: #FFE4B5;" data-bs-toggle="tooltip" data-bs-placement="left" title="WO: residential area"></span></li>-->
+<!--            <li class="label"><span style="background: #000000;" data-bs-toggle="tooltip" data-bs-placement="left" title="Other"></span></li>-->
+<!--       </ul>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div class="card" style="width: 18rem; display:none; height: fit-content" id="zoning_content">-->
+<!--    <button id="btn-close-zoning" type="button" class="btn-close" aria-label="Close"></button>-->
+<!--    <h6 class="card-title" style="text-align: center;">Zoning</h6>-->
+
+<!--  <div class="card-body" style="height: 90%; padding-top: 1px;">-->
+<!--      <br>-->
+
+<!--      <div id="legend_zoning">-->
+<!--        <ul>-->
+<!--            <li><span style="background: #774c43;"></span>E: <em>recreation area</em></li>-->
+<!--            <li><span style="background: #8B4513;"></span>GB: <em>mixed developement</em></li>-->
+<!--            <li><span style="background: #D2691E;"></span>GBBG: <em>mixed developement - business developement area</em></li>-->
+<!--            <li><span style="background: #CD853F;"></span>GBGV: <em>mixed developement - business district</em></li>-->
+<!--            <li><span style="background: #F4A460;"></span>IG: <em>industrial area</em></li>-->
+<!--            <li><span style="background: #DEB887;"></span>S: <em>protected area</em></li>-->
+<!--            <li><span style="background: #FFE4B5;"></span>WO: <em>residential area</em></li>-->
+<!--            <li><span style="background: #000000;"></span>Other</li>-->
+
+<!--        </ul>-->
+<!--      </div>-->
+
+<!--      <div id="graph_zoning">-->
+
+<!--      </div>-->
+
+<!--  </div>-->
+<!--</div>-->
+<!--</section>-->
+
+<!--.......Road & Transport........-->
+<!--street section-->
+<!--<section>-->
+<!--<div class="btn-group btn-group-sm" id="streets_group" role="group" aria-label="Small button group">-->
+<!--&lt;!&ndash;    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>&ndash;&gt;-->
+<!--&lt;!&ndash;form-check-input    dropdown-item&ndash;&gt;-->
+
+<!--    <button type="button" class="form-check btn btn-outline-dark">-->
+<!--        <input class="form-check-input" type="checkbox" value="" id="aspern_roads" data-bs-toggle="collapse" data-bs-target="#collapseStreets" aria-expanded="false" aria-controls="collapseStreets">-->
+<!--        <label class="form-check-label" for="aspern_roads">-->
+<!--            Streets-->
+<!--        </label>-->
+<!--    </button>-->
+
+<!--    <button id="streets_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>-->
+
+<!--</div>-->
+
+<!--<div class="collapse" id="collapseStreets" style=" z-index: 1; position: absolute; top: 23%; right: 1%;">-->
+<!--    <div class="card-body" style=" z-index: 1; position: fixed; top: 23%; right: 1%; max-width: 30%;">-->
+<!--        <ul>-->
+<!--        <li class="label"><span style="background: #FFFF66;" data-bs-toggle="tooltip" data-bs-placement="left" title="G: municipal road"></span></li>-->
+<!--            <li class="label"><span style="background: #FF9933;" data-bs-toggle="tooltip" data-bs-placement="left" title="L: state main road"></span></li>-->
+<!--            <li class="label"><span style="background: #a117c7;" data-bs-toggle="tooltip" data-bs-placement="left" title="B: main road"></span></li>-->
+<!--       </ul>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div class="card" style="width: 18rem; display:none; height: fit-content" id="streets_content">-->
+<!--    <button id="btn-close-streets" type="button" class="btn-close" aria-label="Close"></button>-->
+<!--    <h6 class="card-title" style="text-align: center;">Street center-line</h6>-->
+
+<!--  <div class="card-body" style="height: 90%; padding-top: 1px;">-->
+<!--      <br>-->
+
+<!--      <div id="legend_streets">-->
+<!--        <ul>-->
+<!--            <li><span style="background: #FFFF66;"></span>G: <em>municipal road</em></li>-->
+<!--            <li><span style="background: #FF9933;"></span>L: <em>state main road</em></li>-->
+<!--            <li><span style="background: #a117c7;"></span>B: <em>main road</em></li>-->
+
+<!--        </ul>-->
+<!--      </div>-->
+
+<!--      <div id="graph_streets">-->
+
+<!--      </div>-->
+
+<!--  </div>-->
+<!--</div>-->
+<!--</section>-->
+
+<!--public transport lines section-->
+<!--<section>-->
+<!--<div class="btn-group btn-group-sm" id="public_lines_group" role="group" aria-label="Small button group">-->
+<!--&lt;!&ndash;    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>&ndash;&gt;-->
+<!--&lt;!&ndash;form-check-input    dropdown-item&ndash;&gt;-->
+
+<!--    <button type="button" class="form-check btn btn-outline-dark">-->
+<!--        <input class="form-check-input" type="checkbox" value="" id="aspern_publiclines" data-bs-toggle="collapse" data-bs-target="#collapsePublic_lines" aria-expanded="false" aria-controls="collapsePublic_lines">-->
+<!--        <label class="form-check-label" for="aspern_publiclines">-->
+<!--            Public Lines-->
+<!--        </label>-->
+<!--    </button>-->
+
+<!--    <button id="public_lines_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>-->
+
+<!--</div>-->
+
+<!--<div class="collapse" id="collapsePublic_lines" style=" z-index: 1; position: absolute; top: 29%; right: 1%;">-->
+<!--    <div class="card-body" style=" z-index: 1; position: fixed; top: 29%; right: 1%; max-width: 30%;">-->
+<!--        <ul>-->
+<!--        <li class="label"><span style="background: #CC0000;" data-bs-toggle="tooltip" data-bs-placement="left" title="13: astax"></span></li>-->
+<!--        <li class="label"><span style="background: #FF8000;" data-bs-toggle="tooltip" data-bs-placement="left" title="3: regional bus"></span></li>-->
+<!--        <li class="label"><span style="background: #FFFF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="2: bus"></span></li>-->
+<!--        <li class="label"><span style="background: #00FF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="5: rapid transit and regional train"></span></li>-->
+<!--        <li class="label"><span style="background: #00FFFF;" data-bs-toggle="tooltip" data-bs-placement="left" title="9: astax"></span></li>-->
+<!--        <li class="label"><span style="background: #0000FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="10: night bus"></span></li>-->
+<!--        <li class="label"><span style="background: #FF33FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="11: night bus"></span></li>-->
+<!--        <li class="label"><span style="background: #FF3399;" data-bs-toggle="tooltip" data-bs-placement="left" title="4: subway"></span></li>-->
+<!--       </ul>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div class="card" style="width: 18rem; display:none; height: fit-content" id="public_lines_content">-->
+<!--    <button id="btn-close-public_lines" type="button" class="btn-close" aria-label="Close"></button>-->
+<!--    <h6 class="card-title" style="text-align: center;">Public transport lines</h6>-->
+
+<!--  <div class="card-body" style="height: 90%; padding-top: 1px;">-->
+<!--      <br>-->
+
+<!--      <div id="legend_public_lines">-->
+<!--        <ul>-->
+<!--            <li><span style="background: #CC0000;"></span>13: <em>astax</em></li>-->
+<!--            <li><span style="background: #FF8000;"></span>3: <em>regional bus</em></li>-->
+<!--            <li><span style="background: #FFFF00;"></span>2: <em>bus</em></li>-->
+<!--            <li><span style="background: #00FF00;"></span>5: <em>rapid transit and regional train</em></li>-->
+<!--            <li><span style="background: #00FFFF;"></span>9: <em>astax</em></li>-->
+<!--            <li><span style="background: #0000FF;"></span>10: <em>night bus</em></li>-->
+<!--            <li><span style="background: #FF33FF;"></span>11: <em>night bus</em></li>-->
+<!--            <li><span style="background: #FF3399;"></span>4: <em>subway</em></li>-->
+
+<!--        </ul>-->
+<!--      </div>-->
+
+<!--      <div id="graph_public_lines">-->
+
+<!--      </div>-->
+
+<!--  </div>-->
+<!--</div>-->
+<!--</section>-->
+
+<!--.......PoI........-->
+<!--shops section-->
+<!--<section>-->
+<!--<div class="btn-group btn-group-sm" id="shops_group" role="group" aria-label="Small button group">-->
+<!--&lt;!&ndash;    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>&ndash;&gt;-->
+<!--&lt;!&ndash;form-check-input    dropdown-item&ndash;&gt;-->
+
+<!--    <button type="button" class="form-check btn btn-outline-dark">-->
+<!--        <input class="form-check-input" type="checkbox" value="" id="shops" data-bs-toggle="collapse" data-bs-target="#collapseShops" aria-expanded="false" aria-controls="collapseShops">-->
+<!--        <label class="form-check-label" for="shops">-->
+<!--            Shops-->
+<!--        </label>-->
+<!--    </button>-->
+
+<!--    <button id="shops_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>-->
+
+<!--</div>-->
+
+<!--<div class="collapse" id="collapseShops" style=" z-index: 1; position: absolute; top: 35%; right: 1%;">-->
+<!--    <div class="card-body" style=" z-index: 1; position: fixed; top: 35%; right: 1%; max-width: 30%;">-->
+<!--        <ul>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div class="card" style="width: 18rem; display:none; height: fit-content" id="shops_content">-->
+<!--    <button id="btn-close-shops" type="button" class="btn-close" aria-label="Close"></button>-->
+<!--    <h6 class="card-title" style="text-align: center;">Shops</h6>-->
+
+<!--  <div class="card-body" style="height: 90%; padding-top: 1px;">-->
+<!--      <br>-->
+
+<!--     <div id="legend_shops">-->
+<!--        <ul>-->
+
+<!--        </ul>-->
+<!--      </div>-->
+
+<!--      <div id="graph_shops">-->
+
+<!--      </div>-->
+
+<!--  </div>-->
+<!--</div>-->
+<!--</section>-->
+
+<!--trees section-->
+<!--<section>-->
+<!--<div class="btn-group btn-group-sm" id="trees_group" role="group" aria-label="Small button group">-->
+<!--&lt;!&ndash;    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>&ndash;&gt;-->
+<!--&lt;!&ndash;form-check-input    dropdown-item&ndash;&gt;-->
+
+<!--    <button type="button" class="form-check btn btn-outline-dark">-->
+<!--        <input class="form-check-input" type="checkbox" value="" id="aspern_trees_blocks" data-bs-toggle="collapse" data-bs-target="#collapseTrees" aria-expanded="false" aria-controls="collapseTrees">-->
+<!--        <label class="form-check-label" for="aspern_trees_blocks">-->
+<!--            Trees-->
+<!--        </label>-->
+<!--    </button>-->
+
+<!--    <button id="trees_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>-->
+
+<!--</div>-->
+
+<!--<div class="collapse" id="collapseTrees" style=" z-index: 1; position: absolute; top: 41%; right: 1%;">-->
+<!--    <div class="card-body" style=" z-index: 1; position: fixed; top: 41%; right: 1%; max-width: 30%;">-->
+<!--        <ul>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div class="card" style="width: 18rem; display:none; height: fit-content" id="trees_content">-->
+<!--    <button id="btn-close-trees" type="button" class="btn-close" aria-label="Close"></button>-->
+<!--    <h6 class="card-title" style="text-align: center;">Trees</h6>-->
+
+<!--  <div class="card-body" style="height: 90%; padding-top: 1px;">-->
+<!--      <br>-->
+
+<!--     <div id="legend_trees">-->
+<!--        <ul>-->
+<!--            <li><strong>Classification Categories of Tree height: </strong></li>-->
+<!--            <br>-->
+<!--            <li><span style="background: #99FF99;"></span>0</li>-->
+<!--            <li><span style="background: #66FF66;"></span>1</li>-->
+<!--            <li><span style="background: #33FF33;"></span>2</li>-->
+<!--            <li><span style="background: #00CC00;"></span>3</li>-->
+<!--            <li><span style="background: #00CC00;"></span>4</li>-->
+<!--            <li><span style="background: #009900;"></span>5</li>-->
+
+<!--        </ul>-->
+<!--      </div>-->
+
+<!--      <div id="graph_trees">-->
+
+<!--      </div>-->
+
+<!--  </div>-->
+<!--</div>-->
+<!--</section>-->
+
+<!--public transport stations section-->
+<!--<section>-->
+<!--<div class="btn-group btn-group-sm" id="public_stations_group" role="group" aria-label="Small button group">-->
+<!--&lt;!&ndash;    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>&ndash;&gt;-->
+<!--&lt;!&ndash;form-check-input    dropdown-item&ndash;&gt;-->
+
+<!--    <button type="button" class="form-check btn btn-outline-dark">-->
+<!--        <input class="form-check-input" type="checkbox" value="" id="aspern_publicstops" data-bs-toggle="collapse" data-bs-target="#collapsePublic_stations" aria-expanded="false" aria-controls="collapsePublic_stations">-->
+<!--        <label class="form-check-label" for="aspern_publicstops">-->
+<!--            Public stops-->
+<!--        </label>-->
+<!--    </button>-->
+
+<!--    <button id="public_stations_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>-->
+
+<!--</div>-->
+
+<!--<div class="collapse" id="collapsePublic_stations" style=" z-index: 1; position: absolute; top: 47%; right: 1%;">-->
+<!--    <div class="card-body" style=" z-index: 1; position: fixed; top: 47%; right: 1%; max-width: 30%;">-->
+<!--        <ul>-->
+<!--        <li class="label"><span style="background: #CC0000;" data-bs-toggle="tooltip" data-bs-placement="left" title="13: astax"></span></li>-->
+<!--        <li class="label"><span style="background: #FF8000;" data-bs-toggle="tooltip" data-bs-placement="left" title="3: regional bus"></span></li>-->
+<!--        <li class="label"><span style="background: #FFFF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="2: bus"></span></li>-->
+<!--        <li class="label"><span style="background: #00FF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="5: rapid transit and regional train"></span></li>-->
+<!--        <li class="label"><span style="background: #00FFFF;" data-bs-toggle="tooltip" data-bs-placement="left" title="9: astax"></span></li>-->
+<!--        <li class="label"><span style="background: #0000FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="10: night bus"></span></li>-->
+<!--        <li class="label"><span style="background: #FF33FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="11: night bus"></span></li>-->
+<!--        <li class="label"><span style="background: #FF3399;" data-bs-toggle="tooltip" data-bs-placement="left" title="4: subway"></span></li>-->
+<!--       </ul>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div class="card" style="width: 18rem; display:none; height: fit-content" id="public_stations_content">-->
+<!--    <button id="btn-close-public_stations" type="button" class="btn-close" aria-label="Close"></button>-->
+<!--    <h6 class="card-title" style="text-align: center;">Public transport stations</h6>-->
+
+<!--  <div class="card-body" style="height: 90%; padding-top: 1px;">-->
+<!--      <br>-->
+
+<!--      <div id="legend_public_stations">-->
+<!--        <ul>-->
+<!--            <li><span style="background: #CC0000;"></span>13: <em>astax</em></li>-->
+<!--            <li><span style="background: #FF8000;"></span>3: <em>regional bus</em></li>-->
+<!--            <li><span style="background: #FFFF00;"></span>2: <em>bus</em></li>-->
+<!--            <li><span style="background: #00FF00;"></span>5: <em>rapid transit and regional train</em></li>-->
+<!--            <li><span style="background: #00FFFF;"></span>9: <em>astax</em></li>-->
+<!--            <li><span style="background: #0000FF;"></span>10: <em>night bus</em></li>-->
+<!--            <li><span style="background: #FF33FF;"></span>11: <em>night bus</em></li>-->
+<!--            <li><span style="background: #FF3399;"></span>4: <em>subway</em></li>-->
+<!--        </ul>-->
+<!--      </div>-->
+
+<!--      <div id="graph_public_stations">-->
+
+<!--      </div>-->
+
+<!--  </div>-->
+<!--</div>-->
+<!--</section>-->
 
 
-</div>
+<!--.......Analysis........-->
+<!--shannon section-->
+<!--<section>-->
+<!--<div class="btn-group btn-group-sm" id="shannon_group" role="group" aria-label="Small button group">-->
+<!--&lt;!&ndash;    <button type="button" id="shannon" class="btn btn-outline-dark">Shannon Index</button>&ndash;&gt;-->
+<!--    <button type="button" id="shannon" class="form-check btn btn-outline-dark">-->
+<!--        <input class="" type="checkbox" value="" id="index">-->
+<!--        <label class="" for="index">-->
+<!--            Shannon-->
+<!--        </label>-->
+<!--    </button>-->
+<!--&lt;!&ndash;    form-check-input form-check-label&ndash;&gt;-->
 
-<div class="card" style="width: 18rem; display:none; height: 20%" id="osr_content">
-    <button id="btn-close-osr" type="button" class="btn-close" aria-label="Close"></button>
-    <h6 class="card-title" style="text-align: center;">OSR</h6>
-
-  <div class="card-body" style="height: 90%; padding-top: 1px;">
-    <p class="card-text"> Open space share relative to the building square footage</p>
-      <br>
-
-
-      <div>
-          <div>
-            <div class='row colors' style="background: linear-gradient(to right, #a9d6e5, #89c2d9,#61a5c2, #468faf, #2c7da0, #2a6f97, #014f86, #01497c, #013a63);">
-            </div>
-            <div class='row labels'>
-              <div class='label'>5</div>
-              <div class='label'>10</div>
-              <div class='label'>30</div>
-              <div class='label'>50</div>
-              <div class='label'>80</div>
-              <div class='label'>100</div>
-            </div>
-          </div>
-        </div>
-
-  </div>
-</div>
-</section>
-
-<!--max height section-->
-<section>
-<div class="btn-group btn-group-sm" id="max_height_group" role="group" aria-label="Small button group">
-<!--    <button type="button" id="max_heightbut" class="btn btn-outline-dark ">Max Height</button>-->
-
-    <button type="button" class="form-check btn btn-outline-dark">
-        <input class="form-check-input" type="checkbox" value="" id="max_height" >
-        <label class="form-check-label" for="max_height">
-            Max height
-        </label>
-    </button>
-
-    <button id="max_height_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+<!--    <button id="shannon_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>-->
 
 
-</div>
+<!--</div>-->
 
-<div class="card" style="width: 18rem; display:none; height: 20%" id="max_height_content">
-    <button id="btn-close-max_height" type="button" class="btn-close" aria-label="Close"></button>
-    <h6 class="card-title" style="text-align: center;">Max height</h6>
+<!--<div class="card" style="width: 18rem; display:none; height: 20%" id="shannon_content">-->
+<!--    <button id="btn-close-shannon" type="button" class="btn-close" aria-label="Close"></button>-->
 
-  <div class="card-body" style="height: 90%; padding-top: 1px;">
-    <p class="card-text"> Maximum height of buildings within block</p>
-      <br>
+<!--    <button type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="left" title="Recompute index" style="-->
+<!--    position: absolute;height: 25px;width: 30px;" id="recalculate_index"><i style="font-size: 1.1rem" class="material-icons small">input</i></button>-->
+<!--    <h6 class="card-title"style="text-align: center;">Shannon Index-->
+<!--&lt;!&ndash;        <div class="spinner-border spinner-border-sm" role="status" style="display: inline-block;">&ndash;&gt;-->
+<!--&lt;!&ndash;          <span class="visually-hidden">Loading...</span>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--    </h6>-->
 
-      <div>
-          <div>
-            <div class='row colors' style="background: linear-gradient(to right,  #edc4b3, #e6b8a2,#deab90, #cd9777, #c38e70, #b07d62, #9d6b53, #8a5a44);">
-            </div>
-            <div class='row labels'>
-              <div class='label'>10</div>
-              <div class='label'>30</div>
-              <div class='label'>50</div>
-              <div class='label'>70</div>
-              <div class='label'>90</div>
-              <div class='label'>100</div>
-            </div>
-          </div>
-        </div>
+<!--  <div class="card-body" style="height: 90%;  padding-top: 1px;">-->
+<!--    <p class="card-text">A measure of the variety of land uses in an area, indicating the number of different classes</p>-->
 
-  </div>
-</div>
-</section>
+<!--        <div>-->
+<!--          <div>-->
+<!--            <div class='row colors' style="background: linear-gradient(to right, #e1aeb4, #d3828f,#d55f5f, #b42f2f, #8c172c);">-->
+<!--            </div>-->
+<!--            <div class='row labels'>-->
+<!--              <div class='label'>0.8</div>-->
+<!--              <div class='label'>1</div>-->
+<!--              <div class='label'>1.4</div>-->
+<!--              <div class='label'>1.8</div>-->
+<!--              <div class='label'>2.21</div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
 
-<!--accessibility section-->
-<section>
-<div class="btn-group btn-group-sm" id="accessibility_group" role="group" aria-label="Small button group">
-<!--    <button type="button" id="accessibilitybut" class="btn btn-outline-dark ">Accessibility</button>-->
+<!--      <div id="shannon_graph">-->
 
-        <button type="button" id="accessibilitybut" class="form-check btn btn-outline-dark">
-        <input class="" type="checkbox" value="" id="accessibility" >
-        <label class="" for="accessibility">
-            Accessibility
-        </label>
-    </button>
+<!--      </div>-->
 
-    <button id="accessibility_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+<!--  </div>-->
+<!--</div>-->
+<!--</section>-->
 
+<!--green section-->
+<!--<section>-->
+<!--<div class="btn-group btn-group-sm" id="green_group" role="group" aria-label="Small button group">-->
+<!--&lt;!&ndash;    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>&ndash;&gt;-->
+<!--&lt;!&ndash;form-check-input    dropdown-item&ndash;&gt;-->
 
-</div>
+<!--    <button type="button" class="form-check btn btn-outline-dark"-->
+<!--    data-bs-toggle="collapse" data-bs-target="#collapseGreen" aria-expanded="false" aria-controls="collapseGreen">-->
+<!--        <input class="form-check-input" type="checkbox" value="" id="green_area" >-->
+<!--        <label class="form-check-label" for="green_area">-->
+<!--            Green Area-->
+<!--        </label>-->
+<!--    </button>-->
 
-<div class="card" style="width: 18rem; display:none; height: 40%" id="accessibility_content">
-    <button id="btn-close-accessibility" type="button" class="btn-close" aria-label="Close"></button>
-     <button type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="left" title="Compute accessibility" style="
-    position: absolute;height: 25px;width: 30px;" id="calc_accessibility"><i style="font-size: 1.1rem" class="material-icons small">input</i></button>
-    <h6 class="card-title" style="text-align: center;">Accessibility</h6>
+<!--    <button id="green_arrow" type="button" class="btn btn-outline-dark"-->
+<!--            style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>-->
 
-  <div class="card-body" style="height: 90%; padding-top: 1px; padding-left: 5%;">
-<!--    <p class="card-text">text...</p>-->
-      <br>
+<!--</div>-->
 
-      <div>
-          <h6 class="txt-m txt-bold mb6">Distance:</h6>
-          <form action="#" style="width:80%; font-size: 14px">
-              <p class="range-field">
-                  <input type="range" id="test" min="50" max="500" step="50"  value="'+span_text+'">
-                  <span class="thumb">
-<!--                      <span class="value"></span>-->
-                  </span>
-              </p>
-          </form>
-      </div>
+<!--<div class="collapse" id="collapseGreen" style=" z-index: 1; position: absolute; top: 59%; right: 1%;">-->
+<!--    <div class="card-body" style=" z-index: 1; position: fixed; top: 59%; right: 1%; max-width: 40%;">-->
+<!--        <ul>-->
+<!--&lt;!&ndash;        <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>&ndash;&gt;-->
+<!--&lt;!&ndash;        <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>&ndash;&gt;-->
+<!--&lt;!&ndash;        <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>&ndash;&gt;-->
+<!--&lt;!&ndash;        <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>&ndash;&gt;-->
+<!--&lt;!&ndash;        <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>&ndash;&gt;-->
+<!--       </ul>-->
+<!--    </div>-->
+<!--</div>-->
 
+<!--<div class="card " style="width: 18rem; display:none; height: 20%" id="green_content">-->
+<!--    <button id="btn-close-green" type="button" class="btn-close" aria-label="Close"></button>-->
+<!--    <h6 class="card-title" style="text-align: center;">Green Area</h6>-->
 
-      <div class="row align-items-end absolute round">
-          <form id="params">
-              <h6 class="txt-m txt-bold mb6">Point of Interest:</h6>
-              <div class="mb12 mr12 toggle-group align-center">
-                  <label class="toggle-container">
-                      <input name="poi" type="radio" value="transport_stations" id="9gf01vwa" />
-                      <div class="toggle toggle--active-null toggle--null">Transport stations</div>
-                  </label>
-                  <label class="toggle-container">
-                      <input name="poi" type="radio" value="shops" id="3hilt6p4"/>
-                      <div class="toggle toggle--active-null toggle--null">Shops</div>
-                  </label>
-              </div>
-          </form>
-      </div>
-
-       <div class="row align-items-end absolute round" style="bottom: 20%;">
-          <form id="accessibility_layers" style="">
-              <h6 class="txt-m txt-bold mb6">Show within distance:</h6>
-              <div class="mb12 mr12 toggle-group align-center">
-                  <label class="toggle-container">
-                      <input name="layer" type="radio" value="polygons" id="pol" />
-                      <div class="toggle toggle--active-null toggle--null">Blocks</div>
-                  </label>
-                  <label class="toggle-container">
-                      <input name="layer" type="radio" value="buffer" id="buf"/>
-                      <div class="toggle toggle--active-null toggle--null">Buffer</div>
-                  </label>
-              </div>
-          </form>
-      </div>
+<!--  <div class="card-body" style="height: 90%; padding-top: 1px;">-->
+<!--    <p class="card-text"> Share (percentage) of green area within block</p>-->
+<!--      <br>-->
 
 <!--      <div>-->
-<!--          <h6 class="txt-m txt-bold mb6">Choose distance:</h6>-->
+<!--          <div>-->
+<!--            <div class='row colors' style="background: linear-gradient(to right, #72de62, #6cd15c,#66c758, #62bf54, #5eb851, #57a84a, #4f9943, #478a3d, #3e7835, #34662d);">-->
+<!--            </div>-->
+<!--            <div class='row labels'>-->
+<!--              <div class='label'>10</div>-->
+<!--              <div class='label'>30</div>-->
+<!--              <div class='label'>50</div>-->
+<!--              <div class='label'>70</div>-->
+<!--              <div class='label'>90</div>-->
+<!--              <div class='label'>110</div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--  </div>-->
+<!--</div>-->
+<!--</section>-->
+
+<!--osr section-->
+<!--<section>-->
+<!--<div class="btn-group btn-group-sm" id="osr_group" role="group" aria-label="Small button group">-->
+<!--&lt;!&ndash;    <button type="button" id="osrbut" class="btn btn-outline-dark ">Open Space Ratio</button>&ndash;&gt;-->
+
+<!--    <button type="button" class="form-check btn btn-outline-dark">-->
+<!--        <input class="form-check-input" type="checkbox" value="" id="osr" >-->
+<!--        <label class="form-check-label" for="osr">-->
+<!--            OSR-->
+<!--        </label>-->
+<!--    </button>-->
+
+<!--    <button id="osr_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>-->
+
+
+<!--</div>-->
+
+<!--<div class="card" style="width: 18rem; display:none; height: 20%" id="osr_content">-->
+<!--    <button id="btn-close-osr" type="button" class="btn-close" aria-label="Close"></button>-->
+<!--    <h6 class="card-title" style="text-align: center;">OSR</h6>-->
+
+<!--  <div class="card-body" style="height: 90%; padding-top: 1px;">-->
+<!--    <p class="card-text"> Open space share relative to the building square footage</p>-->
+<!--      <br>-->
+
+
+<!--      <div>-->
+<!--          <div>-->
+<!--            <div class='row colors' style="background: linear-gradient(to right, #a9d6e5, #89c2d9,#61a5c2, #468faf, #2c7da0, #2a6f97, #014f86, #01497c, #013a63);">-->
+<!--            </div>-->
+<!--            <div class='row labels'>-->
+<!--              <div class='label'>5</div>-->
+<!--              <div class='label'>10</div>-->
+<!--              <div class='label'>30</div>-->
+<!--              <div class='label'>50</div>-->
+<!--              <div class='label'>80</div>-->
+<!--              <div class='label'>100</div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--  </div>-->
+<!--</div>-->
+<!--</section>-->
+
+<!--max height section-->
+<!--<section>-->
+<!--<div class="btn-group btn-group-sm" id="max_height_group" role="group" aria-label="Small button group">-->
+<!--&lt;!&ndash;    <button type="button" id="max_heightbut" class="btn btn-outline-dark ">Max Height</button>&ndash;&gt;-->
+
+<!--    <button type="button" class="form-check btn btn-outline-dark">-->
+<!--        <input class="form-check-input" type="checkbox" value="" id="max_height" >-->
+<!--        <label class="form-check-label" for="max_height">-->
+<!--            Max height-->
+<!--        </label>-->
+<!--    </button>-->
+
+<!--    <button id="max_height_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>-->
+
+
+<!--</div>-->
+
+<!--<div class="card" style="width: 18rem; display:none; height: 20%" id="max_height_content">-->
+<!--    <button id="btn-close-max_height" type="button" class="btn-close" aria-label="Close"></button>-->
+<!--    <h6 class="card-title" style="text-align: center;">Max height</h6>-->
+
+<!--  <div class="card-body" style="height: 90%; padding-top: 1px;">-->
+<!--    <p class="card-text"> Maximum height of buildings within block</p>-->
+<!--      <br>-->
+
+<!--      <div>-->
+<!--          <div>-->
+<!--            <div class='row colors' style="background: linear-gradient(to right,  #edc4b3, #e6b8a2,#deab90, #cd9777, #c38e70, #b07d62, #9d6b53, #8a5a44);">-->
+<!--            </div>-->
+<!--            <div class='row labels'>-->
+<!--              <div class='label'>10</div>-->
+<!--              <div class='label'>30</div>-->
+<!--              <div class='label'>50</div>-->
+<!--              <div class='label'>70</div>-->
+<!--              <div class='label'>90</div>-->
+<!--              <div class='label'>100</div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--  </div>-->
+<!--</div>-->
+<!--</section>-->
+
+<!--accessibility section-->
+<!--<section>-->
+<!--<div class="btn-group btn-group-sm" id="accessibility_group" role="group" aria-label="Small button group">-->
+<!--&lt;!&ndash;    <button type="button" id="accessibilitybut" class="btn btn-outline-dark ">Accessibility</button>&ndash;&gt;-->
+
+<!--        <button type="button" id="accessibilitybut" class="form-check btn btn-outline-dark">-->
+<!--        <input class="" type="checkbox" value="" id="accessibility" >-->
+<!--        <label class="" for="accessibility">-->
+<!--            Accessibility-->
+<!--        </label>-->
+<!--    </button>-->
+
+<!--    <button id="accessibility_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>-->
+
+
+<!--</div>-->
+
+<!--<div class="card" style="width: 18rem; display:none; height: 40%" id="accessibility_content">-->
+<!--    <button id="btn-close-accessibility" type="button" class="btn-close" aria-label="Close"></button>-->
+<!--     <button type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="left" title="Compute accessibility" style="-->
+<!--    position: absolute;height: 25px;width: 30px;" id="calc_accessibility"><i style="font-size: 1.1rem" class="material-icons small">input</i></button>-->
+<!--    <h6 class="card-title" style="text-align: center;">Accessibility</h6>-->
+
+<!--  <div class="card-body" style="height: 90%; padding-top: 1px; padding-left: 5%;">-->
+<!--&lt;!&ndash;    <p class="card-text">text...</p>&ndash;&gt;-->
+<!--      <br>-->
+
+<!--      <div>-->
+<!--          <h6 class="txt-m txt-bold mb6">Distance:</h6>-->
 <!--          <form action="#" style="width:80%; font-size: 14px">-->
 <!--              <p class="range-field">-->
 <!--                  <input type="range" id="test" min="50" max="500" step="50"  value="'+span_text+'">-->
 <!--                  <span class="thumb">-->
-<!--                      <span class="value"></span>-->
+<!--&lt;!&ndash;                      <span class="value"></span>&ndash;&gt;-->
 <!--                  </span>-->
 <!--              </p>-->
 <!--          </form>-->
 <!--      </div>-->
 
 
-  </div>
-</div>
-</section>
+<!--      <div class="row align-items-end absolute round">-->
+<!--          <form id="params">-->
+<!--              <h6 class="txt-m txt-bold mb6">Point of Interest:</h6>-->
+<!--              <div class="mb12 mr12 toggle-group align-center">-->
+<!--                  <label class="toggle-container">-->
+<!--                      <input name="poi" type="radio" value="transport_stations" id="9gf01vwa" />-->
+<!--                      <div class="toggle toggle&#45;&#45;active-null toggle&#45;&#45;null">Transport stations</div>-->
+<!--                  </label>-->
+<!--                  <label class="toggle-container">-->
+<!--                      <input name="poi" type="radio" value="shops" id="3hilt6p4"/>-->
+<!--                      <div class="toggle toggle&#45;&#45;active-null toggle&#45;&#45;null">Shops</div>-->
+<!--                  </label>-->
+<!--              </div>-->
+<!--          </form>-->
+<!--      </div>-->
+
+<!--       <div class="row align-items-end absolute round" style="bottom: 20%;">-->
+<!--          <form id="accessibility_layers" style="">-->
+<!--              <h6 class="txt-m txt-bold mb6">Show within distance:</h6>-->
+<!--              <div class="mb12 mr12 toggle-group align-center">-->
+<!--                  <label class="toggle-container">-->
+<!--                      <input name="layer" type="radio" value="polygons" id="pol" />-->
+<!--                      <div class="toggle toggle&#45;&#45;active-null toggle&#45;&#45;null">Blocks</div>-->
+<!--                  </label>-->
+<!--                  <label class="toggle-container">-->
+<!--                      <input name="layer" type="radio" value="buffer" id="buf"/>-->
+<!--                      <div class="toggle toggle&#45;&#45;active-null toggle&#45;&#45;null">Buffer</div>-->
+<!--                  </label>-->
+<!--              </div>-->
+<!--          </form>-->
+<!--      </div>-->
+
+<!--&lt;!&ndash;      <div>&ndash;&gt;-->
+<!--&lt;!&ndash;          <h6 class="txt-m txt-bold mb6">Choose distance:</h6>&ndash;&gt;-->
+<!--&lt;!&ndash;          <form action="#" style="width:80%; font-size: 14px">&ndash;&gt;-->
+<!--&lt;!&ndash;              <p class="range-field">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <input type="range" id="test" min="50" max="500" step="50"  value="'+span_text+'">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <span class="thumb">&ndash;&gt;-->
+<!--&lt;!&ndash;                      <span class="value"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </span>&ndash;&gt;-->
+<!--&lt;!&ndash;              </p>&ndash;&gt;-->
+<!--&lt;!&ndash;          </form>&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+
+
+<!--  </div>-->
+<!--</div>-->
+<!--</section>-->
 
 
 

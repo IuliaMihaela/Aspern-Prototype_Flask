@@ -57,6 +57,10 @@ def design5():
 def design6():
     return render_template('design6.html')
 
+@app.route("/design7/", methods=['GET'])
+def design7():
+    return render_template('design7.html')
+
 ########### data ###########
 @app.route("/data/prototype_layerWGS84.geojson", methods=['GET'])
 def data1():
