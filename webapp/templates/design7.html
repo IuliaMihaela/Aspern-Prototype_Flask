@@ -807,6 +807,7 @@ body {
         align-self: center;
         right:45%;
         height: fit-content;
+        background: transparent;
     }
     .nav-pills {
         --bs-nav-pills-link-active-bg: #6c757de0;
@@ -838,6 +839,10 @@ body {
 
     .btn-outline-dark {
         --bs-btn-border-color: rgb(26 34 36 / 25%);
+    }
+
+    #toggle_toolbar_header .toggle {
+        font-size: medium;
     }
 
 
@@ -1607,9 +1612,24 @@ body {
                           </div>
                       </form>
                   </div>
+
+            <!--      <div>-->
+            <!--          <h6 class="txt-m txt-bold mb6">Choose distance:</h6>-->
+            <!--          <form action="#" style="width:80%; font-size: 14px">-->
+            <!--              <p class="range-field">-->
+            <!--                  <input type="range" id="test" min="50" max="500" step="50"  value="'+span_text+'">-->
+            <!--                  <span class="thumb">-->
+            <!--                      <span class="value"></span>-->
+            <!--                  </span>-->
+            <!--              </p>-->
+            <!--          </form>-->
+            <!--      </div>-->
+
+
               </div>
             </div>
             </section>
+
 
 
 
@@ -2376,19 +2396,45 @@ body {
 <!--...................Toolbar..............-->
 <div class="card text-center" id="toolbar">
   <div class="card-header">
-    <ul class="nav nav-pills card-header-pills">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Land Use</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">PoI</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Transit</a>
-      </li>
-    </ul>
+<!--    <ul class="nav nav-pills card-header-pills">-->
+<!--      <li class="nav-item">-->
+<!--        <button class="nav-link " href="#" id="landuse_tool_but">Land Use</button>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <button class="nav-link" href="#" id="poi_tool_but">PoI</button>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <button class="nav-link" href="#" tabindex="-1" id="transit_tool_but">Transit</button>-->
+<!--      </li>-->
+<!--    </ul>-->
+        <div class="mb12 mr12 toggle-group align-center" id="toggle_toolbar_header">
+           <label class="toggle-container">
+              <input name="poi" type="radio" value="transport_stations" id="landuse_tool_but" />
+              <div class="toggle toggle--active-null toggle--null">Land Use</div>
+          </label>
+          <label class="toggle-container">
+              <input name="poi" type="radio" value="shops" id="poi_tool_but" />
+              <div class="toggle toggle--active-null toggle--null">PoI</div>
+          </label>
+            <label class="toggle-container">
+              <input name="poi" type="radio" value="shops" id="transit_tool_but" />
+              <div class="toggle toggle--active-null toggle--null">Transit</div>
+          </label>
+        </div>
+
+<!--      <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="width: -webkit-fill-available">-->
+<!--          <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>-->
+<!--          <label class="btn btn-outline-primary" for="btnradio1">LandUse</label>-->
+
+<!--          <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">-->
+<!--          <label class="btn btn-outline-primary" for="btnradio2">PoI</label>-->
+
+<!--          <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">-->
+<!--          <label class="btn btn-outline-primary" for="btnradio3">Transit</label>-->
+<!--      </div>-->
+
   </div>
-  <div class="card-body">
+  <div class="card-body" id="toolbar_content">
 <!--    <h5 class="card-title">Special title treatment</h5>-->
 <!--    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
 <!--    <a href="#" class="btn btn-primary">Go somewhere</a>-->
@@ -2416,9 +2462,9 @@ body {
 
 
 <!--restore changes -->
-<div class="btn-group btn-group-sm" id="retore_changes_group" role="group" aria-label="Small button group">
-    <button type="button" id="retore_changes" style="display: none" class="btn btn-outline-dark ">Restore changes</button>
-</div>
+<!--<div class="btn-group btn-group-sm" id="retore_changes_group" role="group" aria-label="Small button group">-->
+<!--    <button type="button" id="retore_changes" style="display: none" class="btn btn-outline-dark ">Restore changes</button>-->
+<!--</div>-->
 
 
 <!-- LEFT CANVAS (LAYERS)-->
@@ -3965,36 +4011,36 @@ $(function() {
     getXml() // load the local geojson files
 
       // toggle between original and changed data of the landuse layer
-    const restoreb = document.getElementById('retore_changes');
-    restoreb.onclick = function (e){
-        if (restoreb.innerHTML == 'Restore changes'){
-           console.log('restore changes button clicked');
-            restoreb.innerHTML = 'Show original';
-            const file_path = "../data/final/aspern_blocks_final_updated.geojson";
-            const xmlhttp = new XMLHttpRequest();
-                xmlhttp.onload = function() {
-                  if (this.readyState == 4 && this.status == 200){
-                    // console.log(this.responseText);
-                    data_aspern_blocks_attr = JSON.parse(this.responseText);
-                    map.getSource('layer_aspern_landuse').setData(data_aspern_blocks_attr);
-                    console.log(data);
-                  } else {
-                    console.warn('Did not receive 200 OK from response!')
-                  }
-                }
-                xmlhttp.open("GET", file_path);
-                xmlhttp.send();
-        }
-        else {
-            console.log('show original data')
-            restoreb.innerHTML = 'Restore changes';
-            map.getSource('layer_aspern_landuse').setData(original_data_aspern_blocks_attr);
-            data_aspern_blocks_attr = original_data_aspern_blocks_attr;
-        }
-
-
-
-    }
+    // const restoreb = document.getElementById('retore_changes');
+    // restoreb.onclick = function (e){
+    //     if (restoreb.innerHTML == 'Restore changes'){
+    //        console.log('restore changes button clicked');
+    //         restoreb.innerHTML = 'Show original';
+    //         const file_path = "../data/final/aspern_blocks_final_updated.geojson";
+    //         const xmlhttp = new XMLHttpRequest();
+    //             xmlhttp.onload = function() {
+    //               if (this.readyState == 4 && this.status == 200){
+    //                 // console.log(this.responseText);
+    //                 data_aspern_blocks_attr = JSON.parse(this.responseText);
+    //                 map.getSource('layer_aspern_landuse').setData(data_aspern_blocks_attr);
+    //                 console.log(data);
+    //               } else {
+    //                 console.warn('Did not receive 200 OK from response!')
+    //               }
+    //             }
+    //             xmlhttp.open("GET", file_path);
+    //             xmlhttp.send();
+    //     }
+    //     else {
+    //         console.log('show original data')
+    //         restoreb.innerHTML = 'Restore changes';
+    //         map.getSource('layer_aspern_landuse').setData(original_data_aspern_blocks_attr);
+    //         data_aspern_blocks_attr = original_data_aspern_blocks_attr;
+    //     }
+    //
+    //
+    //
+    // }
 
     //save changes function
       async function save_changes(){
@@ -4871,9 +4917,9 @@ $(function() {
                 }
 
                  // when we unclick the lanuse layer, we hide the button that restores its data
-                 if(check_id == 'aspern_landuse'){
-                        restoreb.style.display = 'none';
-                    }
+                 // if(check_id == 'aspern_landuse'){
+                 //        restoreb.style.display = 'none';
+                 //    }
 
                 // remove legend
                 //legend_ul.style.display = "none";
@@ -4955,9 +5001,9 @@ $(function() {
                 //     }
 
                 // if we show the landuse layer, we display also the button for restoring the data
-                 if(check_id == 'aspern_landuse'){
-                        restoreb.style.display = 'block';
-                    }
+                //  if(check_id == 'aspern_landuse'){
+                //         restoreb.style.display = 'block';
+                //     }
 
             }
 
@@ -5164,33 +5210,33 @@ $(function() {
 
 
                             // if the property is one of the above and its value is not null
-                            if (range_property_list.includes(li_prop) && span_text!='null'){
-                                // we define the range stop number
-                                if (Number(span_text)<10){
-                                    max_range_nr ='100'
-                                }
-                                else if (Number(span_text)>1000){
-                                    max_range_nr = String(Number(span_text)*3)
-                                }
-                                else if (Number(span_text)>10000){
-                                    max_range_nr = String(Number(span_text)*2)
-                                }
-                                else{
-                                    max_range_nr = String(Math.pow(Number(span_text),2));
-                                }
-
-                                li.getElementsByTagName('span')[0].innerHTML = '\n        <form action="#" style="width:130px; font-size: 14px">\n            <p class="range-field">\n                <input type="range" id="test5" min="0" max="'+max_range_nr+'"  value="'+span_text+'"><span class="thumb"><span class="value"></span></span>\n            </p>\n        </form>\n    '
-                                // String(Number(span_text)*3)
-
-                                // li.getElementsByTagName('span')[0].onchange = function(e){
-                                //     console.log('e: ', e);
-                                //     console.log('on change this: ', this);
-                                //     let new_value =e.target.value;
-                                //     save_dict_property(li, new_value);
-                                // }
-
-
-                            }else
+                            // if (range_property_list.includes(li_prop) && span_text!='null'){
+                            //     // we define the range stop number
+                            //     if (Number(span_text)<10){
+                            //         max_range_nr ='100'
+                            //     }
+                            //     else if (Number(span_text)>1000){
+                            //         max_range_nr = String(Number(span_text)*3)
+                            //     }
+                            //     else if (Number(span_text)>10000){
+                            //         max_range_nr = String(Number(span_text)*2)
+                            //     }
+                            //     else{
+                            //         max_range_nr = String(Math.pow(Number(span_text),2));
+                            //     }
+                            //
+                            //     li.getElementsByTagName('span')[0].innerHTML = '\n        <form action="#" style="width:130px; font-size: 14px">\n            <p class="range-field">\n                <input type="range" id="test5" min="0" max="'+max_range_nr+'"  value="'+span_text+'"><span class="thumb"><span class="value"></span></span>\n            </p>\n        </form>\n    '
+                            //     // String(Number(span_text)*3)
+                            //
+                            //     // li.getElementsByTagName('span')[0].onchange = function(e){
+                            //     //     console.log('e: ', e);
+                            //     //     console.log('on change this: ', this);
+                            //     //     let new_value =e.target.value;
+                            //     //     save_dict_property(li, new_value);
+                            //     // }
+                            //
+                            //
+                            // }else
                             // putting the dropdown for landuse property
                             if(properties_keys[i]== 'landuse'){
                                 console.log('span text: ', span_text)
