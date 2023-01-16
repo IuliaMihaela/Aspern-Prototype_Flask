@@ -830,6 +830,9 @@ body {
         padding-left: 0px;
         width: 18rem;
     }
+    /*.collapsible-body {*/
+    /*    padding-left: 20%;*/
+    /*}*/
 
     #analysis_layers {
         position: absolute;
@@ -844,6 +847,24 @@ body {
     #toggle_toolbar_header .toggle {
         font-size: medium;
     }
+    #toolbar_content_but_group .btn {
+        height: fit-content;
+    }
+
+    /*draw feature */
+    .mapboxgl-ctrl-top-right {
+        top: 10%;
+    }
+
+    /*input on the toolbar footer for the new data properties*/
+    #toolbar_footer input[type=text]:focus:not([readonly]) {
+        background-color: transparent;
+    }
+     #toolbar_footer .input-group-text {
+    background-color: transparent;
+    border: 1px solid #757d82;
+}
+
 
 
 
@@ -1673,11 +1694,12 @@ body {
         </div>
 
   </div>
-  <div class="card-body" id="toolbar_content">
+  <div class="card-body" id="toolbar_content" style="display: none">
 <!--    <h5 class="card-title">Special title treatment</h5>-->
 <!--    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
 <!--    <a href="#" class="btn btn-primary">Go somewhere</a>-->
-      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+
+<!--      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">-->
           <div class="btn-group me-2" id="toolbar_content_but_group" role="group" aria-label="First group" style="width: -webkit-fill-available">
 <!--            <button type="button" class="btn btn-secondary">1</button>-->
 <!--            <button type="button" class="btn btn-secondary">2</button>-->
@@ -1695,11 +1717,11 @@ body {
 <!--          <label class="btn btn-outline-primary" for="btnradio3">Radio 3</label>-->
 <!--        </div>-->
 
-        </div>
+<!--        </div>-->
 
   </div>
 
-    <div class="card-footer text-muted" >
+    <div class="card-footer text-muted" id="toolbar_footer" style="display: none">
 
 <!--        <div class="mb12 mr12 toggle-group align-center" id="toolbar_footer">-->
 <!--           <label class="toggle-container">-->
@@ -1712,10 +1734,41 @@ body {
 <!--          </label>-->
 <!--        </div>-->
 
-        <div class="btn-group" id="toolbar_footer" role="group" aria-label="Basic mixed styles example" style="width: -webkit-fill-available">
+        <div class="btn-group justify-content-end" id="toolbar_footer_group" role="group" aria-label="Basic mixed styles example" style="width: -webkit-fill-available">
 <!--            <button type="button" class="btn btn-outline-success">Save</button>-->
 <!--            <button type="button" class="btn btn-outline-danger">Discard</button>-->
         </div>
+
+
+<!--        <div class="container">-->
+<!--          <div class="row">-->
+<!--            <div class="col align-self-end">-->
+<!--                 <div class="btn-group" id="toolbar_footer_group" role="group" aria-label="Basic mixed styles example" style="width: -webkit-fill-available">-->
+<!--                    <button type="button" class="btn btn-outline-success btn-sm">Save</button>-->
+<!--                    <button type="button" class="btn btn-outline-danger btn-sm">Discard</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">-->
+<!--          <div class="btn-group me-2" role="group" aria-label="First group">-->
+<!--            <button type="button" class="btn btn-primary">1</button>-->
+<!--            <button type="button" class="btn btn-primary">2</button>-->
+<!--            <button type="button" class="btn btn-primary">3</button>-->
+<!--            <button type="button" class="btn btn-primary">4</button>-->
+<!--          </div>-->
+<!--          <div class="btn-group me-2" role="group" aria-label="Second group">-->
+<!--            <button type="button" class="btn btn-secondary">5</button>-->
+<!--            <button type="button" class="btn btn-secondary">6</button>-->
+<!--            <button type="button" class="btn btn-secondary">7</button>-->
+<!--          </div>-->
+<!--          <div class="btn-group" role="group" aria-label="Third group">-->
+<!--            <button type="button" class="btn btn-info">8</button>-->
+<!--          </div>-->
+<!--        </div>-->
+
+
 
 
     </div>
@@ -4032,13 +4085,26 @@ $(function() {
         //toolbar   ///////////////////////////////////////////
         const landuse_tool_but = $('#landuse_tool_but')[0];
         landuse_tool_but.onclick =function(e) {
-            const toolbar_content_but_group = $('#toolbar_content_but_group')[0];
             console.log('landuse_tool_but clicked ');
-            toolbar_content_but_group.innerHTML = '';
 
-            const toolbar_footer = $('#toolbar_footer')[0];
-            toolbar_footer.innerHTML = '<button type="button" class="btn btn-outline-success">Save</button>\n' +
-                '            <button type="button" class="btn btn-outline-danger">Discard</button>'
+            const initial_data = JSON.parse(JSON.stringify(map.getSource('layer_aspern_landuse')._data));
+
+
+            // console.log('original', original_data_aspern_blocks_attr);
+            // console.log('inside landuse tool', original_data_aspern_blocks_attr == data_aspern_blocks_attr);
+            // console.log('inside landuse tool', original_data_aspern_blocks_attr == map.getSource('layer_aspern_landuse')._data);
+            // console.log('inside landuse tool', data_aspern_blocks_attr == map.getSource('layer_aspern_landuse')._data);
+
+
+            const toolbar_content_but_group = $('#toolbar_content_but_group')[0];
+            toolbar_content_but_group.innerHTML = '';
+            $('#toolbar_content')[0].style.display= 'none';
+
+            //make visible the footer
+            $('#toolbar_footer')[0].style.display = 'block';
+            const toolbar_footer_group = $('#toolbar_footer_group')[0];
+            toolbar_footer_group.innerHTML = '<button type="button" class="btn btn-outline-success" id="save_toolbar">Save</button>\n' +
+                '            <button type="button" class="btn btn-outline-danger" id="discard_toolbar">Discard</button>'
 
           //check landuse layer
           //uncheck other layers
@@ -4053,16 +4119,61 @@ $(function() {
             }
           }
 
+          // save button
+          const save = $('#save_toolbar')[0];
+          save.onclick = function (e){
+              console.log('save clicked');
+              $('#aspern_landuse')[0].click();
+              $('#landuse_tool_but')[0].checked = false;
+              $('#toolbar_footer')[0].style.display = 'none';
+          }
+          //discard button
+          const discard = $('#discard_toolbar')[0];
+          discard.onclick = function (e) {
+              console.log('discard clicked');
+              // console.log(data_aspern_blocks_attr == original_data_aspern_blocks_attr)
+              data_aspern_blocks_attr = JSON.parse(JSON.stringify(initial_data));
+              map.getSource('layer_aspern_landuse').setData(initial_data);
+              //data_aspern_blocks_attr = original_data_aspern_blocks_attr;
+              $('#aspern_landuse')[0].click();
+              $('#landuse_tool_but')[0].checked = false;
+              $('#toolbar_footer')[0].style.display = 'none';
+
+          }
+
+
         }
 
         const poi_tool_but = $('#poi_tool_but')[0];
         poi_tool_but.onclick =function(e) {
+            //make visible the content
+            $('#toolbar_content')[0].style.display= 'block';
+            //make visible the footer
+            $('#toolbar_footer')[0].style.display= 'block';
+
+
+
             const toolbar_content_but_group = $('#toolbar_content_but_group')[0];
             console.log('poi_tool_but clicked ');
-            toolbar_content_but_group.innerHTML = '<button type="button" class="btn btn-secondary">1</button>\n' +
-            '      <button type="button" class="btn btn-secondary">2</button>';
-          //
-          // //check landuse layer
+            toolbar_content_but_group.innerHTML =
+                '<button type="button" id="shop_tool" class="btn btn-secondary"><i class="material-icons">shopping_basket</i>shop</button>\n' +
+            '      <button type="button" id="school_tools" class="btn btn-secondary"><i class="material-icons">school</i>school</button>';
+
+          //make visible the footer
+            $('#toolbar_footer')[0].style.display = 'block';
+            const toolbar_footer_group = $('#toolbar_footer_group')[0];
+            toolbar_footer_group.innerHTML =
+                '<div class="input-group input-group-sm mb-3" style="height: 20px; visibility: hidden; display: grid; align-items: baseline;\n' +
+                '    justify-items: start;"\n' +
+                '    align-content: stretch;>\n' +
+                '  <span class="input-group-text" style="height: 20px;" id="inputGroup-sizing-sm">Type shop</span>\n' +
+                '  <input type="text" class="form-control" style="height: 20px; border-color: black; width: fit-content;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">\n' +
+                '</div>\n'+
+                '<button type="button" class="btn btn-outline-success" id="save_toolbar">Save</button>\n' +
+                '            <button type="button" class="btn btn-outline-danger" id="discard_toolbar">Discard</button>'
+
+
+          // //check shops layer
           // //uncheck other layers
           const inputs_layers = document.getElementsByClassName('input_layers');
           for (const input of inputs_layers){
@@ -4075,10 +4186,89 @@ $(function() {
             }
           }
 
+
+            // https://github.com/mapbox/mapbox-gl-draw/blob/main/docs/API.md
+            // add draw control
+         const draw = new MapboxDraw({
+        displayControlsDefault: false,
+        controls: {
+            point: true,
+            trash: true
+        },
+        //userProperties: true,
+        });
+
+          $('#shop_tool')[0].onclick = function(e){
+              //the user can enter the shop type  and see the control after clicking on the shops button
+              $('#toolbar_footer_group .input-group')[0].style.visibility = 'visible'
+              map.addControl(draw);
+
+              map.on('draw.create', updateArea);
+              map.on('draw.delete', updateArea);
+              map.on('draw.update', updateArea);
+
+              var new_points = [];
+              function updateArea(e){
+                  console.log('draw e: ', e);
+                  let point = {"type":"","properties":"","geometry":""};
+                  point.type = e.features[0].type;
+                  point.properties = {"osm_id":e.features[0].id, "shop":$('#toolbar_footer_group input')[0].value}
+                  point.geometry = e.features[0].geometry;
+
+                  new_points.push(point);
+
+                  console.log(point);
+                  console.log(new_points);
+
+              }
+
+
+
+              const save = $('#save_toolbar')[0];
+              save.onclick = function (e){
+                  console.log('save clicked');
+                  //$('#shops')[0].click();
+                  $('#poi_tool_but')[0].checked = false;
+                  $('#toolbar_footer')[0].style.display = 'none';
+                  $('#toolbar_content')[0].style.display= 'none';
+
+                  // add new point to the shops data
+                  console.log('new points: ', new_points);
+                  data_shops.features = JSON.parse(JSON.stringify(data_shops.features.concat(new_points)));
+                  console.log(data_shops);
+                  //update layer data
+                  map.getSource('layer_shops').setData(data_shops);
+
+                  map.removeControl(draw);
+
+
+
+              }
+              //discard button
+              const discard = $('#discard_toolbar')[0];
+              discard.onclick = function (e) {
+                  console.log('discard clicked');
+
+                  $('#shops')[0].click();
+                  $('#poi_tool_but')[0].checked = false;
+                  $('#toolbar_footer')[0].style.display = 'none';
+                  $('#toolbar_content')[0].style.display= 'none';
+                  map.removeControl(draw);
+
+              }
+
+          }
+
         }
 
         const transit_tool_but = $('#transit_tool_but')[0];
         transit_tool_but.onclick =function(e) {
+            //make visible the content
+            $('#toolbar_content')[0].style.display= 'block';
+            //make visible the footer
+            $('#toolbar_footer')[0].style.display= 'block';
+
+
             const toolbar_content_but_group = $('#toolbar_content_but_group')[0];
             console.log('transit_tool_but clicked ');
             toolbar_content_but_group.innerHTML = '<button type="button" class="btn btn-secondary">1</button>\n' +
@@ -4623,12 +4813,13 @@ $(function() {
                                 console.log('on change this: ', this);
                                 let new_value =e.target.value;
 
-                                if (check_id == 'aspern_landuse'){
+                                if (check_id == 'aspern_landuse' && landuse_tool_but.checked){
                                     // we store the changes of landuse in the main blocks layer
                                     save_dict_property(li, new_value, 'aspern_blocks_attr');
-                                }else{
-                                    save_dict_property(li, new_value, check_id);
                                 }
+                                // else{
+                                //     save_dict_property(li, new_value, check_id);
+                                // }
 
                             }
 
@@ -4651,6 +4842,7 @@ $(function() {
                     // }
 
                     console.log('data check id: ', data_check_id)
+
 
                     for (f of eval('data_'+data_check_id).features){
                         // f is the clicked feature from the dictionary
@@ -4717,13 +4909,16 @@ $(function() {
                             console.log(li.getElementsByTagName('b'));
                             console.log('dict key from li: ', dict_key);
                             console.log('f prop: ', f['properties']);
-                            f['properties'][dict_key] =new_value;
+                            f['properties'][dict_key] = new_value;
 
                             console.log('clicked layer in save in dict: ', clickedLayer)
 
+                            //console.log(eval('data_'+data_check_id)== original_data_aspern_blocks_attr)
+                            //console.log(original_data_aspern_blocks_attr)
                             map.getSource(clickedLayer).setData(eval('data_'+data_check_id));
+                            //map.getSource(clickedLayer).setData(original_data_aspern_blocks_attr);
                             console.log('data after: ', f);
-                            feature = f;
+                            feature = JSON.parse(JSON.stringify(f));
 
                             // call the function that loads the graphs
                             try{
@@ -4732,6 +4927,11 @@ $(function() {
                             catch(err){  // in case there is no function that shows any graph for the layer clicked
                                 console.log('no graph function')
                             }
+
+                            // console.log('inside save funct: ', map.getSource('layer_aspern_landuse')._data==eval('data_'+data_check_id) == original_data_aspern_blocks_attr)
+                            // console.log('inside save funct: ', map.getSource('layer_aspern_landuse')._data==eval('data_'+data_check_id))
+                            // console.log('inside save funct: ', map.getSource('layer_aspern_landuse')._data == original_data_aspern_blocks_attr)
+                            // console.log('inside save funct: ', map.getSource( original_data_aspern_blocks_attr))
 
 
                             return feature
