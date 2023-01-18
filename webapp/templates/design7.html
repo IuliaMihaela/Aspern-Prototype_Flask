@@ -861,9 +861,18 @@ body {
         background-color: transparent;
     }
      #toolbar_footer .input-group-text {
-    background-color: transparent;
-    border: 1px solid #757d82;
-}
+        background-color: transparent;
+        border: 1px solid #757d82;
+    }
+
+
+    .min_legend{
+        width: 200px;
+    }
+
+    section .btn-group-sm {
+        padding-left: 2rem;
+    }
 
 
 
@@ -915,7 +924,7 @@ body {
 
             <div class="collapse" id="collapseBlocks" style=" z-index: 1; top: 5%; right: 1%;">
                 <div class="card-body" style=" z-index: 1; top: 5%; right: 1%; max-width: 30%;">
-                    <ul>
+                    <ul class="min_legend">
                     <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>
                     <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>
                     <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>
@@ -969,7 +978,7 @@ body {
 
 <div class="collapse" id="collapseLanduse" style=" z-index: 1; top: 11%; right: 1%;">
     <div class="card-body" style=" z-index: 1;  top: 11%; right: 1%; max-width: 30%;">
-        <ul>
+        <ul class="min_legend">
         <li class="label"><span style="background: #88db35;" data-bs-toggle="tooltip" data-bs-placement="left" title="recreation & leisure facilities"></span></li>
         <li class="label"><span style="background: #e2d4c0;" data-bs-toggle="tooltip" data-bs-placement="left" title="business uses"></span></li>
         <li class="label"><span style="background: #60c8c5;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>
@@ -1035,7 +1044,7 @@ body {
 
 <div class="collapse" id="collapseZoning" style=" z-index: 1; top: 17%; right: 1%;">
     <div class="card-body" style=" z-index: 1; top: 17%; right: 1%; max-width: 30%;">
-        <ul>
+        <ul class="min_legend">
             <li class="label"><span style="background: #774c43;" data-bs-toggle="tooltip" data-bs-placement="left" title="E: recreation area"></span></li>
             <li class="label"><span style="background: #8B4513;" data-bs-toggle="tooltip" data-bs-placement="left" title="GB: mixed developement"></span></li>
             <li class="label"><span style="background: #D2691E;" data-bs-toggle="tooltip" data-bs-placement="left" title="GBBG: mixed developement - business developement area"></span></li>
@@ -1245,7 +1254,7 @@ body {
 
         <div class="collapse" id="collapseStreets" style=" z-index: 1; top: 23%; right: 1%;">
             <div class="card-body" style=" z-index: 1; top: 23%; right: 1%; max-width: 30%;">
-                <ul>
+                <ul class="min_legend">
                 <li class="label"><span style="background: #FFFF66;" data-bs-toggle="tooltip" data-bs-placement="left" title="G: municipal road"></span></li>
                     <li class="label"><span style="background: #FF9933;" data-bs-toggle="tooltip" data-bs-placement="left" title="L: state main road"></span></li>
                     <li class="label"><span style="background: #a117c7;" data-bs-toggle="tooltip" data-bs-placement="left" title="B: main road"></span></li>
@@ -1295,7 +1304,7 @@ body {
 
             <div class="collapse" id="collapsePublic_lines" style=" z-index: 1; top: 29%; right: 1%;">
                 <div class="card-body" style=" z-index: 1; top: 29%; right: 1%; max-width: 30%;">
-                    <ul>
+                    <ul class="min_legend">
                     <li class="label"><span style="background: #CC0000;" data-bs-toggle="tooltip" data-bs-placement="left" title="13: astax"></span></li>
                     <li class="label"><span style="background: #FF8000;" data-bs-toggle="tooltip" data-bs-placement="left" title="3: regional bus"></span></li>
                     <li class="label"><span style="background: #FFFF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="2: bus"></span></li>
@@ -1457,7 +1466,7 @@ body {
 
         <div class="collapse" id="collapsePublic_stations" style=" z-index: 1; top: 47%; right: 1%;">
             <div class="card-body" style=" z-index: 1; top: 47%; right: 1%; max-width: 30%;">
-                <ul>
+                <ul class="min_legend">
                 <li class="label"><span style="background: #CC0000;" data-bs-toggle="tooltip" data-bs-placement="left" title="13: astax"></span></li>
                 <li class="label"><span style="background: #FF8000;" data-bs-toggle="tooltip" data-bs-placement="left" title="3: regional bus"></span></li>
                 <li class="label"><span style="background: #FFFF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="2: bus"></span></li>
@@ -1579,7 +1588,7 @@ body {
 
             </div>
 
-            <div class="card" style="width: 18rem; display:none; height: 40%" id="accessibility_content">
+            <div class="card" style="width: 18rem; display:none; height: 330px" id="accessibility_content">
                 <button id="btn-close-accessibility" type="button" class="btn-close" aria-label="Close"></button>
                  <button type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="left" title="Compute accessibility" style="
                 position: absolute;height: 25px;width: 30px;" id="calc_accessibility"><i style="font-size: 1.1rem" class="material-icons small">input</i></button>
@@ -1592,7 +1601,7 @@ body {
                   <div>
                       <h6 class="txt-m txt-bold mb6">Distance:</h6>
                       <form action="#" style="width:80%; font-size: 14px">
-                          <p class="range-field">
+                          <p class="range-field" style="padding: 0px; height: 50px">
                               <input type="range" id="test" min="50" max="500" step="50"  value="'+span_text+'">
                               <span class="thumb">
             <!--                      <span class="value"></span>-->
@@ -4082,6 +4091,21 @@ $(function() {
 
 
 
+
+        // //draw//////
+        // // https://github.com/mapbox/mapbox-gl-draw/blob/main/docs/API.md
+        // // add draw control
+        //  const draw = new MapboxDraw({
+        // displayControlsDefault: false,
+        // controls: {
+        //     point: true,
+        //     trash: true
+        // },
+        // //userProperties: true,
+        // });
+
+
+
         //toolbar   ///////////////////////////////////////////
         const landuse_tool_but = $('#landuse_tool_but')[0];
         landuse_tool_but.onclick =function(e) {
@@ -4103,7 +4127,14 @@ $(function() {
             //make visible the footer
             $('#toolbar_footer')[0].style.display = 'block';
             const toolbar_footer_group = $('#toolbar_footer_group')[0];
-            toolbar_footer_group.innerHTML = '<button type="button" class="btn btn-outline-success" id="save_toolbar">Save</button>\n' +
+            toolbar_footer_group.innerHTML =
+                '<div class="input-group input-group-sm mb-3" style="height: 20px; visibility: hidden; display: grid; align-items: baseline;\n' +
+                '    justify-items: start;"\n' +
+                '    align-content: stretch;>\n' +
+                '  <span class="input-group-text" style="height: 20px;" id="inputGroup-sizing-sm">Type shop</span>\n' +
+                '  <input type="text" class="form-control" style="height: 20px; border-color: black; width: fit-content;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">\n' +
+                '</div>\n'+
+                '<button type="button" class="btn btn-outline-success" id="save_toolbar">Save</button>\n' +
                 '            <button type="button" class="btn btn-outline-danger" id="discard_toolbar">Discard</button>'
 
           //check landuse layer
@@ -4189,37 +4220,83 @@ $(function() {
 
             // https://github.com/mapbox/mapbox-gl-draw/blob/main/docs/API.md
             // add draw control
-         const draw = new MapboxDraw({
-        displayControlsDefault: false,
-        controls: {
-            point: true,
-            trash: true
-        },
-        //userProperties: true,
-        });
+            //if(!(map.hasControl(draw))){
+                 const draw = new MapboxDraw({
+                displayControlsDefault: false,
+                controls: {
+                    point: true,
+                    trash: true
+                },
+                //userProperties: true,
+                });
+            //}
+
 
           $('#shop_tool')[0].onclick = function(e){
               //the user can enter the shop type  and see the control after clicking on the shops button
-              $('#toolbar_footer_group .input-group')[0].style.visibility = 'visible'
+              $('#toolbar_footer_group .input-group')[0].style.visibility = 'visible';
+
+
               map.addControl(draw);
 
               map.on('draw.create', updateArea);
               map.on('draw.delete', updateArea);
               map.on('draw.update', updateArea);
 
+
+              //while in drawing mode, the landuse and transit buttons are disabled
+              $('#landuse_tool_but')[0].disabled = true;
+              $('#transit_tool_but')[0].disabled = true;
+
+
               var new_points = [];
-              function updateArea(e){
+              function updateArea(e) {
                   console.log('draw e: ', e);
-                  let point = {"type":"","properties":"","geometry":""};
-                  point.type = e.features[0].type;
-                  point.properties = {"osm_id":e.features[0].id, "shop":$('#toolbar_footer_group input')[0].value}
-                  point.geometry = e.features[0].geometry;
 
-                  new_points.push(point);
+                  //if we add a point to the map
+                  if (e.type == 'draw.create') {
+                      console.log('draw create');
+                      console.log(e.features[0].id);
+                      let point = {"type": "", "properties": "", "geometry": ""};
+                      point.type = e.features[0].type;
+                      point.properties = {"osm_id": e.features[0].id, "shop": $('#toolbar_footer_group input')[0].value}
+                      point.geometry = e.features[0].geometry;
 
-                  console.log(point);
-                  console.log(new_points);
+                      new_points.push(point);
 
+                      console.log(point);
+                      console.log(new_points);
+                  }
+                  //if we delete a drawn point
+                  else if (e.type == 'draw.delete') {
+                      console.log('draw delete');
+                      delete_point_id = e.features[0].id;
+                      for (let i = 0; i < new_points.length; i++) {
+                          if (new_points[i].properties.osm_id == delete_point_id) {
+                              //delete the point from the shops dictionary by its id
+                              new_points.splice(i, 1);
+                              break;
+                          }
+
+
+                      }
+                  } else if (e.type == 'draw.update') {
+                      console.log('draw update');
+                      update_point_id = e.features[0].id;
+                      for (feature of new_points) {
+                          //console.log(feature.properties.osm_id);
+                          if (feature.properties.osm_id == update_point_id) {
+                              //update the point's coordinates from the shops dictionary by its id
+                              console.log(feature.geometry.coordinates)
+                              feature.geometry.coordinates = e.features[0].geometry.coordinates;
+                              console.log(feature.geometry.coordinates)
+                              break;
+                          }
+
+                      }
+
+
+                  }
               }
 
 
@@ -4241,6 +4318,10 @@ $(function() {
 
                   map.removeControl(draw);
 
+                  //we make the buttons active again after we finished drawing
+                   $('#landuse_tool_but')[0].disabled = false;
+                   $('#transit_tool_but')[0].disabled = false;
+
 
 
               }
@@ -4254,6 +4335,10 @@ $(function() {
                   $('#toolbar_footer')[0].style.display = 'none';
                   $('#toolbar_content')[0].style.display= 'none';
                   map.removeControl(draw);
+
+                  //we make the buttons active again after we finished drawing
+                   $('#landuse_tool_but')[0].disabled = false;
+                   $('#transit_tool_but')[0].disabled = false;
 
               }
 
@@ -4271,9 +4356,27 @@ $(function() {
 
             const toolbar_content_but_group = $('#toolbar_content_but_group')[0];
             console.log('transit_tool_but clicked ');
-            toolbar_content_but_group.innerHTML = '<button type="button" class="btn btn-secondary">1</button>\n' +
-            '      <button type="button" class="btn btn-secondary">2</button>\n' +
-            '      <button type="button" class="btn btn-secondary">3</button>';
+            toolbar_content_but_group.innerHTML =
+                '<button type="button" id="bus_tool" class="btn btn-secondary"><i class="material-icons">directions_bus</i>bus</button>\n' +
+                '<button type="button" id="train_tool" class="btn btn-secondary"><i class="material-icons">directions_railway</i>train</button>\n' +
+            '      <button type="button" id="subway_tools" class="btn btn-secondary" style="width: 160px"><i class="material-icons">directions_subway</i>subway</button>';
+
+
+
+            //make visible the footer
+            $('#toolbar_footer')[0].style.display = 'block';
+            const toolbar_footer_group = $('#toolbar_footer_group')[0];
+            toolbar_footer_group.innerHTML =
+                '<div class="input-group input-group-sm mb-3" style="height: 20px; visibility: hidden; display: grid; align-items: baseline;\n' +
+                '    justify-items: start;"\n' +
+                '    align-content: stretch;>\n' +
+                '  <span class="input-group-text" style="height: 20px;" id="inputGroup-sizing-sm">Type shop</span>\n' +
+                '  <input type="text" class="form-control" style="height: 20px; border-color: black; width: fit-content;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">\n' +
+                '</div>\n'+
+                '<button type="button" class="btn btn-outline-success" id="save_toolbar">Save</button>\n' +
+                '            <button type="button" class="btn btn-outline-danger" id="discard_toolbar">Discard</button>';
+
+
           //
           // //check public stops and lines layer
           // //uncheck other layers
@@ -4286,6 +4389,31 @@ $(function() {
             if ((input.id == 'aspern_publiclines' || input.id == 'aspern_publicstops') && input.checked==false){
                 input.click()
             }
+          }
+
+
+
+
+          // save button
+          const save = $('#save_toolbar')[0];
+          save.onclick = function (e){
+              console.log('save clicked');
+              $('#aspern_publiclines')[0].click();
+              $('#aspern_publicstops')[0].click();
+              $('#transit_tool_but')[0].checked = false;
+              $('#toolbar_footer')[0].style.display = 'none';
+              $('#toolbar_content')[0].style.display = 'none';
+          }
+          //discard button
+          const discard = $('#discard_toolbar')[0];
+          discard.onclick = function (e) {
+              console.log('discard clicked');
+              $('#aspern_publiclines')[0].click();
+              $('#aspern_publicstops')[0].click();
+              $('#transit_tool_but')[0].checked = false;
+              $('#toolbar_footer')[0].style.display = 'none';
+              $('#toolbar_content')[0].style.display = 'none';
+
           }
 
         }
