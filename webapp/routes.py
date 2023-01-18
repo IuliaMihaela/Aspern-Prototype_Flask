@@ -7,6 +7,7 @@ from requests import put, get, post, delete
 from poly_shannon import reproject, indexCalculation
 from distance_calc import reprojectdist, bufferDist
 from graphs import graphs
+from graphs2 import graphs_calc
 
 
 @app.route("/", methods=['GET'])
@@ -294,10 +295,24 @@ def post_calculated_graph_data():
     result = graphs(graph_type, data_type, data, prop)
     print('graph data: ', result)
 
+    # print('result type: ', type(result))
     return {'result': result}
 
 
+@app.route('/graph2/', methods=['POST'])
+def post_calculated_graph2_data():
+    print('graph 2 route')
+    dict = json.loads((request.data).decode())
+    df = gpd.GeoDataFrame.from_features(dict['data'], crs="EPSG:4326")
+    print('df', df)
+    print('prop', dict['prop'])
 
+    result = graphs_calc(df, dict['prop'])
+    print('graph data: ', result)
+    print(type(result))
+
+    #return {'result': result}
+    return result
 
 
 

@@ -2158,6 +2158,21 @@ original_data_aspern_trees_blocks = '';
 original_data_aspern_publicstops = '';
 original_data_shops = '';
 
+//define data for graphs for each layer
+graph_data_aspern_blocks_attr=''
+// graph_data_aspern_realUseBlocks = '';
+graph_data_aspern_landuse = '';
+// graph_data_aspern_bkmBlocks = '';
+graph_data_aspern_roads = '';
+graph_data_aspern_publiclines = '';
+graph_data_aspern_trees_blocks = '';
+graph_data_aspern_publicstops = '';
+graph_data_shops = '';
+graph_data_zoning = '';
+graph_data_osr = '';
+graph_data_green_area = '';
+graph_data_max_height = '';
+
 // const file_path = ["../data/prototype_layerWGS84.geojson","../data/final/aspern_blocks_attr.geojson", "../data/final/aspern_blocks_final.geojson", "../data/final/aspern_realUseBlocks.geojson", "../data/final/aspern_landcover_final.geojson", "../data/final/aspern_bkmBlocks.geojson", "../data/final/aspern_landuse.geojson", "../data/final/aspern_roads.geojson", "../data/final/aspern_publiclines.geojson", "../data/final/aspern_trees_blocks.geojson", "../data/final/aspern_publicstops.geojson", "../data/final/shops.geojson"]
 const file_path = ["../data/final/aspern_blocks_final.geojson", "../data/final/aspern_landcover_final.geojson", "../data/final/aspern_bkmBlocks.geojson",  "../data/final/aspern_roads.geojson", "../data/final/aspern_publiclines.geojson", "../data/final/aspern_trees_blocks.geojson", "../data/final/aspern_publicstops.geojson", "../data/final/shops.geojson"]
 
@@ -2166,7 +2181,7 @@ const file_path = ["../data/final/aspern_blocks_final.geojson", "../data/final/a
 cnt = 0, xmlhttp = new XMLHttpRequest(), method = "GET";
 function getXml() {
   xmlhttp.open(method, file_path[cnt], true);
-  xmlhttp.onreadystatechange = function() {
+  xmlhttp.onreadystatechange = async function() {
     if (xmlhttp.readyState === XMLHttpRequest.DONE && xmlhttp.status === 200) {
         try {
             const json_response = JSON.parse(this.responseText);
@@ -2187,12 +2202,33 @@ function getXml() {
                     load_layer_osr()
                     load_layer_green_area()
                     load_layer_max_height()
+
+                    graph_data_aspern_blocks_attr = await getGraphData(data_aspern_blocks_attr, 'main_cover');
+                    console.log('blocks', graph_data_aspern_blocks_attr);
+
+                    graph_data_aspern_landuse = await getGraphData(data_aspern_blocks_attr, 'landuse');
+                    console.log('landuse', graph_data_aspern_landuse);
+
+                    graph_data_zoning = await getGraphData(data_aspern_blocks_attr, 'zoning')
+                    console.log('zoning', graph_data_zoning);
+
+                    graph_data_osr = await getGraphData(data_aspern_blocks_attr, 'OSR')
+                    console.log('osr', graph_data_osr);
+
+                    graph_data_green_area = await getGraphData(data_aspern_blocks_attr, 'area_green_rel')
+                    console.log('green', graph_data_green_area);
+
+                    graph_data_max_height = await getGraphData(data_aspern_blocks_attr, 'max_height')
+                    console.log('height', graph_data_max_height);
+
+
                     break;
                 case 'aspern_landcover_final':  //'aspern_realUseBlocks':
                     data_aspern_realUseBlocks = json_response;
                     original_data_aspern_realUseBlocks = json_response;
                     //load_layer_aspern_realUseBlocks()
                     load_layer_aspern_blocks_attr_realUseBlocks()
+
                     break;
                 case 'aspern_bkmBlocks':
                     data_aspern_bkmBlocks = json_response;
@@ -2208,25 +2244,45 @@ function getXml() {
                     data_aspern_roads = json_response;
                     original_data_aspern_roads = json_response;
                     load_layer_aspern_roads()
+
+                    graph_data_aspern_roads = await getGraphData(data_aspern_roads, 'category_code');
+                    console.log('roads', graph_data_aspern_roads);
+
                     break;
                 case 'aspern_publiclines':
                     data_aspern_publiclines = json_response;
                     original_data_aspern_publiclines = json_response;
                     load_layer_aspern_publiclines()
+
+                    graph_data_aspern_publiclines = await getGraphData(data_aspern_publiclines, 'line_type_code');
+                    console.log('pub lines', graph_data_aspern_publiclines);
+
                     break;
                 case 'aspern_trees_blocks':
                     data_aspern_trees_blocks = json_response;
                     original_data_aspern_trees_blocks = json_response;
                     load_layer_aspern_trees_blocks()
+
+                    graph_data_aspern_trees_blocks = await getGraphData(data_aspern_trees_blocks, 'species');
+                    console.log('trees', graph_data_aspern_trees_blocks);
+
                     break;
                 case 'aspern_publicstops':
                     data_aspern_publicstops = json_response;
                     original_data_aspern_publicstops = json_response;
                     load_layer_aspern_publicstops()
+
+                    graph_data_aspern_publicstops = await getGraphData(data_aspern_publicstops, 'line_type_code');
+                    console.log('pub stops', graph_data_aspern_publicstops);
+
                     break;
                 case 'shops':
                     data_shops = json_response;
                     original_data_shops = json_response;
+
+                    graph_data_shops = await getGraphData(data_shops, 'shop');
+                    console.log('shops', graph_data_shops);
+
                     load_layer_shops()
 
                     //console.log(map.style._order)
@@ -2248,6 +2304,32 @@ function getXml() {
   xmlhttp.send();
 }
 //getXml(); // start it
+
+
+
+
+//...........get the graph data..........//
+async function getGraphData(data, prop){
+    const query = await fetch('/graph2/', { method: 'POST', body: JSON.stringify({'data':data, 'prop': prop})});
+    console.log('graph2 response: ',await query)
+    const response = await query.json();
+    console.log('api graph 2  response: ', response)
+    return response
+}
+
+function create_graph(response){
+    if(response.dataType == 'numerical'){
+        pass;
+    } else{
+        if(response.chartOptions[0] == 'histogram'){
+            pass;
+
+        } else if((response.chartOptions[0] == 'pieChart')){
+            pass;
+        }
+    }
+}
+
 
 
 // navigation
@@ -3337,6 +3419,7 @@ $(function() {
 
   map.on('load', ()=>{
     getXml() // load the local geojson files
+
 
       // toggle between original and changed data of the landuse layer
     // const restoreb = document.getElementById('retore_changes');
@@ -4459,6 +4542,11 @@ $(function() {
 
     for(const layer_input of layer_inputs){
         layer_input.onclick = function(e){
+
+            //console.log('graph data: ', getGraphData(data_aspern_blocks_attr, 'main_cover'))
+            //console.log(graph_data_aspern_blocks_attr);
+
+
             // console.log(this);
             // console.log(e);
 
