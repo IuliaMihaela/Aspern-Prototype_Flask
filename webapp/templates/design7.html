@@ -269,6 +269,25 @@ body {
     }
 
 
+
+    #main_layers::-webkit-scrollbar {
+        width: 12px;               /* width of the entire scrollbar */
+    }
+
+    #main_layers::-webkit-scrollbar-track {
+        background: whitesmoke;        /* color of the tracking area */
+    }
+
+    #main_layers::-webkit-scrollbar-thumb {
+        background-color: darkgrey;    /* color of the scroll thumb */
+        border-radius: 20px;       /* roundness of the scroll thumb */
+        border: 3px solid whitesmoke;  /* creates padding around scroll thumb */
+    }
+
+
+
+
+
     #select-form {
         font-size: 14px;
     }
@@ -821,6 +840,8 @@ body {
         position: absolute;
         left: 1%;
         top: 1%;
+        overflow-y: auto;
+        max-height: 100%;
     }
 
     .collapsible-header {
@@ -873,6 +894,16 @@ body {
     section .btn-group-sm {
         padding-left: 2rem;
     }
+
+
+    /*make the legend text small*/
+    .card-body ul {
+        font-size: small;
+    }
+
+    .collapsible-body p {
+        padding:0;
+     }
 
 
 
@@ -944,14 +975,14 @@ body {
                   <div id="legend_blocks" >
                     <ul>
                         <li><span style="background: #60c36c;"></span>greenSpace: <em>green open spaces, gardens, agricultural land</em></li>
-                        <li><span style="background: #856666;"></span>sealedSpace: <em>public and private sealed area, including roads, bike paths etc.</em></li>
+                        <li><span style="background: #856666;"></span>sealedSpace: <em>public and private sealed area, including roads, bike paths</em></li>
                         <li><span style="background: #ad949e;"></span>buildings</li>
                         <li><span style="background: #808080;"></span>construction: <em>construction sites, gravel pit</em></li>
                         <li><span style="background: #0080FF;"></span>water</li>
                     </ul>
                   </div>
 
-                  <div id="graph_blocks">
+                  <div id="graph_aspern_blocks_attr">
 
                   </div>
 
@@ -961,130 +992,130 @@ body {
           </section>
 
           <section>
-<div class="btn-group btn-group-sm" id="landuse_group" role="group" aria-label="Small button group">
-<!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
-<!--form-check-input    dropdown-item-->
+            <div class="btn-group btn-group-sm" id="landuse_group" role="group" aria-label="Small button group">
+            <!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
+            <!--form-check-input    dropdown-item-->
 
-    <button type="button" class="form-check btn btn-outline-dark">
-        <input class="form-check-input input_layers" type="checkbox" value="" id="aspern_landuse" data-bs-toggle="collapse" data-bs-target="#collapseLanduse" aria-expanded="false" aria-controls="collapseLanduse">
-        <label class="form-check-label" for="aspern_landuse">
-            Land Use
-        </label>
-    </button>
+                <button type="button" class="form-check btn btn-outline-dark">
+                    <input class="form-check-input input_layers" type="checkbox" value="" id="aspern_landuse" data-bs-toggle="collapse" data-bs-target="#collapseLanduse" aria-expanded="false" aria-controls="collapseLanduse">
+                    <label class="form-check-label" for="aspern_landuse">
+                        Land Use
+                    </label>
+                </button>
 
-    <button id="landuse_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+                <button id="landuse_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
 
-</div>
+            </div>
 
-<div class="collapse" id="collapseLanduse" style=" z-index: 1; top: 11%; right: 1%;">
-    <div class="card-body" style=" z-index: 1;  top: 11%; right: 1%; max-width: 30%;">
-        <ul class="min_legend">
-        <li class="label"><span style="background: #88db35;" data-bs-toggle="tooltip" data-bs-placement="left" title="recreation & leisure facilities"></span></li>
-        <li class="label"><span style="background: #e2d4c0;" data-bs-toggle="tooltip" data-bs-placement="left" title="business uses"></span></li>
-        <li class="label"><span style="background: #60c8c5;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>
-        <li class="label"><span style="background: #de8d24;" data-bs-toggle="tooltip" data-bs-placement="left" title="industrial & commercial uses"></span></li>
-        <li class="label"><span style="background: #8baf76;" data-bs-toggle="tooltip" data-bs-placement="left" title="agriculture"></span></li>
-        <li class="label"><span style="background: #bce48b;" data-bs-toggle="tooltip" data-bs-placement="left" title="natural area"></span></li>
-        <li class="label"><span style="background: #c4bcef;" data-bs-toggle="tooltip" data-bs-placement="left" title="social infrastructure"></span></li>
-        <li class="label"><span style="background: #c2d0a1;" data-bs-toggle="tooltip" data-bs-placement="left" title="technical infrastructure"></span></li>
-        <li class="label"><span style="background: #a8cfc6;" data-bs-toggle="tooltip" data-bs-placement="left" title="other transportation uses"></span></li>
-        <li class="label"><span style="background: #d9bdc6;" data-bs-toggle="tooltip" data-bs-placement="left" title="residential use"></span></li>
-        <li class="label"><span style="background: #d2e0c5;" data-bs-toggle="tooltip" data-bs-placement="left" title="road space"></span></li>
-       </ul>
-    </div>
-</div>
+            <div class="collapse" id="collapseLanduse" style=" z-index: 1; top: 11%; right: 1%;">
+                <div class="card-body" style=" z-index: 1;  top: 11%; right: 1%; max-width: 30%;">
+                    <ul class="min_legend">
+                    <li class="label"><span style="background: #88db35;" data-bs-toggle="tooltip" data-bs-placement="left" title="recreation & leisure facilities"></span></li>
+                    <li class="label"><span style="background: #e2d4c0;" data-bs-toggle="tooltip" data-bs-placement="left" title="business uses"></span></li>
+                    <li class="label"><span style="background: #60c8c5;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>
+                    <li class="label"><span style="background: #de8d24;" data-bs-toggle="tooltip" data-bs-placement="left" title="industrial & commercial uses"></span></li>
+                    <li class="label"><span style="background: #8baf76;" data-bs-toggle="tooltip" data-bs-placement="left" title="agriculture"></span></li>
+                    <li class="label"><span style="background: #bce48b;" data-bs-toggle="tooltip" data-bs-placement="left" title="natural area"></span></li>
+                    <li class="label"><span style="background: #c4bcef;" data-bs-toggle="tooltip" data-bs-placement="left" title="social infrastructure"></span></li>
+                    <li class="label"><span style="background: #c2d0a1;" data-bs-toggle="tooltip" data-bs-placement="left" title="technical infrastructure"></span></li>
+                    <li class="label"><span style="background: #a8cfc6;" data-bs-toggle="tooltip" data-bs-placement="left" title="other transportation uses"></span></li>
+                    <li class="label"><span style="background: #d9bdc6;" data-bs-toggle="tooltip" data-bs-placement="left" title="residential use"></span></li>
+                    <li class="label"><span style="background: #d2e0c5;" data-bs-toggle="tooltip" data-bs-placement="left" title="road space"></span></li>
+                   </ul>
+                </div>
+            </div>
 
-<div class="card" style="width: 18rem; display:none; height: fit-content" id="landuse_content">
-    <button id="btn-close-landuse" type="button" class="btn-close" aria-label="Close"></button>
-    <h6 class="card-title" style="text-align: center;">Land Use - block level</h6>
+            <div class="card" style="width: 18rem; display:none; height: fit-content" id="landuse_content">
+                <button id="btn-close-landuse" type="button" class="btn-close" aria-label="Close"></button>
+                <h6 class="card-title" style="text-align: center;">Land Use - block level</h6>
 
-  <div class="card-body" style="height: 90%; padding-top: 1px;">
-      <br>
+              <div class="card-body" style="height: 90%; padding-top: 1px;">
+                  <br>
 
-      <div id="legend_landuse">
-        <ul>
-            <li><span style="background: #88db35;"></span>recreation and leisure facilities</li>
-            <li><span style="background: #e2d4c0;"></span>business and mixed use with emphasis on business activity</li>
-            <li><span style="background: #60c8c5;"></span>water</li>
-            <li><span style="background: #de8d24;"></span>industrial and commercial uses</li>
-            <li><span style="background: #8baf76;"></span>agriculture</li>
-            <li><span style="background: #bce48b;"></span>natural area</li>
-            <li><span style="background: #c4bcef;"></span>social infrastructure</li>
-            <li><span style="background: #c2d0a1;"></span>technical infrastructure/art buildings/special uses</li>
-            <li><span style="background: #a8cfc6;"></span>other transportation uses</li>
-            <li><span style="background: #d9bdc6;"></span>residential and mixed use with emphasis on residential</li>
-            <li><span style="background: #d2e0c5;"></span>road space</li>
+                  <div id="legend_landuse">
+                    <ul>
+                        <li><span style="background: #88db35;"></span>recreation and leisure facilities</li>
+                        <li><span style="background: #e2d4c0;"></span>business and mixed use with emphasis on business activity</li>
+                        <li><span style="background: #60c8c5;"></span>water</li>
+                        <li><span style="background: #de8d24;"></span>industrial and commercial uses</li>
+                        <li><span style="background: #8baf76;"></span>agriculture</li>
+                        <li><span style="background: #bce48b;"></span>natural area</li>
+                        <li><span style="background: #c4bcef;"></span>social infrastructure</li>
+                        <li><span style="background: #c2d0a1;"></span>technical infrastructure/art buildings/special uses</li>
+                        <li><span style="background: #a8cfc6;"></span>other transportation uses</li>
+                        <li><span style="background: #d9bdc6;"></span>residential and mixed use with emphasis on residential</li>
+                        <li><span style="background: #d2e0c5;"></span>road space</li>
 
-        </ul>
-      </div>
+                    </ul>
+                  </div>
 
-      <div id="graph_landuse">
+                  <div id="graph_aspern_landuse">
 
-      </div>
+                  </div>
 
-  </div>
-</div>
-</section>
+              </div>
+            </div>
+            </section>
 
           <section>
-<div class="btn-group btn-group-sm" id="zoning_group" role="group" aria-label="Small button group">
-<!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
-<!--form-check-input    dropdown-item-->
+        <div class="btn-group btn-group-sm" id="zoning_group" role="group" aria-label="Small button group">
+        <!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
+        <!--form-check-input    dropdown-item-->
 
-    <button type="button" class="form-check btn btn-outline-dark">
-        <input class="form-check-input input_layers" type="checkbox" value="" id="zoning" data-bs-toggle="collapse" data-bs-target="#collapseZoning" aria-expanded="false" aria-controls="collapseZoning">
-        <label class="form-check-label" for="zoning">
-            Zoning
-        </label>
-    </button>
+            <button type="button" class="form-check btn btn-outline-dark">
+                <input class="form-check-input input_layers" type="checkbox" value="" id="zoning" data-bs-toggle="collapse" data-bs-target="#collapseZoning" aria-expanded="false" aria-controls="collapseZoning">
+                <label class="form-check-label" for="zoning">
+                    Zoning
+                </label>
+            </button>
 
-    <button id="zoning_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
+            <button id="zoning_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
 
-</div>
+        </div>
 
-<div class="collapse" id="collapseZoning" style=" z-index: 1; top: 17%; right: 1%;">
-    <div class="card-body" style=" z-index: 1; top: 17%; right: 1%; max-width: 30%;">
-        <ul class="min_legend">
-            <li class="label"><span style="background: #774c43;" data-bs-toggle="tooltip" data-bs-placement="left" title="E: recreation area"></span></li>
-            <li class="label"><span style="background: #8B4513;" data-bs-toggle="tooltip" data-bs-placement="left" title="GB: mixed developement"></span></li>
-            <li class="label"><span style="background: #D2691E;" data-bs-toggle="tooltip" data-bs-placement="left" title="GBBG: mixed developement - business developement area"></span></li>
-            <li class="label"><span style="background: #CD853F;" data-bs-toggle="tooltip" data-bs-placement="left" title="GBGV: mixed developement - business district"></span></li>
-            <li class="label"><span style="background: #F4A460;" data-bs-toggle="tooltip" data-bs-placement="left" title="IG: industrial area"></span></li>
-            <li class="label"><span style="background: #DEB887;" data-bs-toggle="tooltip" data-bs-placement="left" title="S: protected area"></span></li>
-            <li class="label"><span style="background: #FFE4B5;" data-bs-toggle="tooltip" data-bs-placement="left" title="WO: residential area"></span></li>
-            <li class="label"><span style="background: #000000;" data-bs-toggle="tooltip" data-bs-placement="left" title="Other"></span></li>
-       </ul>
-    </div>
-</div>
+        <div class="collapse" id="collapseZoning" style=" z-index: 1; top: 17%; right: 1%;">
+            <div class="card-body" style=" z-index: 1; top: 17%; right: 1%; max-width: 30%;">
+                <ul class="min_legend">
+                    <li class="label"><span style="background: #774c43;" data-bs-toggle="tooltip" data-bs-placement="left" title="E: recreation area"></span></li>
+                    <li class="label"><span style="background: #8B4513;" data-bs-toggle="tooltip" data-bs-placement="left" title="GB: mixed developement"></span></li>
+                    <li class="label"><span style="background: #D2691E;" data-bs-toggle="tooltip" data-bs-placement="left" title="GBBG: mixed developement - business developement area"></span></li>
+                    <li class="label"><span style="background: #CD853F;" data-bs-toggle="tooltip" data-bs-placement="left" title="GBGV: mixed developement - business district"></span></li>
+                    <li class="label"><span style="background: #F4A460;" data-bs-toggle="tooltip" data-bs-placement="left" title="IG: industrial area"></span></li>
+                    <li class="label"><span style="background: #DEB887;" data-bs-toggle="tooltip" data-bs-placement="left" title="S: protected area"></span></li>
+                    <li class="label"><span style="background: #FFE4B5;" data-bs-toggle="tooltip" data-bs-placement="left" title="WO: residential area"></span></li>
+                    <li class="label"><span style="background: #000000;" data-bs-toggle="tooltip" data-bs-placement="left" title="Other"></span></li>
+               </ul>
+            </div>
+        </div>
 
-<div class="card" style="width: 18rem; display:none; height: fit-content" id="zoning_content">
-    <button id="btn-close-zoning" type="button" class="btn-close" aria-label="Close"></button>
-    <h6 class="card-title" style="text-align: center;">Zoning</h6>
+        <div class="card" style="width: 18rem; display:none; height: fit-content" id="zoning_content">
+            <button id="btn-close-zoning" type="button" class="btn-close" aria-label="Close"></button>
+            <h6 class="card-title" style="text-align: center;">Zoning</h6>
 
-  <div class="card-body" style="height: 90%; padding-top: 1px;">
-      <br>
+          <div class="card-body" style="height: 90%; padding-top: 1px;">
+              <br>
 
-      <div id="legend_zoning">
-        <ul>
-            <li><span style="background: #774c43;"></span>E: <em>recreation area</em></li>
-            <li><span style="background: #8B4513;"></span>GB: <em>mixed developement</em></li>
-            <li><span style="background: #D2691E;"></span>GBBG: <em>mixed developement - business developement area</em></li>
-            <li><span style="background: #CD853F;"></span>GBGV: <em>mixed developement - business district</em></li>
-            <li><span style="background: #F4A460;"></span>IG: <em>industrial area</em></li>
-            <li><span style="background: #DEB887;"></span>S: <em>protected area</em></li>
-            <li><span style="background: #FFE4B5;"></span>WO: <em>residential area</em></li>
-            <li><span style="background: #000000;"></span>Other</li>
+              <div id="legend_zoning">
+                <ul>
+                    <li><span style="background: #774c43;"></span>E: <em>recreation area</em></li>
+                    <li><span style="background: #8B4513;"></span>GB: <em>mixed developement</em></li>
+                    <li><span style="background: #D2691E;"></span>GBBG: <em>mixed developement - business developement area</em></li>
+                    <li><span style="background: #CD853F;"></span>GBGV: <em>mixed developement - business district</em></li>
+                    <li><span style="background: #F4A460;"></span>IG: <em>industrial area</em></li>
+                    <li><span style="background: #DEB887;"></span>S: <em>protected area</em></li>
+                    <li><span style="background: #FFE4B5;"></span>WO: <em>residential area</em></li>
+                    <li><span style="background: #000000;"></span>Other</li>
 
-        </ul>
-      </div>
+                </ul>
+              </div>
 
-      <div id="graph_zoning">
+              <div id="graph_zoning">
 
-      </div>
+              </div>
 
-  </div>
-</div>
-</section>
+          </div>
+        </div>
+        </section>
 
           <section>
             <div class="btn-group btn-group-sm" id="green_group" role="group" aria-label="Small button group">
@@ -1139,6 +1170,10 @@ body {
                       </div>
                     </div>
 
+                  <div id="graph_green_area">
+
+                    </div>
+
               </div>
             </div>
             </section>
@@ -1183,6 +1218,10 @@ body {
                   </div>
                 </div>
 
+              <div id="graph_osr">
+
+              </div>
+
           </div>
         </div>
         </section>
@@ -1225,6 +1264,10 @@ body {
                     </div>
                   </div>
                 </div>
+
+              <div id="graph_max_height">
+
+              </div>
 
           </div>
         </div>
@@ -1278,7 +1321,7 @@ body {
                 </ul>
               </div>
 
-              <div id="graph_streets">
+              <div id="graph_aspern_roads">
 
               </div>
 
@@ -1338,7 +1381,7 @@ body {
                     </ul>
                   </div>
 
-                  <div id="graph_public_lines">
+                  <div id="graph_aspern_publiclines">
 
                   </div>
 
@@ -1440,7 +1483,7 @@ body {
                 </ul>
               </div>
 
-              <div id="graph_trees">
+              <div id="graph_aspern_trees_blocks">
 
               </div>
 
@@ -1499,7 +1542,7 @@ body {
                 </ul>
               </div>
 
-              <div id="graph_public_stations">
+              <div id="graph_aspern_publicstops">
 
               </div>
 
@@ -1795,131 +1838,6 @@ body {
 <!--</div>-->
 
 
-<!-- LEFT CANVAS (LAYERS)-->
-<!--<button id="btn-open-layers" class="btn btn-outline-secondary " type="button" ><i style="font-size: 1.1rem" class="material-icons small">filter_none</i></button>-->
-<!--<div style="height: 80%" class="split left offcanvas offcanvas-start offcanvas-size-sm menu" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling1" aria-labelledby="offcanvasScrollingLabel">-->
-<!--  <div class="offcanvas-header">-->
-<!--    <h5 class="offcanvas-title" id="offcanvasScrollingLabel1">Layers</h5>-->
-<!--    <button id="btn-close-layers" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>-->
-<!--  </div>-->
-<!--  <div class="offcanvas-body" style="height: 85%">-->
-
-<!--&lt;!&ndash;      layers&ndash;&gt;-->
-<!--&lt;!&ndash;      <ul class="navbar-nav" style="height: 95%; overflow-y: auto">&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;          justify-content-end flex-grow-1 pe-3&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;          <li class="nav-item dropdown">&ndash;&gt;-->
-<!--&lt;!&ndash;              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">&ndash;&gt;-->
-<!--&lt;!&ndash;                Land Use&ndash;&gt;-->
-<!--&lt;!&ndash;              </a>&ndash;&gt;-->
-<!--&lt;!&ndash;              <ul class="dropdown-menu layers_ul">&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                  <div class="form-check dropdown-item">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                    <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                    <label class="form-check-label" for="aspern_blocks_attr">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                        Block Attributes&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                    </label>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                  </div>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                  <div class="form-check dropdown-item">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                    <input class="form-check-input" type="checkbox" value="" id="aspern_realUseBlocks" >&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                    <label class="form-check-label" for="aspern_realUseBlocks">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                        Real Use - detailed blocks&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                    </label>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                  </div>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                   <div class="form-check dropdown-item">&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                    <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr_realUseBlocks">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                    <label class="form-check-label" for="aspern_blocks_attr_realUseBlocks">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                     <input class="form-check-input" type="checkbox" value="" id="aspern_blocks_attr">&ndash;&gt;-->
-<!--&lt;!&ndash;                     <label class="form-check-label" for="aspern_blocks_attr">&ndash;&gt;-->
-<!--&lt;!&ndash;                        Generalised blocks&ndash;&gt;-->
-<!--&lt;!&ndash;                    </label>&ndash;&gt;-->
-<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                  <div class="form-check dropdown-item">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <input class="form-check-input" type="checkbox" value="" id="aspern_landuse">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <label class="form-check-label" for="aspern_landuse">&ndash;&gt;-->
-<!--&lt;!&ndash;                        Land Use - block level&ndash;&gt;-->
-<!--&lt;!&ndash;                    </label>&ndash;&gt;-->
-<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                  <div class="form-check dropdown-item">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                    <input class="form-check-input" type="checkbox" value="" id="osr">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                    <label class="form-check-label" for="osr">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                        Open Space Ratio&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                    </label>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                </div>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                <div class="form-check dropdown-item">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <input class="form-check-input" type="checkbox" value="" id="zoning">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <label class="form-check-label" for="zoning">&ndash;&gt;-->
-<!--&lt;!&ndash;                        Zoning&ndash;&gt;-->
-<!--&lt;!&ndash;                    </label>&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                  <div class="form-check dropdown-item">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                    <input class="form-check-input" type="checkbox" value="" id="green_area">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                    <label class="form-check-label" for="green_area">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                        Green Area&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                    </label>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                </div>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                  <div class="form-check dropdown-item">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                    <input class="form-check-input" type="checkbox" value="" id="max_height">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                    <label class="form-check-label" for="max_height">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                        Maximum height&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                    </label>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                </div>&ndash;&gt;&ndash;&gt;-->
-
-<!--&lt;!&ndash;              </ul>&ndash;&gt;-->
-<!--&lt;!&ndash;            </li>&ndash;&gt;-->
-<!--&lt;!&ndash;            <li class="nav-item dropdown">&ndash;&gt;-->
-<!--&lt;!&ndash;                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">&ndash;&gt;-->
-<!--&lt;!&ndash;                  Road & public transport net&ndash;&gt;-->
-<!--&lt;!&ndash;                </a>&ndash;&gt;-->
-<!--&lt;!&ndash;                <ul class="dropdown-menu layers_ul">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="form-check dropdown-item">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <input class="form-check-input" type="checkbox" value="" id="aspern_roads" >&ndash;&gt;-->
-<!--&lt;!&ndash;                        <label class="form-check-label" for="aspern_roads">&ndash;&gt;-->
-<!--&lt;!&ndash;                            Street center-line&ndash;&gt;-->
-<!--&lt;!&ndash;                        </label>&ndash;&gt;-->
-<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="form-check dropdown-item">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <input class="form-check-input" type="checkbox" value="" id="aspern_publiclines">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <label class="form-check-label" for="aspern_publiclines">&ndash;&gt;-->
-<!--&lt;!&ndash;                            Public transport lines&ndash;&gt;-->
-<!--&lt;!&ndash;                        </label>&ndash;&gt;-->
-<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                </ul>&ndash;&gt;-->
-<!--&lt;!&ndash;              </li>&ndash;&gt;-->
-<!--&lt;!&ndash;              <li class="nav-item dropdown">&ndash;&gt;-->
-<!--&lt;!&ndash;                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">&ndash;&gt;-->
-<!--&lt;!&ndash;                  PoIs&ndash;&gt;-->
-<!--&lt;!&ndash;                </a>&ndash;&gt;-->
-<!--&lt;!&ndash;                <ul class="dropdown-menu layers_ul">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="form-check dropdown-item">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <input class="form-check-input" type="checkbox" value="" id="shops">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <label class="form-check-label" for="shops">&ndash;&gt;-->
-<!--&lt;!&ndash;                            Shops&ndash;&gt;-->
-<!--&lt;!&ndash;                        </label>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="form-check dropdown-item">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <input class="form-check-input" type="checkbox" value="" id="aspern_trees_blocks">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <label class="form-check-label" for="aspern_trees_blocks">&ndash;&gt;-->
-<!--&lt;!&ndash;                            Tree layer&ndash;&gt;-->
-<!--&lt;!&ndash;                        </label>&ndash;&gt;-->
-<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="form-check dropdown-item">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <input class="form-check-input" type="checkbox" value="" id="aspern_publicstops" >&ndash;&gt;-->
-<!--&lt;!&ndash;                        <label class="form-check-label" for="aspern_publicstops">&ndash;&gt;-->
-<!--&lt;!&ndash;                            Public transport stations&ndash;&gt;-->
-<!--&lt;!&ndash;                        </label>&ndash;&gt;-->
-<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                </ul>&ndash;&gt;-->
-<!--&lt;!&ndash;              </li>&ndash;&gt;-->
-<!--&lt;!&ndash;      </ul>&ndash;&gt;-->
-
-
-<!--      <section>-->
-<!--          <ul class="legend_ul" style="padding-left: 0rem;">-->
-<!--        </ul>-->
-<!--      </section>-->
-
-<!--  </div>-->
-<!--</div>-->
-
 
 <!-- BOTTOM CANVAS (GRAPHS) -->
 <div class="split left bottom split right offcanvas offcanvas-bottom" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -1984,138 +1902,138 @@ const map = new mapboxgl.Map({
 
 
 // define the html for the legend for each layer
-const legend_aspern_blocks_attr=
-    '            <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>\n' +
-    '            <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>\n' +
-    '            <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>\n' +
-    '            <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>\n' +
-    '            <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>\n';
-
-
-
-
-const legend_aspern_realUseBlocks ='   <li><strong>Class (”land cover”): </strong></li>\n' +
-    '            <br>\n' +
-    '            <li class="label"><span style="background: #60c36c;"></span>green area: <em>green open spaces, gardens, agricultural land</em></li>\n' +
-    '            <li class="label"><span style="background: #856666;"></span>sealed area (excluding buildings): <em>public and private sealed area excluding buildings, including roads, bike paths etc.</em></li>\n' +
-    '            <li class="label"><span style="background: #ad949e;"></span>buildings</li>\n' +
-    '            <li class="label"><span style="background: #808080;"></span>construction site: <em>construction sites, gravel pit</em></li>\n' +
-    '            <li class="label"><span style="background: #0080FF;"></span>water body</li>\n';
-
-const legend_aspern_bkmBlocks = '';
-
-const legend_aspern_landuse =
-    '            <li class="label"><span style="background: #88db35;" data-bs-toggle="tooltip" data-bs-placement="left" title="recreation & leisure facilities"></span></li>\n' +
-    '            <li class="label"><span style="background: #e2d4c0;" data-bs-toggle="tooltip" data-bs-placement="left" title="business uses"></span></li>\n' +
-    '            <li class="label"><span style="background: #60c8c5;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>\n' +
-    '            <li class="label"><span style="background: #de8d24;" data-bs-toggle="tooltip" data-bs-placement="left" title="industrial & commercial uses"></span></li>\n' +
-    '            <li class="label"><span style="background: #8baf76;" data-bs-toggle="tooltip" data-bs-placement="left" title="agriculture"></span></li>\n'+
-    '            <li class="label"><span style="background: #bce48b;" data-bs-toggle="tooltip" data-bs-placement="left" title="natural area"></span></li>\n' +
-    '            <li class="label"><span style="background: #c4bcef;" data-bs-toggle="tooltip" data-bs-placement="left" title="social infrastructure"></span></li>\n' +
-    '            <li class="label"><span style="background: #c2d0a1;" data-bs-toggle="tooltip" data-bs-placement="left" title="technical infrastructure"></span></li>\n' +
-    '            <li class="label"><span style="background: #a8cfc6;" data-bs-toggle="tooltip" data-bs-placement="left" title="other transportation uses"></span></li>\n' +
-    '            <li class="label"><span style="background: #d9bdc6;" data-bs-toggle="tooltip" data-bs-placement="left" title="residential use"></span></li>\n'+
-    '            <li class="label"><span style="background: #d2e0c5;" data-bs-toggle="tooltip" data-bs-placement="left" title="road space"></span></li>\n';
-
-
-const legend_aspern_roads =
-    '            <li class="label"><span style="background: #FFFF66;" data-bs-toggle="tooltip" data-bs-placement="left" title="G: municipal road"></span></li>\n' +
-    '            <li class="label"><span style="background: #FF9933;" data-bs-toggle="tooltip" data-bs-placement="left" title="L: state main road"></span></li>\n'+
-    '            <li class="label"><span style="background: #a117c7;" data-bs-toggle="tooltip" data-bs-placement="left" title="B: main road"></span></li>\n';
-
-
-
-const legend_aspern_publiclines =
-    '            <li class="label"><span style="background: #CC0000;" data-bs-toggle="tooltip" data-bs-placement="left" title="13: astax"></span></li>\n' +
-    '            <li class="label"><span style="background: #FF8000;" data-bs-toggle="tooltip" data-bs-placement="left" title="3: regional bus"></span></li>\n' +
-    '            <li class="label"><span style="background: #FFFF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="2: bus"></span></li>\n' +
-    '            <li class="label"><span style="background: #00FF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="5: rapid transit and regional train"></span></li>\n' +
-    '            <li class="label"><span style="background: #00FFFF;" data-bs-toggle="tooltip" data-bs-placement="left" title="9: astax"></span></li>\n'+
-    '            <li class="label"><span style="background: #0000FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="10: night bus"></span></li>\n' +
-    '            <li class="label"><span style="background: #FF33FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="11: night bus"></span></li>\n' +
-    '            <li class="label"><span style="background: #FF3399;" data-bs-toggle="tooltip" data-bs-placement="left" title="4: subway"></span></li>\n';
-
-
-
-const legend_aspern_trees_blocks =
-    '      <div>\n' +
-    '        <div class=\'row colors\' style="background: linear-gradient(to right, #99FF99, #66FF66,#33FF33, #00CC00, #00CC00, #009900);">\n' +
-    '        </div>\n' +
-    '        <div class=\'row labels\'>\n' +
-    '          <div class=\'label\'>0</div>\n' +
-    '          <div class=\'label\'>1</div>\n' +
-    '          <div class=\'label\'>2</div>\n' +
-    '          <div class=\'label\'>3</div>\n' +
-    '          <div class=\'label\'>4</div>\n' +
-    '          <div class=\'label\'>5</div>\n' +
-    '        </div>\n' +
-    '      </div>\n' +
-    '    </div>'+
-    '<div>\n';
-
-
-const legend_aspern_publicstops = legend_aspern_publiclines;
-
-const legend_shops = '';
-
-const legend_zoning =
-    '            <li class="label"><span style="background: #774c43;" data-bs-toggle="tooltip" data-bs-placement="left" title="E: recreation area"></span></li>\n' +
-    '            <li class="label"><span style="background: #8B4513;" data-bs-toggle="tooltip" data-bs-placement="left" title="GB: mixed developement"></span></li>\n' +
-    '            <li class="label"><span style="background: #D2691E;" data-bs-toggle="tooltip" data-bs-placement="left" title="GBBG: mixed developement - business developement area"></span></li>\n' +
-    '            <li class="label"><span style="background: #CD853F;" data-bs-toggle="tooltip" data-bs-placement="left" title="GBGV: mixed developement - business district"></span></li>\n' +
-    '            <li class="label"><span style="background: #F4A460;" data-bs-toggle="tooltip" data-bs-placement="left" title="IG: industrial area"></span></li>\n'+
-    '            <li class="label"><span style="background: #DEB887;" data-bs-toggle="tooltip" data-bs-placement="left" title="S: protected area"></span></li>\n' +
-    '            <li class="label"><span style="background: #FFE4B5;" data-bs-toggle="tooltip" data-bs-placement="left" title="WO: residential area"></span></li>\n' +
-    '            <li class="label"><span style="background: #000000;" data-bs-toggle="tooltip" data-bs-placement="left" title="Other"></span></li>\n'
-
-
-const legend_osr = '<div>\n' +
-    '      <div>\n' +
-    '        <div class=\'row colors\' style="background: linear-gradient(to right, #a9d6e5, #89c2d9,#61a5c2, #468faf, #2c7da0, #2a6f97, #014f86, #01497c, #013a63);">\n' +
-    '        </div>\n' +
-    '        <div class=\'row labels\'>\n' +
-    '          <div class=\'label\'>5</div>\n' +
-    '          <div class=\'label\'>10</div>\n' +
-    '          <div class=\'label\'>30</div>\n' +
-    '          <div class=\'label\'>50</div>\n' +
-    '          <div class=\'label\'>80</div>\n' +
-    '          <div class=\'label\'>100</div>\n' +
-    '        </div>\n' +
-    '      </div>\n' +
-    '    </div>'+
-    '<div>\n';
-
-
-const legend_green_area = '<div>\n' +
-    '      <div>\n' +
-    '        <div class=\'row colors\' style="background: linear-gradient(to right, #72de62, #6cd15c,#66c758, #62bf54, #5eb851, #57a84a, #4f9943, #478a3d, #3e7835, #34662d);">\n' +
-    '        </div>\n' +
-    '        <div class=\'row labels\'>\n' +
-    '          <div class=\'label\'>10</div>\n' +
-    '          <div class=\'label\'>30</div>\n' +
-    '          <div class=\'label\'>50</div>\n' +
-    '          <div class=\'label\'>70</div>\n' +
-    '          <div class=\'label\'>90</div>\n' +
-    '          <div class=\'label\'>110</div>\n' +
-    '        </div>\n' +
-    '      </div>\n' +
-    '    </div>';
-
-const legend_max_height = '<div>\n' +
-    '      <div>\n' +
-    '        <div class=\'row colors\' style="background: linear-gradient(to right, #edc4b3, #e6b8a2,#deab90, #cd9777, #c38e70, #b07d62, #9d6b53, #8a5a44);">\n' +
-    '        </div>\n' +
-    '        <div class=\'row labels\'>\n' +
-    '          <div class=\'label\'>10</div>\n' +
-    '          <div class=\'label\'>30</div>\n' +
-    '          <div class=\'label\'>50</div>\n' +
-    '          <div class=\'label\'>70</div>\n' +
-    '          <div class=\'label\'>90</div>\n' +
-    '          <div class=\'label\'>100</div>\n' +
-    '        </div>\n' +
-    '      </div>\n' +
-    '    </div>';
-
+// const legend_aspern_blocks_attr=
+//     '            <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>\n' +
+//     '            <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>\n' +
+//     '            <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>\n' +
+//     '            <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>\n' +
+//     '            <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>\n';
+//
+//
+//
+//
+// const legend_aspern_realUseBlocks ='   <li><strong>Class (”land cover”): </strong></li>\n' +
+//     '            <br>\n' +
+//     '            <li class="label"><span style="background: #60c36c;"></span>green area: <em>green open spaces, gardens, agricultural land</em></li>\n' +
+//     '            <li class="label"><span style="background: #856666;"></span>sealed area (excluding buildings): <em>public and private sealed area excluding buildings, including roads, bike paths etc.</em></li>\n' +
+//     '            <li class="label"><span style="background: #ad949e;"></span>buildings</li>\n' +
+//     '            <li class="label"><span style="background: #808080;"></span>construction site: <em>construction sites, gravel pit</em></li>\n' +
+//     '            <li class="label"><span style="background: #0080FF;"></span>water body</li>\n';
+//
+// const legend_aspern_bkmBlocks = '';
+//
+// const legend_aspern_landuse =
+//     '            <li class="label"><span style="background: #88db35;" data-bs-toggle="tooltip" data-bs-placement="left" title="recreation & leisure facilities"></span></li>\n' +
+//     '            <li class="label"><span style="background: #e2d4c0;" data-bs-toggle="tooltip" data-bs-placement="left" title="business uses"></span></li>\n' +
+//     '            <li class="label"><span style="background: #60c8c5;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>\n' +
+//     '            <li class="label"><span style="background: #de8d24;" data-bs-toggle="tooltip" data-bs-placement="left" title="industrial & commercial uses"></span></li>\n' +
+//     '            <li class="label"><span style="background: #8baf76;" data-bs-toggle="tooltip" data-bs-placement="left" title="agriculture"></span></li>\n'+
+//     '            <li class="label"><span style="background: #bce48b;" data-bs-toggle="tooltip" data-bs-placement="left" title="natural area"></span></li>\n' +
+//     '            <li class="label"><span style="background: #c4bcef;" data-bs-toggle="tooltip" data-bs-placement="left" title="social infrastructure"></span></li>\n' +
+//     '            <li class="label"><span style="background: #c2d0a1;" data-bs-toggle="tooltip" data-bs-placement="left" title="technical infrastructure"></span></li>\n' +
+//     '            <li class="label"><span style="background: #a8cfc6;" data-bs-toggle="tooltip" data-bs-placement="left" title="other transportation uses"></span></li>\n' +
+//     '            <li class="label"><span style="background: #d9bdc6;" data-bs-toggle="tooltip" data-bs-placement="left" title="residential use"></span></li>\n'+
+//     '            <li class="label"><span style="background: #d2e0c5;" data-bs-toggle="tooltip" data-bs-placement="left" title="road space"></span></li>\n';
+//
+//
+// const legend_aspern_roads =
+//     '            <li class="label"><span style="background: #FFFF66;" data-bs-toggle="tooltip" data-bs-placement="left" title="G: municipal road"></span></li>\n' +
+//     '            <li class="label"><span style="background: #FF9933;" data-bs-toggle="tooltip" data-bs-placement="left" title="L: state main road"></span></li>\n'+
+//     '            <li class="label"><span style="background: #a117c7;" data-bs-toggle="tooltip" data-bs-placement="left" title="B: main road"></span></li>\n';
+//
+//
+//
+// const legend_aspern_publiclines =
+//     '            <li class="label"><span style="background: #CC0000;" data-bs-toggle="tooltip" data-bs-placement="left" title="13: astax"></span></li>\n' +
+//     '            <li class="label"><span style="background: #FF8000;" data-bs-toggle="tooltip" data-bs-placement="left" title="3: regional bus"></span></li>\n' +
+//     '            <li class="label"><span style="background: #FFFF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="2: bus"></span></li>\n' +
+//     '            <li class="label"><span style="background: #00FF00;" data-bs-toggle="tooltip" data-bs-placement="left" title="5: rapid transit and regional train"></span></li>\n' +
+//     '            <li class="label"><span style="background: #00FFFF;" data-bs-toggle="tooltip" data-bs-placement="left" title="9: astax"></span></li>\n'+
+//     '            <li class="label"><span style="background: #0000FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="10: night bus"></span></li>\n' +
+//     '            <li class="label"><span style="background: #FF33FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="11: night bus"></span></li>\n' +
+//     '            <li class="label"><span style="background: #FF3399;" data-bs-toggle="tooltip" data-bs-placement="left" title="4: subway"></span></li>\n';
+//
+//
+//
+// const legend_aspern_trees_blocks =
+//     '      <div>\n' +
+//     '        <div class=\'row colors\' style="background: linear-gradient(to right, #99FF99, #66FF66,#33FF33, #00CC00, #00CC00, #009900);">\n' +
+//     '        </div>\n' +
+//     '        <div class=\'row labels\'>\n' +
+//     '          <div class=\'label\'>0</div>\n' +
+//     '          <div class=\'label\'>1</div>\n' +
+//     '          <div class=\'label\'>2</div>\n' +
+//     '          <div class=\'label\'>3</div>\n' +
+//     '          <div class=\'label\'>4</div>\n' +
+//     '          <div class=\'label\'>5</div>\n' +
+//     '        </div>\n' +
+//     '      </div>\n' +
+//     '    </div>'+
+//     '<div>\n';
+//
+//
+// const legend_aspern_publicstops = legend_aspern_publiclines;
+//
+// const legend_shops = '';
+//
+// const legend_zoning =
+//     '            <li class="label"><span style="background: #774c43;" data-bs-toggle="tooltip" data-bs-placement="left" title="E: recreation area"></span></li>\n' +
+//     '            <li class="label"><span style="background: #8B4513;" data-bs-toggle="tooltip" data-bs-placement="left" title="GB: mixed developement"></span></li>\n' +
+//     '            <li class="label"><span style="background: #D2691E;" data-bs-toggle="tooltip" data-bs-placement="left" title="GBBG: mixed developement - business developement area"></span></li>\n' +
+//     '            <li class="label"><span style="background: #CD853F;" data-bs-toggle="tooltip" data-bs-placement="left" title="GBGV: mixed developement - business district"></span></li>\n' +
+//     '            <li class="label"><span style="background: #F4A460;" data-bs-toggle="tooltip" data-bs-placement="left" title="IG: industrial area"></span></li>\n'+
+//     '            <li class="label"><span style="background: #DEB887;" data-bs-toggle="tooltip" data-bs-placement="left" title="S: protected area"></span></li>\n' +
+//     '            <li class="label"><span style="background: #FFE4B5;" data-bs-toggle="tooltip" data-bs-placement="left" title="WO: residential area"></span></li>\n' +
+//     '            <li class="label"><span style="background: #000000;" data-bs-toggle="tooltip" data-bs-placement="left" title="Other"></span></li>\n'
+//
+//
+// const legend_osr = '<div>\n' +
+//     '      <div>\n' +
+//     '        <div class=\'row colors\' style="background: linear-gradient(to right, #a9d6e5, #89c2d9,#61a5c2, #468faf, #2c7da0, #2a6f97, #014f86, #01497c, #013a63);">\n' +
+//     '        </div>\n' +
+//     '        <div class=\'row labels\'>\n' +
+//     '          <div class=\'label\'>5</div>\n' +
+//     '          <div class=\'label\'>10</div>\n' +
+//     '          <div class=\'label\'>30</div>\n' +
+//     '          <div class=\'label\'>50</div>\n' +
+//     '          <div class=\'label\'>80</div>\n' +
+//     '          <div class=\'label\'>100</div>\n' +
+//     '        </div>\n' +
+//     '      </div>\n' +
+//     '    </div>'+
+//     '<div>\n';
+//
+//
+// const legend_green_area = '<div>\n' +
+//     '      <div>\n' +
+//     '        <div class=\'row colors\' style="background: linear-gradient(to right, #72de62, #6cd15c,#66c758, #62bf54, #5eb851, #57a84a, #4f9943, #478a3d, #3e7835, #34662d);">\n' +
+//     '        </div>\n' +
+//     '        <div class=\'row labels\'>\n' +
+//     '          <div class=\'label\'>10</div>\n' +
+//     '          <div class=\'label\'>30</div>\n' +
+//     '          <div class=\'label\'>50</div>\n' +
+//     '          <div class=\'label\'>70</div>\n' +
+//     '          <div class=\'label\'>90</div>\n' +
+//     '          <div class=\'label\'>110</div>\n' +
+//     '        </div>\n' +
+//     '      </div>\n' +
+//     '    </div>';
+//
+// const legend_max_height = '<div>\n' +
+//     '      <div>\n' +
+//     '        <div class=\'row colors\' style="background: linear-gradient(to right, #edc4b3, #e6b8a2,#deab90, #cd9777, #c38e70, #b07d62, #9d6b53, #8a5a44);">\n' +
+//     '        </div>\n' +
+//     '        <div class=\'row labels\'>\n' +
+//     '          <div class=\'label\'>10</div>\n' +
+//     '          <div class=\'label\'>30</div>\n' +
+//     '          <div class=\'label\'>50</div>\n' +
+//     '          <div class=\'label\'>70</div>\n' +
+//     '          <div class=\'label\'>90</div>\n' +
+//     '          <div class=\'label\'>100</div>\n' +
+//     '        </div>\n' +
+//     '      </div>\n' +
+//     '    </div>';
+//
 
 
 // store the properties to be displayed for each layer
@@ -2203,6 +2121,7 @@ function getXml() {
                     load_layer_green_area()
                     load_layer_max_height()
 
+
                     graph_data_aspern_blocks_attr = await getGraphData(data_aspern_blocks_attr, 'main_cover');
                     console.log('blocks', graph_data_aspern_blocks_attr);
 
@@ -2220,6 +2139,14 @@ function getXml() {
 
                     graph_data_max_height = await getGraphData(data_aspern_blocks_attr, 'max_height')
                     console.log('height', graph_data_max_height);
+
+                    // create_graph(graph_data_aspern_blocks_attr, 'aspern_blocks_attr');
+                    // create_graph(graph_data_aspern_landuse, 'aspern_landuse');
+                    // create_graph(graph_data_zoning, 'zoning');
+                    // create_graph(graph_data_osr, 'osr');
+                    // create_graph(graph_data_green_area, 'green_area');
+                    // create_graph(graph_data_max_height, 'max_height');
+
 
 
                     break;
@@ -2317,17 +2244,56 @@ async function getGraphData(data, prop){
     return response
 }
 
-function create_graph(response){
-    if(response.dataType == 'numerical'){
-        pass;
-    } else{
-        if(response.chartOptions[0] == 'histogram'){
-            pass;
+function create_graph(response, layer_id){
+    console.log('graph creation');
+    //graph_elem_id =
+    //graph_elem = ($('#graph_'+toString(layer_id))[0]);
+    graph_elem = document.getElementById('graph_'+layer_id);
+    layout= {
+            height : 350,
+            width : 300,
+         margin: {
+            l: 0,
+          },
+        };
 
-        } else if((response.chartOptions[0] == 'pieChart')){
-            pass;
+
+        if(response.chartData[0].chartType == 'histogram'){
+            console.log('histogram');
+            var x = response.chartData[0].chartBinsLabels;
+            var y = response.chartData[0].chartValues.map(String);
+            console.log('labels: ', x);
+            console.log('values: ', y);
+            var grdata = [
+                  {
+                    histfunc: "sum",
+                    y: y,
+                    x: x,
+                    type: "histogram",
+                  }]
+
+
+
         }
-    }
+        else if(response.chartData[0].chartType == 'pieChart'){
+            consoloe.log('pie chart')
+            console.log('labels: ', response.chartData[0].chartBinsLabels);
+            console.log('values: ', response.chartData[0].chartValues);
+            var grdata = [
+                {
+                    labels: response.chartData[0].chartBinsLabels,
+                    values: response.chartData[0].chartValues,
+                    type: 'pie',
+                //     marker: {
+                //     colors: colors
+                // },
+                }
+                ];
+        }
+        console.log('grdata: ', grdata);
+
+
+    Plotly.newPlot(graph_elem, grdata, layout);
 }
 
 
@@ -3239,7 +3205,7 @@ async function sendData(){
     //     x.push(f['properties']['div_index']);
     // }
     let x = await calc_graph_data('histogram', 'numerical', data_shannon_index, 'div_index')
-    console.log('graph x: ', x)
+    console.log('graph x: ', x);
     x= x['result'];
     // console.log('x[\'result\']: ', x);
     //graph para
@@ -4235,11 +4201,18 @@ $(function() {
 
           // save button
           const save = $('#save_toolbar')[0];
-          save.onclick = function (e){
+          save.onclick = async function (e){
               console.log('save clicked');
               $('#aspern_landuse')[0].click();
               $('#landuse_tool_but')[0].checked = false;
               $('#toolbar_footer')[0].style.display = 'none';
+
+
+              //calculate graph data again
+              graph_data_aspern_landuse = await getGraphData(data_aspern_blocks_attr, 'landuse');
+              console.log('landuse new graph data', graph_data_aspern_landuse);
+              create_graph(graph_data_aspern_landuse, 'aspern_landuse');
+
           }
           //discard button
           const discard = $('#discard_toolbar')[0];
@@ -4385,7 +4358,7 @@ $(function() {
 
 
               const save = $('#save_toolbar')[0];
-              save.onclick = function (e){
+              save.onclick = async function (e){
                   console.log('save clicked');
                   //$('#shops')[0].click();
                   $('#poi_tool_but')[0].checked = false;
@@ -4404,6 +4377,12 @@ $(function() {
                   //we make the buttons active again after we finished drawing
                    $('#landuse_tool_but')[0].disabled = false;
                    $('#transit_tool_but')[0].disabled = false;
+
+
+                   //update graph
+                   graph_data_aspern_landuse = await getGraphData(data_aspern_blocks_attr, 'landuse');
+                  console.log('landuse new graph data', graph_data_aspern_landuse);
+                  create_graph(graph_data_aspern_landuse, 'aspern_landuse');
 
 
 
@@ -4600,6 +4579,13 @@ $(function() {
             // }
             console.log('check id: ', check_id)
             console.log('cliked layer: ', clickedLayer)
+
+
+            //.....calculate the graph.....//
+            create_graph(eval('graph_data_'+check_id), check_id);
+
+
+
 
             const legend_ul = document.getElementsByClassName('legend_ul')[0];
             // const legend = document.getElementById('legend');
