@@ -249,6 +249,38 @@ def post_calculated_data():
     print('index result: ', result)
     return result.to_json()
 
+# @app.route('/accessibility/', methods=['POST'])
+# def post_calculated_accessibility():
+#
+#     print('accessibility route')
+#     print('request decode type', type((request.data).decode()))
+#     dict = json.loads((request.data).decode())
+#     poi = dict['poi']
+#     dist = dict['dist']
+#     print(poi, dict)
+#
+#     if poi == 'transport':
+#         poi_file = gpd.read_file(r'webapp\data\final\aspern_publicstops.geojson')
+#     else:
+#         poi_file = gpd.read_file(r'webapp\data\final\shops.geojson')
+#
+#     blocks_file = gpd.read_file(r'webapp\data\final\aspern_blocks_final.geojson')
+#
+#
+#     reprojection = reprojectdist(poi_file, blocks_file)
+#     print('reprojection', reprojection)
+#
+#     result = bufferDist(reprojection[0], reprojection[1], int(dist))
+#     print('accessibility result: ', result)
+#     blocksWithinDist, bufArea_dis =result
+#     print('type blocksWithinDist: ', type(blocksWithinDist))
+#     # return blocksWithinDist.to_json()
+#     response = {'blocks': blocksWithinDist.to_json(), 'buffer': bufArea_dis.to_json()}
+#     #return blocksWithinDist.to_json() #, bufArea_dis.to_json()
+#
+#     return response
+
+
 @app.route('/accessibility/', methods=['POST'])
 def post_calculated_accessibility():
 
@@ -259,12 +291,14 @@ def post_calculated_accessibility():
     dist = dict['dist']
     print(poi, dict)
 
-    if poi == 'transport':
-        poi_file = gpd.read_file(r'webapp\data\final\aspern_publicstops.geojson')
-    else:
-        poi_file = gpd.read_file(r'webapp\data\final\shops.geojson')
+    # if poi == 'transport':
+    #     poi_file = gpd.read_file(r'webapp\data\final\aspern_publicstops.geojson')
+    # else:
+    #     poi_file = gpd.read_file(r'webapp\data\final\shops.geojson')
 
     blocks_file = gpd.read_file(r'webapp\data\final\aspern_blocks_final.geojson')
+
+    poi_file = gpd.GeoDataFrame.from_features(dict['poi'], crs="EPSG:4326")
 
 
     reprojection = reprojectdist(poi_file, blocks_file)
@@ -279,6 +313,7 @@ def post_calculated_accessibility():
     #return blocksWithinDist.to_json() #, bufArea_dis.to_json()
 
     return response
+
 
 
 @app.route('/graph/', methods=['POST'])

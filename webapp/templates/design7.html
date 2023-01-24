@@ -874,7 +874,9 @@ body {
 
     /*draw feature */
     .mapboxgl-ctrl-top-right {
-        top: 10%;
+        top: 91%;
+        /*bottom:2%;*/
+        right:42%
     }
 
     /*input on the toolbar footer for the new data properties*/
@@ -1470,9 +1472,11 @@ body {
               <br>
 
              <div id="legend_trees">
-                <ul>
-                    <li><strong>Classification Categories of Tree height: </strong></li>
-                    <br>
+                <p><strong>Classification Categories of Tree height: </strong></p>
+
+                <ul style="columns: 3">
+<!--                    <li><strong>Classification Categories of Tree height: </strong></li>-->
+<!--                    <br>-->
                     <li><span style="background: #99FF99;"></span>0</li>
                     <li><span style="background: #66FF66;"></span>1</li>
                     <li><span style="background: #33FF33;"></span>2</li>
@@ -1607,7 +1611,7 @@ body {
                       </div>
                     </div>
 
-                  <div id="shannon_graph">
+                  <div id="graph_shannon">
 
                   </div>
 
@@ -2078,18 +2082,106 @@ original_data_shops = '';
 
 //define data for graphs for each layer
 graph_data_aspern_blocks_attr=''
-// graph_data_aspern_realUseBlocks = '';
 graph_data_aspern_landuse = '';
-// graph_data_aspern_bkmBlocks = '';
 graph_data_aspern_roads = '';
 graph_data_aspern_publiclines = '';
 graph_data_aspern_trees_blocks = '';
 graph_data_aspern_publicstops = '';
 graph_data_shops = '';
-graph_data_zoning = '';
-graph_data_osr = '';
-graph_data_green_area = '';
-graph_data_max_height = '';
+// graph_data_zoning = '';
+// graph_data_osr = '';
+// graph_data_green_area = '';
+// graph_data_max_height = '';
+
+//define colors for graphs for each layer
+graph_colors_aspern_blocks_attr={'len': '+1', 'colors':{'green area':
+                '#60c36c',
+                'other sealed area':
+                '#856666',
+                'buildings':
+                '#ad949e',
+                'construction site':
+                '#808080',
+                'water':
+                '#0080FF'}};
+graph_colors_aspern_landuse = {'len': '+1', 'colors':{'recreation & leisure facilities':
+                '#88db35',
+                'business uses':
+                '#e2d4c0',
+                'water':
+                '#60c8c5',
+                'industrial & commercial uses':
+                '#de8d24',
+                'agriculture':
+                '#8baf76',
+                'natural area':
+                '#bce48b',
+                'social infrastructure':
+                '#c4bcef',
+                'technical infrastructure':
+                '#c2d0a1',
+                'other transportation uses':
+                '#a8cfc6',
+                'residential use':
+                '#d9bdc6',
+                'road space':
+                '#d2e0c5'}};
+graph_colors_aspern_roads = {'len': '+1', 'colors': {'municipal road':
+                '#FFFF66',
+                'state main road':
+                '#FF9933',
+                'main road':
+                '#a117c7'}};
+graph_colors_aspern_publiclines = {'len': '+1', 'colors':{'astax':
+                '#CC0000',
+                'regional bus':
+                '#FF8000',
+                'bus':
+                '#FFFF00',
+                'rapid transit and regional train':
+                '#00FF00',
+                'astax':
+                '#00FFFF',
+                'night bus':
+                '#0000FF',
+                'night bus':
+                '#FF33FF',
+                'subway':
+                '#FF3399'}};
+graph_colors_aspern_trees_blocks = {'len': '1', 'colors': '#009900'};
+graph_colors_aspern_publicstops = {'len': '+1', 'colors':{'astax':
+                '#CC0000',
+                'regional bus':
+                '#FF8000',
+                'bus':
+                '#FFFF00',
+                'rapid transit and regional train':
+                '#00FF00',
+                'astax':
+                '#00FFFF',
+                'night bus':
+                '#0000FF',
+                'night bus':
+                '#FF33FF',
+                'subway':
+                '#FF3399'}};
+graph_colors_shops = {'len': '1', 'colors': 'rgba(0,0,5,0.34)'};
+graph_colors_zoning = {'len':'+1', 'colors':{'recreation area':
+                '#774c43',
+                'mixed developement':
+                '#8B4513',
+                 'business developement area':
+                '#D2691E',
+                'commercial district':
+                '#CD853F',
+                'industrial area':
+                '#F4A460',
+                'protected area':
+                '#DEB887',
+                'residential area':
+                '#FFE4B5'}};
+graph_colors_shannon_index = {'len': '1', 'colors': '#811515'};
+
 
 // const file_path = ["../data/prototype_layerWGS84.geojson","../data/final/aspern_blocks_attr.geojson", "../data/final/aspern_blocks_final.geojson", "../data/final/aspern_realUseBlocks.geojson", "../data/final/aspern_landcover_final.geojson", "../data/final/aspern_bkmBlocks.geojson", "../data/final/aspern_landuse.geojson", "../data/final/aspern_roads.geojson", "../data/final/aspern_publiclines.geojson", "../data/final/aspern_trees_blocks.geojson", "../data/final/aspern_publicstops.geojson", "../data/final/shops.geojson"]
 const file_path = ["../data/final/aspern_blocks_final.geojson", "../data/final/aspern_landcover_final.geojson", "../data/final/aspern_bkmBlocks.geojson",  "../data/final/aspern_roads.geojson", "../data/final/aspern_publiclines.geojson", "../data/final/aspern_trees_blocks.geojson", "../data/final/aspern_publicstops.geojson", "../data/final/shops.geojson"]
@@ -2131,14 +2223,14 @@ function getXml() {
                     graph_data_zoning = await getGraphData(data_aspern_blocks_attr, 'zoning')
                     console.log('zoning', graph_data_zoning);
 
-                    graph_data_osr = await getGraphData(data_aspern_blocks_attr, 'OSR')
-                    console.log('osr', graph_data_osr);
+                    // graph_data_osr = await getGraphData(data_aspern_blocks_attr, 'OSR')
+                    // console.log('osr', graph_data_osr);
 
-                    graph_data_green_area = await getGraphData(data_aspern_blocks_attr, 'area_green_rel')
-                    console.log('green', graph_data_green_area);
-
-                    graph_data_max_height = await getGraphData(data_aspern_blocks_attr, 'max_height')
-                    console.log('height', graph_data_max_height);
+                    // graph_data_green_area = await getGraphData(data_aspern_blocks_attr, 'area_green_rel')
+                    // console.log('green', graph_data_green_area);
+                    //
+                    // graph_data_max_height = await getGraphData(data_aspern_blocks_attr, 'max_height')
+                    // console.log('height', graph_data_max_height);
 
                     // create_graph(graph_data_aspern_blocks_attr, 'aspern_blocks_attr');
                     // create_graph(graph_data_aspern_landuse, 'aspern_landuse');
@@ -2172,7 +2264,7 @@ function getXml() {
                     original_data_aspern_roads = json_response;
                     load_layer_aspern_roads()
 
-                    graph_data_aspern_roads = await getGraphData(data_aspern_roads, 'category_code');
+                    graph_data_aspern_roads = await getGraphData(data_aspern_roads, 'category');
                     console.log('roads', graph_data_aspern_roads);
 
                     break;
@@ -2181,7 +2273,7 @@ function getXml() {
                     original_data_aspern_publiclines = json_response;
                     load_layer_aspern_publiclines()
 
-                    graph_data_aspern_publiclines = await getGraphData(data_aspern_publiclines, 'line_type_code');
+                    graph_data_aspern_publiclines = await getGraphData(data_aspern_publiclines, 'line_type');
                     console.log('pub lines', graph_data_aspern_publiclines);
 
                     break;
@@ -2199,7 +2291,7 @@ function getXml() {
                     original_data_aspern_publicstops = json_response;
                     load_layer_aspern_publicstops()
 
-                    graph_data_aspern_publicstops = await getGraphData(data_aspern_publicstops, 'line_type_code');
+                    graph_data_aspern_publicstops = await getGraphData(data_aspern_publicstops, 'line_type');
                     console.log('pub stops', graph_data_aspern_publicstops);
 
                     break;
@@ -2212,11 +2304,12 @@ function getXml() {
 
                     load_layer_shops()
 
+
                     //console.log(map.style._order)
-                    // switch the layers order so that the 3d buildings layer is on top of the landuse layer
-                    index_landuse = getKeyByValue(map.style._order, 'layer_aspern_landuse');
+                    // switch the layers order
+                    index_landuse = getKeyByValue(map.style._order, 'layer_aspern_publicstops');
                     index_bkm = getKeyByValue(map.style._order, 'layer_aspern_bkmBlocks');
-                    map.style._order[index_bkm] = 'layer_aspern_landuse';
+                    map.style._order[index_bkm] = 'layer_aspern_publicstops';
                     map.style._order[index_landuse] = 'layer_aspern_bkmBlocks';
                     break;
             }
@@ -2244,7 +2337,7 @@ async function getGraphData(data, prop){
     return response
 }
 
-function create_graph(response, layer_id){
+function create_graph(response, layer_id, graph_colors){
     console.log('graph creation');
     //graph_elem_id =
     //graph_elem = ($('#graph_'+toString(layer_id))[0]);
@@ -2256,12 +2349,28 @@ function create_graph(response, layer_id){
             l: 0,
           },
         };
+    var x = response.chartData[0].chartBinsLabels;
+    var y = response.chartData[0].chartValues;
+
+    //display the appropriate colors
+    let mar ={};
+    if(graph_colors.len == '1'){
+        mar = {color: graph_colors.colors};
+    }
+    else{
+        let list_colors=[];
+        for (let label of x){
+            list_colors.push(graph_colors.colors[label])
+        }
+        mar={'color': list_colors};
+    }
+    console.log('marker: ', mar);
 
 
         if(response.chartData[0].chartType == 'histogram'){
             console.log('histogram');
-            var x = response.chartData[0].chartBinsLabels;
-            var y = response.chartData[0].chartValues.map(String);
+            // var x = response.chartData[0].chartBinsLabels;
+            // var y = response.chartData[0].chartValues;
             console.log('labels: ', x);
             console.log('values: ', y);
             var grdata = [
@@ -2270,6 +2379,7 @@ function create_graph(response, layer_id){
                     y: y,
                     x: x,
                     type: "histogram",
+                      marker: mar,
                   }]
 
 
@@ -2281,12 +2391,12 @@ function create_graph(response, layer_id){
             console.log('values: ', response.chartData[0].chartValues);
             var grdata = [
                 {
-                    labels: response.chartData[0].chartBinsLabels,
-                    values: response.chartData[0].chartValues,
+                    // labels: response.chartData[0].chartBinsLabels,
+                    // values: response.chartData[0].chartValues,
+                    label: x,
+                    values: y,
                     type: 'pie',
-                //     marker: {
-                //     colors: colors
-                // },
+                    marker: mar,
                 }
                 ];
         }
@@ -3199,33 +3309,34 @@ async function sendData(){
     // make the section bigger so that the graph can fit
     const s= $('#shannon_content')[0];
     s.style.height = 'fit-content'; //'70%'
+
+
     //graph data calculation
-    // let x = [];
-    // for (f of data.features){
-    //     x.push(f['properties']['div_index']);
-    // }
-    let x = await calc_graph_data('histogram', 'numerical', data_shannon_index, 'div_index')
-    console.log('graph x: ', x);
-    x= x['result'];
-    // console.log('x[\'result\']: ', x);
-    //graph para
-    var trace = {
-    x: x,
-    type: 'histogram',
-    marker: {
-            color: '#811515'
-        },
-      };
-    var grdata = [trace];
-    graph = document.getElementById('shannon_graph');
-    layout= {
-            height : 350,
-            width : 300,
-         margin: {
-            l: 0,
-          },
-        };
-    Plotly.newPlot(graph, grdata, layout);
+    // let x = await calc_graph_data('histogram', 'numerical', data_shannon_index, 'div_index')
+    // console.log('graph x: ', x);
+    // x= x['result'];
+    // // console.log('x[\'result\']: ', x);
+    // //graph para
+    // var trace = {
+    // x: x,
+    // type: 'histogram',
+    // marker: {
+    //         color: '#811515'
+    //     },
+    //   };
+    // var grdata = [trace];
+    // graph = document.getElementById('graph_shannon');
+    // layout= {
+    //         height : 350,
+    //         width : 300,
+    //      margin: {
+    //         l: 0,
+    //       },
+    //     };
+    // Plotly.newPlot(graph, grdata, layout);
+
+    let graph_data = await getGraphData(data_shannon_index, 'div_index');
+    create_graph(graph_data, 'shannon', graph_colors_shannon_index);
 
 
 
@@ -3266,12 +3377,12 @@ async function calc_accessibility(dist, poi, layer){
         '<span class="visually-hidden">Loading...</span>\n    </div>'
 
 
-
+    const poi_data = poi == 'transport' ? data_aspern_publicstops : data_shops;
 
     console.log('function for sending the accessibility data');
     // console.log('json data to send: ', JSON.stringify(eval('data_'+check_id)));
     // const query = await fetch('/flask/', { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
-    const query = await fetch('/accessibility/', { method: 'POST', body: JSON.stringify({'poi':poi, 'dist':dist})});
+    const query = await fetch('/accessibility/', { method: 'POST', body: JSON.stringify({'poi':poi_data, 'dist':dist})});
     const data = await query.json();
     console.log('data', data);
     console.log(typeof data['blocks'])
@@ -3292,7 +3403,7 @@ async function calc_accessibility(dist, poi, layer){
     else{
         layer_data = buffer_data
     }
-    const poi_data = poi == 'transport' ? data_aspern_publicstops : data_shops;
+
 
     if( map.getLayer('layer_accessibility_fill')){
         map.getSource('layer_accessibility_fill').setData(layer_data);
@@ -4211,7 +4322,7 @@ $(function() {
               //calculate graph data again
               graph_data_aspern_landuse = await getGraphData(data_aspern_blocks_attr, 'landuse');
               console.log('landuse new graph data', graph_data_aspern_landuse);
-              create_graph(graph_data_aspern_landuse, 'aspern_landuse');
+              create_graph(graph_data_aspern_landuse, 'aspern_landuse', graph_colors_aspern_landuse);
 
           }
           //discard button
@@ -4235,8 +4346,8 @@ $(function() {
         poi_tool_but.onclick =function(e) {
             //make visible the content
             $('#toolbar_content')[0].style.display= 'block';
-            //make visible the footer
-            $('#toolbar_footer')[0].style.display= 'block';
+            //the footer still not visible until shops button clicked
+            $('#toolbar_footer')[0].style.display= 'none';
 
 
 
@@ -4246,32 +4357,21 @@ $(function() {
                 '<button type="button" id="shop_tool" class="btn btn-secondary"><i class="material-icons">shopping_basket</i>shop</button>\n' +
             '      <button type="button" id="school_tools" class="btn btn-secondary"><i class="material-icons">school</i>school</button>';
 
-          //make visible the footer
-            $('#toolbar_footer')[0].style.display = 'block';
-            const toolbar_footer_group = $('#toolbar_footer_group')[0];
-            toolbar_footer_group.innerHTML =
-                '<div class="input-group input-group-sm mb-3" style="height: 20px; visibility: hidden; display: grid; align-items: baseline;\n' +
-                '    justify-items: start;"\n' +
-                '    align-content: stretch;>\n' +
-                '  <span class="input-group-text" style="height: 20px;" id="inputGroup-sizing-sm">Type shop</span>\n' +
-                '  <input type="text" class="form-control" style="height: 20px; border-color: black; width: fit-content;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">\n' +
-                '</div>\n'+
-                '<button type="button" class="btn btn-outline-success" id="save_toolbar">Save</button>\n' +
-                '            <button type="button" class="btn btn-outline-danger" id="discard_toolbar">Discard</button>'
+          // //make visible the footer
+          //   $('#toolbar_footer')[0].style.display = 'block';
+          //   const toolbar_footer_group = $('#toolbar_footer_group')[0];
+          //   toolbar_footer_group.innerHTML =
+          //       '<div class="input-group input-group-sm mb-3" style="height: 20px; visibility: hidden; display: grid; align-items: baseline;\n' +
+          //       '    justify-items: start;"\n' +
+          //       '    align-content: stretch;>\n' +
+          //       '  <span class="input-group-text" style="height: 20px;" id="inputGroup-sizing-sm">Type shop</span>\n' +
+          //       '  <input type="text" class="form-control" style="height: 20px; border-color: black; width: fit-content;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">\n' +
+          //       '</div>\n'+
+          //       '<button type="button" class="btn btn-outline-success" id="save_toolbar">Save</button>\n' +
+          //       '            <button type="button" class="btn btn-outline-danger" id="discard_toolbar">Discard</button>'
 
 
-          // //check shops layer
-          // //uncheck other layers
-          const inputs_layers = document.getElementsByClassName('input_layers');
-          for (const input of inputs_layers){
-              //if we find a layer that is shown on the map
-            if (input.id != 'shops' && input.checked){
-                input.click()
-              }
-            if (input.id == 'shops' && input.checked==false){
-                input.click()
-            }
-          }
+
 
 
             // https://github.com/mapbox/mapbox-gl-draw/blob/main/docs/API.md
@@ -4289,6 +4389,33 @@ $(function() {
 
 
           $('#shop_tool')[0].onclick = function(e){
+                  // //check shops layer
+          // //uncheck other layers
+          const inputs_layers = document.getElementsByClassName('input_layers');
+          for (const input of inputs_layers){
+              //if we find a layer that is shown on the map
+            if (input.id != 'shops' && input.checked){
+                input.click()
+              }
+            if (input.id == 'shops' && input.checked==false){
+                input.click()
+            }
+          }
+
+              //make visible the footer
+            $('#toolbar_footer')[0].style.display = 'block';
+            const toolbar_footer_group = $('#toolbar_footer_group')[0];
+            toolbar_footer_group.innerHTML =
+                '<div class="input-group input-group-sm mb-3" style="height: 20px; visibility: hidden; display: grid; align-items: baseline;\n' +
+                '    justify-items: start;"\n' +
+                '    align-content: stretch;>\n' +
+                '  <span class="input-group-text" style="height: 20px;" id="inputGroup-sizing-sm">Type shop</span>\n' +
+                '  <input type="text" class="form-control" style="height: 20px; border-color: black; width: fit-content;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">\n' +
+                '</div>\n'+
+                '<button type="button" class="btn btn-outline-success" id="save_toolbar">Save</button>\n' +
+                '            <button type="button" class="btn btn-outline-danger" id="discard_toolbar">Discard</button>'
+
+
               //the user can enter the shop type  and see the control after clicking on the shops button
               $('#toolbar_footer_group .input-group')[0].style.visibility = 'visible';
 
@@ -4300,10 +4427,13 @@ $(function() {
               map.on('draw.update', updateArea);
 
 
-              //while in drawing mode, the landuse and transit buttons are disabled
+              //while in drawing mode, the landuse, transit and school buttons are disabled
               $('#landuse_tool_but')[0].disabled = true;
               $('#transit_tool_but')[0].disabled = true;
+              $('#school_tools')[0].disabled = true
 
+
+              let newpopup_coord;
 
               var new_points = [];
               function updateArea(e) {
@@ -4322,9 +4452,23 @@ $(function() {
 
                       console.log(point);
                       console.log(new_points);
+
+
+                  //  const newpopup = new mapboxgl.Popup()
+                  // .setLngLat(e.features[0].geometry.coordinates)
+                  // .setHTML('<h1>Hello World!</h1>')
+                  // .addTo(map);
+                  //  console.log(newpopup.getElement())
+                      newpopup_coord = e.features[0].geometry.coordinates
+
+
+
+
+
                   }
                   //if we delete a drawn point
-                  else if (e.type == 'draw.delete') {
+                  else
+                      if (e.type == 'draw.delete') {
                       console.log('draw delete');
                       delete_point_id = e.features[0].id;
                       for (let i = 0; i < new_points.length; i++) {
@@ -4336,7 +4480,8 @@ $(function() {
 
 
                       }
-                  } else if (e.type == 'draw.update') {
+                  } else
+                      if (e.type == 'draw.update') {
                       console.log('draw update');
                       update_point_id = e.features[0].id;
                       for (feature of new_points) {
@@ -4354,6 +4499,11 @@ $(function() {
 
                   }
               }
+
+              // const newpopup = new mapboxgl.Popup()
+              //     .setLngLat(newpopup_coord)
+              //     .setHTML('<h1>Hello World!</h1>')
+              //     .addTo(map);
 
 
 
@@ -4374,15 +4524,16 @@ $(function() {
 
                   map.removeControl(draw);
 
-                  //we make the buttons active again after we finished drawing
+                  //we make the disabled buttons active again after we finished drawing
                    $('#landuse_tool_but')[0].disabled = false;
                    $('#transit_tool_but')[0].disabled = false;
+                   $('#school_tools')[0].disabled = false;
 
 
                    //update graph
-                   graph_data_aspern_landuse = await getGraphData(data_aspern_blocks_attr, 'landuse');
-                  console.log('landuse new graph data', graph_data_aspern_landuse);
-                  create_graph(graph_data_aspern_landuse, 'aspern_landuse');
+                   graph_data_shops = await getGraphData(data_shops, 'shop');
+                  console.log('landuse new graph data', graph_data_shops);
+                  create_graph(graph_data_shops, 'shops', graph_colors_shops);
 
 
 
@@ -4398,9 +4549,10 @@ $(function() {
                   $('#toolbar_content')[0].style.display= 'none';
                   map.removeControl(draw);
 
-                  //we make the buttons active again after we finished drawing
+                  //we make the disabled buttons active again after we finished drawing
                    $('#landuse_tool_but')[0].disabled = false;
                    $('#transit_tool_but')[0].disabled = false;
+                   $('#school_tools')[0].disabled = false;
 
               }
 
@@ -4582,7 +4734,20 @@ $(function() {
 
 
             //.....calculate the graph.....//
-            create_graph(eval('graph_data_'+check_id), check_id);
+            try{
+                // try{
+                //     eval('graph_colors_'+check_id)
+                // }
+                // catch(error){
+                //
+                // }
+                create_graph(eval('graph_data_'+check_id), check_id, eval('graph_colors_'+check_id));
+
+            }
+            catch(error){
+                console.log(error);
+            }
+
 
 
 
@@ -4756,6 +4921,8 @@ $(function() {
                 //     console.log('landuse clicked -> data button')
                 //     document.getElementById('index_calc').style.display = "block";
                 // }
+
+                console.log('lngLat: ', e.lngLat)
 
                 // zoom in on the clicked feature
                 map.flyTo({center: e.lngLat, zoom:16});
@@ -4944,33 +5111,33 @@ $(function() {
 
 
                             // if the property is one of the above and its value is not null
-                            // if (range_property_list.includes(li_prop) && span_text!='null'){
-                            //     // we define the range stop number
-                            //     if (Number(span_text)<10){
-                            //         max_range_nr ='100'
-                            //     }
-                            //     else if (Number(span_text)>1000){
-                            //         max_range_nr = String(Number(span_text)*3)
-                            //     }
-                            //     else if (Number(span_text)>10000){
-                            //         max_range_nr = String(Number(span_text)*2)
-                            //     }
-                            //     else{
-                            //         max_range_nr = String(Math.pow(Number(span_text),2));
-                            //     }
-                            //
-                            //     li.getElementsByTagName('span')[0].innerHTML = '\n        <form action="#" style="width:130px; font-size: 14px">\n            <p class="range-field">\n                <input type="range" id="test5" min="0" max="'+max_range_nr+'"  value="'+span_text+'"><span class="thumb"><span class="value"></span></span>\n            </p>\n        </form>\n    '
-                            //     // String(Number(span_text)*3)
-                            //
-                            //     // li.getElementsByTagName('span')[0].onchange = function(e){
-                            //     //     console.log('e: ', e);
-                            //     //     console.log('on change this: ', this);
-                            //     //     let new_value =e.target.value;
-                            //     //     save_dict_property(li, new_value);
-                            //     // }
-                            //
-                            //
-                            // }else
+                            if (range_property_list.includes(li_prop) && span_text!='null'){
+                                // we define the range stop number
+                                if (Number(span_text)<10){
+                                    max_range_nr ='100'
+                                }
+                                else if (Number(span_text)>1000){
+                                    max_range_nr = String(Number(span_text)*3)
+                                }
+                                else if (Number(span_text)>10000){
+                                    max_range_nr = String(Number(span_text)*2)
+                                }
+                                else{
+                                    max_range_nr = String(Math.pow(Number(span_text),2));
+                                }
+
+                                li.getElementsByTagName('span')[0].innerHTML = '\n        <form action="#" style="width:130px; font-size: 14px">\n            <p class="range-field">\n                <input type="range" id="test5" min="0" max="'+max_range_nr+'"  value="'+span_text+'"><span class="thumb"><span class="value"></span></span>\n            </p>\n        </form>\n    '
+                                // String(Number(span_text)*3)
+
+                                // li.getElementsByTagName('span')[0].onchange = function(e){
+                                //     console.log('e: ', e);
+                                //     console.log('on change this: ', this);
+                                //     let new_value =e.target.value;
+                                //     save_dict_property(li, new_value);
+                                // }
+
+
+                            }else
                             // putting the dropdown for landuse property
                             if(properties_keys[i]== 'landuse' && landuse_tool_but.checked){
                                 console.log('span text: ', span_text)
@@ -5019,9 +5186,9 @@ $(function() {
                                     // we store the changes of landuse in the main blocks layer
                                     save_dict_property(li, new_value, 'aspern_blocks_attr');
                                 }
-                                // else{
-                                //     save_dict_property(li, new_value, check_id);
-                                // }
+                                else{
+                                    save_dict_property(li, new_value, check_id);
+                                }
 
                             }
 
