@@ -914,8 +914,13 @@ body {
 
 
     /*make the legend text small*/
-    .card-body ul {
+    /*.card-body ul {*/
+    /*    font-size: small;*/
+    /*    text-indent: -0.5rem*/
+    /*}*/
+    .max_legend {
         font-size: small;
+        text-indent: -0.5rem
     }
 
     .collapsible-body p {
@@ -990,7 +995,7 @@ body {
                   <br>
 
                   <div id="legend_blocks" >
-                    <ul>
+                    <ul class="max_legend">
                         <li><span style="background: #60c36c;"></span>greenSpace: <em>green open spaces, gardens, agricultural land</em></li>
                         <li><span style="background: #856666;"></span>sealedSpace: <em>public and private sealed area, including roads, bike paths</em></li>
                         <li><span style="background: #ad949e;"></span>buildings</li>
@@ -1050,7 +1055,7 @@ body {
                   <br>
 
                   <div id="legend_landuse">
-                    <ul>
+                    <ul class="max_legend">
                         <li><span style="background: #88db35;"></span>recreation and leisure facilities</li>
                         <li><span style="background: #e2d4c0;"></span>business and mixed use with emphasis on business activity</li>
                         <li><span style="background: #60c8c5;"></span>water</li>
@@ -1113,7 +1118,7 @@ body {
               <br>
 
               <div id="legend_zoning">
-                <ul>
+                <ul class="max_legend">
                     <li><span style="background: #774c43;"></span>E: <em>recreation area</em></li>
                     <li><span style="background: #8B4513;"></span>GB: <em>mixed developement</em></li>
                     <li><span style="background: #D2691E;"></span>GBBG: <em>mixed developement - business developement area</em></li>
@@ -1330,7 +1335,7 @@ body {
               <br>
 
               <div id="legend_streets">
-                <ul>
+                <ul class="max_legend">
                     <li><span style="background: #FFFF66;"></span>G: <em>municipal road</em></li>
                     <li><span style="background: #FF9933;"></span>L: <em>state main road</em></li>
                     <li><span style="background: #a117c7;"></span>B: <em>main road</em></li>
@@ -1385,7 +1390,7 @@ body {
                   <br>
 
                   <div id="legend_public_lines">
-                    <ul>
+                    <ul class="max_legend">
                         <li><span style="background: #CC0000;"></span>13: <em>astax</em></li>
                         <li><span style="background: #FF8000;"></span>3: <em>regional bus</em></li>
                         <li><span style="background: #FFFF00;"></span>2: <em>bus</em></li>
@@ -1443,7 +1448,7 @@ body {
               <br>
 
              <div id="legend_shops">
-                <ul>
+                <ul class="max_legend">
 
                 </ul>
               </div>
@@ -1489,7 +1494,7 @@ body {
              <div id="legend_trees">
                 <p><strong>Classification Categories of Tree height: </strong></p>
 
-                <ul style="columns: 3">
+                <ul style="columns: 3" class="max_legend">
 <!--                    <li><strong>Classification Categories of Tree height: </strong></li>-->
 <!--                    <br>-->
                     <li><span style="background: #99FF99;"></span>0</li>
@@ -1549,7 +1554,7 @@ body {
               <br>
 
               <div id="legend_public_stations">
-                <ul>
+                <ul class="max_legend">
                     <li><span style="background: #CC0000;"></span>13: <em>astax</em></li>
                     <li><span style="background: #FF8000;"></span>3: <em>regional bus</em></li>
                     <li><span style="background: #FFFF00;"></span>2: <em>bus</em></li>
