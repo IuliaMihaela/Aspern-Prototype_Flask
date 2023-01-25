@@ -283,6 +283,19 @@ body {
         border-radius: 20px;       /* roundness of the scroll thumb */
         border: 3px solid whitesmoke;  /* creates padding around scroll thumb */
     }
+    #analysis_layers::-webkit-scrollbar {
+        width: 12px;               /* width of the entire scrollbar */
+    }
+
+    #analysis_layers::-webkit-scrollbar-track {
+        background: whitesmoke;        /* color of the tracking area */
+    }
+
+    #analysis_layers::-webkit-scrollbar-thumb {
+        background-color: darkgrey;    /* color of the scroll thumb */
+        border-radius: 20px;       /* roundness of the scroll thumb */
+        border: 3px solid whitesmoke;  /* creates padding around scroll thumb */
+    }
 
 
 
@@ -859,6 +872,8 @@ body {
         position: absolute;
         right: 1%;
         top: 1%;
+        overflow-y: auto;
+        max-height: 100%;
     }
 
     .btn-outline-dark {

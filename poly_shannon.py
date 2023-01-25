@@ -13,6 +13,7 @@ import time
 
 
 def reproject (geodf, crs = "EPSG:3857"):
+    # print('reproject func')
     # geodf = input geodataframe
     # crs = a projected crs (unit must be meter), default is EPSG:3857
 
@@ -29,6 +30,8 @@ def reproject (geodf, crs = "EPSG:3857"):
 
 
 def indexCalculation (geodf_reprj, landUseCol, radius = 500, uniqueID = None):
+    # print('index calc funct')
+
     #geodf_reprj = reprojected geodataframe (unit mut be meter)
     #landUseCol = attribute (column) with the landuse information
     #radius --> defines how big the neighborhood should be

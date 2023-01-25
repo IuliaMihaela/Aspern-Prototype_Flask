@@ -76,12 +76,12 @@ def data2():
 
 @app.route("/data/final/aspern_blocks_final.geojson", methods=['GET'])
 def data21():
-    # with open(r'webapp\data\final\aspern_blocks_final.geojson', encoding='utf-8') as f:
-    #     return f.read()
-    path = os.path.dirname(__file__)
-    filename = os.path.join(path, r'webapp\data\final\aspern_blocks_final.geojson')
-    with open(filename, encoding='utf-8') as f:
+    with open(r'webapp\data\final\aspern_blocks_final.geojson', encoding='utf-8') as f:
         return f.read()
+    # path = os.path.dirname(__file__)
+    # filename = os.path.join(path, r'webapp\data\final\aspern_blocks_final.geojson')
+    # with open(filename, encoding='utf-8') as f:
+    #     return f.read()
 
 @app.route("/data/final/aspern_blocks_final_updated.geojson", methods=['GET'])
 def data211():
@@ -241,8 +241,8 @@ def post_calculated_data():
     print('data: ', dict)
 
     # save the updated landuse data on a separate file
-    with open(r'webapp\data\final\aspern_blocks_final_updated.geojson', 'w', encoding='utf-8') as f:
-        f.write(json.dumps(dict))
+    # with open(r'webapp\data\final\aspern_blocks_final_updated.geojson', 'w', encoding='utf-8') as f:
+    #     f.write(json.dumps(dict))
 
 
     df = gpd.GeoDataFrame.from_features(dict, crs="EPSG:4326")
