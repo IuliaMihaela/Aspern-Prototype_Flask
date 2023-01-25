@@ -8,6 +8,7 @@ from poly_shannon import reproject, indexCalculation
 from distance_calc import reprojectdist, bufferDist
 from graphs import graphs
 from graphs2 import graphs_calc
+import os.path
 
 
 @app.route("/", methods=['GET'])
@@ -75,7 +76,11 @@ def data2():
 
 @app.route("/data/final/aspern_blocks_final.geojson", methods=['GET'])
 def data21():
-    with open(r'webapp\data\final\aspern_blocks_final.geojson', encoding='utf-8') as f:
+    # with open(r'webapp\data\final\aspern_blocks_final.geojson', encoding='utf-8') as f:
+    #     return f.read()
+    path = os.path.dirname(__file__)
+    filename = os.path.join(path, r'webapp\data\final\aspern_blocks_final.geojson')
+    with open(filename, encoding='utf-8') as f:
         return f.read()
 
 @app.route("/data/final/aspern_blocks_final_updated.geojson", methods=['GET'])
