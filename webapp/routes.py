@@ -13,7 +13,9 @@ import os.path
 
 @app.route("/", methods=['GET'])
 def home():
-    return render_template('show_index.html')
+    return render_template('main.html')
+    # return render_template('design7.html')
+    # return render_template('show_index.html')
     # return render_template('prop_canvas.html')
     # return render_template('dynamic_prop.html')
     # return render_template('updated_plots.html')
