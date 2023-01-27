@@ -1,10 +1,6 @@
 // initialization collapsible
-//$(document).ready(function(){
 console.log('collapsible elem', $('.collapsible').collapsible())
 $('.collapsible').collapsible();
-  //});
-
-
 
 
 // this function will be used to find the index of a layer in the order list of the map
@@ -17,12 +13,12 @@ function getKeyByValue(object, value) {
             }
         }
 
+
 // for the minimal legend
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
-
 
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiaXVsaWFtaWhhZWxhIiwiYSI6ImNsNmdiMTEwZTBwYmczb3ByMGY2YnhwcGEifQ.iwOH4cy-z0B3Q8a41_yfSQ';
@@ -50,44 +46,38 @@ const properties_max_height = ['main_cover', 'max_height'];
 
 
 // define the dictionaries that are going to store the geojson data that is going to get updated
-// var data = '';
-// data_prototype_layerWGS84 = '';
-data_aspern_blocks_attr=''
-data_aspern_realUseBlocks = '';
-data_aspern_bkmBlocks = '';
-// data_aspern_landuse = '';
-data_aspern_roads = '';
-data_aspern_publiclines = '';
-data_aspern_trees_blocks = '';
-data_aspern_publicstops = '';
-data_shops = '';
+let data_aspern_blocks_attr;
+let data_aspern_realUseBlocks;
+let data_aspern_bkmBlocks;
+let data_aspern_roads;
+let data_aspern_publiclines ;
+let data_aspern_trees_blocks;
+let data_aspern_publicstops;
+let data_shops;
+
 // define the dictionaries that are going to store the geojson data that is going to stay intact
-// original_data_prototype_layerWGS84 = '';
-original_data_aspern_blocks_attr=''
-original_data_aspern_realUseBlocks = '';
-original_data_aspern_bkmBlocks = '';
-// original_data_aspern_landuse = '';
-original_data_aspern_roads = '';
-original_data_aspern_publiclines = '';
-original_data_aspern_trees_blocks = '';
-original_data_aspern_publicstops = '';
-original_data_shops = '';
+let original_data_aspern_blocks_attr;
+let original_data_aspern_realUseBlocks ;
+let original_data_aspern_bkmBlocks;
+let original_data_aspern_roads;
+let original_data_aspern_publiclines;
+let original_data_aspern_trees_blocks;
+let original_data_aspern_publicstops;
+let original_data_shops;
 
 //define data for graphs for each layer
-graph_data_aspern_blocks_attr=''
-graph_data_aspern_landuse = '';
-graph_data_aspern_roads = '';
-graph_data_aspern_publiclines = '';
-graph_data_aspern_trees_blocks = '';
-graph_data_aspern_publicstops = '';
-graph_data_shops = '';
-// graph_data_zoning = '';
-// graph_data_osr = '';
-// graph_data_green_area = '';
-// graph_data_max_height = '';
+let graph_data_aspern_blocks_attr;
+let graph_data_aspern_landuse;
+let graph_data_aspern_roads;
+let graph_data_aspern_publiclines;
+let graph_data_aspern_trees_blocks;
+let graph_data_aspern_publicstops;
+let graph_data_shops;
 
 //define colors for graphs for each layer
-graph_colors_aspern_blocks_attr={'len': '+1', 'colors':{'green area':
+//if len is 1, we have only one color for the graph
+//if not, we have more colors
+const graph_colors_aspern_blocks_attr={'len': '+1', 'colors':{'green area':
                 '#60c36c',
                 'other sealed area':
                 '#856666',
@@ -97,7 +87,7 @@ graph_colors_aspern_blocks_attr={'len': '+1', 'colors':{'green area':
                 '#808080',
                 'water':
                 '#0080FF'}};
-graph_colors_aspern_landuse = {'len': '+1', 'colors':{'recreation & leisure facilities':
+const graph_colors_aspern_landuse = {'len': '+1', 'colors':{'recreation & leisure facilities':
                 '#88db35',
                 'business uses':
                 '#e2d4c0',
@@ -119,13 +109,13 @@ graph_colors_aspern_landuse = {'len': '+1', 'colors':{'recreation & leisure faci
                 '#d9bdc6',
                 'road space':
                 '#d2e0c5'}};
-graph_colors_aspern_roads = {'len': '+1', 'colors': {'municipal road':
+const graph_colors_aspern_roads = {'len': '+1', 'colors': {'municipal road':
                 '#FFFF66',
                 'state main road':
                 '#FF9933',
                 'main road':
                 '#a117c7'}};
-graph_colors_aspern_publiclines = {'len': '+1', 'colors':{'astax':
+const graph_colors_aspern_publiclines = {'len': '+1', 'colors':{'astax':
                 '#CC0000',
                 'regional bus':
                 '#FF8000',
@@ -141,8 +131,8 @@ graph_colors_aspern_publiclines = {'len': '+1', 'colors':{'astax':
                 '#FF33FF',
                 'subway':
                 '#FF3399'}};
-graph_colors_aspern_trees_blocks = {'len': '1', 'colors': '#009900'};
-graph_colors_aspern_publicstops = {'len': '+1', 'colors':{'astax':
+const graph_colors_aspern_trees_blocks = {'len': '1', 'colors': '#009900'};
+const graph_colors_aspern_publicstops = {'len': '+1', 'colors':{'astax':
                 '#CC0000',
                 'regional bus':
                 '#FF8000',
@@ -158,8 +148,8 @@ graph_colors_aspern_publicstops = {'len': '+1', 'colors':{'astax':
                 '#FF33FF',
                 'subway':
                 '#FF3399'}};
-graph_colors_shops = {'len': '1', 'colors': 'rgba(0,0,5,0.34)'};
-graph_colors_zoning = {'len':'+1', 'colors':{'recreation area':
+const graph_colors_shops = {'len': '1', 'colors': 'rgba(0,0,5,0.34)'};
+const graph_colors_zoning = {'len':'+1', 'colors':{'recreation area':
                 '#774c43',
                 'mixed developement':
                 '#8B4513',
@@ -173,12 +163,10 @@ graph_colors_zoning = {'len':'+1', 'colors':{'recreation area':
                 '#DEB887',
                 'residential area':
                 '#FFE4B5'}};
-graph_colors_shannon_index = {'len': '1', 'colors': '#811515'};
+const graph_colors_shannon_index = {'len': '1', 'colors': '#811515'};
 
 
-// const file_path = ["../data/prototype_layerWGS84.geojson","../data/final/aspern_blocks_attr.geojson", "../data/final/aspern_blocks_final.geojson", "../data/final/aspern_realUseBlocks.geojson", "../data/final/aspern_landcover_final.geojson", "../data/final/aspern_bkmBlocks.geojson", "../data/final/aspern_landuse.geojson", "../data/final/aspern_roads.geojson", "../data/final/aspern_publiclines.geojson", "../data/final/aspern_trees_blocks.geojson", "../data/final/aspern_publicstops.geojson", "../data/final/shops.geojson"]
 const file_path = ["../data/final/aspern_blocks_final.geojson", "../data/final/aspern_landcover_final.geojson", "../data/final/aspern_bkmBlocks.geojson",  "../data/final/aspern_roads.geojson", "../data/final/aspern_publiclines.geojson", "../data/final/aspern_trees_blocks.geojson", "../data/final/aspern_publicstops.geojson", "../data/final/shops.geojson"]
-
 
 //..............open all files...............//
 cnt = 0, xmlhttp = new XMLHttpRequest(), method = "GET";
@@ -190,12 +178,7 @@ function getXml() {
             const json_response = JSON.parse(this.responseText);
             console.log(JSON.parse(this.responseText).name);
             switch(json_response.name){
-                // case 'prototype_layerWGS84':
-                //     original_data_prototype_layerWGS84 = json_response;
-                //     data_prototype_layerWGS84 = json_response;
-                //     load_layer_prototype_layerWGS84()
-                //     break;
-                case 'aspern_blocks_final':  //'aspern_blocks_attr4':
+                case 'aspern_blocks_final':
                     data= json_response;
                     data_aspern_blocks_attr = json_response;
                     original_data_aspern_blocks_attr = json_response;
@@ -216,29 +199,10 @@ function getXml() {
                     graph_data_zoning = await getGraphData(data_aspern_blocks_attr, 'zoning')
                     console.log('zoning', graph_data_zoning);
 
-                    // graph_data_osr = await getGraphData(data_aspern_blocks_attr, 'OSR')
-                    // console.log('osr', graph_data_osr);
-
-                    // graph_data_green_area = await getGraphData(data_aspern_blocks_attr, 'area_green_rel')
-                    // console.log('green', graph_data_green_area);
-                    //
-                    // graph_data_max_height = await getGraphData(data_aspern_blocks_attr, 'max_height')
-                    // console.log('height', graph_data_max_height);
-
-                    // create_graph(graph_data_aspern_blocks_attr, 'aspern_blocks_attr');
-                    // create_graph(graph_data_aspern_landuse, 'aspern_landuse');
-                    // create_graph(graph_data_zoning, 'zoning');
-                    // create_graph(graph_data_osr, 'osr');
-                    // create_graph(graph_data_green_area, 'green_area');
-                    // create_graph(graph_data_max_height, 'max_height');
-
-
-
                     break;
-                case 'aspern_landcover_final':  //'aspern_realUseBlocks':
+                case 'aspern_landcover_final':
                     data_aspern_realUseBlocks = json_response;
                     original_data_aspern_realUseBlocks = json_response;
-                    //load_layer_aspern_realUseBlocks()
                     load_layer_aspern_blocks_attr_realUseBlocks()
 
                     break;
@@ -247,11 +211,6 @@ function getXml() {
                     original_data_aspern_bkmBlocks = json_response;
                     load_layer_aspern_bkmBlocks()
                     break;
-                // case 'aspern_landuse_cl':
-                //     data_aspern_landuse = json_response;
-                //     original_data_aspern_landuse = json_response;
-                //     load_layer_aspern_landuse()
-                //     break;
                 case 'aspern_roads':
                     data_aspern_roads = json_response;
                     original_data_aspern_roads = json_response;
@@ -298,8 +257,8 @@ function getXml() {
                     load_layer_shops()
 
 
-                    //console.log(map.style._order)
                     // switch the layers order
+                    // we put the 3d buildings layer to be above the others
                     index_landuse = getKeyByValue(map.style._order, 'layer_aspern_publicstops');
                     index_bkm = getKeyByValue(map.style._order, 'layer_aspern_bkmBlocks');
                     map.style._order[index_bkm] = 'layer_aspern_publicstops';
@@ -316,7 +275,6 @@ function getXml() {
   };
   xmlhttp.send();
 }
-//getXml(); // start it
 
 async function getGraphData(data, prop){
     const query = await fetch('/graph2/', { method: 'POST', body: JSON.stringify({'data':data, 'prop': prop})});
@@ -328,8 +286,7 @@ async function getGraphData(data, prop){
 
 function create_graph(response, layer_id, graph_colors){
     console.log('graph creation');
-    //graph_elem_id =
-    //graph_elem = ($('#graph_'+toString(layer_id))[0]);
+
     graph_elem = document.getElementById('graph_'+layer_id);
     layout= {
             height : 350,
@@ -358,8 +315,7 @@ function create_graph(response, layer_id, graph_colors){
 
         if(response.chartData[0].chartType == 'histogram'){
             console.log('histogram');
-            // var x = response.chartData[0].chartBinsLabels;
-            // var y = response.chartData[0].chartValues;
+
             console.log('labels: ', x);
             console.log('values: ', y);
             var grdata = [
@@ -370,9 +326,6 @@ function create_graph(response, layer_id, graph_colors){
                     type: "histogram",
                       marker: mar,
                   }]
-
-
-
         }
         else if(response.chartData[0].chartType == 'pieChart'){
             consoloe.log('pie chart')
@@ -380,8 +333,6 @@ function create_graph(response, layer_id, graph_colors){
             console.log('values: ', response.chartData[0].chartValues);
             var grdata = [
                 {
-                    // labels: response.chartData[0].chartBinsLabels,
-                    // values: response.chartData[0].chartValues,
                     label: x,
                     values: y,
                     type: 'pie',
@@ -403,6 +354,7 @@ map.addControl(nav, 'bottom-left')
 
 //scale control
 map.addControl(new mapboxgl.ScaleControl(), 'bottom-right');
+
 
 function load_layer_aspern_bkmBlocks(){
     map.addLayer(
@@ -445,49 +397,6 @@ function load_layer_aspern_bkmBlocks(){
 }
 
 function load_layer_aspern_landuse(){
-    // map.addLayer(
-    //   {
-    //     'id': 'layer_aspern_landuse',
-    //     'type': 'fill',
-    //     'source': {
-    //         type: 'geojson',
-    //         data: data_aspern_landuse
-    //         },
-    //     'paint': {
-    //
-    //     'fill-color': [
-    //             'match',
-    //             ['get', 'use_lvl2'],
-    //             'recreation and leisure facilities',
-    //             '#88db35',
-    //             'business and mixed use with emphasis on business activity',
-    //             '#e2d4c0',
-    //             'water',
-    //             '#60c8c5',
-    //             'industrial and commercial uses',
-    //             '#de8d24',
-    //             'agriculture',
-    //             '#8baf76',
-    //             'natural area',
-    //             '#bce48b',
-    //             'social infrastructure',
-    //             '#c4bcef',
-    //             'technical infrastructure/art buildings/special uses',
-    //             '#c2d0a1',
-    //             'other transportation uses',
-    //             '#a8cfc6',
-    //             'residential and mixed use with emphasis on residential',
-    //             '#d9bdc6',
-    //             'road space',
-    //             '#d2e0c5',
-    //
-    //             '#000000' // any other store type
-    //           ]
-    //     },
-    //     'layout': {
-    //             'visibility': 'none'
-    //     },
-    //   });
      map.addLayer(
       {
         'id': 'layer_aspern_landuse',
@@ -747,39 +656,8 @@ function load_index_layer(data_index){
 
 function load_layer_aspern_blocks_attr_realUseBlocks(){
     const zoomThreshold = 15;
-    // map.addLayer(
-    //   {
-    //     'id': 'layer_aspern_blocks_attr_zoom',
-    //     'type': 'fill',
-    //     'maxzoom': zoomThreshold,
-    //     'source': {
-    //         type: 'geojson',
-    //         data: data_aspern_blocks_attr
-    //         },
-    //     'paint': {
-    //     'fill-color': [
-    //             'match',
-    //             ['get', 'main_cover'],
-    //             'green area',
-    //             '#60c36c',
-    //             'other sealed area',
-    //             '#856666',
-    //             'buildings',
-    //             '#ad949e',
-    //             'construction site',
-    //             '#808080',
-    //             'water',
-    //             '#0080FF',
-    //             '#000000' // any other store type
-    //           ]
-    //     },
-    //     'layout': {
-    //             'visibility': 'none'
-    //     },
-    //   });
 
-
-map.addLayer(
+    map.addLayer(
       {
         'id': 'layer_aspern_blocks_attr',
         'type': 'fill',
@@ -844,68 +722,6 @@ map.addLayer(
 }
 
 function load_layer_osr(){
-    // map.addLayer(
-    //   {
-    //     'id': 'layer_osr',
-    //     'type': 'heatmap',
-    //     'source': {
-    //         type: 'geojson',
-    //         data: data_aspern_blocks_attr
-    //         },
-    //     'paint': {
-    //     'heatmap-weight': {
-    //             property: 'OSR',
-    //             type: 'exponential',
-    //             stops: [
-    //             [1, 0],
-    //             [62, 1]
-    //             ]
-    //         },
-    //         // increase intensity as zoom level increases
-    //         'heatmap-intensity': {
-    //             stops: [
-    //             [11, 1],
-    //             [15, 3]
-    //             ]
-    //         },
-    //         // assign color values be applied to points depending on their density
-    //         'heatmap-color': [
-    //             'interpolate', // addiing an interpolate expression that defines a linear relationship
-    //             // between heatmap-density and heatmap-color using a set of input-output pairs
-    //             ['linear'],
-    //             ['heatmap-density'],
-    //             0,
-    //             'rgba(236,222,239,0)',
-    //             0.2,
-    //             '#CCFFE5',
-    //             0.4,
-    //             '#95eca0',
-    //             0.6,
-    //             '#24b76d',
-    //             0.8,
-    //             '#0c8c4f'
-    //         ],
-    //         // increase radius as zoom increases
-    //         'heatmap-radius': {
-    //             stops: [
-    //             [11, 15],
-    //             [15, 20]
-    //             ]
-    //         },
-    //         // decrease opacity to transition into the circle layer
-    //         'heatmap-opacity': {
-    //             default: 1,
-    //             stops: [
-    //             [14, 1],
-    //             [17, 0]
-    //             ]
-    //         }
-    //     },
-    //     'layout': {
-    //             'visibility': 'none'
-    //     },
-    //   });
-
     map.addLayer(
       {
         'id': 'layer_osr',
@@ -974,10 +790,8 @@ function load_layer_zoning(){
                 '#774c43',
                 'mixed developement',
                 '#8B4513',
-                // 'mixed developement - business developement area',
                  'business developement area',
                 '#D2691E',
-                // 'mixed developement - business district',
                 'commercial district',
                 '#CD853F',
                 'industrial area',
@@ -1101,9 +915,6 @@ function load_layer_accessibility(data, poi){
         'fill-color': '#8c172c',
         'fill-opacity': 0.5
         },
-        // 'layout': {
-        //         'visibility': 'none'
-        // },
       });
 
   map.addLayer(
@@ -1143,27 +954,9 @@ function load_layer_accessibility(data, poi){
             data: data_aspern_blocks_attr
             },
         'paint': {
-        'fill-color': '#C0C0C0',
-            // [
-            //     'match',
-            //     ['get', 'main_cover'],
-            //     'green area',
-            //     '#60c36c',
-            //     'other sealed area',
-            //     '#856666',
-            //     'buildings',
-            //     '#ad949e',
-            //     'construction site',
-            //     '#808080',
-            //     'water',
-            //     '#0080FF',
-            //     '#000000' // any other store type
-            //   ],
+            'fill-color': '#C0C0C0',
             'fill-opacity': 0.6
         },
-        // 'layout': {
-        //         'visibility': 'none'
-        // },
       });
 
     // switch the layers order so that the 3d buildings layer is on top of the landuse layer
@@ -1178,11 +971,6 @@ function load_layer_accessibility(data, poi){
 var data_shannon_index;
 // sending the data for index calculations and receiving the index data
 async function sendData(){
-    // for shannon index
-    // b= document.getElementById('index_calc');
-    // //while the indices are calculating, we inform the user that the layer is loading
-    // b.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\n' +
-    //     '  Loading...'
 
     // the spinner on the card
     c = $('#shannon_content .card-title')[0];
@@ -1195,8 +983,7 @@ async function sendData(){
 
 
     console.log('function for sending the data');
-    // console.log('json data to send: ', JSON.stringify(eval('data_'+check_id)));
-    // const query = await fetch('/flask/', { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
+
     const query = await fetch('/flask/', { method: 'POST', body: JSON.stringify(data_aspern_blocks_attr)});
     const data = await query.json();
     console.log(data);
@@ -1204,36 +991,10 @@ async function sendData(){
 
     // make the section bigger so that the graph can fit
     const s= $('#shannon_content')[0];
-    s.style.height = 'fit-content'; //'70%'
-
-
-    //graph data calculation
-    // let x = await calc_graph_data('histogram', 'numerical', data_shannon_index, 'div_index')
-    // console.log('graph x: ', x);
-    // x= x['result'];
-    // // console.log('x[\'result\']: ', x);
-    // //graph para
-    // var trace = {
-    // x: x,
-    // type: 'histogram',
-    // marker: {
-    //         color: '#811515'
-    //     },
-    //   };
-    // var grdata = [trace];
-    // graph = document.getElementById('graph_shannon');
-    // layout= {
-    //         height : 350,
-    //         width : 300,
-    //      margin: {
-    //         l: 0,
-    //       },
-    //     };
-    // Plotly.newPlot(graph, grdata, layout);
+    s.style.height = 'fit-content';
 
     let graph_data = await getGraphData(data_shannon_index, 'div_index');
     create_graph(graph_data, 'shannon', graph_colors_shannon_index);
-
 
 
     if( map.getLayer('layer_index')){
@@ -1247,25 +1008,16 @@ async function sendData(){
     else {
         load_index_layer(data_shannon_index);
     }
-    // b.innerHTML = 'Index';
+
     c.innerHTML='Shannon Index'
     $('#shannon label')[0].innerHTML= 'Shannon';
 
-    // if(map.getLayer('layer_aspern_landuse').visibility == 'none'){
-    //     document.getElementsByClassName('form-check-input')[2].click()
-    //     map.setLayoutProperty(
-    //                     'layer_aspern_landuse',
-    //                     'visibility',
-    //                     'visible'
-    //                 );
-    // }
 
 }
 
 let buffer_data;
 let blocks_data
 async function calc_accessibility(dist, poi, layer){
-
 
     // the spinner on the card
     c = $('#accessibility_content .card-title')[0];
@@ -1276,8 +1028,7 @@ async function calc_accessibility(dist, poi, layer){
     const poi_data = poi == 'transport' ? data_aspern_publicstops : data_shops;
 
     console.log('function for sending the accessibility data');
-    // console.log('json data to send: ', JSON.stringify(eval('data_'+check_id)));
-    // const query = await fetch('/flask/', { method: 'POST', body: JSON.stringify(eval('data_'+check_id))});
+
     const query = await fetch('/accessibility/', { method: 'POST', body: JSON.stringify({'poi':poi_data, 'dist':dist})});
     const data = await query.json();
     console.log('data', data);
@@ -1285,12 +1036,6 @@ async function calc_accessibility(dist, poi, layer){
     buffer_data = JSON.parse(data['buffer']);
     blocks_data =JSON.parse(data['blocks']);
 
-
-    // map.setLayoutProperty(
-    //                 'layer_aspern_landuse',
-    //                 'visibility',
-    //                 'visible'
-    //             );
 
     let layer_data;
     if (layer == 'polygons'){
@@ -1331,18 +1076,7 @@ async function calc_accessibility(dist, poi, layer){
         load_layer_accessibility(layer_data, poi_data);
     }
 
-
     c.innerHTML='Accessibility';
-
-
-    // if(map.getLayer('layer_aspern_landuse').visibility == 'none'){
-    //     document.getElementsByClassName('form-check-input')[2].click()
-    //     map.setLayoutProperty(
-    //                     'layer_aspern_landuse',
-    //                     'visibility',
-    //                     'visible'
-    //                 );
-    // }
 
 }
 
@@ -1395,8 +1129,6 @@ async function calc_graph_data(graph_type, data_type, data, prop){
 
             calc_accessibility(dist, poi, layer);
 
-            // $('#accessibility_layers')[0].style.display = 'block'
-
 
         });
 
@@ -1407,35 +1139,16 @@ async function calc_graph_data(graph_type, data_type, data, prop){
             if ($('#blocks_content')[0].style.display == 'none')
             {
                 $('#blocks_content').css('display', 'block');
-            //     if( map.getLayer('layer_green_area')){
-            //        map.setLayoutProperty(
-            //             'layer_green_area',
-            //             'visibility',
-            //             'visible'
-            //         );
-            // }
+
             }else {
                 $('#blocks_content')[0].style.display = 'none'
-                // if( map.getLayer('layer_green_area')){
-                //    map.setLayoutProperty(
-                //         'layer_green_area',
-                //         'visibility',
-                //         'none'
-                //     );
-                // }
+
             }
         }
         const close_blocks_button =$('#btn-close-blocks')[0];
         close_blocks_button.onclick = function (e){
             $('#blocks_content').css('display', 'none');
 
-            //  if( map.getLayer('layer_green_area')){
-            //        map.setLayoutProperty(
-            //             'layer_green_area',
-            //             'visibility',
-            //             'none'
-            //        );
-            // }
         }
 
         const landuse_button =$('#landuse_arrow')[0];
@@ -1443,35 +1156,16 @@ async function calc_graph_data(graph_type, data_type, data, prop){
             if ($('#landuse_content')[0].style.display == 'none')
             {
                 $('#landuse_content').css('display', 'block');
-            //     if( map.getLayer('layer_green_area')){
-            //        map.setLayoutProperty(
-            //             'layer_green_area',
-            //             'visibility',
-            //             'visible'
-            //         );
-            // }
+
             }else {
                 $('#landuse_content')[0].style.display = 'none'
-                // if( map.getLayer('layer_green_area')){
-                //    map.setLayoutProperty(
-                //         'layer_green_area',
-                //         'visibility',
-                //         'none'
-                //     );
-                // }
+
             }
         }
         const close_landuse_button =$('#btn-close-landuse')[0];
         close_landuse_button.onclick = function (e){
             $('#landuse_content').css('display', 'none');
 
-            //  if( map.getLayer('layer_green_area')){
-            //        map.setLayoutProperty(
-            //             'layer_green_area',
-            //             'visibility',
-            //             'none'
-            //        );
-            // }
         }
 
         const zoning_button =$('#zoning_arrow')[0];
@@ -1479,35 +1173,16 @@ async function calc_graph_data(graph_type, data_type, data, prop){
             if ($('#zoning_content')[0].style.display == 'none')
             {
                 $('#zoning_content').css('display', 'block');
-            //     if( map.getLayer('layer_green_area')){
-            //        map.setLayoutProperty(
-            //             'layer_green_area',
-            //             'visibility',
-            //             'visible'
-            //         );
-            // }
+
             }else {
                 $('#zoning_content')[0].style.display = 'none'
-                // if( map.getLayer('layer_green_area')){
-                //    map.setLayoutProperty(
-                //         'layer_green_area',
-                //         'visibility',
-                //         'none'
-                //     );
-                // }
+
             }
         }
         const close_zoning_button =$('#btn-close-zoning')[0];
         close_zoning_button.onclick = function (e){
             $('#zoning_content').css('display', 'none');
 
-            //  if( map.getLayer('layer_green_area')){
-            //        map.setLayoutProperty(
-            //             'layer_green_area',
-            //             'visibility',
-            //             'none'
-            //        );
-            // }
         }
 
         const streets_button =$('#streets_arrow')[0];
@@ -1515,35 +1190,16 @@ async function calc_graph_data(graph_type, data_type, data, prop){
             if ($('#streets_content')[0].style.display == 'none')
             {
                 $('#streets_content').css('display', 'block');
-            //     if( map.getLayer('layer_green_area')){
-            //        map.setLayoutProperty(
-            //             'layer_green_area',
-            //             'visibility',
-            //             'visible'
-            //         );
-            // }
+
             }else {
                 $('#streets_content')[0].style.display = 'none'
-                // if( map.getLayer('layer_green_area')){
-                //    map.setLayoutProperty(
-                //         'layer_green_area',
-                //         'visibility',
-                //         'none'
-                //     );
-                // }
+
             }
         }
         const close_streets_button =$('#btn-close-streets')[0];
         close_streets_button.onclick = function (e){
             $('#streets_content').css('display', 'none');
 
-            //  if( map.getLayer('layer_green_area')){
-            //        map.setLayoutProperty(
-            //             'layer_green_area',
-            //             'visibility',
-            //             'none'
-            //        );
-            // }
         }
 
         const public_lines_button =$('#public_lines_arrow')[0];
@@ -1551,35 +1207,16 @@ async function calc_graph_data(graph_type, data_type, data, prop){
             if ($('#public_lines_content')[0].style.display == 'none')
             {
                 $('#public_lines_content').css('display', 'block');
-            //     if( map.getLayer('layer_green_area')){
-            //        map.setLayoutProperty(
-            //             'layer_green_area',
-            //             'visibility',
-            //             'visible'
-            //         );
-            // }
+
             }else {
                 $('#public_lines_content')[0].style.display = 'none'
-                // if( map.getLayer('layer_green_area')){
-                //    map.setLayoutProperty(
-                //         'layer_green_area',
-                //         'visibility',
-                //         'none'
-                //     );
-                // }
+
             }
         }
         const close_public_line_button =$('#btn-close-public_lines')[0];
         close_public_line_button.onclick = function (e){
             $('#public_lines_content').css('display', 'none');
 
-            //  if( map.getLayer('layer_green_area')){
-            //        map.setLayoutProperty(
-            //             'layer_green_area',
-            //             'visibility',
-            //             'none'
-            //        );
-            // }
         }
 
         const shops_button =$('#shops_arrow')[0];
@@ -1587,35 +1224,16 @@ async function calc_graph_data(graph_type, data_type, data, prop){
             if ($('#shops_content')[0].style.display == 'none')
             {
                 $('#shops_content').css('display', 'block');
-            //     if( map.getLayer('layer_green_area')){
-            //        map.setLayoutProperty(
-            //             'layer_green_area',
-            //             'visibility',
-            //             'visible'
-            //         );
-            // }
+
             }else {
                 $('#shops_content')[0].style.display = 'none'
-                // if( map.getLayer('layer_green_area')){
-                //    map.setLayoutProperty(
-                //         'layer_green_area',
-                //         'visibility',
-                //         'none'
-                //     );
-                // }
+
             }
         }
         const close_shops_button =$('#btn-close-shops')[0];
         close_shops_button.onclick = function (e){
             $('#shops_content').css('display', 'none');
 
-            //  if( map.getLayer('layer_green_area')){
-            //        map.setLayoutProperty(
-            //             'layer_green_area',
-            //             'visibility',
-            //             'none'
-            //        );
-            // }
         }
 
         const trees_button =$('#trees_arrow')[0];
@@ -1623,35 +1241,16 @@ async function calc_graph_data(graph_type, data_type, data, prop){
             if ($('#trees_content')[0].style.display == 'none')
             {
                 $('#trees_content').css('display', 'block');
-            //     if( map.getLayer('layer_green_area')){
-            //        map.setLayoutProperty(
-            //             'layer_green_area',
-            //             'visibility',
-            //             'visible'
-            //         );
-            // }
+
             }else {
                 $('#trees_content')[0].style.display = 'none'
-                // if( map.getLayer('layer_green_area')){
-                //    map.setLayoutProperty(
-                //         'layer_green_area',
-                //         'visibility',
-                //         'none'
-                //     );
-                // }
+
             }
         }
         const close_trees_button =$('#btn-close-trees')[0];
         close_trees_button.onclick = function (e){
             $('#trees_content').css('display', 'none');
 
-            //  if( map.getLayer('layer_green_area')){
-            //        map.setLayoutProperty(
-            //             'layer_green_area',
-            //             'visibility',
-            //             'none'
-            //        );
-            // }
         }
 
         const public_stations_button =$('#public_stations_arrow')[0];
@@ -1659,35 +1258,16 @@ async function calc_graph_data(graph_type, data_type, data, prop){
             if ($('#public_stations_content')[0].style.display == 'none')
             {
                 $('#public_stations_content').css('display', 'block');
-            //     if( map.getLayer('layer_green_area')){
-            //        map.setLayoutProperty(
-            //             'layer_green_area',
-            //             'visibility',
-            //             'visible'
-            //         );
-            // }
+
             }else {
                 $('#public_stations_content')[0].style.display = 'none'
-                // if( map.getLayer('layer_green_area')){
-                //    map.setLayoutProperty(
-                //         'layer_green_area',
-                //         'visibility',
-                //         'none'
-                //     );
-                // }
+
             }
         }
         const close_public_stations_button =$('#btn-close-public_stations')[0];
         close_public_stations_button.onclick = function (e){
             $('#public_stations_content').css('display', 'none');
 
-            //  if( map.getLayer('layer_green_area')){
-            //        map.setLayoutProperty(
-            //             'layer_green_area',
-            //             'visibility',
-            //             'none'
-            //        );
-            // }
         }
 
 
@@ -1697,28 +1277,11 @@ async function calc_graph_data(graph_type, data_type, data, prop){
             if ($('#shannon_content')[0].style.display == 'none')
             {
                 $('#shannon_content').css('display', 'block');
-                // if( map.getLayer('layer_index')){
-                //    map.setLayoutProperty(
-                //         'layer_index',
-                //         'visibility',
-                //         'visible'
-                //     );
-                //    console.log('make the already calculated index layer visible ')
-                // }else{
-                //     console.log('calculate index layer first time ');
-                //     sendData('');
-                // }
 
 
             }else{  //hide the layer and the content
                 $('#shannon_content')[0].style.display = 'none'
-                // if( map.getLayer('layer_index')){
-                //    map.setLayoutProperty(
-                //         'layer_index',
-                //         'visibility',
-                //         'none'
-                //     );
-                // }
+
             }
 
         }
@@ -1726,13 +1289,6 @@ async function calc_graph_data(graph_type, data_type, data, prop){
         close_shannon_button.onclick = function (e){
             $('#shannon_content').css('display', 'none');
 
-            // if( map.getLayer('layer_index')){
-            //        map.setLayoutProperty(
-            //             'layer_index',
-            //             'visibility',
-            //             'none'
-            //         );
-            // }
         }
         const shannon_button_l =$('#index')[0];
         shannon_button_l.onclick = function (e){
@@ -1740,10 +1296,8 @@ async function calc_graph_data(graph_type, data_type, data, prop){
             console.log(this.checked);
             console.log(e);
             // show the layer
-            //if ($('#shannon_content')[0].style.display == 'none')
             if (this.checked)
             {
-                // $('#shannon_content').css('display', 'block');
                 if( map.getLayer('layer_index')){
                    map.setLayoutProperty(
                         'layer_index',
@@ -1758,7 +1312,6 @@ async function calc_graph_data(graph_type, data_type, data, prop){
 
 
             }else{  //hide the layer
-                //$('#shannon_content')[0].style.display = 'none'
                 if( map.getLayer('layer_index')){
                    map.setLayoutProperty(
                         'layer_index',
@@ -1769,18 +1322,6 @@ async function calc_graph_data(graph_type, data_type, data, prop){
             }
 
         }
-        // const close_shannon_button =$('#btn-close-shannon')[0];
-        // close_shannon_button.onclick = function (e){
-        //     $('#shannon_content').css('display', 'none');
-        //
-        //     if( map.getLayer('layer_index')){
-        //            map.setLayoutProperty(
-        //                 'layer_index',
-        //                 'visibility',
-        //                 'none'
-        //             );
-        //     }
-        // }
 
 
         const green_button =$('#green_arrow')[0];
@@ -1788,35 +1329,16 @@ async function calc_graph_data(graph_type, data_type, data, prop){
             if ($('#green_content')[0].style.display == 'none')
             {
                 $('#green_content').css('display', 'block');
-            //     if( map.getLayer('layer_green_area')){
-            //        map.setLayoutProperty(
-            //             'layer_green_area',
-            //             'visibility',
-            //             'visible'
-            //         );
-            // }
+
             }else {
                 $('#green_content')[0].style.display = 'none'
-                // if( map.getLayer('layer_green_area')){
-                //    map.setLayoutProperty(
-                //         'layer_green_area',
-                //         'visibility',
-                //         'none'
-                //     );
-                // }
+
             }
         }
         const close_green_button =$('#btn-close-green')[0];
         close_green_button.onclick = function (e){
             $('#green_content').css('display', 'none');
 
-            //  if( map.getLayer('layer_green_area')){
-            //        map.setLayoutProperty(
-            //             'layer_green_area',
-            //             'visibility',
-            //             'none'
-            //        );
-            // }
         }
 
         const osr_button =$('#osr_arrow')[0];
@@ -1824,35 +1346,16 @@ async function calc_graph_data(graph_type, data_type, data, prop){
             if ($('#osr_content')[0].style.display == 'none')
             {
                 $('#osr_content').css('display', 'block');
-            //     if( map.getLayer('layer_osr')){
-            //        map.setLayoutProperty(
-            //             'layer_osr',
-            //             'visibility',
-            //             'visible'
-            //         );
-            // }
+
             }else {
                 $('#osr_content')[0].style.display = 'none'
-                // if( map.getLayer('layer_osr')){
-                //    map.setLayoutProperty(
-                //         'layer_osr',
-                //         'visibility',
-                //         'none'
-                //     );
-                // }
+
             }
         }
         const close_osr_button =$('#btn-close-osr')[0];
         close_osr_button.onclick = function (e){
             $('#osr_content').css('display', 'none');
 
-            //  if( map.getLayer('layer_osr')){
-            //        map.setLayoutProperty(
-            //             'layer_osr',
-            //             'visibility',
-            //             'none'
-            //        );
-            // }
         }
 
         const max_height_button =$('#max_height_arrow')[0];
@@ -1860,35 +1363,16 @@ async function calc_graph_data(graph_type, data_type, data, prop){
             if ($('#max_height_content')[0].style.display == 'none')
             {
                 $('#max_height_content').css('display', 'block');
-            //     if( map.getLayer('layer_max_height')){
-            //        map.setLayoutProperty(
-            //             'layer_max_height',
-            //             'visibility',
-            //             'visible'
-            //         );
-            // }
+
             }else {
                 $('#max_height_content')[0].style.display = 'none'
-                // if( map.getLayer('layer_max_height')){
-                //    map.setLayoutProperty(
-                //         'layer_max_height',
-                //         'visibility',
-                //         'none'
-                //     );
-                // }
+
             }
         }
         const close_max_height_button =$('#btn-close-max_height')[0];
         close_max_height_button.onclick = function (e){
             $('#max_height_content').css('display', 'none');
 
-            //  if( map.getLayer('layer_max_height')){
-            //        map.setLayoutProperty(
-            //             'layer_max_height',
-            //             'visibility',
-            //             'none'
-            //        );
-            // }
         }
 
         const accessibility_button =$('#accessibility_arrow')[0];
@@ -1919,17 +1403,6 @@ async function calc_graph_data(graph_type, data_type, data, prop){
                         'visible'
                     );
 
-                   // $('#accessibility_layers')[0].onchange = function (e){
-                   //     console.log(e.target.value)
-                   //     value = e.target.value;
-                   //     if (value == 'buffer'){
-                   //         map.getSource('layer_accessibility_fill').setData(buffer_data);
-                   //
-                   //     }
-                   //     else{
-                   //         map.getSource('layer_accessibility_fill').setData(blocks_data);
-                   //     }
-                   // }
                 }
                 else{
                     //at first when we open the section, we have the transportation option already checked
@@ -1964,57 +1437,13 @@ async function calc_graph_data(graph_type, data_type, data, prop){
 
             }else {
                 $('#accessibility_content')[0].style.display = 'none'
-                // if( map.getLayer('layer_accessibility_fill')){
-                //    map.setLayoutProperty(
-                //         'layer_accessibility_fill',
-                //         'visibility',
-                //         'none'
-                //     );
-                //    map.setLayoutProperty(
-                //         'layer_accessibility_line',
-                //         'visibility',
-                //         'none'
-                //     );
-                //    map.setLayoutProperty(
-                //         'layer_accessibility_points',
-                //         'visibility',
-                //         'none'
-                //     );
-                //
-                //    map.setLayoutProperty(
-                //         'layer_aspern_blocks_attr_accessibility',
-                //         'visibility',
-                //         'none'
-                //     );
-                // }
+
             }
         }
         const close_accessibility_button =$('#btn-close-accessibility')[0];
         close_accessibility_button.onclick = function (e){
             $('#accessibility_content').css('display', 'none');
 
-            //  if( map.getLayer('layer_accessibility_fill')){
-            //        map.setLayoutProperty(
-            //             'layer_accessibility_fill',
-            //             'visibility',
-            //             'none'
-            //        );
-            //        map.setLayoutProperty(
-            //             'layer_accessibility_line',
-            //             'visibility',
-            //             'none'
-            //         );
-            //        map.setLayoutProperty(
-            //             'layer_accessibility_points',
-            //             'visibility',
-            //             'none'
-            //         );
-            //        map.setLayoutProperty(
-            //             'layer_aspern_blocks_attr_accessibility',
-            //             'visibility',
-            //             'none'
-            //         );
-            // }
         }
         const accessibility_button_layer = $('#accessibility')[0];
         accessibility_button_layer.onclick = function (e){
@@ -2071,33 +1500,12 @@ async function calc_graph_data(graph_type, data_type, data, prop){
 
 
 
-
-        // //draw//////
-        // // https://github.com/mapbox/mapbox-gl-draw/blob/main/docs/API.md
-        // // add draw control
-        //  const draw = new MapboxDraw({
-        // displayControlsDefault: false,
-        // controls: {
-        //     point: true,
-        //     trash: true
-        // },
-        // //userProperties: true,
-        // });
-
-
-
         //toolbar   ///////////////////////////////////////////
         const landuse_tool_but = $('#landuse_tool_but')[0];
         landuse_tool_but.onclick =function(e) {
             console.log('landuse_tool_but clicked ');
 
             const initial_data = JSON.parse(JSON.stringify(map.getSource('layer_aspern_landuse')._data));
-
-
-            // console.log('original', original_data_aspern_blocks_attr);
-            // console.log('inside landuse tool', original_data_aspern_blocks_attr == data_aspern_blocks_attr);
-            // console.log('inside landuse tool', original_data_aspern_blocks_attr == map.getSource('layer_aspern_landuse')._data);
-            // console.log('inside landuse tool', data_aspern_blocks_attr == map.getSource('layer_aspern_landuse')._data);
 
 
             const toolbar_content_but_group = $('#toolbar_content_but_group')[0];
@@ -2177,26 +1585,9 @@ async function calc_graph_data(graph_type, data_type, data, prop){
                 '<button type="button" id="shop_tool" class="btn btn-secondary"><i class="material-icons">shopping_basket</i>shop</button>\n' +
             '      <button type="button" id="school_tools" class="btn btn-secondary"><i class="material-icons">school</i>school</button>';
 
-          // //make visible the footer
-          //   $('#toolbar_footer')[0].style.display = 'block';
-          //   const toolbar_footer_group = $('#toolbar_footer_group')[0];
-          //   toolbar_footer_group.innerHTML =
-          //       '<div class="input-group input-group-sm mb-3" style="height: 20px; visibility: hidden; display: grid; align-items: baseline;\n' +
-          //       '    justify-items: start;"\n' +
-          //       '    align-content: stretch;>\n' +
-          //       '  <span class="input-group-text" style="height: 20px;" id="inputGroup-sizing-sm">Type shop</span>\n' +
-          //       '  <input type="text" class="form-control" style="height: 20px; border-color: black; width: fit-content;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">\n' +
-          //       '</div>\n'+
-          //       '<button type="button" class="btn btn-outline-success" id="save_toolbar">Save</button>\n' +
-          //       '            <button type="button" class="btn btn-outline-danger" id="discard_toolbar">Discard</button>'
-
-
-
-
 
             // https://github.com/mapbox/mapbox-gl-draw/blob/main/docs/API.md
             // add draw control
-            //if(!(map.hasControl(draw))){
                  const draw = new MapboxDraw({
                 displayControlsDefault: false,
                 controls: {
@@ -2205,12 +1596,11 @@ async function calc_graph_data(graph_type, data_type, data, prop){
                 },
                 //userProperties: true,
                 });
-            //}
 
 
           $('#shop_tool')[0].onclick = function(e){
-                  // //check shops layer
-          // //uncheck other layers
+           //check shops layer
+          // uncheck other layers
           const inputs_layers = document.getElementsByClassName('input_layers');
           for (const input of inputs_layers){
               //if we find a layer that is shown on the map
@@ -2253,8 +1643,6 @@ async function calc_graph_data(graph_type, data_type, data, prop){
               $('#school_tools')[0].disabled = true
 
 
-              let newpopup_coord;
-
               var new_points = [];
               function updateArea(e) {
                   console.log('draw e: ', e);
@@ -2272,17 +1660,6 @@ async function calc_graph_data(graph_type, data_type, data, prop){
 
                       console.log(point);
                       console.log(new_points);
-
-
-                  //  const newpopup = new mapboxgl.Popup()
-                  // .setLngLat(e.features[0].geometry.coordinates)
-                  // .setHTML('<h1>Hello World!</h1>')
-                  // .addTo(map);
-                  //  console.log(newpopup.getElement())
-                      newpopup_coord = e.features[0].geometry.coordinates
-
-
-
 
 
                   }
@@ -2319,13 +1696,6 @@ async function calc_graph_data(graph_type, data_type, data, prop){
 
                   }
               }
-
-              // const newpopup = new mapboxgl.Popup()
-              //     .setLngLat(newpopup_coord)
-              //     .setHTML('<h1>Hello World!</h1>')
-              //     .addTo(map);
-
-
 
               const save = $('#save_toolbar')[0];
               save.onclick = async function (e){
@@ -2411,9 +1781,8 @@ async function calc_graph_data(graph_type, data_type, data, prop){
                 '            <button type="button" class="btn btn-outline-danger" id="discard_toolbar">Discard</button>';
 
 
-          //
-          // //check public stops and lines layer
-          // //uncheck other layers
+          //check public stops and lines layer
+          //uncheck other layers
           const inputs_layers = document.getElementsByClassName('input_layers');
           for (const input of inputs_layers){
               //if we find a layer that is shown on the map
@@ -2424,9 +1793,6 @@ async function calc_graph_data(graph_type, data_type, data, prop){
                 input.click()
             }
           }
-
-
-
 
           // save button
           const save = $('#save_toolbar')[0];
@@ -2472,14 +1838,8 @@ async function calc_graph_data(graph_type, data_type, data, prop){
             console.log('cliked layer: ', clickedLayer)
 
 
-                        //.....calculate the graph.....//
+            //.....calculate the graph.....//
             try{
-                // try{
-                //     eval('graph_colors_'+check_id)
-                // }
-                // catch(error){
-                //
-                // }
                 create_graph(eval('graph_data_'+check_id), check_id, eval('graph_colors_'+check_id));
 
             }
@@ -2489,14 +1849,6 @@ async function calc_graph_data(graph_type, data_type, data, prop){
 
 
             if(!(layer_input.checked)){
-                // if (check_id == 'aspern_blocks_attr_realUseBlocks'){
-                //     map.setLayoutProperty(
-                //         'layer_aspern_realUseBlocks_zoom',
-                //         'visibility',
-                //         'none'
-                //     );
-                // }
-
                 console.log('unclicked the layer')
 
                 // we also hide the 2nd layer with more detailed blocks
@@ -2520,41 +1872,6 @@ async function calc_graph_data(graph_type, data_type, data, prop){
                     map.setPitch(0);
                 }
 
-                // if the layer has any plots shown, we delete them
-                // delete_graph();
-
-                // check canvases and map classes
-                // if ((canvas_start_el.classList).contains('split')){
-                //     canvas_start_el.classList.replace('split', 'split_no_graph');
-                // }
-                // if ((canvas_end_el.classList).contains('split')){
-                //     canvas_end_el.classList.replace('split', 'split_no_graph');
-                // }
-
-                // we show the map on 100% display
-                // if ((map_el.classList).contains('split')){
-                //     map_el.classList.replace('split', 'split_no_graph');
-                // }
-                // // the bottom canvas with the graphs disappears
-                // if ((canvas_bottom_el.classList).contains('show')){
-                //     canvas_bottom_el.classList.remove('show');
-                //}
-                //the button with the 3d buidings replaces one class so that it is displayed accordingly
-                // we show it at the with the style considering no bottom canvas
-                 if ((button3d_el.classList).contains('button3d_bottom_graph')){
-                    // button3d_el.classList.remove('button3d_bottom_graph');
-                    // button3d_el.classList.add('button3d_bottom_no_graph');
-                    button3d_el.classList.replace('button3d_bottom_graph', 'button3d_bottom_no_graph');
-                }
-
-                 // when we unclick the lanuse layer, we hide the button that restores its data
-                 // if(check_id == 'aspern_landuse'){
-                 //        restoreb.style.display = 'none';
-                 //    }
-
-                // remove legend
-                //legend_ul.style.display = "none";
-
             }
             //if we click a layer
             else
@@ -2567,13 +1884,6 @@ async function calc_graph_data(graph_type, data_type, data, prop){
                     map.setPitch(45);
                 }
 
-                // if (check_id == 'aspern_blocks_attr_realUseBlocks'){
-                //     map.setLayoutProperty(
-                //         'layer_aspern_realUseBlocks_zoom',
-                //         'visibility',
-                //         'visible'
-                //     );
-                // }
 
                 // we also show the detailed blocks layer that is visible when zooming in
                 if (check_id == 'aspern_blocks_attr'){
@@ -2591,51 +1901,6 @@ async function calc_graph_data(graph_type, data_type, data, prop){
                     'visible'
                 );
 
-                //if any left graph, delete it
-                // delete_graph();
-                //
-                // // load the graphs
-                // try{
-                //     eval('graph_'+check_id)(eval('data_'+check_id));
-                //
-                //     console.log('show graph');
-                //     //replace their split class with the class that has the same properties, but with the height 100%
-                //     // canvas_start_el.classList.replace('split_no_graph', 'split');
-                //     canvas_end_el.classList.replace('split_no_graph', 'split');  // comment so that the graphs are displayed
-                //     map_el.classList.replace('split_no_graph', 'split');
-                //     // show the bottom canvas
-                //     canvas_bottom_el.classList.add('show');
-                //     button3d_el.classList.replace('button3d_bottom_no_graph','button3d_bottom_graph');
-                //
-                // }
-                // catch(err){
-                //     console.log(err)
-                //     console.log('no graph function')
-                // }
-
-                // show legend
-                // legend_ul.style.display = "block";
-                // try{
-                //
-                //     legend_ul.innerHTML = eval('legend_'+check_id);
-                //     if(check_id == 'aspern_landuse'){
-                //         legend_ul.innerHTML = legend_aspern_landuse;
-                //     }
-                // }
-                // catch(err){
-                //     legend_ul.innerHTML = '';
-                //     console.log('no legend')
-                // }
-
-                // if(check_id == 'aspern_blocks_attr_realUseBlocks'){
-                //         legend_ul.innerHTML = legend_aspern_blocks_attr;
-                //     }
-
-                // if we show the landuse layer, we display also the button for restoring the data
-                //  if(check_id == 'aspern_landuse'){
-                //         restoreb.style.display = 'block';
-                //     }
-
             }
 
             map.on('mousemove', clickedLayer, (e) => {
@@ -2646,11 +1911,6 @@ async function calc_graph_data(graph_type, data_type, data, prop){
             });
 
             map.on('click', clickedLayer, (e)=>{
-                // show the button for calculating indices only for the landuse layer
-                // if (clickedLayer == 'layer_aspern_landuse'){
-                //     console.log('landuse clicked -> data button')
-                //     document.getElementById('index_calc').style.display = "block";
-                // }
 
                 console.log('lngLat: ', e.lngLat)
 
@@ -2662,24 +1922,20 @@ async function calc_graph_data(graph_type, data_type, data, prop){
                 console.log('feature clicked: ', clicked_feature)
 
                 // having a variable which stores the id of the layer
-                var id_property = '';
+                let id_property;
                 // store the id (its value) of the clicked feature
-                var value_clicked_feature_id ='';
-                // console.log('data: ', eval('data_'+check_id));
+                let value_clicked_feature_id;
+
                 // assign values for the id name and its value depending on the layer clicked
                 // we use these 2 variables when we want to change some properties
                 switch(clickedLayer){
-                    // case 'layer_prototype_layerWGS84':
-                    //     id_property = 'BLK';
-                    //     value_clicked_feature_id = clicked_feature.properties.BLK;
-                    //     break;
                     case 'layer_aspern_blocks_attr':
                         id_property= 'OBJECTID';//'id';
-                        value_clicked_feature_id = clicked_feature.properties.OBJECTID;//id;
+                        value_clicked_feature_id = clicked_feature.properties.OBJECTID;
                         break;
                     case 'layer_aspern_realUseBlocks':
                         id_property = 'OBJECTID';//'blockID';
-                        value_clicked_feature_id = clicked_feature.properties.OBJECTID;//blockID;
+                        value_clicked_feature_id = clicked_feature.properties.OBJECTID;
                         break;
                     case 'layer_aspern_bkmBlocks':
                         id_property= 'FMZK_ID';
@@ -2719,57 +1975,29 @@ async function calc_graph_data(graph_type, data_type, data, prop){
                 console.log('prop values: ', properties_values);
                 console.log('prop len: ', properties_values.length);
 
-                // try{
-                //     console.log('abs: ',properties['area_green_abs']);
-                //     console.log('rel: ',properties['area_green_rel']);
-                //     console.log('max_height: ',properties['max_height'])
-                // }catch (e) {
-                //     console.log('no attr layer');
-                // }
 
-
-                // for popup
-                // const popup_ul = document.createElement('ul');
-                // popup_ul.className = "list-group list-group-flush";
-                // for (let i=0; i< properties_keys.length; i++){
-                //     const li = document.createElement('li');
-                //     li.className = 'list-group-item';
-                //     li.innerHTML = '<b>'+properties_keys[i]+'</b>: '+properties_values[i];
-                //     popup_ul.appendChild(li);
-                // }
                 const popup = new mapboxgl.Popup()
                   .setLngLat(e.lngLat)
                   .addTo(map);
 
-                // const lngLat = e.lngLat;
-
-
 
                 range_property_list = ['height'];
-
 
                 // creating the list of properties can can be changed directly
                 function create_dynamic_prop_canvas(){
 
                     console.log('properties values in create dynamic func: ', properties_values)
-                    //content = document.getElementById('property-body');
-                    //content.innerHTML = ''; // delete previous content
+
                     const ul = document.createElement('ul');
                     ul.className = "list-group list-group-flush"
                     ul.id = 'off-canvas';
 
-                  // if(check_id == 'aspern_blocks_attr_realUseBlocks'){
-                  //       imp_prop = properties_aspern_blocks_attr;
-                  //   } else {
-                      // get the list of properties that we want to show
-                      // if such list is not defined, we show all properties
                       try{
                           imp_prop = eval('properties_'+check_id);
                       } catch (err){
                           imp_prop =properties_keys;
                       }
 
-                    //}
                   console.log('type imp prop: ',  imp_prop)
 
                     for (let i=0; i< properties_keys.length; i++){
@@ -2793,7 +2021,7 @@ async function calc_graph_data(graph_type, data_type, data, prop){
                                 case 'count_shops':
                                     li_prop_user= 'number of shops';
                                     break;
-                                case 'main_cover': //'class':
+                                case 'main_cover':
                                     li_prop_user= 'land cover';
                                     break;
                                 case 'use_lvl1':
@@ -2831,13 +2059,10 @@ async function calc_graph_data(graph_type, data_type, data, prop){
                             li.className = 'list-group-item';
                             li.innerHTML = '<b style="">'+li_prop_user+'</b>: '+'<span style="width: auto" ></span>';
                             ul.appendChild(li);
-                            // let span_el = li.getElementsByTagName('span')[0]
 
                             // putting the range for certain properties that have number values
                             li_prop = properties_keys[i];
                             span_text = properties_values[i];
-
-
 
 
                             // if the property is one of the above and its value is not null
@@ -2857,14 +2082,6 @@ async function calc_graph_data(graph_type, data_type, data, prop){
                                 }
 
                                 li.getElementsByTagName('span')[0].innerHTML = '\n        <form action="#" style="width:130px; font-size: 14px">\n            <p class="range-field">\n                <input type="range" id="test5" min="0" max="'+max_range_nr+'"  value="'+span_text+'"><span class="thumb"><span class="value"></span></span>\n            </p>\n        </form>\n    '
-                                // String(Number(span_text)*3)
-
-                                // li.getElementsByTagName('span')[0].onchange = function(e){
-                                //     console.log('e: ', e);
-                                //     console.log('on change this: ', this);
-                                //     let new_value =e.target.value;
-                                //     save_dict_property(li, new_value);
-                                // }
 
 
                             }else
@@ -2873,7 +2090,6 @@ async function calc_graph_data(graph_type, data_type, data, prop){
                                 console.log('span text: ', span_text)
                                 li.getElementsByTagName('span')[0].innerHTML =
                                     '<form action="#" style="width:150px; font-size: 14px;" id="select_form">\n'+
-                                    // '<input style="display: none;"type="text" >'+
                                     '<select name="level2" id="level2" style="display: block;  height: 35px">\n' +
                                     '  <option value="recreation & leisure facilities">recreation & leisure facilities</option>\n' +
                                     '  <option value="water">water</option>\n' +
@@ -2890,19 +2106,9 @@ async function calc_graph_data(graph_type, data_type, data, prop){
                                     '</form>'
 
                                 li.getElementsByTagName('select')[0].value = span_text;
-                                // li.getElementsByTagName('input')[0].value = span_text;
-                                // li.getElementsByTagName('span')[0].innerHTML = li.getElementsByTagName('select')[0].value;
-
-                                // li.getElementsByTagName('span')[0].onchange = function(e){
-                                //     console.log('e: ', e);
-                                //     console.log('on change this: ', this);
-                                //     let new_value =e.target.value;
-                                //     save_dict_property(li, new_value);
-                                // }
 
                             } else {
 
-                                // li.getElementsByTagName('span')[0].innerHTML= '<input style="width:110px; height: 35px; font-size: 14px; max-width: 130px" type="text"'+'value="'+properties_values[i]+'"'+ 'class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">';
                                 li.getElementsByTagName('span')[0].innerHTML= properties_values[i];
 
                             }
@@ -2935,10 +2141,6 @@ async function calc_graph_data(graph_type, data_type, data, prop){
                 // function for saving the changes in the dictionary
                 function save_dict_property(li, new_value, data_check_id){
                     console.log('save the data into the dict');
-                    // if (check_id == 'aspern_landuse'){
-                    //     // clickedLayer = 'layer_aspern_blocks_attr';
-                    //     check_id = 'aspern_blocks_attr';
-                    // }
 
                     console.log('data check id: ', data_check_id)
 
@@ -2972,7 +2174,7 @@ async function calc_graph_data(graph_type, data_type, data, prop){
                                     dict_key= 'count_shops';
                                     break;
                                 case 'land cover':
-                                    dict_key= 'main_cover'; //'class';
+                                    dict_key= 'main_cover';
                                     break;
                                 case 'generalized land use':
                                     dict_key= 'use_lvl1';
@@ -3012,8 +2214,6 @@ async function calc_graph_data(graph_type, data_type, data, prop){
 
                             console.log('clicked layer in save in dict: ', clickedLayer)
 
-                            //console.log(eval('data_'+data_check_id)== original_data_aspern_blocks_attr)
-                            //console.log(original_data_aspern_blocks_attr)
                             map.getSource(clickedLayer).setData(eval('data_'+data_check_id));
                             //map.getSource(clickedLayer).setData(original_data_aspern_blocks_attr);
                             console.log('data after: ', f);
@@ -3027,26 +2227,14 @@ async function calc_graph_data(graph_type, data_type, data, prop){
                                 console.log('no graph function')
                             }
 
-                            // console.log('inside save funct: ', map.getSource('layer_aspern_landuse')._data==eval('data_'+data_check_id) == original_data_aspern_blocks_attr)
-                            // console.log('inside save funct: ', map.getSource('layer_aspern_landuse')._data==eval('data_'+data_check_id))
-                            // console.log('inside save funct: ', map.getSource('layer_aspern_landuse')._data == original_data_aspern_blocks_attr)
-                            // console.log('inside save funct: ', map.getSource( original_data_aspern_blocks_attr))
-
-
                             return feature
                         }
 
                     }
                 }
 
-
             });
         }
     }
 
 });
-
-
-
-
-

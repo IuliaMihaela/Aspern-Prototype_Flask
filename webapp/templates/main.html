@@ -53,28 +53,21 @@ rel="stylesheet"
 
 <!--main css    -->
 <link rel="stylesheet" href="../static/styles/main.css">
-<!--&lt;!&ndash;main js     &ndash;&gt;-->
-<!--<script src="../static/javascript/main.js"></script>-->
-
 
 </head>
 <body>
 
-
 <div id="map" ></div>
-<!--class="split_no_graph left"-->
 
-<!--3d button -->
+<!--...........3d button.............. -->
 <div>
     <div class="form-check form-switch " >
       <input class="form-check-input input_layers" type="checkbox" id="aspern_bkmBlocks">
       <label class="form-check-label" for="aspern_bkmBlocks">3D</label>
     </div>
 </div>
-<!--button3d_bottom_no_graph-->
 
-
-<!--collapsible -->
+<!--..............collapsible......... -->
 <div id="main_layers">
 <ul class="collapsible">
     <li>
@@ -83,8 +76,6 @@ rel="stylesheet"
 
           <section>
             <div class="btn-group btn-group-sm" id="blocks_group" role="group" aria-label="Small button group">
-            <!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
-            <!--form-check-input    dropdown-item-->
 
                 <button type="button" class="form-check btn btn-outline-dark">
                     <input class="form-check-input input_layers" type="checkbox" value="" id="aspern_blocks_attr" data-bs-toggle="collapse" data-bs-target="#collapseBlocks" aria-expanded="false" aria-controls="collapseBlocks">
@@ -137,8 +128,6 @@ rel="stylesheet"
 
           <section>
             <div class="btn-group btn-group-sm" id="landuse_group" role="group" aria-label="Small button group">
-            <!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
-            <!--form-check-input    dropdown-item-->
 
                 <button type="button" class="form-check btn btn-outline-dark">
                     <input class="form-check-input input_layers" type="checkbox" value="" id="aspern_landuse" data-bs-toggle="collapse" data-bs-target="#collapseLanduse" aria-expanded="false" aria-controls="collapseLanduse">
@@ -203,8 +192,6 @@ rel="stylesheet"
 
           <section>
         <div class="btn-group btn-group-sm" id="zoning_group" role="group" aria-label="Small button group">
-        <!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
-        <!--form-check-input    dropdown-item-->
 
             <button type="button" class="form-check btn btn-outline-dark">
                 <input class="form-check-input input_layers" type="checkbox" value="" id="zoning" data-bs-toggle="collapse" data-bs-target="#collapseZoning" aria-expanded="false" aria-controls="collapseZoning">
@@ -263,8 +250,6 @@ rel="stylesheet"
 
           <section>
             <div class="btn-group btn-group-sm" id="green_group" role="group" aria-label="Small button group">
-            <!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
-            <!--form-check-input    dropdown-item-->
 
                 <button type="button" class="form-check btn btn-outline-dark"
                 data-bs-toggle="collapse" data-bs-target="#collapseGreen" aria-expanded="false" aria-controls="collapseGreen">
@@ -277,18 +262,6 @@ rel="stylesheet"
                 <button id="green_arrow" type="button" class="btn btn-outline-dark"
                         style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
 
-            </div>
-
-            <div class="collapse" id="collapseGreen" style=" z-index: 1; top: 59%; right: 1%;">
-                <div class="card-body" style=" z-index: 1; top: 59%; right: 1%; max-width: 40%;">
-                    <ul>
-            <!--        <li class="label"><span style="background: #60c36c;" data-bs-toggle="tooltip" data-bs-placement="left" title="greenSpace: green open spaces, gardens, agricultural land"></span></li>-->
-            <!--        <li class="label"><span style="background: #856666;" data-bs-toggle="tooltip" data-bs-placement="left" title="sealedSpace: public and private sealed area, including roads, bike paths etc."></span></li>-->
-            <!--        <li class="label"><span style="background: #ad949e;" data-bs-toggle="tooltip" data-bs-placement="left" title="buildings"></span></li>-->
-            <!--        <li class="label"><span style="background: #808080;" data-bs-toggle="tooltip" data-bs-placement="left" title="construction: construction sites, gravel pit"></span></li>-->
-            <!--        <li class="label"><span style="background: #0080FF;" data-bs-toggle="tooltip" data-bs-placement="left" title="water"></span></li>-->
-                   </ul>
-                </div>
             </div>
 
             <div class="card " style="width: 18rem; display:none; height: 20%" id="green_content">
@@ -324,7 +297,6 @@ rel="stylesheet"
 
           <section>
         <div class="btn-group btn-group-sm" id="osr_group" role="group" aria-label="Small button group">
-        <!--    <button type="button" id="osrbut" class="btn btn-outline-dark ">Open Space Ratio</button>-->
 
             <button type="button" class="form-check btn btn-outline-dark">
                 <input class="form-check-input input_layers" type="checkbox" value="" id="osr" >
@@ -372,7 +344,6 @@ rel="stylesheet"
 
           <section>
         <div class="btn-group btn-group-sm" id="max_height_group" role="group" aria-label="Small button group">
-        <!--    <button type="button" id="max_heightbut" class="btn btn-outline-dark ">Max Height</button>-->
 
             <button type="button" class="form-check btn btn-outline-dark">
                 <input class="form-check-input input_layers" type="checkbox" value="" id="max_height" >
@@ -425,8 +396,6 @@ rel="stylesheet"
       <div class="collapsible-body">
           <section>
         <div class="btn-group btn-group-sm" id="streets_group" role="group" aria-label="Small button group">
-        <!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
-        <!--form-check-input    dropdown-item-->
 
             <button type="button" class="form-check btn btn-outline-dark">
                 <input class="form-check-input input_layers" type="checkbox" value="" id="aspern_roads" data-bs-toggle="collapse" data-bs-target="#collapseStreets" aria-expanded="false" aria-controls="collapseStreets">
@@ -475,8 +444,6 @@ rel="stylesheet"
 
           <section>
             <div class="btn-group btn-group-sm" id="public_lines_group" role="group" aria-label="Small button group">
-            <!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
-            <!--form-check-input    dropdown-item-->
 
                 <button type="button" class="form-check btn btn-outline-dark">
                     <input class="form-check-input input_layers" type="checkbox" value="" id="aspern_publiclines" data-bs-toggle="collapse" data-bs-target="#collapsePublic_lines" aria-expanded="false" aria-controls="collapsePublic_lines">
@@ -541,8 +508,6 @@ rel="stylesheet"
 
           <section>
         <div class="btn-group btn-group-sm" id="shops_group" role="group" aria-label="Small button group">
-        <!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
-        <!--form-check-input    dropdown-item-->
 
             <button type="button" class="form-check btn btn-outline-dark">
                 <input class="form-check-input input_layers" type="checkbox" value="" id="shops" data-bs-toggle="collapse" data-bs-target="#collapseShops" aria-expanded="false" aria-controls="collapseShops">
@@ -585,8 +550,6 @@ rel="stylesheet"
 
           <section>
         <div class="btn-group btn-group-sm" id="trees_group" role="group" aria-label="Small button group">
-        <!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
-        <!--form-check-input    dropdown-item-->
 
             <button type="button" class="form-check btn btn-outline-dark">
                 <input class="form-check-input input_layers" type="checkbox" value="" id="aspern_trees_blocks" data-bs-toggle="collapse" data-bs-target="#collapseTrees" aria-expanded="false" aria-controls="collapseTrees">
@@ -617,8 +580,7 @@ rel="stylesheet"
                 <p><strong>Classification Categories of Tree height: </strong></p>
 
                 <ul style="columns: 3" class="max_legend">
-<!--                    <li><strong>Classification Categories of Tree height: </strong></li>-->
-<!--                    <br>-->
+
                     <li><span style="background: #99FF99;"></span>0</li>
                     <li><span style="background: #66FF66;"></span>1</li>
                     <li><span style="background: #33FF33;"></span>2</li>
@@ -639,8 +601,6 @@ rel="stylesheet"
 
           <section>
         <div class="btn-group btn-group-sm" id="public_stations_group" role="group" aria-label="Small button group">
-        <!--    <button type="button" id="green" class="btn btn-outline-dark">Green Area </button>-->
-        <!--form-check-input    dropdown-item-->
 
             <button type="button" class="form-check btn btn-outline-dark">
                 <input class="form-check-input input_layers" type="checkbox" value="" id="aspern_publicstops" data-bs-toggle="collapse" data-bs-target="#collapsePublic_stations" aria-expanded="false" aria-controls="collapsePublic_stations">
@@ -702,7 +662,6 @@ rel="stylesheet"
 </ul>
 </div>
 
-
 <div id="analysis_layers">
 <ul class="collapsible">
      <li>
@@ -711,14 +670,12 @@ rel="stylesheet"
 
               <section>
             <div class="btn-group btn-group-sm" id="shannon_group" role="group" aria-label="Small button group">
-            <!--    <button type="button" id="shannon" class="btn btn-outline-dark">Shannon Index</button>-->
                 <button type="button" id="shannon" class="form-check btn btn-outline-dark">
                     <input class="input_layers" type="checkbox" value="" id="index">
                     <label class="" for="index">
                         Shannon
                     </label>
                 </button>
-            <!--    form-check-input form-check-label-->
 
                 <button id="shannon_arrow" type="button" class="btn btn-outline-dark" style=" width: 1px"><i style="font-size: 1.1rem; right: 0px; position: absolute; top: 0px;" class="material-icons medium">arrow_drop_down</i></button>
 
@@ -730,11 +687,7 @@ rel="stylesheet"
 
                 <button type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="left" title="Recompute index" style="
                 position: absolute;height: 25px;width: 30px;" id="recalculate_index"><i style="font-size: 1.1rem" class="material-icons small">input</i></button>
-                <h6 class="card-title"style="text-align: center;">Shannon Index
-            <!--        <div class="spinner-border spinner-border-sm" role="status" style="display: inline-block;">-->
-            <!--          <span class="visually-hidden">Loading...</span>-->
-            <!--        </div>-->
-                </h6>
+                <h6 class="card-title"style="text-align: center;">Shannon Index</h6>
 
               <div class="card-body" style="height: 90%;  padding-top: 1px;">
                 <p class="card-text">A measure of the variety of land uses in an area, indicating the number of different classes</p>
@@ -763,7 +716,6 @@ rel="stylesheet"
 
               <section>
             <div class="btn-group btn-group-sm" id="accessibility_group" role="group" aria-label="Small button group">
-            <!--    <button type="button" id="accessibilitybut" class="btn btn-outline-dark ">Accessibility</button>-->
 
                     <button type="button" id="accessibilitybut" class="form-check btn btn-outline-dark">
                     <input class="input_layers" type="checkbox" value="" id="accessibility" >
@@ -784,7 +736,6 @@ rel="stylesheet"
                 <h6 class="card-title" style="text-align: center;">Accessibility</h6>
 
               <div class="card-body" style="height: 90%; padding-top: 1px; padding-left: 5%;">
-            <!--    <p class="card-text">text...</p>-->
                   <br>
 
                   <div>
@@ -792,9 +743,7 @@ rel="stylesheet"
                       <form action="#" style="width:80%; font-size: 14px">
                           <p class="range-field" style="padding: 0px; height: 50px">
                               <input type="range" id="test" min="50" max="500" step="50"  value="'+span_text+'">
-                              <span class="thumb">
-            <!--                      <span class="value"></span>-->
-                              </span>
+                              <span class="thumb"></span>
                           </p>
                       </form>
                   </div>
@@ -832,19 +781,6 @@ rel="stylesheet"
                       </form>
                   </div>
 
-            <!--      <div>-->
-            <!--          <h6 class="txt-m txt-bold mb6">Choose distance:</h6>-->
-            <!--          <form action="#" style="width:80%; font-size: 14px">-->
-            <!--              <p class="range-field">-->
-            <!--                  <input type="range" id="test" min="50" max="500" step="50"  value="'+span_text+'">-->
-            <!--                  <span class="thumb">-->
-            <!--                      <span class="value"></span>-->
-            <!--                  </span>-->
-            <!--              </p>-->
-            <!--          </form>-->
-            <!--      </div>-->
-
-
               </div>
             </div>
             </section>
@@ -859,23 +795,10 @@ rel="stylesheet"
 
 </div>
 
-
-
-
-<!--...................Toolbar..............-->
+<!--..............Toolbar............-->
 <div class="card text-center" id="toolbar">
   <div class="card-header">
-<!--    <ul class="nav nav-pills card-header-pills">-->
-<!--      <li class="nav-item">-->
-<!--        <button class="nav-link " href="#" id="landuse_tool_but">Land Use</button>-->
-<!--      </li>-->
-<!--      <li class="nav-item">-->
-<!--        <button class="nav-link" href="#" id="poi_tool_but">PoI</button>-->
-<!--      </li>-->
-<!--      <li class="nav-item">-->
-<!--        <button class="nav-link" href="#" tabindex="-1" id="transit_tool_but">Transit</button>-->
-<!--      </li>-->
-<!--    </ul>-->
+
         <div class="mb12 mr12 toggle-group align-center" id="toggle_toolbar_header">
            <label class="toggle-container">
               <input name="tool" type="radio" value="landuse" id="landuse_tool_but" />
@@ -893,112 +816,26 @@ rel="stylesheet"
 
   </div>
   <div class="card-body" id="toolbar_content" style="display: none">
-<!--    <h5 class="card-title">Special title treatment</h5>-->
-<!--    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
-<!--    <a href="#" class="btn btn-primary">Go somewhere</a>-->
 
-<!--      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">-->
           <div class="btn-group me-2" id="toolbar_content_but_group" role="group" aria-label="First group" style="width: -webkit-fill-available">
-<!--            <button type="button" class="btn btn-secondary">1</button>-->
-<!--            <button type="button" class="btn btn-secondary">2</button>-->
-<!--            <button type="button" class="btn btn-secondary">3</button>-->
+
           </div>
 
-<!--          <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="width: -webkit-fill-available">-->
-<!--          <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>-->
-<!--          <label class="btn btn-outline-primary" for="btnradio1">Radio 1</label>-->
-
-<!--          <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">-->
-<!--          <label class="btn btn-outline-primary" for="btnradio2">Radio 2</label>-->
-
-<!--          <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">-->
-<!--          <label class="btn btn-outline-primary" for="btnradio3">Radio 3</label>-->
-<!--        </div>-->
-
-<!--        </div>-->
 
   </div>
-
-    <div class="card-footer text-muted" id="toolbar_footer" style="display: none">
-
-<!--        <div class="mb12 mr12 toggle-group align-center" id="toolbar_footer">-->
-<!--           <label class="toggle-container">-->
-<!--              <input name="saving" type="radio" value="save" id="save" />-->
-<!--              <div class="toggle toggle&#45;&#45;active-null toggle&#45;&#45;null">Save</div>-->
-<!--          </label>-->
-<!--          <label class="toggle-container">-->
-<!--              <input name="saving" type="radio" value="discard" id="discard" />-->
-<!--              <div class="toggle toggle&#45;&#45;active-null toggle&#45;&#45;null">Discard</div>-->
-<!--          </label>-->
-<!--        </div>-->
+  <div class="card-footer text-muted" id="toolbar_footer" style="display: none">
 
         <div class="btn-group justify-content-end" id="toolbar_footer_group" role="group" aria-label="Basic mixed styles example" style="width: -webkit-fill-available">
-<!--            <button type="button" class="btn btn-outline-success">Save</button>-->
-<!--            <button type="button" class="btn btn-outline-danger">Discard</button>-->
+
         </div>
 
-
-<!--        <div class="container">-->
-<!--          <div class="row">-->
-<!--            <div class="col align-self-end">-->
-<!--                 <div class="btn-group" id="toolbar_footer_group" role="group" aria-label="Basic mixed styles example" style="width: -webkit-fill-available">-->
-<!--                    <button type="button" class="btn btn-outline-success btn-sm">Save</button>-->
-<!--                    <button type="button" class="btn btn-outline-danger btn-sm">Discard</button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-
-<!--        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">-->
-<!--          <div class="btn-group me-2" role="group" aria-label="First group">-->
-<!--            <button type="button" class="btn btn-primary">1</button>-->
-<!--            <button type="button" class="btn btn-primary">2</button>-->
-<!--            <button type="button" class="btn btn-primary">3</button>-->
-<!--            <button type="button" class="btn btn-primary">4</button>-->
-<!--          </div>-->
-<!--          <div class="btn-group me-2" role="group" aria-label="Second group">-->
-<!--            <button type="button" class="btn btn-secondary">5</button>-->
-<!--            <button type="button" class="btn btn-secondary">6</button>-->
-<!--            <button type="button" class="btn btn-secondary">7</button>-->
-<!--          </div>-->
-<!--          <div class="btn-group" role="group" aria-label="Third group">-->
-<!--            <button type="button" class="btn btn-info">8</button>-->
-<!--          </div>-->
-<!--        </div>-->
-
-
-
-
-    </div>
+  </div>
 
 
 
 </div>
 
-
-
-
-<!--restore changes -->
-<!--<div class="btn-group btn-group-sm" id="retore_changes_group" role="group" aria-label="Small button group">-->
-<!--    <button type="button" id="retore_changes" style="display: none" class="btn btn-outline-dark ">Restore changes</button>-->
-<!--</div>-->
-
-
-
-<!-- BOTTOM CANVAS (GRAPHS) -->
-<!--<div class="split left bottom split right offcanvas offcanvas-bottom" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">-->
-<!--    <div class="offcanvas-header">-->
-<!--    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Graphs</h5>-->
-<!--    </div>-->
-<!--    <div class="offcanvas-body">-->
-
-<!--        <div id="graph1"></div>-->
-<!--        <div id="graph2"></div>-->
-
-<!--    </div>-->
-<!--</div>-->
-
- <!--main js     -->
+<!--main js     -->
 <script src="../static/javascript/main.js"></script>
 
 </body>
