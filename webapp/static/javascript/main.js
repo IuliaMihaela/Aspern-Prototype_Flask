@@ -464,21 +464,6 @@ function load_layer_aspern_roads(){
                 '#a117c7',
                 '#000000' // any other store type
             ],
-            'line-width':[
-            'case',
-                  ['<=', ['to-number',  ['get', 'width']], 5],
-                  0.3,
-                  ['<=', ['to-number',  ['get', 'width']], 10],
-                  0.5,
-                  ['<=', ['to-number',  ['get', 'width']], 20],
-                  0.7,
-                  ['<=', ['to-number',  ['get', 'width']], 30],
-                  0.85,
-                  ['<=', ['to-number',  ['get', 'width']], 40],
-                  1,
-
-                  1
-            ]
         },
         'layout': {
                 'visibility': 'none'
