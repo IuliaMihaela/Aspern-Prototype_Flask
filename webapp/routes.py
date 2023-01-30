@@ -14,7 +14,7 @@ import os.path
 @app.route("/", methods=['GET'])
 def home():
     return render_template('main.html')
-    # return render_template('design7.html')
+    # return render_template('design7_cleaned.html')
     # return render_template('show_index.html')
     # return render_template('prop_canvas.html')
     # return render_template('dynamic_prop.html')
@@ -63,7 +63,7 @@ def design6():
 
 @app.route("/design7/", methods=['GET'])
 def design7():
-    return render_template('design7.html')
+    return render_template('design7_cleaned.html')
 
 ########### data ###########
 @app.route("/data/prototype_layerWGS84.geojson", methods=['GET'])

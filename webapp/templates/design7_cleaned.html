@@ -25,7 +25,7 @@ rel="stylesheet"
 />
 <script src="https://api.mapbox.com/mapbox-assembly/v1.3.0/assembly.js"></script>
 
-<!-- Bootstarp -->
+<!-- Bootstrap -->
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
@@ -61,8 +61,11 @@ body {
     top: 0;
     bottom: 0;
     z-index: 0;
+    width: 100%;
   }
 
+
+    /*for the legend colors*/
   ul span{
     width: 16px;
     height: 16px;
@@ -72,7 +75,7 @@ body {
   }
 
 
-
+    /*for the list inside the properties popup*/
   .list-group {
     /* width: 250px; */
     width: 240px;
@@ -101,112 +104,116 @@ body {
       font-size: 13px;
   }
 
-    .navbar {
-        border-width: 1.5px;
-        border-style: solid;
+    /*.navbar {*/
+    /*    border-width: 1.5px;*/
+    /*    border-style: solid;*/
 
-    }
+    /*}*/
 
-    .split {
-        height: 70%;
-        /*width: 74%;*/
-        width: 100%;
-        position: fixed;
-        z-index: 1;
-        overflow-x: hidden;
-        padding-top: 20px;
-    }
+    /*.split {*/
+    /*    height: 70%;*/
+    /*    !*width: 74%;*!*/
+    /*    width: 100%;*/
+    /*    position: fixed;*/
+    /*    z-index: 1;*/
+    /*    overflow-x: hidden;*/
+    /*    padding-top: 20px;*/
+    /*}*/
 
-     .split_no_graph {
-        height: 100%;
-        /*width: 74%;*/
-        width: 100%;
-        position: fixed;
-        z-index: 1;
-        overflow-x: hidden;
-        padding-top: 20px;
-    }
+    /* .split_no_graph {*/
+    /*    height: 100%;*/
+    /*    !*width: 74%;*!*/
+    /*    width: 100%;*/
+    /*    position: fixed;*/
+    /*    z-index: 1;*/
+    /*    overflow-x: hidden;*/
+    /*    padding-top: 20px;*/
+    /*}*/
         /* Control the left side */
-    .left {
-        left: 0;
-    }
-    /* Control the right side */
-    .right {
-        right: 0;
-        height: 80%;
-        width: 20%;
-        overflow: auto;
-    }
-    /* Control the bottom side */
-    .bottom {
-        bottom: 0;
-        height: 30%;
-        width: 100%;
-    }
+    /*.left {*/
+    /*    left: 0;*/
+    /*}*/
+    /*!* Control the right side *!*/
+    /*.right {*/
+    /*    right: 0;*/
+    /*    height: 80%;*/
+    /*    width: 20%;*/
+    /*    overflow: auto;*/
+    /*}*/
+    /*!* Control the bottom side *!*/
+    /*.bottom {*/
+    /*    bottom: 0;*/
+    /*    height: 30%;*/
+    /*    width: 100%;*/
+    /*}*/
+
     .header {
         /*float: inline-start;*/
         overflow: hidden;
         /* background-color: #f1f1f1; */
         padding: 20px 10px;
     }
-    .offcanvas-body {
-      position: absolute;
-      top:90px;
-      overflow: hidden;
-      /*height: 80%;*/
-    }
+    /*.offcanvas-body {*/
+    /*  position: absolute;*/
+    /*  top:90px;*/
+    /*  overflow: hidden;*/
+    /*  !*height: 80%;*!*/
+    /*}*/
 
-    .btn-group-sm {
-      position: absolute;
-      /* left: 30px; */
-      top:70px;
-    }
+    /*.btn-group-sm {*/
+    /*  position: absolute;*/
+    /*  !* left: 30px; *!*/
+    /*  top:70px;*/
+    /*}*/
 
     .form-control {
         width: auto;
     }
 
 
-    #btn-open-layers {
-        position: absolute;
-        z-index: 1;
-        top: 10px;
-        left: 10px;
-        border-radius: 3px;
-        width: 50px;
-        height: 25px;
-        align-content:flex-start
-    }
+    /*#btn-open-layers {*/
+    /*    position: absolute;*/
+    /*    z-index: 1;*/
+    /*    top: 10px;*/
+    /*    left: 10px;*/
+    /*    border-radius: 3px;*/
+    /*    width: 50px;*/
+    /*    height: 25px;*/
+    /*    align-content:flex-start*/
+    /*}*/
 
-      #btn-open-legend {
-        position: absolute;
-        z-index: 1;
-        top: 10px;
-        right: 10px;
-        border-radius: 3px;
-        width: 50px;
-        height: 25px;
-        align-content:flex-start
-    }
+    /*  #btn-open-legend {*/
+    /*    position: absolute;*/
+    /*    z-index: 1;*/
+    /*    top: 10px;*/
+    /*    right: 10px;*/
+    /*    border-radius: 3px;*/
+    /*    width: 50px;*/
+    /*    height: 25px;*/
+    /*    align-content:flex-start*/
+    /*}*/
 
     /* https://stackoverflow.com/questions/73292950/change-bootstrap-offcanvas-size-via-css-bootstrap-5-2 */
-    .offcanvas-size-sm {
-    --bs-offcanvas-width: min(95vw, 250px) !important;
-    }
+    /*.offcanvas-size-sm {*/
+    /*--bs-offcanvas-width: min(95vw, 250px) !important;*/
+    /*}*/
 
-    .navbar-nav {
-        width: 250px;
-        height: 260px;
-    }
+    /*.navbar-nav {*/
+    /*    width: 250px;*/
+    /*    height: 260px;*/
+    /*}*/
+
 
     .form-check-input:checked {
         background-color: #404040;
         border-color:rgba(0, 0, 0, 0.25);
     }
-    .offcanvas-end {
-        height:70%;
-        --bs-offcanvas-width: 26%;
-    }
+    /*.offcanvas-end {*/
+    /*    height:70%;*/
+    /*    --bs-offcanvas-width: 26%;*/
+    /*}*/
+
+
     /* for the range */
     /* source: https://stackoverflow.com/questions/40534973/changing-the-color-of-the-range-slider-in-materializecss */
     input[type=range]::-webkit-slider-thumb {
@@ -240,9 +247,9 @@ body {
         align-content:flex-start
     }
 
-    #index_calc {
-        height: 25px
-    }
+    /*#index_calc {*/
+    /*    height: 25px*/
+    /*}*/
 
     .btn-group-sm>.btn, .btn-sm {
         --bs-btn-font-size: 0.75rem;
@@ -253,31 +260,30 @@ body {
     }
 
 
+
+
+    /*.offcanvas::-webkit-scrollbar {*/
+    /*    width: 12px;               !* width of the entire scrollbar *!*/
+    /*}*/
+
+    /*.offcanvas::-webkit-scrollbar-track {*/
+    /*    background: whitesmoke;        !* color of the tracking area *!*/
+    /*}*/
+
+    /*.offcanvas::-webkit-scrollbar-thumb {*/
+    /*    background-color: darkgrey;    !* color of the scroll thumb *!*/
+    /*    border-radius: 20px;       !* roundness of the scroll thumb *!*/
+    /*    border: 3px solid whitesmoke;  !* creates padding around scroll thumb *!*/
+    /*}*/
+
+
     /* style scrollbar */
-    .offcanvas::-webkit-scrollbar {
-        width: 12px;               /* width of the entire scrollbar */
-    }
-
-    .offcanvas::-webkit-scrollbar-track {
-        background: whitesmoke;        /* color of the tracking area */
-    }
-
-    .offcanvas::-webkit-scrollbar-thumb {
-        background-color: darkgrey;    /* color of the scroll thumb */
-        border-radius: 20px;       /* roundness of the scroll thumb */
-        border: 3px solid whitesmoke;  /* creates padding around scroll thumb */
-    }
-
-
-
     #main_layers::-webkit-scrollbar {
         width: 12px;               /* width of the entire scrollbar */
     }
-
     #main_layers::-webkit-scrollbar-track {
         background: whitesmoke;        /* color of the tracking area */
     }
-
     #main_layers::-webkit-scrollbar-thumb {
         background-color: darkgrey;    /* color of the scroll thumb */
         border-radius: 20px;       /* roundness of the scroll thumb */
@@ -286,11 +292,9 @@ body {
     #analysis_layers::-webkit-scrollbar {
         width: 12px;               /* width of the entire scrollbar */
     }
-
     #analysis_layers::-webkit-scrollbar-track {
         background: whitesmoke;        /* color of the tracking area */
     }
-
     #analysis_layers::-webkit-scrollbar-thumb {
         background-color: darkgrey;    /* color of the scroll thumb */
         border-radius: 20px;       /* roundness of the scroll thumb */
@@ -301,9 +305,10 @@ body {
 
 
 
-    #select-form {
-        font-size: 14px;
-    }
+    /*#select-form {*/
+    /*    font-size: 14px;*/
+    /*}*/
+
 
     form {
         font-size: 14px;
@@ -311,14 +316,13 @@ body {
 
 
 
-    .form-select {
-      width: 30px !important;
-    }
+    /*.form-select {*/
+    /*  width: 30px !important;*/
+    /*}*/
 
     select {
         border-color: #f2f2f21a;
     }
-
     select option:hover {
         background-color: #404040;
     }
@@ -326,38 +330,38 @@ body {
 
 
     /*new layers design*/
-    #menu {
-        background: #fff;
-        position: absolute;
-        z-index: 1;
-        top: 10px;
-        right: 10px;
-        border-radius: 3px;
-        width: 120px;
-        border: 1px solid rgba(0, 0, 0, 0.4);
-        font-family: 'Open Sans', sans-serif;
-    }
+    /*#menu {*/
+    /*    background: #fff;*/
+    /*    position: absolute;*/
+    /*    z-index: 1;*/
+    /*    top: 10px;*/
+    /*    right: 10px;*/
+    /*    border-radius: 3px;*/
+    /*    width: 120px;*/
+    /*    border: 1px solid rgba(0, 0, 0, 0.4);*/
+    /*    font-family: 'Open Sans', sans-serif;*/
+    /*}*/
 
-    #menu label {
-        font-size: 13px;
-        color: #404040;
-        display: block;
-        margin: 0;
-        /*padding: 0;*/
-        padding: 10px;
-        text-decoration: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-        text-align: center;
-    }
+    /*#menu label {*/
+    /*    font-size: 13px;*/
+    /*    color: #404040;*/
+    /*    display: block;*/
+    /*    margin: 0;*/
+    /*    !*padding: 0;*!*/
+    /*    padding: 10px;*/
+    /*    text-decoration: none;*/
+    /*    border-bottom: 1px solid rgba(0, 0, 0, 0.25);*/
+    /*    text-align: center;*/
+    /*}*/
 
-    #menu label:last-child {
-        border: none;
-    }
+    /*#menu label:last-child {*/
+    /*    border: none;*/
+    /*}*/
 
-    #menu label:hover {
-        background-color: #f8f8f8;
-        color: #404040;
-    }
+    /*#menu label:hover {*/
+    /*    background-color: #f8f8f8;*/
+    /*    color: #404040;*/
+    /*}*/
     /*#menu label, a.nav-link>input:checked {*/
     /*    background-color: #3887be;*/
     /*    color: #ffffff;*/
@@ -369,14 +373,14 @@ body {
     /*}*/
 
 
-     .dropdown-menu {
-         width: 100%;
-     }
+     /*.dropdown-menu {*/
+     /*    width: 100%;*/
+     /*}*/
 
-     .layers_ul {
-        --bs-dropdown-border-color: none;
-        --bs-dropdown-link-active-bg: none;
-    }
+    /* .layers_ul {*/
+    /*    --bs-dropdown-border-color: none;*/
+    /*    --bs-dropdown-link-active-bg: none;*/
+    /*}*/
 
 
     /*toggle 3d later button */
@@ -392,15 +396,17 @@ body {
       /*display: inline-block;*/
       width: 60px;
       height: 34px;
+      bottom: 6%
     }
 
-     .button3d_bottom_graph {
-      bottom: 36%;
-    }
+    /* .button3d_bottom_graph {*/
+    /*  bottom: 36%;*/
+    /*}*/
 
-    .button3d_bottom_no_graph {
-      bottom: 6%;
-    }
+    /*.button3d_bottom_no_graph {*/
+    /*  bottom: 6%;*/
+    /*}*/
+
 
     /*show only the tick from materialize, hide the bootstrap checkbox*/
     [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
@@ -470,15 +476,16 @@ body {
     /*    overflow-y: auto;*/
     /*}*/
 
-    #btn-close-layers:focus {
-        background-color: #757d82;
-        box-shadow: 0 0 0 0.25rem rgb(26 34 36 / 25%);
-    }
+    /*#btn-close-layers:focus {*/
+    /*    background-color: #757d82;*/
+    /*    box-shadow: 0 0 0 0.25rem rgb(26 34 36 / 25%);*/
+    /*}*/
 
-     #btn-close-legend:focus {
-        background-color: #757d82;
-        box-shadow: 0 0 0 0.25rem rgb(26 34 36 / 25%);
-    }
+    /* #btn-close-legend:focus {*/
+    /*    background-color: #757d82;*/
+    /*    box-shadow: 0 0 0 0.25rem rgb(26 34 36 / 25%);*/
+    /*}*/
+
 
     input[type=text]:focus:not([readonly]){
         border-bottom: 1px solid transparent;
@@ -729,23 +736,21 @@ body {
     }
 
 
+    /*#retore_changes_group {*/
+    /*    position: absolute;*/
+    /*    z-index: 1;*/
+    /*    bottom: 10%;*/
+    /*    right: 1%;*/
+    /*    top: 83%;*/
+    /*}*/
 
+    /*#retore_changes {*/
+    /*    width: 57px;*/
+    /*    font-size: xx-small;*/
+    /*    height: fit-content;*/
+    /*    !*--bs-btn-padding-x: 0;*!*/
 
-    #retore_changes_group {
-        position: absolute;
-        z-index: 1;
-        bottom: 10%;
-        right: 1%;
-        top: 83%;
-    }
-
-    #retore_changes {
-        width: 57px;
-        font-size: xx-small;
-        height: fit-content;
-        /*--bs-btn-padding-x: 0;*/
-
-    }
+    /*}*/
 
 
 
@@ -766,6 +771,7 @@ body {
         height: 25px;
         width: 140px;
     }
+
 
     /*#legend_section {*/
     /*   position: absolute;*/
@@ -805,7 +811,7 @@ body {
         padding: 0;
     }
 
-    /*for the shannon graph*/
+    /*for the graphs*/
      .js-plotly-plot .plotly .main-svg {
         width: 250px;
     }
@@ -841,13 +847,13 @@ body {
         height: fit-content;
         background: transparent;
     }
-    .nav-pills {
-        --bs-nav-pills-link-active-bg: #6c757de0;
-    }
-    .nav {
-        --bs-nav-link-color: rgb(0 0 5 / 83%);
-        --bs-nav-link-hover-color: rgb(0 0 5 / 83%);
-    }
+    /*.nav-pills {*/
+    /*    --bs-nav-pills-link-active-bg: #6c757de0;*/
+    /*}*/
+    /*.nav {*/
+    /*    --bs-nav-link-color: rgb(0 0 5 / 83%);*/
+    /*    --bs-nav-link-hover-color: rgb(0 0 5 / 83%);*/
+    /*}*/
 
     #main_layers {
         position: absolute;
@@ -892,7 +898,6 @@ body {
     /*draw feature */
     .mapboxgl-ctrl-top-right {
         top: 91%;
-        /*bottom:2%;*/
         right:42%
     }
 
@@ -905,7 +910,6 @@ body {
         border: 1px solid #757d82;
     }
 
-
     .min_legend{
         width: 200px;
     }
@@ -916,20 +920,15 @@ body {
 
 
     /*make the legend text small*/
-    /*.card-body ul {*/
-    /*    font-size: small;*/
-    /*    text-indent: -0.5rem*/
-    /*}*/
     .max_legend {
         font-size: small;
         text-indent: -0.5rem
     }
 
+    /*make the 2nd raw of an list item start with spacing*/
     .collapsible-body p {
         padding:0;
      }
-
-
 
 
 
@@ -941,17 +940,17 @@ body {
 <body>
 
 
-<div id="map" class="split_no_graph left"></div>
-
+<div id="map" ></div>
+<!--class="split_no_graph left"-->
 
 <!--3d button -->
 <div>
-    <div class="form-check form-switch button3d_bottom_no_graph" >
+    <div class="form-check form-switch " >
       <input class="form-check-input input_layers" type="checkbox" id="aspern_bkmBlocks">
       <label class="form-check-label" for="aspern_bkmBlocks">3D</label>
     </div>
 </div>
-
+<!--button3d_bottom_no_graph-->
 
 
 <!--collapsible -->
@@ -1866,17 +1865,17 @@ body {
 
 
 <!-- BOTTOM CANVAS (GRAPHS) -->
-<div class="split left bottom split right offcanvas offcanvas-bottom" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-    <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Graphs</h5>
-    </div>
-    <div class="offcanvas-body">
+<!--<div class="split left bottom split right offcanvas offcanvas-bottom" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">-->
+<!--    <div class="offcanvas-header">-->
+<!--    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Graphs</h5>-->
+<!--    </div>-->
+<!--    <div class="offcanvas-body">-->
 
-        <div id="graph1"></div>
-        <div id="graph2"></div>
+<!--        <div id="graph1"></div>-->
+<!--        <div id="graph2"></div>-->
 
-    </div>
-</div>
+<!--    </div>-->
+<!--</div>-->
 
 
 
@@ -1911,6 +1910,7 @@ function getKeyByValue(object, value) {
             }
         }
 
+// for the minimal legend
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
@@ -2126,7 +2126,7 @@ graph_colors_aspern_blocks_attr={'len': '+1', 'colors':{'green area':
                 '#808080',
                 'water':
                 '#0080FF'}};
-graph_colors_aspern_landuse = {'len': '+1', 'colors':{'recreation & leisure facilities':
+const graph_colors_aspern_landuse = {'len': '+1', 'colors':{'recreation & leisure facilities':
                 '#88db35',
                 'business uses':
                 '#e2d4c0',
@@ -2148,13 +2148,13 @@ graph_colors_aspern_landuse = {'len': '+1', 'colors':{'recreation & leisure faci
                 '#d9bdc6',
                 'road space':
                 '#d2e0c5'}};
-graph_colors_aspern_roads = {'len': '+1', 'colors': {'municipal road':
+const graph_colors_aspern_roads = {'len': '+1', 'colors': {'municipal road':
                 '#FFFF66',
                 'state main road':
                 '#FF9933',
                 'main road':
                 '#a117c7'}};
-graph_colors_aspern_publiclines = {'len': '+1', 'colors':{'astax':
+const graph_colors_aspern_publiclines = {'len': '+1', 'colors':{'astax':
                 '#CC0000',
                 'regional bus':
                 '#FF8000',
@@ -2170,8 +2170,8 @@ graph_colors_aspern_publiclines = {'len': '+1', 'colors':{'astax':
                 '#FF33FF',
                 'subway':
                 '#FF3399'}};
-graph_colors_aspern_trees_blocks = {'len': '1', 'colors': '#009900'};
-graph_colors_aspern_publicstops = {'len': '+1', 'colors':{'astax':
+const graph_colors_aspern_trees_blocks = {'len': '1', 'colors': '#009900'};
+const graph_colors_aspern_publicstops = {'len': '+1', 'colors':{'astax':
                 '#CC0000',
                 'regional bus':
                 '#FF8000',
@@ -2187,8 +2187,8 @@ graph_colors_aspern_publicstops = {'len': '+1', 'colors':{'astax':
                 '#FF33FF',
                 'subway':
                 '#FF3399'}};
-graph_colors_shops = {'len': '1', 'colors': 'rgba(0,0,5,0.34)'};
-graph_colors_zoning = {'len':'+1', 'colors':{'recreation area':
+const graph_colors_shops = {'len': '1', 'colors': 'rgba(0,0,5,0.34)'};
+const graph_colors_zoning = {'len':'+1', 'colors':{'recreation area':
                 '#774c43',
                 'mixed developement':
                 '#8B4513',
@@ -2202,7 +2202,7 @@ graph_colors_zoning = {'len':'+1', 'colors':{'recreation area':
                 '#DEB887',
                 'residential area':
                 '#FFE4B5'}};
-graph_colors_shannon_index = {'len': '1', 'colors': '#811515'};
+const graph_colors_shannon_index = {'len': '1', 'colors': '#811515'};
 
 
 // const file_path = ["../data/prototype_layerWGS84.geojson","../data/final/aspern_blocks_attr.geojson", "../data/final/aspern_blocks_final.geojson", "../data/final/aspern_realUseBlocks.geojson", "../data/final/aspern_landcover_final.geojson", "../data/final/aspern_bkmBlocks.geojson", "../data/final/aspern_landuse.geojson", "../data/final/aspern_roads.geojson", "../data/final/aspern_publiclines.geojson", "../data/final/aspern_trees_blocks.geojson", "../data/final/aspern_publicstops.geojson", "../data/final/shops.geojson"]
@@ -2430,10 +2430,11 @@ function create_graph(response, layer_id, graph_colors){
 
 
 
-// navigation
+// navigation control
 var nav = new mapboxgl.NavigationControl();
 map.addControl(nav, 'bottom-left')
 
+//scale control
 map.addControl(new mapboxgl.ScaleControl(), 'bottom-right');
 
 
@@ -3482,33 +3483,33 @@ async function calc_graph_data(graph_type, data_type, data, prop){
 
 
 // the dropdown remains open after clicking a layer
-$('.navbar-nav .dropdown-menu').on({
-	"click":function(e){
-      e.stopPropagation();
-    }
-});
-// the dropdown does not close when you click outside the menu
-// https://stackoverflow.com/questions/26639346/prevent-bootstrap-dropdown-from-closing-on-clicks#:~:text=You%20need%20to%20stop%20event%20from%20bubbling%20up,where%20it%27s%20eventually%20handled%20by%20Bootstrap%20hiding%20menu.
-$(function() {
-  var closeble = false;
-  $('body').on('click', function (e) {
-    if (!$(event.target).is('a.dropdown-toggle')) {
-      closeble = false;
-    }
-  });
-  $('.dropdown').on({
-    'click': function (event) {
-      if ($(event.target).closest('.dropdown-toggle').length) {
-        closeble = true;
-      } else {
-        closeble = false;
-      }
-    },
-    'hide.bs.dropdown': function () {
-      return closeble;
-    }
-  });
-});
+// $('.navbar-nav .dropdown-menu').on({
+// 	"click":function(e){
+//       e.stopPropagation();
+//     }
+// });
+// // the dropdown does not close when you click outside the menu
+// // https://stackoverflow.com/questions/26639346/prevent-bootstrap-dropdown-from-closing-on-clicks#:~:text=You%20need%20to%20stop%20event%20from%20bubbling%20up,where%20it%27s%20eventually%20handled%20by%20Bootstrap%20hiding%20menu.
+// $(function() {
+//   var closeble = false;
+//   $('body').on('click', function (e) {
+//     if (!$(event.target).is('a.dropdown-toggle')) {
+//       closeble = false;
+//     }
+//   });
+//   $('.dropdown').on({
+//     'click': function (event) {
+//       if ($(event.target).closest('.dropdown-toggle').length) {
+//         closeble = true;
+//       } else {
+//         closeble = false;
+//       }
+//     },
+//     'hide.bs.dropdown': function () {
+//       return closeble;
+//     }
+//   });
+// });
 
 
   map.on('style.load', () => {
@@ -3553,10 +3554,10 @@ $(function() {
     // }
 
     //save changes function
-      async function save_changes(){
-        console.log('save changes function...')
-        const query = await fetch('/changes/', { method: 'POST', body: JSON.stringify(data_aspern_blocks_attr)});
-      }
+    //   async function save_changes(){
+    //     console.log('save changes function...')
+    //     const query = await fetch('/changes/', { method: 'POST', body: JSON.stringify(data_aspern_blocks_attr)});
+    //   }
     // save changes every 10 seconds
     // const interval = setInterval(save_changes, 10000); // 10 000 miliseconds
     // clearInterval(interval);
@@ -4660,7 +4661,7 @@ $(function() {
 
 
       //get the canvas that displays the layers options
-    canvas_layers = document.getElementsByClassName('offcanvas-start');
+    //canvas_layers = document.getElementsByClassName('offcanvas-start');
     // when you click on the button
     // document.getElementById('btn-open-layers').onclick = (function(){
     //     console.log(canvas_layers);
@@ -4720,11 +4721,11 @@ $(function() {
             //content.innerHTML = ''; // delete previous content
 
             // get the html elements for the start, end and bottom canvases
-            const canvas_start_el = document.getElementsByClassName('offcanvas-start')[0];
-            // const canvas_end_el = document.getElementsByClassName('offcanvas-end')[0];
-            const canvas_bottom_el = document.getElementsByClassName('offcanvas-bottom')[0];
-            // get the map container
-            const map_el = document.getElementById('map');
+            // const canvas_start_el = document.getElementsByClassName('offcanvas-start')[0];
+            // // const canvas_end_el = document.getElementsByClassName('offcanvas-end')[0];
+            // const canvas_bottom_el = document.getElementsByClassName('offcanvas-bottom')[0];
+            // // get the map container
+            // const map_el = document.getElementById('map');
             // get the 3d button
             const button3d_el = document.getElementsByClassName('form-switch')[0];
 
@@ -4774,7 +4775,7 @@ $(function() {
 
 
 
-            const legend_ul = document.getElementsByClassName('legend_ul')[0];
+            //const legend_ul = document.getElementsByClassName('legend_ul')[0];
             // const legend = document.getElementById('legend');
 
             // if we unclick a layer
@@ -4811,7 +4812,7 @@ $(function() {
                 }
 
                 // if the layer has any plots shown, we delete them
-                delete_graph();
+                // delete_graph();
 
                 // check canvases and map classes
                 // if ((canvas_start_el.classList).contains('split')){
@@ -4822,13 +4823,13 @@ $(function() {
                 // }
 
                 // we show the map on 100% display
-                if ((map_el.classList).contains('split')){
-                    map_el.classList.replace('split', 'split_no_graph');
-                }
-                // the bottom canvas with the graphs disappears
-                if ((canvas_bottom_el.classList).contains('show')){
-                    canvas_bottom_el.classList.remove('show');
-                }
+                // if ((map_el.classList).contains('split')){
+                //     map_el.classList.replace('split', 'split_no_graph');
+                // }
+                // // the bottom canvas with the graphs disappears
+                // if ((canvas_bottom_el.classList).contains('show')){
+                //     canvas_bottom_el.classList.remove('show');
+                //}
                 //the button with the 3d buidings replaces one class so that it is displayed accordingly
                 // we show it at the with the style considering no bottom canvas
                  if ((button3d_el.classList).contains('button3d_bottom_graph')){
@@ -4882,26 +4883,26 @@ $(function() {
                 );
 
                 //if any left graph, delete it
-                delete_graph();
-
-                // load the graphs
-                try{
-                    eval('graph_'+check_id)(eval('data_'+check_id));
-
-                    console.log('show graph');
-                    //replace their split class with the class that has the same properties, but with the height 100%
-                    // canvas_start_el.classList.replace('split_no_graph', 'split');
-                    canvas_end_el.classList.replace('split_no_graph', 'split');  // comment so that the graphs are displayed
-                    map_el.classList.replace('split_no_graph', 'split');
-                    // show the bottom canvas
-                    canvas_bottom_el.classList.add('show');
-                    button3d_el.classList.replace('button3d_bottom_no_graph','button3d_bottom_graph');
-
-                }
-                catch(err){
-                    console.log(err)
-                    console.log('no graph function')
-                }
+                // delete_graph();
+                //
+                // // load the graphs
+                // try{
+                //     eval('graph_'+check_id)(eval('data_'+check_id));
+                //
+                //     console.log('show graph');
+                //     //replace their split class with the class that has the same properties, but with the height 100%
+                //     // canvas_start_el.classList.replace('split_no_graph', 'split');
+                //     canvas_end_el.classList.replace('split_no_graph', 'split');  // comment so that the graphs are displayed
+                //     map_el.classList.replace('split_no_graph', 'split');
+                //     // show the bottom canvas
+                //     canvas_bottom_el.classList.add('show');
+                //     button3d_el.classList.replace('button3d_bottom_no_graph','button3d_bottom_graph');
+                //
+                // }
+                // catch(err){
+                //     console.log(err)
+                //     console.log('no graph function')
+                // }
 
                 // show legend
                 // legend_ul.style.display = "block";
@@ -5340,126 +5341,127 @@ $(function() {
 
 
     // ~~~~~ GRAPHS ~~~~~
-    function delete_graph(){
-        document.getElementById('graph1').innerHTML = '';
-        document.getElementById('graph2').innerHTML = '';
-    }
+    // function delete_graph(){
+    //     document.getElementById('graph1').innerHTML = '';
+    //     document.getElementById('graph2').innerHTML = '';
+    // }
 
-    function graph_aspern_blocks_attr(data){ //graph_aspern_blocks_attr(data)
-        len_greenSpace = 0;
-        len_sealedSpace = 0;
-        len_buildings = 0;
-        len_construction = 0;
-        len_water = 0;
+    // function graph_aspern_blocks_attr(data){ //graph_aspern_blocks_attr(data)
+    //     len_greenSpace = 0;
+    //     len_sealedSpace = 0;
+    //     len_buildings = 0;
+    //     len_construction = 0;
+    //     len_water = 0;
+    //
+    //     // count how many of each there are
+    //     for (f of data.features){
+    //         switch(f['properties']['main_cover']){
+    //             case 'greenSpace':
+    //                 len_greenSpace++;
+    //                 break;
+    //             case 'sealedSpace':
+    //                 len_sealedSpace++
+    //                 break;
+    //             case 'buildings':
+    //                 len_buildings++
+    //                 break;
+    //             case 'construction':
+    //                 len_construction++;
+    //                 break;
+    //             case 'water':
+    //                 len_water++;
+    //                 break;
+    //         }
+    //     }
+    //
+    //     graph1El = document.getElementById('graph1');
+    //     var data1 = [
+    //     {
+    //         x: ['greenSpace', 'sealedSpace', 'buildings', 'construction', 'water'],
+    //         y: [len_greenSpace, len_sealedSpace, len_buildings, len_construction, len_water],
+    //         type: 'bar'
+    //     }
+    //     ];
+    //     layout= {
+    //         height : 300,
+    //         width : 500,
+    //     };
+    //         Plotly.newPlot( graph1El, data1, layout);
+    //
+    //     graph2El = document.getElementById('graph2');
+    //     colors = ['#60c36c', '#856666', '#ad949e', '#808080', '#0080FF'];
+    //     var data2 = [
+    //     {
+    //         labels: ['greenSpace', 'sealedSpace', 'buildings', 'construction', 'water'],
+    //         values: [len_greenSpace, len_sealedSpace, len_buildings, len_construction, len_water],
+    //         type: 'pie',
+    //         marker: {
+    //         colors: colors
+    //     },
+    //     }
+    //     ];
+    //         Plotly.newPlot( graph2El, data2, layout);
+    // }
 
-        // count how many of each there are
-        for (f of data.features){
-            switch(f['properties']['main_cover']){
-                case 'greenSpace':
-                    len_greenSpace++;
-                    break;
-                case 'sealedSpace':
-                    len_sealedSpace++
-                    break;
-                case 'buildings':
-                    len_buildings++
-                    break;
-                case 'construction':
-                    len_construction++;
-                    break;
-                case 'water':
-                    len_water++;
-                    break;
-            }
-        }
+    // function graph_aspern_trees_blocks(data){
+    //
+    //     //bar chart ~~~~~
+    //     dict = {}
+    //     dict2 = {}
+    //
+    //     for (f of data.features){
+    //
+    //         //bar chart
+    //         if (Object.keys(dict).includes(f['properties']['species'])){ // if the species is already the dictionary key
+    //             dict[f['properties']['species']]++; // we add one to its value ( we count the total of each species)
+    //         }
+    //         else{
+    //             dict[f['properties']['species']]=1; // we initialise it with one, the first counted
+    //         }
+    //
+    //         //time series
+    //         if (f['properties']['year']!=0){  // if the year is already the dictionary key
+    //             if (Object.keys(dict2).includes(String(f['properties']['year']))){
+    //                 dict2[f['properties']['year']]++; // add one to the count
+    //             }
+    //             else{
+    //                 dict2[f['properties']['year']]=1; // initialise it with one
+    //             }
+    //         }
+    //     }
+    //
+    //     graph1El = document.getElementById('graph1');
+    //     var data1 = [
+    //     {
+    //         x: Object.keys(dict),
+    //         y: Object.values(dict),
+    //         type: 'bar',
+    //         marker: {
+    //         color: '#00994C'
+    //     },
+    //     }
+    //     ];
+    //     layout= {
+    //         height : 300,
+    //         width : 500,
+    //     }
+    //
+    //         Plotly.newPlot( graph1El, data1,layout);
+    //
+    //     graph2El = document.getElementById('graph2');
+    //     var data2 = [
+    //     {
+    //         x: Object.keys(dict2),
+    //         y: Object.values(dict2),
+    //         type: 'scatter',
+    //         marker: {
+    //           color: '#00994C'
+    //         },
+    //     }
+    //     ];
+    //         Plotly.newPlot( graph2El, data2, layout);
+    // }
 
-        graph1El = document.getElementById('graph1');
-        var data1 = [
-        {
-            x: ['greenSpace', 'sealedSpace', 'buildings', 'construction', 'water'],
-            y: [len_greenSpace, len_sealedSpace, len_buildings, len_construction, len_water],
-            type: 'bar'
-        }
-        ];
-        layout= {
-            height : 300,
-            width : 500,
-        };
-            Plotly.newPlot( graph1El, data1, layout);
-
-        graph2El = document.getElementById('graph2');
-        colors = ['#60c36c', '#856666', '#ad949e', '#808080', '#0080FF'];
-        var data2 = [
-        {
-            labels: ['greenSpace', 'sealedSpace', 'buildings', 'construction', 'water'],
-            values: [len_greenSpace, len_sealedSpace, len_buildings, len_construction, len_water],
-            type: 'pie',
-            marker: {
-            colors: colors
-        },
-        }
-        ];
-            Plotly.newPlot( graph2El, data2, layout);
-    }
-
-    function graph_aspern_trees_blocks(data){
-
-        //bar chart ~~~~~
-        dict = {}
-        dict2 = {}
-
-        for (f of data.features){
-
-            //bar chart
-            if (Object.keys(dict).includes(f['properties']['species'])){ // if the species is already the dictionary key
-                dict[f['properties']['species']]++; // we add one to its value ( we count the total of each species)
-            }
-            else{
-                dict[f['properties']['species']]=1; // we initialise it with one, the first counted
-            }
-
-            //time series
-            if (f['properties']['year']!=0){  // if the year is already the dictionary key
-                if (Object.keys(dict2).includes(String(f['properties']['year']))){
-                    dict2[f['properties']['year']]++; // add one to the count
-                }
-                else{
-                    dict2[f['properties']['year']]=1; // initialise it with one
-                }
-            }
-        }
-
-        graph1El = document.getElementById('graph1');
-        var data1 = [
-        {
-            x: Object.keys(dict),
-            y: Object.values(dict),
-            type: 'bar',
-            marker: {
-            color: '#00994C'
-        },
-        }
-        ];
-        layout= {
-            height : 300,
-            width : 500,
-        }
-
-            Plotly.newPlot( graph1El, data1,layout);
-
-        graph2El = document.getElementById('graph2');
-        var data2 = [
-        {
-            x: Object.keys(dict2),
-            y: Object.values(dict2),
-            type: 'scatter',
-            marker: {
-              color: '#00994C'
-            },
-        }
-        ];
-            Plotly.newPlot( graph2El, data2, layout);
-    }
 
 });
 
