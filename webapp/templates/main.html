@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
 <meta charset="utf-8">
-<title>Aspern prototype</title>
+<title>Aspern WebApp</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></script>
@@ -78,8 +78,8 @@ rel="stylesheet"
             <div class="btn-group btn-group-sm" id="blocks_group" role="group" aria-label="Small button group">
 
                 <button type="button" class="form-check btn btn-outline-dark">
-                    <input class="form-check-input input_layers" type="checkbox" value="" id="aspern_blocks_attr" data-bs-toggle="collapse" data-bs-target="#collapseBlocks" aria-expanded="false" aria-controls="collapseBlocks">
-                    <label class="form-check-label" for="aspern_blocks_attr">
+                    <input class="form-check-input input_layers" type="checkbox" value="" id="aspern_blocks" data-bs-toggle="collapse" data-bs-target="#collapseBlocks" aria-expanded="false" aria-controls="collapseBlocks">
+                    <label class="form-check-label" for="aspern_blocks">
                         Blocks
                     </label>
                 </button>
@@ -117,7 +117,7 @@ rel="stylesheet"
                     </ul>
                   </div>
 
-                  <div id="graph_aspern_blocks_attr">
+                  <div id="graph_aspern_blocks">
 
                   </div>
 
@@ -552,8 +552,8 @@ rel="stylesheet"
         <div class="btn-group btn-group-sm" id="trees_group" role="group" aria-label="Small button group">
 
             <button type="button" class="form-check btn btn-outline-dark">
-                <input class="form-check-input input_layers" type="checkbox" value="" id="aspern_trees_blocks" data-bs-toggle="collapse" data-bs-target="#collapseTrees" aria-expanded="false" aria-controls="collapseTrees">
-                <label class="form-check-label" for="aspern_trees_blocks">
+                <input class="form-check-input input_layers" type="checkbox" value="" id="aspern_trees" data-bs-toggle="collapse" data-bs-target="#collapseTrees" aria-expanded="false" aria-controls="collapseTrees">
+                <label class="form-check-label" for="aspern_trees">
                     Trees
                 </label>
             </button>
@@ -591,7 +591,7 @@ rel="stylesheet"
                 </ul>
               </div>
 
-              <div id="graph_aspern_trees_blocks">
+              <div id="graph_aspern_trees">
 
               </div>
 
@@ -835,7 +835,7 @@ rel="stylesheet"
 
 </div>
 
-<!--main js     -->
+<!--main js -->
 <script src="../static/javascript/main.js"></script>
 
 </body>
